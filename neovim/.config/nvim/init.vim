@@ -15,6 +15,7 @@ if empty(glob(g:plugInstallPath))
 endif
 
 call plug#begin(g:pluggedPath)
+    Plug 'tpope/vim-fugitive'
 	Plug 'itchyny/lightline.vim'
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'scrooloose/nerdtree'
@@ -75,6 +76,13 @@ set noshowmode
 
 let g:lightline = {
       \ 'colorscheme': 'nord',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ },
       \ }
 
 " NerdTree
