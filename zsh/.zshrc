@@ -18,8 +18,9 @@ zstyle ':completion:*' menu select
 # # End of lines added by compinstall
 
 # initialize autocomplete here, otherwise functions won't be loaded
-autoload -U compinit
+autoload -Uz compinit
 compinit
+compdef -d make
 
 # quote pasted URLs
 autoload -Uz bracketed-paste-magic
@@ -64,7 +65,7 @@ zplug "rupa/z", as:plugin, use:z.sh
 # Suggestions
 zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", defer:2
+# zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:3 # Should be loaded 2nd last.
 # zplug "zsh-users/zsh-history-substring-search", defer:3 # Should be loaded last.
 
