@@ -63,11 +63,10 @@ zplug "modules/git", from:prezto
 zplug "modules/osx", from:prezto
 zplug "rupa/z", as:plugin, use:z.sh
 # Suggestions
-zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-completions"
-# zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-autosuggestions", defer:2
 zplug "zsh-users/zsh-syntax-highlighting", defer:3 # Should be loaded 2nd last.
-# zplug "zsh-users/zsh-history-substring-search", defer:3 # Should be loaded last.
+zplug "zsh-users/zsh-history-substring-search", defer:3 # Should be loaded last.
 
 # Plugin Options
 export AUTO_CD=true
