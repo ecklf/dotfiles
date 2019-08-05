@@ -36,6 +36,7 @@ call plug#end()
 " End setup if vplug not installed
 
 " Basic config
+set shortmess=I
 syntax on
 colorscheme nord
 set number
@@ -44,7 +45,7 @@ set history=500
 " set wildmode=longest,list,full
 " set formatoptions=tcqr
 
-"Indent
+" Indent
 set expandtab
 set tabstop=2
 set shiftwidth=2
@@ -66,6 +67,8 @@ nmap <leader>w :w!<cr>
 " :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command W w !sudo tee % > /dev/null
+
+" Plugins
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
