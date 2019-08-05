@@ -28,7 +28,7 @@ alias dcu='docker-compose up'
 alias dcd='docker-compose down'
 alias dcdv='docker-compose down -v'
 
-# List all global npm packages
+# Node
 alias node8='nvm use --lts=carbon'
 alias node10='nvm use --lts=dubnium'
 alias npmls='npm list -g --depth 0'
