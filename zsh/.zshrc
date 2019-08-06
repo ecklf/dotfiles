@@ -1,4 +1,4 @@
-# Lines configured by zsh-newuser-install
+# General
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
@@ -7,22 +7,15 @@ setopt extendedglob
 setopt nomatch 
 setopt notify
 bindkey -e
-# End of lines configured by zsh-newuser-install
 
+# Initialize autocomplete here, otherwise functions won't be loaded
 zstyle ':completion:*' menu select
-
-# # The following lines were added by compinstall
-# zstyle :compinstall filename "/Users/lynx/.zshrc"
-# autoload -Uz compinit
-# compinit
-# # End of lines added by compinstall
-
-# initialize autocomplete here, otherwise functions won't be loaded
+zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
 compdef -d make
 
-# quote pasted URLs
+# Quote pasted URLs
 autoload -Uz bracketed-paste-magic
 zle -N bracketed-paste bracketed-paste-magic
 
@@ -70,7 +63,6 @@ zplug "zsh-users/zsh-history-substring-search", defer:3 # Should be loaded last.
 
 # Plugin Options
 export AUTO_CD=true
-# export NVM_LAZY_LOAD=true
 
 # Theme
 zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
