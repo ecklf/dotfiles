@@ -22,8 +22,8 @@ alias tb='nc termbin.com 9999'
 alias wttr="curl wttr.in/Munich"
 
 # youtube-dl
-alias dl='youtube-dl $1'
-alias dl-hd="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 $1"
+alias dl='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 $1'
+alias dlmp3='youtube-dl --extract-audio --audio-format mp3 $1'
 
 # Docker
 alias dls='docker ps'
