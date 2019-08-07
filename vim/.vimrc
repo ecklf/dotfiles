@@ -40,7 +40,7 @@ call plug#end()
 set shortmess=I
 syntax on
 colorscheme nord
-set number
+set relativenumber
 set cursorline
 set history=500
 " set wildmode=longest,list,full
