@@ -15,7 +15,7 @@ if empty(glob(g:plugInstallPath))
 endif
 
 call plug#begin(g:pluggedPath)
-    Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-fugitive'
 	Plug 'itchyny/lightline.vim'
 	Plug 'terryma/vim-multiple-cursors'
 	Plug 'scrooloose/nerdtree'
@@ -32,6 +32,7 @@ call plug#begin(g:pluggedPath)
 	Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'yggdroot/indentline'
+	Plug 'posva/vim-vue'
 call plug#end()
 " End setup if vplug not installed
 
