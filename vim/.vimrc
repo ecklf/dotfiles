@@ -15,6 +15,9 @@ if empty(glob(g:plugInstallPath))
 endif
 
 call plug#begin(g:pluggedPath)
+	" Use release branch of coc.vim / use comment below for latest
+	"Plug 'neoclide/coc.nvim', {'tag': '*', 'branch': 'release'}
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'tpope/vim-fugitive'
 	Plug 'itchyny/lightline.vim'
 	Plug 'terryma/vim-multiple-cursors'
@@ -33,10 +36,11 @@ call plug#begin(g:pluggedPath)
 	Plug 'arcticicestudio/nord-vim'
 	Plug 'yggdroot/indentline'
 	Plug 'posva/vim-vue'
-call plug#end()
+ call plug#end()
 " End setup if vplug not installed
 
 " Basic config
+au TermOpen * setlocal nonumber norelativenumber
 set shortmess=I
 syntax on
 colorscheme nord
