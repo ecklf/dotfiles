@@ -54,6 +54,7 @@ set relativenumber
 " Don't show intro message
 set shortmess=I
 " Remove linenumbers from terminal
+:tnoremap <Esc> <C-\><C-n>
 au TermOpen * setlocal nonumber norelativenumber
 " set wildmode=longest,list,full
 " set formatoptions=tcqr
