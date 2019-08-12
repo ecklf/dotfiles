@@ -1,2 +1,8 @@
 .DS_Store
 node_modules/
+vim/.config/coc/mru
+vim/.config/coc/snippets-mru
+vim/.config/coc/lists
+vim/.config/coc/history.json
+vim/.config/coc/memos.json
+vim/.config/ultisnips
