@@ -289,8 +289,8 @@ endif
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Define filetypes on load
-"autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
-"autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
+autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
 
 " Make snippets work like in VSCode
 inoremap <silent><expr> <TAB>
@@ -305,6 +305,7 @@ function! s:check_back_space() abort
 endfunction
 
 let g:coc_snippet_next = '<tab>'
+
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
