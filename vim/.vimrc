@@ -191,6 +191,13 @@ set foldcolumn=1
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 
+""""""""""""""""""""""""""""""
+" INSERT MODE
+""""""""""""""""""""""""""""""
+" Cycle through suggestion list with C-j/k
+inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
+inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MOVEMENT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -281,6 +288,23 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Define filetypes on load
+"autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
+"autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+
+" Make snippets work like in VSCode
+inoremap <silent><expr> <TAB>
+    \ pumvisible() ? coc#_select_confirm() :
+    \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
+
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+let g:coc_snippet_next = '<tab>'
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
