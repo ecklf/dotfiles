@@ -56,6 +56,7 @@ call plug#end()
 " GENERAL 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set history=500
+
 " Enable Syntax highlighting
 syntax on
 set encoding=utf8
@@ -66,10 +67,13 @@ set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
 
+" Cursor style"
 set cursorline
 set relativenumber
+
 " Don't show intro message
 set shortmess=I
+
 " Remove linenumbers from terminal
 :tnoremap <Esc> <C-\><C-n>
 au TermOpen * setlocal nonumber norelativenumber
@@ -198,6 +202,13 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 
+" Expand body regions 
+inoremap (; (<CR>);<C-c>O
+inoremap (, (<CR>),<C-c>O
+inoremap {; {<CR>};<C-c>O
+inoremap {, {<CR>},<C-c>O
+inoremap [; [<CR>];<C-c>O
+inoremap [, [<CR>],<C-c>O
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MOVEMENT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -308,6 +319,9 @@ let g:coc_snippet_next = '<tab>'
 
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+" Prevent removing quotes from json
+autocmd Filetype json :IndentLinesDisable
 
 " Lightline
 set laststatus=2
