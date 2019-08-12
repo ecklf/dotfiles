@@ -12,3 +12,5 @@ My current macOS dotfiles managed with GNU stow.
 2. `git clone https://github.com/impulse/dotfiles.git`
 3. `cd dotfiles/`
 4. `stow folderName` (to remove use -D)
+
+When using stow on vim you will need to run `:PlugInstall` and `:CocInstall`
