@@ -18,26 +18,38 @@ if empty(glob(g:plugInstallPath))
 endif
 
 call plug#begin(g:pluggedPath)
-    " coc.nvim: Add 'tag': '*' in {} for latest release
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'tpope/vim-fugitive'
+    " Visuals
     Plug 'itchyny/lightline.vim'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'scrooloose/nerdtree'
     Plug 'airblade/vim-gitgutter'
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'arcticicestudio/nord-vim'
+    " File management
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'mattn/emmet-vim'
-    Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-surround'
-    Plug 'w0rp/ale'
-    Plug 'terryma/vim-expand-region'
-    Plug 'gregsexton/MatchTag'
+    Plug 'scrooloose/nerdtree'
+    " Autocompletion
+    " coc.nvim: Add 'tag': '*' in {} for latest release
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Helpers
+    Plug 'tpope/vim-fugitive' " GIT helper
+    Plug 'tpope/vim-eunuch' " UNIX helper
     Plug 'rizzatti/dash.vim'
+    " Code Helpers
+    Plug 'mattn/emmet-vim'
+    Plug 'tpope/vim-surround'
+    Plug 'terryma/vim-expand-region'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'gregsexton/MatchTag'
+    " Linting and Formatting
+    Plug 'w0rp/ale'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-    Plug 'arcticicestudio/nord-vim'
     Plug 'yggdroot/indentline'
+    " Language Syntax
     Plug 'posva/vim-vue'
+    Plug 'pangloss/vim-javascript'
+    Plug 'mxw/vim-jsx'
+    Plug 'leafgarland/typescript-vim'
+    Plug 'peitalin/vim-jsx-typescript'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -48,7 +60,12 @@ set history=500
 syntax on
 set encoding=utf8
 set ffs=unix,dos,mac
-colorscheme nord
+
+" Enable true colors support and set mirage theme
+set termguicolors
+let ayucolor="mirage"
+colorscheme ayu
+
 set cursorline
 set relativenumber
 " Don't show intro message
@@ -240,12 +257,13 @@ nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-if has("mac") || has("macunix")
-  nmap <D-j> <M-j>
-  nmap <D-k> <M-k>
-  vmap <D-j> <M-j>
-  vmap <D-k> <M-k>
-endif
+" Remap to CMD + J/K on macOS
+" if has("mac") || has("macunix")
+"   nmap <D-j> <M-j>
+"   nmap <D-k> <M-k>
+"   vmap <D-j> <M-j>
+"   vmap <D-k> <M-k>
+" endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
@@ -271,7 +289,7 @@ set laststatus=2
 set noshowmode
 
 let g:lightline = {
-    \ 'colorscheme': 'nord',
+    \ 'colorscheme': 'ayu_mirage',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
     \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
