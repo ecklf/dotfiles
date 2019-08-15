@@ -22,7 +22,8 @@ call plug#begin(g:pluggedPath)
     Plug 'itchyny/lightline.vim'
     Plug 'airblade/vim-gitgutter'
     Plug 'ayu-theme/ayu-vim'
-    Plug 'arcticicestudio/nord-vim'
+    Plug 'ryanoasis/vim-devicons'
+    " Plug 'arcticicestudio/nord-vim'
     " File management
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
@@ -321,7 +322,7 @@ let g:coc_snippet_next = '<tab>'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 " Prevent removing quotes from json
-autocmd Filetype json :IndentLinesDisable
+autocmd Filetype json let g:indentLine_setConceal = 0
 
 " Lightline
 set laststatus=2
