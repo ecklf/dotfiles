@@ -1,4 +1,4 @@
 {
   "suggest.noselect": false,
-  "html.filetypes": ["html", "handlebars", "jsx", "tsx, vue"]
+  "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"]
 }
