@@ -36,6 +36,7 @@ call plug#begin(g:pluggedPath)
     Plug 'tpope/vim-eunuch' " UNIX helper
     Plug 'rizzatti/dash.vim'
     " Code Helpers
+    Plug 'scrooloose/nerdcommenter'
     Plug 'mattn/emmet-vim'
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-expand-region'
@@ -48,14 +49,17 @@ call plug#begin(g:pluggedPath)
     " Language Syntax
     Plug 'posva/vim-vue'
     Plug 'pangloss/vim-javascript'
-    Plug 'mxw/vim-jsx'
     Plug 'leafgarland/typescript-vim'
-    Plug 'peitalin/vim-jsx-typescript'
+    Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " GENERAL 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
 set history=500
 
 " Enable Syntax highlighting
@@ -301,8 +305,8 @@ endif
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Define filetypes on load
-autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
-autocmd BufNewFile,BufRead *.jsx set filetype=javascript.jsx
+autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
 
 " Make snippets work like in VSCode
 inoremap <silent><expr> <TAB>
@@ -341,6 +345,12 @@ let g:lightline = {
 
 " NerdTree
 map <C-o> :NERDTreeToggle<CR>
+
+" NerdCommenter
+let g:NERDCustomDelimiters= {
+    \ 'javascript.jsx': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+    \ 'typescript.tsx': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+\}
 
 " Prettier
 let g:prettier#autoformat = 0
