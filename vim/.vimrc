@@ -23,13 +23,11 @@ call plug#begin(g:pluggedPath)
     Plug 'airblade/vim-gitgutter'
     Plug 'ayu-theme/ayu-vim'
     Plug 'ryanoasis/vim-devicons'
-    " Plug 'arcticicestudio/nord-vim'
     " File management
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
     Plug 'scrooloose/nerdtree'
     " Autocompletion
-    " coc.nvim: Add 'tag': '*' in {} for latest release
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Helpers
     Plug 'tpope/vim-fugitive' " GIT helper
@@ -318,22 +316,23 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COC.NVIM SPECIFIC
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " React specific: auto set filetypes
 autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-
-" Make snippets work like in VSCode
+" Tab autocompletion 
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? coc#_select_confirm() :
     \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
-
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
 let g:coc_snippet_next = '<tab>'
 
 " Indentline
