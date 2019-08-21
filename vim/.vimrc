@@ -193,6 +193,14 @@ endif
 set foldcolumn=1
 
 """"""""""""""""""""""""""""""
+" GLOBALS AND NORMAL MODE
+""""""""""""""""""""""""""""""
+" Replace class= with className= 
+:map <leader>rc :%s/class=/className=/g<CR>
+" Clear search highlight 
+nnoremap <Leader><space> :noh<cr>
+
+""""""""""""""""""""""""""""""
 " VISUAL MODE
 """"""""""""""""""""""""""""""
 " Visual mode pressing * or # searches for the current selection
@@ -214,6 +222,12 @@ inoremap {; {<CR>};<C-c>O
 inoremap {, {<CR>},<C-c>O
 inoremap [; [<CR>];<C-c>O
 inoremap [, [<CR>],<C-c>O
+inoremap (<CR> (<CR>)<C-c>O
+inoremap (<CR> (<CR>)<C-c>O
+inoremap {<CR> {<CR>}<C-c>O
+inoremap {<CR> {<CR>}<C-c>O
+inoremap [<CR> [<CR>]<C-c>O
+inoremap [<CR> [<CR>]<C-c>O
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " MOVEMENT
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -307,8 +321,6 @@ endif
 " React specific: auto set filetypes
 autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-" Replace class= with className= 
-:map <leader>rc :%s/class=/className=/g<CR>
 
 " Make snippets work like in VSCode
 inoremap <silent><expr> <TAB>
