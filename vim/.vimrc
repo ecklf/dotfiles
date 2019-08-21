@@ -38,7 +38,6 @@ call plug#begin(g:pluggedPath)
     Plug 'mattn/emmet-vim'
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-expand-region'
-    Plug 'terryma/vim-multiple-cursors'
     Plug 'gregsexton/MatchTag'
     " Linting and Formatting
     Plug 'w0rp/ale'
@@ -334,7 +333,15 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 let g:coc_snippet_next = '<tab>'
-
+" Multiple cursor support
+hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
+nmap <expr> <silent> <C-d> <SID>select_current_word()
+function! s:select_current_word()
+  if !get(g:, 'coc_cursors_activated', 0)
+    return "\<Plug>(coc-cursors-word)"
+  endif
+  return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
+endfunc
 " Indentline
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
