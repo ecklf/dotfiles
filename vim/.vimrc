@@ -304,9 +304,11 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PLUGINS
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Define filetypes on load
+" React specific: auto set filetypes
 autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+" Replace class= with className= 
+:map <leader>rc :%s/class=/className=/g<CR>
 
 " Make snippets work like in VSCode
 inoremap <silent><expr> <TAB>
