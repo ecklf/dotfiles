@@ -18,31 +18,31 @@ if empty(glob(g:plugInstallPath))
 endif
 
 call plug#begin(g:pluggedPath)
-    " Visuals
+    " UI
+    Plug 'ayu-theme/ayu-vim'
+    Plug 'scrooloose/nerdtree'
+    Plug 'ryanoasis/vim-devicons'
     Plug 'itchyny/lightline.vim'
     Plug 'airblade/vim-gitgutter'
-    Plug 'ayu-theme/ayu-vim'
-    Plug 'ryanoasis/vim-devicons'
-    " File management
+    " Search helpers
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
-    Plug 'scrooloose/nerdtree'
-    " Autocompletion
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Helpers
-    Plug 'tpope/vim-fugitive' " GIT helper
-    Plug 'tpope/vim-eunuch' " UNIX helper
-    Plug 'rizzatti/dash.vim'
-    " Code Helpers
-    Plug 'scrooloose/nerdcommenter'
-    Plug 'mattn/emmet-vim'
-    Plug 'tpope/vim-surround'
-    Plug 'terryma/vim-expand-region'
-    Plug 'alvan/vim-closetag'
-    " Linting and Formatting
+    " Linting and Visuals
     Plug 'w0rp/ale'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'yggdroot/indentline'
+    " Shell / Documentation Helpers
+    Plug 'tpope/vim-fugitive' " GIT
+    Plug 'tpope/vim-eunuch'   " UNIX
+    Plug 'rizzatti/dash.vim'  " Docs 
+    " Code Helpers
+    Plug 'tpope/vim-surround'
+    Plug 'terryma/vim-expand-region'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'mattn/emmet-vim'
+    Plug 'alvan/vim-closetag'
+    " Autocompletion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " Language Syntax
     Plug 'posva/vim-vue'
     Plug 'pangloss/vim-javascript'
@@ -69,7 +69,7 @@ set termguicolors
 let ayucolor="mirage"
 colorscheme ayu
 
-" Cursor style"
+" Cursor style
 set cursorline
 set relativenumber
 
