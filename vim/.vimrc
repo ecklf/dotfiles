@@ -38,7 +38,7 @@ call plug#begin(g:pluggedPath)
     Plug 'mattn/emmet-vim'
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-expand-region'
-    Plug 'gregsexton/MatchTag'
+    Plug 'alvan/vim-closetag'
     " Linting and Formatting
     Plug 'w0rp/ale'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -132,6 +132,7 @@ set wildmenu
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
+
 if has("win16") || has("win32")
     set wildignore+=.git\*,.hg\*,.svn\*
 else
@@ -194,6 +195,7 @@ set foldcolumn=1
 """"""""""""""""""""""""""""""
 " Replace class= with className= 
 :map <leader>rc :%s/class=/className=/g<CR>
+
 " Clear search highlight 
 nnoremap <Leader><space> :noh<cr>
 
@@ -246,7 +248,6 @@ map <leader>bd :Bclose<cr>:tabclose<cr>gT
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
-
 map <leader>l :bnext<cr>
 map <leader>h :bprevious<cr>
 
@@ -285,19 +286,11 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
-" Move a line of text using ALT+[jk] or Command+[jk] on mac
+" Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
 vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
 vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-" Remap to CMD + J/K on macOS
-" if has("mac") || has("macunix")
-"   nmap <D-j> <M-j>
-"   nmap <D-k> <M-k>
-"   vmap <D-j> <M-j>
-"   vmap <D-k> <M-k>
-" endif
 
 " Delete trailing white space on save, useful for some filetypes ;)
 fun! CleanExtraSpaces()
@@ -313,42 +306,71 @@ if has("autocmd")
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" PLUGINS
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COC.NVIM SPECIFIC
+" COC.NVIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " React specific: auto set filetypes
-autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+
 " Tab autocompletion 
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? coc#_select_confirm() :
     \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
     \ <SID>check_back_space() ? "\<TAB>" :
     \ coc#refresh()
+
 function! s:check_back_space() abort
     let col = col('.') - 1
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 let g:coc_snippet_next = '<tab>'
+
 " Multiple cursor support
 hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
 nmap <expr> <silent> <C-d> <SID>select_current_word()
+
 function! s:select_current_word()
   if !get(g:, 'coc_cursors_activated', 0)
     return "\<Plug>(coc-cursors-word)"
   endif
   return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
 endfunc
-" Indentline
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" CLOSETAG
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" These are the file types where this plugin is enabled.
+let g:closetag_filetypes = 'html,xhtml,phtml,vue,javascript.jsx,typescript.tsx'
+
+" This will make the list of non-closing tags self-closing in the specified files.
+let g:closetag_xhtml_filetypes = 'xhtml,javascript.jsx,typescript.tsx'
+
+" This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+
+" Disables auto-close if not in a "valid" region (based on filetype)
+let g:closetag_regions = {
+    \ 'javascript.jsx': 'jsxRegion',
+    \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ }
+
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<leader>>'
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" INDENTLINE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Prevent removing quotes from json
 autocmd Filetype json let g:indentLine_setConceal = 0
 
-" Lightline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" LIGHTLINE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 set noshowmode
 
@@ -363,15 +385,21 @@ let g:lightline = {
     \ },
 \ }
 
-" NerdTree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDTREE
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map <C-o> :NERDTreeToggle<CR>
 
-" NerdCommenter
-let g:NERDCustomDelimiters= {
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" NERDCOMMENTER
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:NERDCustomDelimiters = {
     \ 'javascript.jsx': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
     \ 'typescript.tsx': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
-\}
+    \ }
 
-" Prettier
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" PRETTIER
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
