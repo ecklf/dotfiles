@@ -32,7 +32,6 @@ call plug#begin(g:pluggedPath)
     Plug 'junegunn/fzf.vim'
     
     " Linting and Visuals
-    Plug 'w0rp/ale'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'yggdroot/indentline'
     
@@ -316,6 +315,11 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " COC.NVIM
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set linting update time
+set updatetime=300
+"hi CocErrorSign guifg=#f07178
+"hi CocErrorHighlight guibg=#f07178 guifg=#212733
+
 " React specific: auto set filetypes
 autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
 autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
@@ -382,14 +386,29 @@ autocmd Filetype json let g:indentLine_setConceal = 0
 set laststatus=2
 set noshowmode
 
+function! StatusDiagnostic() abort
+  let info = get(b:, 'coc_diagnostic_info', {})
+  if empty(info) | return '' | endif
+  let msgs = []
+  if get(info, 'error', 0)
+    call add(msgs, '✖ ' . info['error'])
+  endif
+  if get(info, 'warning', 0)
+    call add(msgs, '⚠ ' . info['warning'])
+  endif
+  return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
+endfunction
+
 let g:lightline = {
     \ 'colorscheme': 'ayu_mirage',
     \ 'active': {
     \   'left': [ [ 'mode', 'paste' ],
-    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \             [ 'gitbranch', 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
     \ },
     \ 'component_function': {
-    \   'gitbranch': 'fugitive#head'
+    \   'gitbranch': 'fugitive#head',
+    \   'cocstatus': 'StatusDiagnostic',
+    \   'currentfunction': 'CocCurrentFunction'
     \ },
 \ }
 

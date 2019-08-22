@@ -1,4 +1,5 @@
 {
+  "diagnostic.refreshOnInsertMode": true,
   "suggest.noselect": false,
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"]
