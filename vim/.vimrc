@@ -10,7 +10,9 @@ else
     let g:pluggedPath = '~/.vim/plugged'
 endif
 
-" Setup VimPlug
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIMPLUG SETUP
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 if empty(glob(g:plugInstallPath))
     silent execute '!curl -fLo ' . g:plugInstallPath . ' --create-dirs
       \ "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"'
@@ -24,25 +26,31 @@ call plug#begin(g:pluggedPath)
     Plug 'ryanoasis/vim-devicons'
     Plug 'itchyny/lightline.vim'
     Plug 'airblade/vim-gitgutter'
+    
     " Search helpers
     Plug 'junegunn/fzf'
     Plug 'junegunn/fzf.vim'
+    
     " Linting and Visuals
     Plug 'w0rp/ale'
     Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
     Plug 'yggdroot/indentline'
+    
     " Shell / Documentation Helpers
     Plug 'tpope/vim-fugitive' " GIT
     Plug 'tpope/vim-eunuch'   " UNIX
     Plug 'rizzatti/dash.vim'  " Docs 
+    
     " Code Helpers
     Plug 'tpope/vim-surround'
     Plug 'terryma/vim-expand-region'
     Plug 'scrooloose/nerdcommenter'
     Plug 'mattn/emmet-vim'
     Plug 'alvan/vim-closetag'
+    
     " Autocompletion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    
     " Language Syntax
     Plug 'posva/vim-vue'
     Plug 'pangloss/vim-javascript'
