@@ -1,6 +1,10 @@
 {
-  "diagnostic.refreshOnInsertMode": true,
   "suggest.noselect": false,
+  "diagnostic.refreshOnInsertMode": true,
+  "diagnostic.virtualText": true,
+  "diagnostic.checkCurrentLine": true,
+  "tsserver.enableJavascript": true,
+  "typescript.suggest.enabled": true,
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"]
 }
