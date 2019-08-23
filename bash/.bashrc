@@ -1,7 +1,10 @@
 # Exports
+export LC_ALL=en_US.UTF-8
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/Users/$USER/Development/flutter/bin
+export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Aliases
 alias untar='tar -zxvf '

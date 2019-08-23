@@ -1,23 +1,29 @@
 # General
-HISTFILE=~/.histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory 
-setopt extendedglob 
-setopt nomatch 
-setopt notify
 bindkey -e
+# History command configuration
+[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
+HISTSIZE=50000
+SAVEHIST=10000
+# Timestamps
+setopt extended_history
+# Remove duplicates
+setopt hist_expire_dups_first
+# Ignore duplicates
+setopt hist_ignore_dups
+# Ignore space prefixed commands
+setopt hist_ignore_space
+# Show history expansion command
+setopt hist_verify
+# Add commands in order of execution
+setopt inc_append_history
+# Share command history data
+setopt share_history
 
 # Initialize autocomplete here, otherwise functions won't be loaded
 zstyle ':completion:*' menu select
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
 compinit
-compdef -d make
-
-# Quote pasted URLs
-autoload -Uz bracketed-paste-magic
-zle -N bracketed-paste bracketed-paste-magic
 
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
@@ -31,41 +37,27 @@ function cheat(){
   command curl "cheat.sh/$1"
 }
 
-# Check if zplug is installed
-if [[ ! -d ~/.zplug ]]; then
-  git clone https://github.com/zplug/zplug ~/.zplug
-  source ~/.zplug/init.zsh && zplug update --self
-fi
-
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 
-# Essential
-source ~/.zplug/init.zsh
-source ~/.bashrc
+# Check if zplugin is installed, else autoinstall
+if [[ ! -d ~/.zplugin ]]; then
+  mkdir ~/.zplugin
+  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+fi
 
-# Plugins
-zplug "djui/alias-tips"
-zplug "lukechilds/zsh-nvm"
-zplug "plugins/npm", from:oh-my-zsh
-zplug "plugins/brew", from:oh-my-zsh
-# zplug "plugins/cargo", from:oh-my-zsh # Rust Cargo
-zplug "modules/directory", from:prezto
-zplug "modules/git", from:prezto
-zplug "modules/osx", from:prezto
-zplug "rupa/z", as:plugin, use:z.sh
-# Suggestions
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-autosuggestions", defer:2
-zplug "zsh-users/zsh-syntax-highlighting", defer:3 # Should be loaded 2nd last.
-zplug "zsh-users/zsh-history-substring-search", defer:3 # Should be loaded last.
+# Adding color support for ls etc.
+precmd () {print -Pn "\e]0;%~\a"}
 
-# Plugin Options
-export AUTO_CD=true
+# Sourcing and zplugin
+source "$HOME/.bashrc"
+source "$HOME/.zplugin/bin/zplugin.zsh"
+
+autoload -Uz _zplugin
+(( ${+_comps} )) && _comps[zplugin]=_zplugin
 
 # Theme
-zplug denysdovhan/spaceship-prompt, use:spaceship.zsh, from:github, as:theme
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_VI_MODE_SHOW=false
@@ -77,15 +69,40 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_PROMPT_ADD_NEWLINE="false"
 SPACESHIP_CHAR_COLOR_SUCCESS="white"
 
-# Install packages that have not been installed yet
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    else
-        echo
-    fi
+zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
+zplugin light denysdovhan/spaceship-prompt
+
+# Snippets
+zplugin ice svn pick"init.zsh"
+zplugin snippet PZT::modules/git
+
+zplugin ice svn pick"init.zsh"
+zplugin snippet PZT::modules/directory
+export AUTO_CD=true
+
+# macOS snippets
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  zplugin ice svn pick"init.zsh"
+  zplugin snippet PZT::modules/homebrew
+
+  zplugin ice svn pick"init.zsh"
+  zplugin snippet PZT::modules/osx
 fi
 
-precmd () {print -Pn "\e]0;%~\a"}
-zplug load #-- verbose
+# Plugins
+zplugin ice lucid wait"0" blockf
+zplugin light zsh-users/zsh-completions
+
+zplugin ice lucid wait"0" atload"_zsh_autosuggest_start"
+zplugin light zsh-users/zsh-autosuggestions
+
+zplugin ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
+zplugin light zdharma/fast-syntax-highlighting
+
+zplugin ice lucid wait"0"
+zplugin light agkozak/zsh-z
+
+# Adjust wait param for faster speedup {1} works fine too
+zplugin ice lucid wait"0" lucid
+zplugin light lukechilds/zsh-nvm
+
