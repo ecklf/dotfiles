@@ -1,6 +1,11 @@
-# General
+###########################################################
+# GENERAL
+###########################################################
 bindkey -e
-# History command configuration
+
+###########################################################
+# HISTORY
+###########################################################
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
 SAVEHIST=10000
@@ -19,7 +24,9 @@ setopt inc_append_history
 # Share command history data
 setopt share_history
 
-# Initialize autocomplete here, otherwise functions won't be loaded
+###########################################################
+# COMPINIT AND FUNCTIONS
+###########################################################
 zstyle ':completion:*' menu select
 zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
@@ -28,15 +35,12 @@ compinit
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
-# Exports and aliases
-export LC_ALL=en_US.UTF-8
-export PATH="/usr/local/opt/curl/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
+# Usage: cheat $1, returns RL examples of provided tool 
 function cheat(){
   command curl "cheat.sh/$1"
 }
 
+# Prefer nvim over vim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
@@ -50,14 +54,16 @@ fi
 # Adding color support for ls etc.
 precmd () {print -Pn "\e]0;%~\a"}
 
-# Sourcing and zplugin
+###########################################################
+# ZPLUGIN / SOURCE
+###########################################################
 source "$HOME/.bashrc"
 source "$HOME/.zplugin/bin/zplugin.zsh"
 
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# Theme
+# Spaceship settings
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 SPACESHIP_VI_MODE_SHOW=false
@@ -69,6 +75,7 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_PROMPT_ADD_NEWLINE="false"
 SPACESHIP_CHAR_COLOR_SUCCESS="white"
 
+# Spaceship theme
 zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
 zplugin light denysdovhan/spaceship-prompt
 
@@ -80,7 +87,7 @@ zplugin ice svn pick"init.zsh"
 zplugin snippet PZT::modules/directory
 export AUTO_CD=true
 
-# macOS snippets
+# macOS specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
   zplugin ice svn pick"init.zsh"
   zplugin snippet PZT::modules/homebrew
@@ -102,7 +109,6 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice lucid wait"0"
 zplugin light agkozak/zsh-z
 
-# Adjust wait param for faster speedup {1} works fine too
+# Adjust wait param for faster speedup f.ex wait"1" 
 zplugin ice lucid wait"0" lucid
 zplugin light lukechilds/zsh-nvm
-
