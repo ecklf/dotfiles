@@ -110,5 +110,5 @@ zplugin ice lucid wait"0"
 zplugin light agkozak/zsh-z
 
 # Adjust wait param for faster speedup f.ex wait"1" 
-zplugin ice lucid wait"0" lucid
+zplugin ice lucid wait"0"
 zplugin light lukechilds/zsh-nvm
