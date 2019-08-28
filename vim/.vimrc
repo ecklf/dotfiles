@@ -46,7 +46,8 @@ call plug#begin(g:pluggedPath)
     Plug 'scrooloose/nerdcommenter'
     Plug 'mattn/emmet-vim'
     Plug 'alvan/vim-closetag'
-    
+    Plug 'MattesGroeger/vim-bookmarks' 
+
     " Autocompletion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     
@@ -421,8 +422,8 @@ map <C-o> :NERDTreeToggle<CR>
 " NERDCOMMENTER
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:NERDCustomDelimiters = {
-    \ 'javascript.jsx': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
-    \ 'typescript.tsx': { 'left': '//', 'right': '', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+    \ 'javascript.jsx': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
+    \ 'typescript.tsx': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
     \ }
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
