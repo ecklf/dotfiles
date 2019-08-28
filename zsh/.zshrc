@@ -63,21 +63,21 @@ source "$HOME/.zplugin/bin/zplugin.zsh"
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
 
-# Spaceship settings
-SPACESHIP_CHAR_SYMBOL="❯"
-SPACESHIP_CHAR_SUFFIX=" "
-SPACESHIP_VI_MODE_SHOW=false
-SPACESHIP_PACKAGE_PREFIX="\n"
-SPACESHIP_GIT_PREFIX="\n"
-SPACESHIP_NODE_PREFIX="\n"
-SPACESHIP_PACKAGE_SHOW=true
-SPACESHIP_BATTERY_SHOW=false
-SPACESHIP_PROMPT_ADD_NEWLINE="false"
-SPACESHIP_CHAR_COLOR_SUCCESS="white"
+## Spaceship settings
+#SPACESHIP_CHAR_SYMBOL="❯"
+#SPACESHIP_CHAR_SUFFIX=" "
+#SPACESHIP_VI_MODE_SHOW=false
+#SPACESHIP_PACKAGE_PREFIX="\n"
+#SPACESHIP_GIT_PREFIX="\n"
+#SPACESHIP_NODE_PREFIX="\n"
+#SPACESHIP_PACKAGE_SHOW=true
+#SPACESHIP_BATTERY_SHOW=false
+#SPACESHIP_PROMPT_ADD_NEWLINE="false"
+#SPACESHIP_CHAR_COLOR_SUCCESS="white"
 
-# Spaceship theme
-zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
-zplugin light denysdovhan/spaceship-prompt
+## Spaceship theme
+#zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
+#zplugin light denysdovhan/spaceship-prompt
 
 # Snippets
 zplugin ice svn pick"init.zsh"
@@ -112,3 +112,5 @@ zplugin light agkozak/zsh-z
 # Adjust wait param for faster speedup f.ex wait"1" 
 zplugin ice lucid wait"0"
 zplugin light lukechilds/zsh-nvm
+
+eval "$(starship init zsh)"
