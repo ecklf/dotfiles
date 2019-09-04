@@ -265,6 +265,8 @@ map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove 
 map <leader>t<leader> :tabnext 
+map <leader>n :tabnext<cr>
+map <leader>N :tabprevious<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -380,7 +382,6 @@ let g:closetag_close_shortcut = '<leader>>'
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 " Prevent removing quotes from json
 autocmd Filetype json let g:indentLine_setConceal = 0
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " LIGHTLINE
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
