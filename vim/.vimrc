@@ -296,6 +296,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Remap VIM 0 to first non-blank character
 map 0 ^
 
+" Map copy/paste
+map <leader>c "+y
+map <leader>v "+p
+
 " Move a line of text using ALT+[jk]
 nmap <M-j> mz:m+<cr>`z
 nmap <M-k> mz:m-2<cr>`z
