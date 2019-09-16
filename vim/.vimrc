@@ -47,6 +47,7 @@ call plug#begin(g:pluggedPath)
     Plug 'mattn/emmet-vim'
     Plug 'alvan/vim-closetag'
     Plug 'MattesGroeger/vim-bookmarks' 
+    Plug 'liuchengxu/vista.vim'
 
     " Autocompletion
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -79,7 +80,13 @@ colorscheme ayu
 
 " Cursor style
 set cursorline
+
+" Display relative nubers on all lines beside the current
+set number
 set relativenumber
+
+" Hide foldcolumn
+:setlocal foldcolumn=0
 
 " Don't show intro message
 set shortmess=I
@@ -360,10 +367,10 @@ endfunc
 " CLOSETAG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " These are the file types where this plugin is enabled.
-let g:closetag_filetypes = 'html,xhtml,phtml,vue,javascript.jsx,typescript.tsx'
+let g:closetag_filetypes = 'html,xhtml,phtml,vue,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx'
 
 " This will make the list of non-closing tags self-closing in the specified files.
-let g:closetag_xhtml_filetypes = 'xhtml,javascript.jsx,typescript.tsx'
+let g:closetag_xhtml_filetypes = 'xhtml,javascriptreact,typescriptreact,javascript.jsx,typescript.tsx'
 
 " This will make the list of non-closing tags case-sensitive (e.g. `<Link>` will be closed while `<link>` won't.)
 let g:closetag_emptyTags_caseSensitive = 1
@@ -372,6 +379,8 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_regions = {
     \ 'javascript.jsx': 'jsxRegion',
     \ 'typescript.tsx': 'jsxRegion,tsxRegion',
+    \ 'javascriptreact': 'jsxRegion',
+    \ 'typescriptreact': 'jsxRegion,tsxRegion',
     \ }
 
 " Shortcut for closing tags, default is '>'
@@ -436,3 +445,39 @@ let g:NERDCustomDelimiters = {
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:prettier#autoformat = 0
 autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VISTA
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+let g:vista_default_executive = 'ctags'
+
+let g:vista_executive_for = {
+  \ 'go': 'ctags',
+  \ 'javascript': 'coc',
+  \ 'typescript': 'coc',
+  \ 'javascript.jsx': 'coc',
+  \ 'python': 'coc',
+  \ }
+
+" Ensure you have installed some decent font to show these pretty symbols, then you can enable icon for the kind.
+let g:vista#renderer#enable_icon = 1
+
+" The default icons can't be suitable for all the filetypes, you can extend it as you wish.
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
+
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+
+if executable('typescript-language-server')
+  au User lsp_setup call lsp#register_server({
+      \ 'name': 'typescript-language-server',
+      \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
+      \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
+      \ 'whitelist': ['typescript', 'typescript.tsx'],
+      \ })
+endif
+
