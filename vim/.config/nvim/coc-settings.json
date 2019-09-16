@@ -1,10 +1,31 @@
 {
-  "suggest.noselect": false,
-  "diagnostic.refreshOnInsertMode": true,
+  "coc.preferences.formatOnType": true,
+  "tsserver.enableJavascript": true,
+  "tslint.enable": true,
+  "tslint.autoFixOnSave": true,
+  "typescript.suggest.enabled": true,
+  "javascript.validate.enable": false,
+  "codeLens.enable": true,
   "diagnostic.virtualText": true,
   "diagnostic.checkCurrentLine": true,
-  "tsserver.enableJavascript": true,
-  "typescript.suggest.enabled": true,
+  "signature.target": "echo",
+
+  "suggest.triggerAfterInsertEnter": false,
+  "suggest.timeout": 500,
+  "suggest.noselect": false,
+  "suggest.snippetIndicator": " ✸",
+  "suggest.triggerCompletionWait": 100,
+  "suggest.echodocSupport": true,
+
+  "eslint.autoFixOnSave": true,
+  "eslint.autoFix": true,
+
+  "git.enableGutters": true,
+  "git.addGlameToBufferVar": true,
+  "git.addGlameToVirtualText": true,
+  "git.virtualTextPrefix": " ❯❯❯ ",
+
+  "diagnostic.refreshOnInsertMode": true,
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"]
 }
