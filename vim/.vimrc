@@ -335,8 +335,8 @@ set updatetime=300
 "hi CocErrorHighlight guibg=#f07178 guifg=#212733
 
 " React specific: auto set filetypes
-autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+"autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
+"autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 
 " Tab autocompletion 
 inoremap <silent><expr> <TAB>
@@ -433,14 +433,6 @@ let g:lightline = {
 map <C-o> :NERDTreeToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDCOMMENTER
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:NERDCustomDelimiters = {
-    \ 'javascript.jsx': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
-    \ 'typescript.tsx': { 'left': '//', 'leftAlt': '{/*', 'rightAlt': '*/}' },
-    \ }
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " PRETTIER
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:prettier#autoformat = 0
@@ -457,7 +449,8 @@ let g:vista_executive_for = {
   \ 'go': 'ctags',
   \ 'javascript': 'coc',
   \ 'typescript': 'coc',
-  \ 'javascript.jsx': 'coc',
+  \ 'javascriptreact': 'coc',
+  \ 'typescriptreact': 'coc',
   \ 'python': 'coc',
   \ }
 
