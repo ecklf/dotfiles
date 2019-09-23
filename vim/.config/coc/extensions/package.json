@@ -9,10 +9,10 @@
     "coc-snippets": ">=2.1.11",
     "coc-svg": ">=0.0.13",
     "coc-tailwindcss": ">=0.2.5",
-    "coc-tsserver": ">=1.4.0",
+    "coc-tsserver": ">=1.4.1",
     "coc-vimlsp": ">=0.3.9",
     "jest-snippets": "https://github.com/andys8/vscode-jest-snippets",
     "es7-react-js-snippets": "https://github.com/dsznajder/vscode-es7-javascript-react-snippets",
-    "coc-marketplace": ">=1.4.0"
+    "coc-marketplace": ">=1.5.0"
   }
 }
