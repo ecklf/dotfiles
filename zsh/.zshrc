@@ -109,8 +109,5 @@ zplugin light zdharma/fast-syntax-highlighting
 zplugin ice lucid wait"0"
 zplugin light agkozak/zsh-z
 
-# Adjust wait param for faster speedup f.ex wait"1" 
-zplugin ice lucid wait"0"
-zplugin light lukechilds/zsh-nvm
-
 eval "$(starship init zsh)"
+eval "$(fnm env --multi)"
