@@ -1,12 +1,11 @@
 {
   "coc.preferences.formatOnType": true,
   "tsserver.enableJavascript": true,
-  "tslint.enable": true,
-  "tslint.autoFixOnSave": true,
   "typescript.suggest.enabled": true,
   "javascript.validate.enable": false,
   "codeLens.enable": true,
   "diagnostic.virtualText": true,
+  "diagnostic.errorSign": "◉",
   "diagnostic.checkCurrentLine": true,
   "signature.target": "echo",
 
@@ -16,15 +15,11 @@
   "suggest.snippetIndicator": " ✸",
   "suggest.triggerCompletionWait": 100,
   "suggest.echodocSupport": true,
-
-  "eslint.autoFixOnSave": true,
-  "eslint.autoFix": true,
-
-  "git.enableGutters": true,
-  "git.addGlameToBufferVar": true,
-  "git.addGlameToVirtualText": true,
-  "git.virtualTextPrefix": " ❯❯❯ ",
-
+  "suggest.completionItemKindLabels": {
+    "module": "\uf6a6 ",
+    "function": "\uf794 ",
+    "variable": "\ufb18 "
+  },
   "diagnostic.refreshOnInsertMode": true,
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
   "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"]
