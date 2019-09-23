@@ -27,10 +27,13 @@ setopt share_history
 ###########################################################
 # COMPINIT AND FUNCTIONS
 ###########################################################
-zstyle ':completion:*' menu select
-zstyle :compinstall filename "$HOME/.zshrc"
 autoload -Uz compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+
 compinit
+# Include hidden files
+_comp_options+=(globdots)
 
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
@@ -62,22 +65,6 @@ source "$HOME/.zplugin/bin/zplugin.zsh"
 
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
-
-## Spaceship settings
-#SPACESHIP_CHAR_SYMBOL="❯"
-#SPACESHIP_CHAR_SUFFIX=" "
-#SPACESHIP_VI_MODE_SHOW=false
-#SPACESHIP_PACKAGE_PREFIX="\n"
-#SPACESHIP_GIT_PREFIX="\n"
-#SPACESHIP_NODE_PREFIX="\n"
-#SPACESHIP_PACKAGE_SHOW=true
-#SPACESHIP_BATTERY_SHOW=false
-#SPACESHIP_PROMPT_ADD_NEWLINE="false"
-#SPACESHIP_CHAR_COLOR_SUCCESS="white"
-
-## Spaceship theme
-#zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
-#zplugin light denysdovhan/spaceship-prompt
 
 # Snippets
 zplugin ice svn pick"init.zsh"
