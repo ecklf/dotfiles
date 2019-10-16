@@ -38,6 +38,7 @@ call plug#begin(g:pluggedPath)
     " Shell / Documentation Helpers
     Plug 'tpope/vim-fugitive' " GIT
     Plug 'tpope/vim-eunuch'   " UNIX
+    "Plug 'sheerun/vim-polyglot' " Lang Pack 
     Plug 'rizzatti/dash.vim'  " Docs 
     
     " Code Helpers
@@ -56,6 +57,7 @@ call plug#begin(g:pluggedPath)
     Plug 'posva/vim-vue'
     Plug 'pangloss/vim-javascript'
     Plug 'leafgarland/typescript-vim'
+    "Plug 'HerringtonDarkholme/yats.vim' " Alternative to typescript-vim
     Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
@@ -213,7 +215,16 @@ set foldcolumn=1
 
 " Clear search highlight 
 nnoremap <Leader><space> :noh<cr>
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
 
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 """"""""""""""""""""""""""""""
 " VISUAL MODE
 """"""""""""""""""""""""""""""
@@ -470,7 +481,7 @@ if executable('typescript-language-server')
       \ 'name': 'typescript-language-server',
       \ 'cmd': {server_info->[&shell, &shellcmdflag, 'typescript-language-server --stdio']},
       \ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'tsconfig.json'))},
-      \ 'whitelist': ['typescript', 'typescript.tsx'],
+      \ 'whitelist': ['typescript', 'typescriptreact', 'typescript.tsx'],
       \ })
 endif
 
