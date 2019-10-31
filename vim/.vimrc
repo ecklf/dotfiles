@@ -56,8 +56,8 @@ call plug#begin(g:pluggedPath)
     " Language Syntax
     Plug 'posva/vim-vue'
     Plug 'pangloss/vim-javascript'
-    Plug 'leafgarland/typescript-vim'
-    "Plug 'HerringtonDarkholme/yats.vim' " Alternative to typescript-vim
+    "Plug 'leafgarland/typescript-vim'
+    Plug 'HerringtonDarkholme/yats.vim' " Alternative to typescript-vim
     Plug 'maxmellon/vim-jsx-pretty'
 call plug#end()
 
@@ -215,16 +215,7 @@ set foldcolumn=1
 
 " Clear search highlight 
 nnoremap <Leader><space> :noh<cr>
-" Use K to show documentation in preview window
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
 """"""""""""""""""""""""""""""
 " VISUAL MODE
 """"""""""""""""""""""""""""""
@@ -348,6 +339,20 @@ set updatetime=300
 " React specific: auto set filetypes
 "autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
 "autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Tab autocompletion 
 inoremap <silent><expr> <TAB>
