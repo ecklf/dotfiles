@@ -22,5 +22,14 @@
   },
   "diagnostic.refreshOnInsertMode": true,
   "pairs.enableCharacters": ["(", "[", "{", "'", "\"", "`"],
-  "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"]
+  "html.filetypes": ["html", "handlebars", "jsx", "tsx", "vue"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+   "json",
+    "graphql",
+    "css"
+  ]
 }
