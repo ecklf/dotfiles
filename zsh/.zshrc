@@ -48,6 +48,16 @@ if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 
+# Prefer lsd over ls
+# if type lsd > /dev/null 2>&1; then
+#   alias ls='lsd'
+# fi
+
+# Prefer bat over cat
+if type bat > /dev/null 2>&1; then
+  alias cat='bat'
+fi
+
 # Check if zplugin is installed, else autoinstall
 if [[ ! -d ~/.zplugin ]]; then
   mkdir ~/.zplugin

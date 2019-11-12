@@ -14,7 +14,9 @@ alias getpass="openssl rand -base64 20"
 alias sha='shasum -a 256 '
 alias ping='ping -c 5'
 alias c='clear'
+alias l='ls -Gl'
 alias ls='ls -G'
+alias la='ls -Ga'
 alias jcurl='curl -H "Content-Type: application/json" "$@"'
 
 # IP
