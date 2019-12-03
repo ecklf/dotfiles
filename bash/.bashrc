@@ -40,12 +40,9 @@ alias dcdv='docker-compose down -v'
 
 # Node
 alias nls='npm list -g --depth 0'
-alias n8='nvm use carbon'
-alias n10='nvm use dubnium'
 
-# Create nvm alias for both carbon and dubnium to make this work
-alias un8='nvm use carbon && oldNode=$(nvm current) && nvm install --lts=carbon && nvm install $(nvm current) --reinstall-packages-from=${oldNode} && nvm alias dubnium $(nvm current) && nvm uninstall ${oldNode}'
-alias un10='nvm use dubnium && oldNode=$(nvm current) && nvm install --lts=dubnium && nvm install $(nvm current) --reinstall-packages-from=${oldNode} && nvm alias dubnium $(nvm current) && nvm uninstall ${oldNode}'
+# Make a repo commitizen friendly
+alias init-cz='commitizen init cz-conventional-changelog --yarn --dev --exact'
 
 # List all vscode extensions
 alias vscodels='code --list-extensions | xargs -L 1 echo code --install-extension'

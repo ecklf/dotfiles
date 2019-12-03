@@ -43,6 +43,10 @@ function cheat(){
   command curl "cheat.sh/$1"
 }
 
+function fu(){
+  command fnm use $1
+}
+
 # Prefer nvim over vim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -123,5 +127,4 @@ zplugin ice lucid wait"0"
 zplugin light agkozak/zsh-z
 
 #eval "$(starship init zsh)"
-# fnm
-eval "$(fnm env --multi)"
+eval "$(fnm env --use-on-cd --multi)"
