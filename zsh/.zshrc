@@ -58,6 +58,7 @@ fi
 # fi
 
 # Prefer bat over cat
+export BAT_PAGER="less -RF"
 if type bat > /dev/null 2>&1; then
   alias cat='bat'
 fi
@@ -89,8 +90,9 @@ SPACESHIP_GIT_PREFIX="\n"
 SPACESHIP_NODE_PREFIX="\n"
 SPACESHIP_PACKAGE_SHOW=true
 SPACESHIP_BATTERY_SHOW=false
-SPACESHIP_PROMPT_ADD_NEWLINE="false"
+SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_COLOR_SUCCESS="green"
+SPACESHIP_DOCKER_SHOW=false
 
 # Spaceship theme
 zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'

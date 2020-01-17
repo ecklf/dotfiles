@@ -21,7 +21,7 @@ alias jcurl='curl -H "Content-Type: application/json" "$@"'
 
 # IP
 alias ipi='ipconfig getifaddr en0'
-alias ipe='curl ipinfo.io/ip'
+alias ipe='curl ifconfig.me'
 
 # External pages
 alias tb='nc termbin.com 9999'
@@ -40,6 +40,7 @@ alias dcdv='docker-compose down -v'
 
 # Node
 alias nls='npm list -g --depth 0'
+alias cra='npx create-react-app $1'
 
 # Make a repo commitizen friendly
 alias init-cz='commitizen init cz-conventional-changelog --yarn --dev --exact'
