@@ -52,10 +52,16 @@ if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
 fi
 
-# Prefer lsd over ls
-# if type lsd > /dev/null 2>&1; then
-#   alias ls='lsd'
-# fi
+# Prefer exa over ls
+if type exa > /dev/null 2>&1; then
+  alias l='exa -Gl'
+  alias ls='exa -G'
+  alias la='exa -Ga'
+else
+  alias l='ls -Gl'
+  alias ls='ls -G'
+  alias la='ls -Ga'
+fi
 
 # Prefer bat over cat
 export BAT_PAGER="less -RF"
