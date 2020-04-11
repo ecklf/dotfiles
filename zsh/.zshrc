@@ -38,6 +38,15 @@ _comp_options+=(globdots)
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
+# make a proper wrapper
+#function yawn(){
+  #if test -f "package.lock"; then
+    #command npm $@
+  #else
+    #command yarn $@
+  #fi
+#}
+
 # Usage: cheat $1, returns RL examples of provided tool 
 function cheat(){
   command curl "cheat.sh/$1"
@@ -54,9 +63,9 @@ fi
 
 # Prefer exa over ls
 if type exa > /dev/null 2>&1; then
-  alias l='exa -Gl'
-  alias ls='exa -G'
-  alias la='exa -Ga'
+  alias l='exa -Gl --icons'
+  alias ls='exa -G --icons'
+  alias la='exa -Ga --icons'
 else
   alias l='ls -Gl'
   alias ls='ls -G'
@@ -135,4 +144,4 @@ zplugin ice lucid wait"0"
 zplugin light agkozak/zsh-z
 
 #eval "$(starship init zsh)"
-eval "$(fnm env --use-on-cd --multi)"
+. /usr/local/opt/asdf/asdf.sh
