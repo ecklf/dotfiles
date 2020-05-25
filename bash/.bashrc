@@ -45,6 +45,10 @@ alias init-cz='commitizen init cz-conventional-changelog --yarn --dev --exact'
 # List all vscode extensions
 alias vscodels='code --list-extensions | xargs -L 1 echo code --install-extension'
 
+# React Native
+alias rni='npx react-native run-ios'
+alias rna='npx react-native run-android'
+
 # Google
 alias googleCred='export GOOGLE_APPLICATION_CREDENTIALS="/Users/lynx/service-account.json"'
 alias vdroid='cd /Users/lynx/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_XL_API_29'
