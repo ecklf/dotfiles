@@ -1,6 +1,32 @@
 if exists('g:vscode')
   " VSCode specific configuration. Utilized by this extension:
   " https://marketplace.visualstudio.com/items?itemName=asvetliakov.vscode-neovim
+  xmap gc  <Plug>VSCodeCommentary
+  nmap gc  <Plug>VSCodeCommentary
+  omap gc  <Plug>VSCodeCommentary
+  nmap gcc <Plug>VSCodeCommentaryLine
+
+  " With a map leader it's possible to do extra key combinations
+  " like <leader>w saves the current file
+  let mapleader = ","
+  
+  " Fast saving
+  nmap <leader>w :w<cr>
+  " Replace class= with className= 
+  :map <leader>rc :%s/class=/className=/g<CR>
+  
+  " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
+  map <space> /
+  map <c-space> ?
+
+  " Useful mappings for managing tabs
+  map <leader>tn :tabnew<cr>
+  map <leader>to :tabonly<cr>
+  map <leader>tc :tabclose<cr>
+  map <leader>tm :tabmove 
+  map <leader>t<leader> :tabnext 
+  map <leader>n :tabnext<cr>
+  map <leader>N :tabprevious<cr>
 else
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " AUTOMATIC SETUP 
