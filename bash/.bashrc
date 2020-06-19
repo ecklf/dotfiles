@@ -5,6 +5,7 @@ export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/Users/$USER/Development/flutter/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 # export EDITOR="/usr/local/bin/nvim" 
 
 # Aliases
@@ -34,6 +35,14 @@ alias dlsa='docker ps -a'
 alias dcu='docker-compose up'
 alias dcd='docker-compose down'
 alias dcdv='docker-compose down -v'
+
+# MongoDB
+alias mdbu='brew services start mongodb-community'
+alias mdbd='brew services stop mongodb-community'
+
+# PostgreSQL 
+alias pdbu='brew services start postgresql'
+alias pdbd='brew services stop postgresql'
 
 # Node
 alias nls='npm list -g --depth 0'

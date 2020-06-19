@@ -1,0 +1,29 @@
+/Users/lynx/.asdf/installs/nodejs/13.12.0/.npm/lib
+├── asar@3.0.3
+├── autocannon@5.0.1
+├── canvas-sketch-cli@1.11.7
+├── coinmon@0.0.24
+├── commitizen@4.1.2
+├── eslint@7.2.0
+├── eslint-plugin-react-hooks@4.0.4
+├── expo-cli@3.21.5
+├── favicon-emoji@2.3.0
+├── figlet-cli@0.1.1
+├── firebase-tools@8.4.2
+├── gatsby-cli@2.12.46
+├── gzip-size-cli@3.0.0
+├── live-server@1.2.1
+├── nodemon@2.0.4
+├── npm@6.14.5
+├── npm-check-updates@7.0.1
+├── npm-quick-run@1.16.1
+├── package-json-to-readme@2.1.1
+├── serve@11.3.2
+├── spoof@2.0.1
+├── svgo@1.3.2
+├── ts-node@8.10.2
+├── ts-node-dev@1.0.0-pre.49
+├── typeorm@0.2.25
+├── typescript-json-schema@0.42.0
+└── yarn@1.22.4
+
