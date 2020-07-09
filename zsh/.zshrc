@@ -1,8 +1,8 @@
 ###########################################################
 # GENERAL
 ###########################################################
+# Emacs keybindings
 bindkey -e
-
 ###########################################################
 # HISTORY
 ###########################################################
@@ -38,15 +38,6 @@ _comp_options+=(globdots)
 autoload -Uz url-quote-magic
 zle -N self-insert url-quote-magic
 
-# make a proper wrapper
-#function yawn(){
-  #if test -f "package.lock"; then
-    #command npm $@
-  #else
-    #command yarn $@
-  #fi
-#}
-
 # Usage: cheat $1, returns RL examples of provided tool 
 function cheat(){
   command curl "cheat.sh/$1"
@@ -69,10 +60,10 @@ else
 fi
 
 # Prefer bat over cat
-export BAT_PAGER="less -RF"
-if type bat > /dev/null 2>&1; then
-  alias cat='bat'
-fi
+#export BAT_PAGER="less -RF"
+#if type bat > /dev/null 2>&1; then
+  #alias cat='bat'
+#fi
 
 # Check if zplugin is installed, else autoinstall
 if [[ ! -d ~/.zplugin ]]; then
@@ -91,6 +82,11 @@ source "$HOME/.zplugin/bin/zplugin.zsh"
 
 autoload -Uz _zplugin
 (( ${+_comps} )) && _comps[zplugin]=_zplugin
+
+# fzf - respect .gitignore
+# https://github.com/junegunn/fzf#respecting-gitignore
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 # Spaceship settings
 SPACESHIP_CHAR_SYMBOL="❯"

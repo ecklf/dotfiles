@@ -2,17 +2,17 @@
   "dependencies": {
     "JavaScriptSnippets": "https://github.com/xabikos/vscode-javascript",
     "awesome-flutter-snippets": "https://github.com/Nash0x7E2/awesome-flutter-snippets",
-    "coc-css": ">=1.2.3",
+    "coc-css": ">=1.2.4",
     "coc-html": ">=1.2.4",
-    "coc-json": ">=1.2.5",
+    "coc-json": ">=1.2.6",
     "coc-marketplace": ">=1.7.0",
     "coc-pairs": ">=1.2.21",
-    "coc-prettier": ">=1.1.12",
-    "coc-snippets": ">=2.1.26",
+    "coc-prettier": ">=1.1.16",
+    "coc-snippets": ">=2.1.28",
     "coc-svg": ">=0.0.13",
     "coc-tailwindcss": ">=0.6.0",
-    "coc-tsserver": ">=1.5.1",
-    "coc-vimlsp": ">=0.5.2",
+    "coc-tsserver": ">=1.5.2",
+    "coc-vimlsp": ">=0.9.1",
     "es7-react-js-snippets": "https://github.com/dsznajder/vscode-es7-javascript-react-snippets",
     "jest-snippets": "https://github.com/andys8/vscode-jest-snippets"
   }

@@ -2,15 +2,36 @@
 
 [![Managed with GNU Stow](https://img.shields.io/badge/Managed%20with-GNU%20Stow-red.svg)](https://www.gnu.org/software/stow/)
 
-## Info
-
 My current macOS dotfiles managed with GNU stow.
 
-## Usage
+## Setup
 
-1. `cd ~/`
-2. `git clone https://github.com/impulse/dotfiles.git`
-3. `cd dotfiles/`
-4. `stow folderName` (to remove use -D)
+### Install
 
-When using stow on vim you will need to run `:PlugInstall` and `:CocInstall`
+```sh
+# All packages
+brew bundle
+```
+
+⏤ or ⏤
+
+```sh
+# Minimum packages
+brew install zsh git subversion neovim
+```
+
+### Configuration
+
+Pre 10.15 Catalina:
+
+```sh
+chsh -s $(which zsh)
+```
+
+Creating symlinks:
+
+```sh
+stow folderName # (to remove use -D)
+```
+
+When using stow on vim you might need to run `:PlugInstall` and `:CocInstall`.
