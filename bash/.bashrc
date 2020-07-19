@@ -9,6 +9,9 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # export EDITOR="/usr/local/bin/nvim" 
 
 # Aliases
+# Other good date format: date "+%Y-%m-%d@%H:%M:%S"
+alias backup="[ -d '/Volumes/MBP Backup' ] && mkdir /Volumes/MBP\ Backup/$(date +%F) && rsync -av --exclude='Applications' --exclude='Library' --exclude='Trash' --exclude='node_modules' --exclude='.*' /Users/lynx/ /Volumes/MBP\ Backup/$(date +%F)"
+alias dots="cd ~/dotfiles && vim"
 alias untar='tar -zxvf '
 alias wget='wget -c '
 alias getpass="openssl rand -base64 20"
