@@ -65,23 +65,23 @@ fi
   #alias cat='bat'
 #fi
 
-# Check if zplugin is installed, else autoinstall
-if [[ ! -d ~/.zplugin ]]; then
-  mkdir ~/.zplugin
-  git clone https://github.com/zdharma/zplugin.git ~/.zplugin/bin
+# Check if zinit is installed, else autoinstall
+if [[ ! -d ~/.zinit ]]; then
+  mkdir ~/.zinit
+  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
 fi
 
 # Adding color support for ls etc.
 precmd () {print -Pn "\e]0;%~\a"}
 
 ###########################################################
-# ZPLUGIN / SOURCE
+# zinit / SOURCE
 ###########################################################
 source "$HOME/.bashrc"
-source "$HOME/.zplugin/bin/zplugin.zsh"
+source "$HOME/.zinit/bin/zinit.zsh"
 
-autoload -Uz _zplugin
-(( ${+_comps} )) && _comps[zplugin]=_zplugin
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # fzf - respect .gitignore
 # https://github.com/junegunn/fzf#respecting-gitignore
@@ -102,38 +102,38 @@ SPACESHIP_CHAR_COLOR_SUCCESS="green"
 SPACESHIP_DOCKER_SHOW=false
 
 # Spaceship theme
-zplugin ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
-zplugin light denysdovhan/spaceship-prompt
+zinit ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
+zinit light denysdovhan/spaceship-prompt
 
 # Snippets
-zplugin ice svn pick"init.zsh"
-zplugin snippet PZT::modules/git
+zinit ice svn pick"init.zsh"
+zinit snippet PZT::modules/git
 
-zplugin ice svn pick"init.zsh"
-zplugin snippet PZT::modules/directory
+zinit ice svn pick"init.zsh"
+zinit snippet PZT::modules/directory
 export AUTO_CD=true
 
 # macOS specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  zplugin ice svn pick"init.zsh"
-  zplugin snippet PZT::modules/homebrew
+  zinit ice svn pick"init.zsh"
+  zinit snippet PZT::modules/homebrew
 
-  zplugin ice svn pick"init.zsh"
-  zplugin snippet PZT::modules/osx
+  zinit ice svn pick"init.zsh"
+  zinit snippet PZT::modules/osx
 fi
 
 # Plugins
-zplugin ice lucid wait"0" blockf
-zplugin light zsh-users/zsh-completions
+zinit ice lucid wait"0" blockf
+zinit light zsh-users/zsh-completions
 
-zplugin ice lucid wait"0" atload"_zsh_autosuggest_start"
-zplugin light zsh-users/zsh-autosuggestions
+zinit ice lucid wait"0" atload"_zsh_autosuggest_start"
+zinit light zsh-users/zsh-autosuggestions
 
-zplugin ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
-zplugin light zdharma/fast-syntax-highlighting
+zinit ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
+zinit light zdharma/fast-syntax-highlighting
 
-zplugin ice lucid wait"0"
-zplugin light agkozak/zsh-z
+zinit ice lucid wait"0"
+zinit light agkozak/zsh-z
 
 #eval "$(starship init zsh)"
 . /usr/local/opt/asdf/asdf.sh
