@@ -25,8 +25,8 @@ if exists('g:vscode')
   map <leader>tc :tabclose<cr>
   map <leader>tm :tabmove 
   map <leader>t<leader> :tabnext 
-  map <leader>n :tabnext<cr>
-  map <leader>N :tabprevious<cr>
+  map <leader>m :tabnext<cr>
+  map <leader>n :tabprevious<cr>
 else
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " AUTOMATIC SETUP 
@@ -303,8 +303,8 @@ else
   map <leader>tc :tabclose<cr>
   map <leader>tm :tabmove 
   map <leader>t<leader> :tabnext 
-  map <leader>n :tabnext<cr>
-  map <leader>N :tabprevious<cr>
+  map <leader>m :tabnext<cr>
+  map <leader>n :tabprevious<cr>
 
   " Let 'tl' toggle between this and the last accessed tab
   let g:lasttab = 1
