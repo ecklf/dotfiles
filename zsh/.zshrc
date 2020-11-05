@@ -100,6 +100,7 @@ SPACESHIP_BATTERY_SHOW=false
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_COLOR_SUCCESS="green"
 SPACESHIP_DOCKER_SHOW=false
+SPACESHIP_GCLOUD_SHOW=false	
 
 # Spaceship theme
 zinit ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
