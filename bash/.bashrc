@@ -33,6 +33,7 @@ alias dl='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaud
 alias dlmp3='youtube-dl --extract-audio --audio-format mp3 $1'
 
 # Docker
+alias dip='docker image prune'
 alias dls='docker ps'
 alias dlsa='docker ps -a'
 alias dcu='docker-compose up'
@@ -42,6 +43,10 @@ alias dcdv='docker-compose down -v'
 # MongoDB
 alias mdbu='brew services start mongodb-community'
 alias mdbd='brew services stop mongodb-community'
+
+# Redis
+alias rdbu='brew services start redis'
+alias rdbd='brew services stop redis'
 
 # PostgreSQL 
 alias pdbu='brew services start postgresql'
@@ -62,6 +67,6 @@ alias rni='npx react-native run-ios'
 alias rna='npx react-native run-android'
 
 # Google
-alias googleCred='export GOOGLE_APPLICATION_CREDENTIALS="/Users/lynx/service-account.json"'
-alias vdroid='cd /Users/lynx/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_XL_API_29'
+alias googleCred='export GOOGLE_APPLICATION_CREDENTIALS="~/service-account.json"'
+alias vdroid='cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29'
 alias chromeDebug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
