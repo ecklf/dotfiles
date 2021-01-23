@@ -1,8 +1,11 @@
 .DS_Store
 node_modules/
 
+# ignore logs
+logs/
+*.log
+
 # ignore everything in coc extensions beside package.json
-vim/.config/coc/*
-!dist/.config/coc/extensions
-vim/.config/coc/extensions/*
+vim/.config/*
+!vim/.config/extensions
 vim/.config/coc/extensions/package.json
