@@ -1,8 +1,10 @@
 tap "acrogenesis/macchanger"
-tap "caskroom/fonts"
+tap "adoptopenjdk/openjdk"
+tap "elastic/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/core"
 tap "homebrew/services"
@@ -13,11 +15,12 @@ cask "osxfuse"
 brew "ack"
 brew "apktool"
 brew "openssl@1.1"
+brew "tcl-tk"
+brew "python@3.9"
 brew "asciinema"
 brew "coreutils"
 brew "asdf"
 brew "bat"
-brew "python@3.8", link: true
 brew "webp"
 brew "ffmpeg"
 brew "cmus"
@@ -51,6 +54,7 @@ brew "lazydocker"
 brew "libpq"
 brew "libressl"
 brew "libxml2"
+brew "luajit", args: ["HEAD"]
 brew "mas"
 brew "mitmproxy"
 brew "modd"
@@ -73,6 +77,7 @@ brew "redis", restart_service: true
 brew "ripgrep"
 brew "sassc"
 brew "scrcpy"
+brew "serve"
 brew "speedtest-cli"
 brew "stow"
 brew "subversion"
@@ -83,6 +88,7 @@ brew "watchman"
 brew "wget"
 brew "zsh"
 brew "zsh-completions"
+brew "elastic/tap/elasticsearch-oss"
 brew "mongodb/brew/mongodb-community"
 brew "tidwall/jj/jj"
 brew "vitorgalvao/tiny-scripts/cask-repair"
@@ -91,6 +97,8 @@ cask "alfred"
 cask "alt-tab"
 cask "android-platform-tools"
 cask "android-studio"
+cask "anki"
+cask "appcleaner"
 cask "balenaetcher"
 cask "blender"
 cask "brave-browser"
@@ -102,11 +110,12 @@ cask "discord"
 cask "docker"
 cask "dozer"
 cask "epic-games"
+cask "figma"
 cask "firefox"
 cask "firefox-developer-edition"
 cask "font-fira-code"
-cask "font-firacode-nerd-font"
 cask "font-inter"
+cask "font-jetbrains-mono-nerd-font"
 cask "gas-mask"
 cask "godot"
 cask "google-chrome"
@@ -121,7 +130,6 @@ cask "kap"
 cask "keka"
 cask "keycastr"
 cask "ledger-live"
-cask "lepton"
 cask "lulu"
 cask "mactex"
 cask "mochi"
@@ -130,12 +138,12 @@ cask "ngrok"
 cask "notion"
 cask "numi"
 cask "obs"
-cask "pgadmin4"
 cask "qlcolorcode"
 cask "qlmarkdown"
 cask "qlstephen"
 cask "quicklook-json"
 cask "responsively"
+cask "skype"
 cask "slack"
 cask "sloth"
 cask "spotify"
@@ -162,16 +170,26 @@ cask "windscribe"
 cask "wireshark"
 cask "xquartz"
 mas "Amphetamine", id: 937984704
+mas "Amphetamine", id: 937984704
+mas "DevCleaner", id: 1388020431
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
+mas "Disk Speed Test", id: 425264550
+mas "GarageBand", id: 682658836
 mas "GarageBand", id: 682658836
 mas "HiddenMe", id: 467040476
+mas "HiddenMe", id: 467040476
 mas "iMovie", id: 408981434
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Numbers", id: 409203825
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
 mas "Pages", id: 409201541
 mas "Telegram", id: 747648890
 mas "Twenttty", id: 1534796314
+mas "Twenttty", id: 1534796314
 mas "Xcode", id: 497799835
-mas "虾米音乐", id: 673877994
+mas "Xcode", id: 497799835
