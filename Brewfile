@@ -170,26 +170,12 @@ cask "windscribe"
 cask "wireshark"
 cask "xquartz"
 mas "Amphetamine", id: 937984704
-mas "Amphetamine", id: 937984704
-mas "DevCleaner", id: 1388020431
+mas "Bitcoin Ticker", id: 998255317
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
-mas "Disk Speed Test", id: 425264550
-mas "GarageBand", id: 682658836
-mas "GarageBand", id: 682658836
-mas "HiddenMe", id: 467040476
-mas "HiddenMe", id: 467040476
-mas "iMovie", id: 408981434
-mas "iMovie", id: 408981434
-mas "Keynote", id: 409183694
-mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Numbers", id: 409203825
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
 mas "Pages", id: 409201541
 mas "Telegram", id: 747648890
 mas "Twenttty", id: 1534796314
-mas "Twenttty", id: 1534796314
-mas "Xcode", id: 497799835
 mas "Xcode", id: 497799835
