@@ -16,7 +16,7 @@ if exists('g:vscode')
   nnoremap gr <Cmd>call VSCodeNotify('editor.action.goToReferences')<CR>
 
   " Bind C-/ to vscode commentary since calling from vscode produces double comments due to multiple cursors
-  xnoremap <expr> <C-/> <SID>vcodeCommentary()
+  xnoremap <expr> <C-/> <SID>vscodeCommentary()
   nnoremap <expr> <C-/> <SID>vscodeCommentary() . '_'
 
   xmap gc  <Plug>VSCodeCommentary
