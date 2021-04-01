@@ -2,6 +2,7 @@
 source "$HOME/.cargo/env"
 export LC_ALL=en_US.UTF-8
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
+export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:/Users/$USER/Development/flutter/bin
 export PATH="/usr/local/sbin:$PATH"
@@ -11,7 +12,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # Aliases
 # Other good date format: date "+%Y-%m-%d@%H:%M:%S"
-alias backup="[ -d '/Volumes/MBP Backup' ] && mkdir /Volumes/MBP\ Backup/$(date +%F) && rsync -av --exclude='Applications' --exclude='Library' --exclude='Trash' --exclude='node_modules' --exclude='.*' /Users/lynx/ /Volumes/MBP\ Backup/$(date +%F)"
+alias backup="[ -d '/Volumes/MBP Backup' ] && mkdir /Volumes/MBP\ Backup/$(date +%F) && rsync -av --exclude='Applications' --exclude='Library' --exclude='Trash' --exclude='node_modules' --exclude='.*' /Users/${WHOAMI}/ /Volumes/MBP\ Backup/$(date +%F)"
 alias dots="cd ~/dotfiles && vim"
 alias untar='tar -zxvf '
 alias wget='wget -c '
