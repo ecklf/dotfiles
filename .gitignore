@@ -9,3 +9,5 @@ logs/
 vim/.config/*
 !vim/.config/extensions
 vim/.config/coc/extensions/package.json
+
+spotifycli/.config/*
