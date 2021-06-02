@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 export ANDROID_HOME=/Users/$USER/Library/Android/sdk
 export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-export PATH=$PATH:/Users/$USER/Development/flutter/bin
+export PATH=$PATH:/Users/$USER/Developer/flutter/bin
 export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -16,11 +16,12 @@ alias backup="[ -d '/Volumes/MBP Backup' ] && mkdir /Volumes/MBP\ Backup/$(date 
 alias dots="cd ~/dotfiles && vim"
 alias untar='tar -zxvf '
 alias wget='wget -c '
-alias getpass="openssl rand -base64 20"
+alias getpass="openssl rand -base64 32"
 alias sha='shasum -a 256 '
 alias ping='ping -c 5'
 alias c='clear'
 alias jcurl='curl -H "Content-Type: application/json" "$@"'
+alias diskusage='sudo smartctl --all /dev/disk0'
 
 # IP
 alias ipi='ipconfig getifaddr en0'
@@ -28,7 +29,7 @@ alias ipe='curl ifconfig.me'
 
 # External pages
 alias tb='nc termbin.com 9999'
-alias wttr="curl wttr.in/Munich"
+alias wttr="curl v2.wttr.in/Munich"
 
 # youtube-dl
 alias dl='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 $1'
@@ -68,7 +69,13 @@ alias vscodels='code --list-extensions | xargs -L 1 echo code --install-extensio
 alias rni='npx react-native run-ios'
 alias rna='npx react-native run-android'
 
+# React
+alias yat='yarn add -D tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
+
 # Google
 alias googleCred='export GOOGLE_APPLICATION_CREDENTIALS="~/service-account.json"'
 alias vdroid='cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29'
 alias chromeDebug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
+
+# Misc
+alias meilisearch='meilisearch --no-analytics true --no-sentry true'
