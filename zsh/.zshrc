@@ -136,5 +136,7 @@ zinit light zdharma/fast-syntax-highlighting
 zinit ice lucid wait"0"
 zinit light agkozak/zsh-z
 
-#eval "$(starship init zsh)"
-. /usr/local/opt/asdf/asdf.sh
+if [ ! -f "$HOME/.asdf/asdf.sh" ]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
+fi
+. $HOME/.asdf/asdf.sh
