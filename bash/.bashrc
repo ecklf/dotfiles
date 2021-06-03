@@ -1,13 +1,17 @@
 # Exports
 source "$HOME/.cargo/env"
 export LC_ALL=en_US.UTF-8
-export ANDROID_HOME=/Users/$USER/Library/Android/sdk
-export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
-export PATH=${PATH}:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-export PATH=$PATH:/Users/$USER/Developer/flutter/bin
-export PATH="/usr/local/sbin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
+export JAVA_HOME="/usr/local/Cellar/openjdk@8/1.8.0+282/bin"
+export PATH=$PATH:/Users/$USER/Developer/flutter/bin
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
+export PATH="/usr/local/sbin:$PATH"
 # export EDITOR="/usr/local/bin/nvim" 
 
 # Aliases
@@ -78,4 +82,4 @@ alias vdroid='cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_
 alias chromeDebug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 
 # Misc
-alias meilisearch='meilisearch --no-analytics true --no-sentry true'
+alias ms='meilisearch --no-analytics true --no-sentry true --db-path ~/data.ms'
