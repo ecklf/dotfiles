@@ -13,6 +13,8 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 # export EDITOR="/usr/local/bin/nvim" 
+export MEILI_NO_ANALYTICS="true"
+export MEILI_NO_SENTRY="true"
 
 # Aliases
 # Other good date format: date "+%Y-%m-%d@%H:%M:%S"
@@ -82,4 +84,4 @@ alias vdroid='cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_
 alias chromeDebug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 
 # Misc
-alias ms='meilisearch --no-analytics true --no-sentry true --db-path ~/data.ms'
+alias ms='meilisearch --db-path ~/data.ms'
