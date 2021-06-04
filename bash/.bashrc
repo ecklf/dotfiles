@@ -3,7 +3,6 @@ source "$HOME/.cargo/env"
 export LC_ALL=en_US.UTF-8
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
-export JAVA_HOME="/usr/local/Cellar/openjdk@8/1.8.0+282/bin"
 export PATH=$PATH:/Users/$USER/Developer/flutter/bin
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -76,7 +75,7 @@ alias rni='npx react-native run-ios'
 alias rna='npx react-native run-android'
 
 # React
-alias yat='yarn add -D tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
+alias yat='yarn add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
 
 # Google
 alias googleCred='export GOOGLE_APPLICATION_CREDENTIALS="~/service-account.json"'
