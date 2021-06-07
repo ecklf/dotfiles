@@ -17,14 +17,14 @@ export MEILI_NO_SENTRY="true"
 
 # Aliases
 # Other good date format: date "+%Y-%m-%d@%H:%M:%S"
+alias c='clear'
 alias backup="[ -d '/Volumes/MBP Backup' ] && mkdir /Volumes/MBP\ Backup/$(date +%F) && rsync -av --exclude='Applications' --exclude='Library' --exclude='Trash' --exclude='node_modules' --exclude='.*' /Users/${WHOAMI}/ /Volumes/MBP\ Backup/$(date +%F)"
-alias dots="cd ~/dotfiles && vim"
+alias dots="vim ~/dotfiles"
 alias untar='tar -zxvf '
 alias wget='wget -c '
-alias getpass="openssl rand -base64 32"
+alias gen_pass="openssl rand -base64 32"
 alias sha='shasum -a 256 '
 alias ping='ping -c 5'
-alias c='clear'
 alias jcurl='curl -H "Content-Type: application/json" "$@"'
 alias diskusage='sudo smartctl --all /dev/disk0'
 
@@ -38,7 +38,7 @@ alias wttr="curl v2.wttr.in/Munich"
 
 # youtube-dl
 alias dl='youtube-dl -f "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio" --merge-output-format mp4 $1'
-alias dlmp3='youtube-dl --extract-audio --audio-format mp3 $1'
+alias dl_mp3='youtube-dl --extract-audio --audio-format mp3 $1'
 
 # Docker
 alias dip='docker image prune'
@@ -65,22 +65,24 @@ alias nls='npm list -g --depth 0'
 alias cra='npx create-react-app $1'
 
 # Make a repo commitizen friendly
-alias init-cz='commitizen init cz-conventional-changelog --yarn --dev --exact'
+alias init_cz='commitizen init cz-conventional-changelog --yarn --dev --exact'
 
 # List all vscode extensions
-alias vscodels='code --list-extensions | xargs -L 1 echo code --install-extension'
+alias vscode_ls='code --list-extensions | xargs -L 1 echo code --install-extension'
 
 # React Native
 alias rni='npx react-native run-ios'
 alias rna='npx react-native run-android'
+# Reconnects adb to metro bundler
+alias adbr ='adb reverse tcp:8081 tcp:8081'
 
 # React
 alias yat='yarn add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio'
 
 # Google
-alias googleCred='export GOOGLE_APPLICATION_CREDENTIALS="~/service-account.json"'
-alias vdroid='cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29'
-alias chromeDebug="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
+alias google_cred='export GOOGLE_APPLICATION_CREDENTIALS="~/service-account.json"'
+alias avd='cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29'
+alias chrome_dbg="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 
 # Misc
 alias ms='meilisearch --db-path ~/data.ms'
