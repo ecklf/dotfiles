@@ -51,14 +51,17 @@ alias dcdv='docker-compose down -v'
 # MongoDB
 alias mdbu='brew services start mongodb-community'
 alias mdbd='brew services stop mongodb-community'
+alias mdbr='brew services restart mongodb-community'
 
 # Redis
 alias rdbu='brew services start redis'
 alias rdbd='brew services stop redis'
+alias rdbr='brew services restart redis'
 
 # PostgreSQL 
 alias pdbu='brew services start postgresql'
 alias pdbd='brew services stop postgresql'
+alias pdbr='brew services restart postgresql'
 
 # Node
 alias nls='npm list -g --depth 0'
