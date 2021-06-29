@@ -10,4 +10,5 @@ vim/.config/*
 !vim/.config/coc/extensions/package.json
 !vim/.config/nvim/
 
-spotifycli/.config/
+core/.config/alacritty/themes/.selected_theme
+core/.config/alacritty/alacritty.theme-switch-backup.yml
