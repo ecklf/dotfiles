@@ -1,8 +1,11 @@
 ###########################################################
 # GENERAL
 ###########################################################
-# Emacs keybindings
-bindkey -e
+# Keybindings
+bindkey -e # Emacs keybindings
+# Fixes
+bindkey "^E" end-of-line # Map end-of-line key in the same way as zprezto editor module to prevent issue with tmux-resurrect.
+setopt CLOBBER # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
 ###########################################################
 # HISTORY
 ###########################################################
@@ -46,6 +49,7 @@ function cheat(){
 # Prefer nvim over vim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
+  alias viml="nvim -c 'let &background="\""light"\""'"
 fi
 
 # Prefer exa over ls
