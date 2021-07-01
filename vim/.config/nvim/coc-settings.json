@@ -28,8 +28,9 @@
     "javascriptreact",
     "typescript",
     "typescriptreact",
-   "json",
+    "json",
     "graphql",
-    "css"
+    "css",
+    "rs"
   ]
 }
