@@ -5,9 +5,9 @@ node_modules/
 logs/
 *.log
 
-# ignore everything in coc extensions beside package.json
+# keep coc.nvim package list and configuration
 vim/.config/*
-!vim/.config/extensions
-vim/.config/coc/extensions/package.json
+!vim/.config/coc/extensions/package.json
+!vim/.config/nvim/
 
-spotifycli/.config/*
+spotifycli/.config/
