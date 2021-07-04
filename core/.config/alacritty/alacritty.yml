@@ -1,0 +1,56 @@
+window:
+  decorations: "none"
+
+key_bindings:
+  - { key: Return,    mods: Control|Shift, action: SpawnNewInstance }
+  - { key: F,         mods: Alt,           chars: "\x1bf"           }
+  - { key: B,         mods: Alt,           chars: "\x1bb"           }
+  - { key: D,         mods: Alt,           chars: "\x1bd"           }
+
+font:
+  normal:
+    family: JetBrainsMono Nerd Font Mono
+    style: Regular
+
+  bold:
+    family: JetBrainsMono Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: JetBrainsMono Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    family: JetBrainsMono Nerd Font Mono 
+    style: Bold Italic
+
+  size: 14
+ 
+# Colors (Ayu Mirage)
+colors:
+  # Default colors
+  primary:
+    background: '#202734'
+    foreground: '#CBCCC6'
+
+  # Normal colors
+  normal:
+    black: '#191E2A'
+    red: '#FF3333'
+    green: '#BAE67E'
+    yellow: '#FFA759'
+    blue: '#73D0FF'
+    magenta: '#FFD580'
+    cyan: '#95E6CB'
+    white: '#C7C7C7'
+
+  # Bright colors
+  bright:
+    black: '#686868'
+    red: '#F27983'
+    green: '#A6CC70'
+    yellow: '#FFCC66'
+    blue: '#5CCFE6'
+    magenta: '#FFEE99'
+    cyan: '#95E6CB'
+    white: '#FFFFFF'
