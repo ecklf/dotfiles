@@ -28,6 +28,19 @@ Pre 10.15 Catalina:
 chsh -s $(which zsh)
 ```
 
+Neovim python provider:
+
+```shell
+python3 -m pip install --user --upgrade pynvim
+```
+
+Tmux Plugin Manager:
+
+```shell
+# prefix + I to install
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
+
 Creating symlinks:
 
 ```sh
