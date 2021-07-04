@@ -1,5 +1,6 @@
 # Exports
 source "$HOME/.cargo/env"
+export INITVIM="~/.config/nvim/init.vim"
 export LC_ALL=en_US.UTF-8
 export EDITOR="/usr/local/bin/nvim" 
 export PATH="/usr/local/opt/curl/bin:$PATH"

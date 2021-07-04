@@ -151,12 +151,28 @@ else
   """"""""""""""""""""""""""""""
   " GLOBALS AND NORMAL MODE
   """"""""""""""""""""""""""""""
+  " Edit Vim config file in a new tab.
+  map <Leader>ev :tabnew $INITVIM<CR>
+
+  " Source Vim config file.
+  map <Leader>sv :source $INITVIM<CR>
+  
+  " Disable highlight when <leader><cr> is pressed
+  map <silent> <leader><Space> :noh<CR>
+
   " Replace class= with className= 
-  :map <leader>rc :%s/class=/className=/g<CR>
+  map <leader>rc :%s/class=/className=/g<CR>
+  
+  " Prevent x from overriding what's in the clipboard.
+  noremap x "_x
+  noremap X "_x
+  
+  " Toggle spell check.
+  map <F5> :setlocal spell!<CR>
 
-  " Clear search highlight 
-  nnoremap <Leader><space> :noh<cr>
-
+  " Toggle relative line numbers and regular line numbers.
+  nmap <F6> :set invrelativenumber<CR>
+  
   """"""""""""""""""""""""""""""
   " VISUAL MODE
   """"""""""""""""""""""""""""""
@@ -191,9 +207,6 @@ else
   " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
   map <space> /
   map <c-space> ?
-
-  " Disable highlight when <leader><cr> is pressed
-  map <silent> <leader><cr> :noh<cr>
 
   " Smart way to move between windows
   map <C-j> <C-W>j
