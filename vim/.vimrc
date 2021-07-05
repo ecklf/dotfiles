@@ -18,8 +18,8 @@ else
 
   " Enable true colors support and set mirage theme
   set termguicolors
-  let ayucolor="mirage"
-  colorscheme ayu
+  " let &background="dark"
+  colorscheme iceberg
 
   " Cursor style
   set cursorline
@@ -409,7 +409,7 @@ else
   endfunction
 
   let g:lightline = {
-      \ 'colorscheme': 'ayu_mirage',
+      \ 'colorscheme': 'iceberg',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'gitbranch', 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]

@@ -10,6 +10,7 @@ if has('nvim')
 
   call plug#begin(g:pluggedPath)
     " UI
+    Plug 'cocopon/iceberg.vim'
     Plug 'ayu-theme/ayu-vim'
     Plug 'scrooloose/nerdtree'
     Plug 'ryanoasis/vim-devicons'
