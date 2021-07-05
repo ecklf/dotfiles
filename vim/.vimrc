@@ -18,6 +18,8 @@ else
 
   " Enable true colors support and set mirage theme
   set termguicolors
+  " let ayucolor="mirage"
+  " colorscheme ayu
   let &background = $SYSTEM_APPEARANCE == 'light' ? "light" : "dark"
   colorscheme iceberg
 
@@ -173,6 +175,9 @@ else
   " Toggle relative line numbers and regular line numbers.
   nmap <F6> :set invrelativenumber<CR>
   
+  map <F7> :setlocal spell!<CR>
+
+  nnoremap <silent> <expr> <F8> &background == 'dark' ? ':let &background="light"<CR>' : ':let &background="dark"<CR>'
   """"""""""""""""""""""""""""""
   " VISUAL MODE
   """"""""""""""""""""""""""""""
@@ -286,13 +291,9 @@ else
   " COC.NVIM
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " Set linting update time
-  set updatetime=300
+  " set updatetime=300
   "hi CocErrorSign guifg=#f07178
   "hi CocErrorHighlight guibg=#f07178 guifg=#212733
-
-  " React specific: auto set filetypes
-  "autocmd bufnewfile,bufread *.jsx set filetype=javascript.jsx
-  "autocmd bufnewfile,bufread *.tsx set filetype=typescript.tsx
 
   " Use tab for trigger completion with characters ahead and navigate.
   " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
@@ -408,6 +409,7 @@ else
     return join(msgs, ' '). ' ' . get(g:, 'coc_status', '')
   endfunction
 
+      " \ 'colorscheme': 'ayu_mirage',
   let g:lightline = {
       \ 'colorscheme': 'iceberg',
       \ 'active': {
