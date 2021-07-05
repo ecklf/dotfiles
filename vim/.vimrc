@@ -18,7 +18,7 @@ else
 
   " Enable true colors support and set mirage theme
   set termguicolors
-  " let &background="dark"
+  let &background = $SYSTEM_APPEARANCE == 'light' ? "light" : "dark"
   colorscheme iceberg
 
   " Cursor style
