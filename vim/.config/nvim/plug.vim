@@ -47,5 +47,6 @@ if has('nvim')
     "Plug 'leafgarland/typescript-vim'
     Plug 'HerringtonDarkholme/yats.vim' " Alternative to typescript-vim
     Plug 'maxmellon/vim-jsx-pretty'
+    Plug 'jparise/vim-graphql'
   call plug#end()
 endif
