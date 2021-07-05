@@ -36,6 +36,10 @@
   " Replace class= with className= 
   :map <leader>rc :%s/class=/className=/g<CR>
   
+  " Prevent x from overriding what's in the clipboard.
+  noremap x "_x
+  noremap X "_x
+  
   " Map <Space> to / (search) and Ctrl-<Space> to ? (backwards search)
   map <space> /
   map <c-space> ?
