@@ -120,6 +120,8 @@ export AUTO_CD=true
 
 # macOS specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
+  export SYSTEM_APPEARANCE="dark" && [[ $(defaults read -g AppleInterfaceStyle 2> /dev/null) != "Dark" ]]  && SYSTEM_APPREARANCE="light" 
+
   zinit ice svn pick"init.zsh"
   zinit snippet PZT::modules/homebrew
 
