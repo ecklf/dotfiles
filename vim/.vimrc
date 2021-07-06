@@ -350,9 +350,8 @@ else
   " Multiple cursor support
   hi CocCursorRange guibg=#b16286 guifg=#ebdbb2
   nmap <expr> <silent> <C-d> <SID>select_current_word()
-
   function! s:select_current_word()
-    if !get(g:, 'coc_cursors_activated', 0)
+    if !get(b:, 'coc_cursors_activated', 0)
       return "\<Plug>(coc-cursors-word)"
     endif
     return "*\<Plug>(coc-cursors-word):nohlsearch\<CR>"
