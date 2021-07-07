@@ -139,8 +139,10 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice lucid wait"0"
-zinit light agkozak/zsh-z
+# Using zoxide as alternative
+#zinit ice lucid wait"0"
+#zinit light agkozak/zsh-z
+eval "$(zoxide init zsh)"
 
 if [ ! -f "$HOME/.asdf/asdf.sh" ]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
