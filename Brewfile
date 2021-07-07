@@ -60,6 +60,7 @@ brew "mas"
 brew "meilisearch"
 brew "mitmproxy"
 brew "modd"
+brew "moreutils"
 brew "youtube-dl"
 brew "mpv"
 brew "ncdu"
@@ -99,6 +100,7 @@ brew "wimlib"
 brew "yasm"
 brew "ykman"
 brew "zellij"
+brew "zoxide"
 brew "zsh"
 brew "zsh-completions"
 brew "mongodb/brew/mongodb-community"
@@ -145,6 +147,7 @@ cask "keepassxc"
 cask "keka"
 cask "keycastr"
 cask "ledger-live"
+cask "lg-onscreen-control"
 cask "logitech-options"
 cask "lulu"
 cask "mactex"
@@ -204,5 +207,3 @@ mas "Twenttty", id: 1534796314
 mas "Xcode", id: 497799835
 mas "Yubico Authenticator", id: 1497506650
 mas "穿梭", id: 1345035954
-mas "Telegram", id: 747648890
-
