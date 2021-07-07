@@ -1,3 +1,7 @@
+# Fixes
+# Disable macOS Dock bouncing (xterm bellIsUrgent)
+printf "\e[?1042l"
+
 # Exports
 source "$HOME/.cargo/env"
 export INITVIM="~/.config/nvim/init.vim"
