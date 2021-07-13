@@ -27,7 +27,6 @@ brew "cowsay"
 brew "ctop"
 brew "curl"
 brew "deno"
-brew "elasticsearch-oss"
 brew "emacs"
 brew "exa"
 brew "ext4fuse"
@@ -65,7 +64,7 @@ brew "youtube-dl"
 brew "mpv"
 brew "ncdu"
 brew "neofetch"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "netcat"
 brew "nmap"
 brew "nnn"
@@ -107,7 +106,6 @@ brew "mongodb/brew/mongodb-community"
 brew "tidwall/jj/jj"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "alacritty"
-cask "alfred"
 cask "alt-tab"
 cask "android-platform-tools"
 cask "android-studio"
@@ -115,14 +113,11 @@ cask "anki"
 cask "appcleaner"
 cask "balenaetcher"
 cask "blender"
-cask "brave-browser"
 cask "calibre"
 cask "coconutbattery"
-cask "cyberduck"
 cask "dbeaver-community"
 cask "discord"
 cask "docker"
-cask "dozer"
 cask "element"
 cask "epic-games"
 cask "figma"
@@ -150,6 +145,7 @@ cask "ledger-live"
 cask "lg-onscreen-control"
 cask "logitech-options"
 cask "lulu"
+cask "macfuse"
 cask "mactex"
 cask "mochi"
 cask "mongodb-compass"
@@ -157,7 +153,6 @@ cask "ngrok"
 cask "notion"
 cask "numi"
 cask "obs"
-cask "osxfuse"
 cask "qlcolorcode"
 cask "qlmarkdown"
 cask "qlstephen"
@@ -177,7 +172,6 @@ cask "tor-browser"
 cask "transmission"
 cask "tunnelblick"
 cask "veracrypt"
-cask "vimr"
 cask "virtualbox"
 cask "virtualbox-extension-pack"
 cask "visual-studio-code"
@@ -185,7 +179,6 @@ cask "vivaldi"
 cask "vlc"
 cask "vnc-viewer"
 cask "wechat"
-cask "whatsapp"
 cask "windscribe"
 cask "wireshark"
 cask "xquartz"
@@ -193,17 +186,15 @@ cask "yubico-yubikey-manager"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitcoin Ticker", id: 998255317
+mas "Dato", id: 1470584107
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
 mas "GarageBand", id: 682658836
-mas "Hologram Desktop", id: 1529001798
 mas "Keynote", id: 409183694
 mas "Magnet", id: 441258766
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
-mas "Octane X", id: 1548355081
 mas "Pages", id: 409201541
-mas "Twenttty", id: 1534796314
 mas "Xcode", id: 497799835
 mas "Yubico Authenticator", id: 1497506650
 mas "穿梭", id: 1345035954
