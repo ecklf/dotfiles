@@ -17,6 +17,8 @@ export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+
+export NEXT_TELEMETRY_DISABLED=1
 export MEILI_NO_ANALYTICS="true"
 export MEILI_NO_SENTRY="true"
 
