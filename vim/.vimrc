@@ -194,18 +194,18 @@ else
   inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<Up>"
 
   " Expand body regions 
-  inoremap (; (<CR>);<C-c>O
-  inoremap (, (<CR>),<C-c>O
-  inoremap {; {<CR>};<C-c>O
-  inoremap {, {<CR>},<C-c>O
-  inoremap [; [<CR>];<C-c>O
-  inoremap [, [<CR>],<C-c>O
-  inoremap (<CR> (<CR>)<C-c>O
-  inoremap (<CR> (<CR>)<C-c>O
-  inoremap {<CR> {<CR>}<C-c>O
-  inoremap {<CR> {<CR>}<C-c>O
-  inoremap [<CR> [<CR>]<C-c>O
-  inoremap [<CR> [<CR>]<C-c>O
+  " inoremap (; (<CR>);<C-c>O
+  " inoremap (, (<CR>),<C-c>O
+  " inoremap {; {<CR>};<C-c>O
+  " inoremap {, {<CR>},<C-c>O
+  " inoremap [; [<CR>];<C-c>O
+  " inoremap [, [<CR>],<C-c>O
+  " inoremap (<CR> (<CR>)<C-c>O
+  " inoremap (<CR> (<CR>)<C-c>O
+  " inoremap {<CR> {<CR>}<C-c>O
+  " inoremap {<CR> {<CR>}<C-c>O
+  " inoremap [<CR> [<CR>]<C-c>O
+  " inoremap [<CR> [<CR>]<C-c>O
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
   " MOVEMENT
   """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
