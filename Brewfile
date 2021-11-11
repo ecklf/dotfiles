@@ -66,7 +66,6 @@ brew "meilisearch"
 brew "mitmproxy"
 brew "modd"
 brew "moreutils"
-brew "youtube-dl"
 brew "mpv"
 brew "navi"
 brew "ncdu"
@@ -108,6 +107,7 @@ brew "wimlib"
 brew "yasm"
 brew "ykman"
 brew "ykpers"
+brew "youtube-dl"
 brew "zellij"
 brew "zoxide"
 brew "zsh"
@@ -143,7 +143,6 @@ cask "gas-mask"
 cask "godot"
 cask "google-chrome"
 cask "google-cloud-sdk"
-cask "google-drive"
 cask "gpg-suite"
 cask "hackintool"
 cask "hammerspoon"
@@ -210,7 +209,9 @@ mas "Cursor Pro", id: 1447043133
 mas "Dato", id: 1470584107
 mas "DevCleaner", id: 1388020431
 mas "Disk Speed Test", id: 425264550
+mas "EasyRes", id: 688211836
 mas "GarageBand", id: 682658836
+mas "HiddenMe", id: 467040476
 mas "Keynote", id: 409183694
 mas "Keystroke Pro", id: 1572206224
 mas "Magnet", id: 441258766
@@ -218,6 +219,7 @@ mas "Mirror Magnet", id: 1563698880
 mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Plume", id: 1513115773
 mas "Theine", id: 955848755
 mas "Xcode", id: 497799835
 mas "Yubico Authenticator", id: 1497506650
