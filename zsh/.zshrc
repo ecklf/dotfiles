@@ -69,23 +69,23 @@ fi
   #alias cat='bat'
 #fi
 
-# Check if zinit is installed, else autoinstall
-if [[ ! -d ~/.zinit ]]; then
-  mkdir ~/.zinit
-  git clone https://github.com/zdharma/zinit.git ~/.zinit/bin
-fi
-
 # Adding color support for ls etc.
 precmd () {print -Pn "\e]0;%~\a"}
 
+# Check if zinit is installed, else autoinstall
+if [[ ! -d ~/.zi ]]; then
+  mkdir ~/.zi
+  git clone https://github.com/z-shell/zi.git ~/.zi/bin
+fi
+
 ###########################################################
-# zinit / SOURCE
+# zi / SOURCE
 ###########################################################
 source "$HOME/.bashrc"
-source "$HOME/.zinit/bin/zinit.zsh"
+source "$HOME/.zi/bin/zi.zsh"
 
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
+autoload -Uz _zi
+(( ${+_comps} )) && _comps[zi]=_zi
 
 # fzf - respect .gitignore
 # https://github.com/junegunn/fzf#respecting-gitignore
@@ -107,47 +107,41 @@ SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_GCLOUD_SHOW=false	
 
 # Spaceship theme
-zinit ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
-zinit light denysdovhan/spaceship-prompt
+zi ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
+zi light denysdovhan/spaceship-prompt
 
 # Snippets
-zinit ice svn pick"init.zsh"
-zinit snippet PZT::modules/git
+zi ice svn pick"init.zsh"
+zi snippet PZT::modules/git
 
-zinit ice svn pick"init.zsh"
-zinit snippet PZT::modules/directory
+zi ice svn pick"init.zsh"
+zi snippet PZT::modules/directory
 export AUTO_CD=true
 
 # macOS specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export SYSTEM_APPEARANCE="dark" && [[ $(defaults read -g AppleInterfaceStyle 2> /dev/null) != "Dark" ]]  && SYSTEM_APPREARANCE="light" 
+  zi ice svn pick"init.zsh"
+  zi snippet PZT::modules/homebrew
 
-  zinit ice svn pick"init.zsh"
-  zinit snippet PZT::modules/homebrew
-
-  zinit ice svn pick"init.zsh"
-  zinit snippet PZT::modules/osx
+  zi ice svn pick"init.zsh"
+  zi snippet PZT::modules/osx
 fi
 
 # Plugins
-zinit ice lucid wait"0" blockf
-zinit light zsh-users/zsh-completions
+zi ice lucid wait"0" blockf
+zi light zsh-users/zsh-completions
 
-zinit ice lucid wait"0" atload"_zsh_autosuggest_start"
-zinit light zsh-users/zsh-autosuggestions
+zi ice lucid wait"0" atload"_zsh_autosuggest_start"
+zi light zsh-users/zsh-autosuggestions
 
-zinit ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
-zinit light zdharma/fast-syntax-highlighting
+zi ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
+zi light zdharma/fast-syntax-highlighting
 
-# Using zoxide as alternative
-#zinit ice lucid wait"0"
-#zinit light agkozak/zsh-z
+# zoxide > z
+# zi ice lucid wait"0"
+# zi light agkozak/zsh-z
 eval "$(zoxide init zsh)"
-
-if [ ! -f "$HOME/.asdf/asdf.sh" ]; then
-    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.1
-fi
-. $HOME/.asdf/asdf.sh
+eval "$(fnm env --use-on-cd)"
 
 # pnpm autocomplete
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+# [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
