@@ -144,4 +144,4 @@ eval "$(zoxide init zsh)"
 eval "$(fnm env --use-on-cd)"
 
 # pnpm autocomplete
-# [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
