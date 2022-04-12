@@ -1,12 +1,19 @@
-# Fixes
+# macOS
 # Disable macOS Dock bouncing (xterm bellIsUrgent)
 printf "\e[?1042l"
+
+if [[ $(arch) == "arm64" ]]; then
+    export EDITOR="/opt/homebrew/opt/nvim/bin/nvim" 
+    export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+else
+    export EDITOR="/usr/local/bin/nvim" 
+    export PATH="/usr/local/opt/openjdk/bin:$PATH"
+fi
 
 # Exports
 source "$HOME/.cargo/env"
 export INITVIM="~/.config/nvim/init.vim"
 export LC_ALL=en_US.UTF-8
-export EDITOR="/usr/local/bin/nvim" 
 export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 export PATH=$PATH:/Users/$USER/Developer/flutter/bin
@@ -16,12 +23,9 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 # OpenJDK
-export PATH="/usr/local/opt/openjdk/bin:$PATH"
-export CPPFLAGS="-I/usr/local/opt/openjdk/include"
-export PATH="/usr/local/opt/openjdk@8/bin:$PATH"
-
 export PATH="/usr/local/sbin:$PATH"
 
+# Tooling
 export NEXT_TELEMETRY_DISABLED=1
 export MEILI_NO_ANALYTICS="true"
 export MEILI_NO_SENTRY="true"
@@ -39,6 +43,7 @@ alias ping="ping -c 5"
 alias jcurl="curl -H 'Content-Type: application/json' '$@'"
 alias diskusage="sudo smartctl --all /dev/disk0"
 alias lnjava="sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk"
+alias noflakepls="git commit --allow-empty -m 'Trigger deployment'"
 
 # IP
 alias ipi="ipconfig getifaddr en0"
@@ -95,7 +100,6 @@ alias rna="npx react-native run-android"
 alias adbr="adb reverse tcp:8081 tcp:8081"
 # Shows iOS / iPadOS devices
 alias iosd="xcrun xctrace list devices"
-
 
 # React
 alias yat="yarn add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio"
