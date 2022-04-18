@@ -10,6 +10,8 @@ else
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
 fi
 
+alias code="code-insiders '$@'"
+
 # Exports
 source "$HOME/.cargo/env"
 export INITVIM="~/.config/nvim/init.vim"
