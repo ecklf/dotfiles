@@ -6,6 +6,7 @@ bindkey -e # Emacs keybindings
 # Fixes
 bindkey "^E" end-of-line # Map end-of-line key in the same way as zprezto editor module to prevent issue with tmux-resurrect.
 setopt CLOBBER # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
+
 ###########################################################
 # HISTORY
 ###########################################################
@@ -79,7 +80,7 @@ if [[ ! -d ~/.zi ]]; then
 fi
 
 ###########################################################
-# zi / SOURCE
+# ZSH / zi
 ###########################################################
 source "$HOME/.bashrc"
 source "$HOME/.zi/bin/zi.zsh"
