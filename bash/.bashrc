@@ -46,6 +46,7 @@ alias jcurl="curl -H 'Content-Type: application/json' '$@'"
 alias diskusage="sudo smartctl --all /dev/disk0"
 alias lnjava="sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk"
 alias noflakepls="git commit --allow-empty -m 'Trigger deployment'"
+alias to_webp="for i in *.* ; do cwebp -q 80 "$i" -o "${i%.*}.webp" ; done"
 
 # IP
 alias ipi="ipconfig getifaddr en0"
