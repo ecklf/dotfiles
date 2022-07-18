@@ -44,3 +44,15 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
   end,
 })
+
+-- Auto formatting
+-- 0.7
+-- vim.lsp.buf.formatting_sync(nil, 2000)
+-- 0.8
+-- vim.lsp.buf.format({ timeout_ms = 2000 })
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  callback = function()
+    vim.cmd "lua vim.lsp.buf.formatting_sync(nil, 1000)"
+  end,
+})

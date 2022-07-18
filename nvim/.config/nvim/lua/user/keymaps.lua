@@ -21,14 +21,14 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 -- Map copy/paste
-keymap("", "<leader>c", "\"+y", opts)
-keymap("", "<leader>v", "\"+p", opts)
+keymap("", "<leader>c", '"+y', opts)
+keymap("", "<leader>v", '"+p', opts)
 
 -- NORMAL --
 
 -- Prevent x from overriding what's in the clipboard.
-keymap("n", "x", "\"_x", opts_noremap)
-keymap("n", "X", "\"_x", opts_noremap)
+keymap("n", "x", '"_x', opts_noremap)
+keymap("n", "X", '"_x', opts_noremap)
 
 -- TODO
 -- Edit vim config file in a new tab.
@@ -61,7 +61,7 @@ keymap("n", "<A-k>", "mz:m-2<cr>`z", opts)
 keymap("v", "<A-j>", ":m'>+<cr>`<my`>mzgv`yo`z", opts)
 keymap("v", "<A-k>", ":m'<-2<cr>`>my`<mzgv`yo`z", opts)
 
--- Better window navigation 
+-- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
@@ -100,7 +100,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- au TabLeave * let g:lasttab = tabpagenr()
 
 -- " Opens a new tab with the current buffer's path
--- 
+--
 -- " Super useful when editing files in the same directory
 -- map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
@@ -153,7 +153,7 @@ keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 -- keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- TODO
--- " Specify the behavior when switching between buffers 
+-- " Specify the behavior when switching between buffers
 -- try
 --   set switchbuf=useopen,usetab,newtab
 --   set stal=2
