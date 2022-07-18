@@ -10,7 +10,7 @@ else
     export PATH="/usr/local/opt/openjdk/bin:$PATH"
 fi
 
-alias code="code-insiders '$@'"
+# alias code="code-insiders '$@'"
 
 # Exports
 source "$HOME/.cargo/env"
@@ -115,3 +115,4 @@ alias chrome_dbg="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome
 
 # Misc
 alias ms="meilisearch --db-path ~/data.ms"
+. "$HOME/.cargo/env"
