@@ -87,7 +87,6 @@ return packer.startup(function(use)
 
   -- Commenting
   use { "numToStr/Comment.nvim" }
-  use "JoosepAlviste/nvim-ts-context-commentstring"
 
   -- Highlight, list and search todo comments in your projects
   -- use {
@@ -140,6 +139,7 @@ return packer.startup(function(use)
   -- Treesitter
   use { "nvim-treesitter/nvim-treesitter" }
   use { "nvim-treesitter/nvim-treesitter-textobjects", requires = { "nvim-treesitter/nvim-treesitter" } } -- Additional textobjects for treesitter
+  use { "JoosepAlviste/nvim-ts-context-commentstring", requires = { "nvim-treesitter/nvim-treesitter" } } -- JSX commenting
   use { "windwp/nvim-autopairs" } -- Auto ()/{}/[] pairs - integrates with both cmp and treesitter
   -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
 

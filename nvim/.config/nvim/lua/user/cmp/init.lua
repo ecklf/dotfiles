@@ -130,3 +130,5 @@ cmp.setup({
 	},
 })
 
+-- Initialize cmp plugin setups
+require "user.cmp.crates"
