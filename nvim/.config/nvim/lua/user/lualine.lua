@@ -19,8 +19,15 @@ local diagnostics = {
 local diff = {
 	"diff",
 	colored = false,
-	symbols = { added = "", modified = "", removed = "" }, -- Changes diff symbols
+	symbols = { added = "  ", modified = " ", removed = " " },
 	cond = hide_in_width,
+	-- diff_color = {
+	-- 	added = { fg = colors.green },
+	-- 	modified = { fg = colors.yellow },
+	-- 	removed = { fg = colors.red },
+	-- },
+	-- source = diff_source,
+	-- cond = nil,
 }
 
 local filetype = {
@@ -42,10 +49,10 @@ lualine.setup({
 		globalstatus = true,
 		icons_enabled = true,
 		theme = "auto",
-		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
 		-- component_separators = { left = "", right = "" },
 		-- section_separators = { left = "", right = "" },
+		component_separators = { left = "", right = "" },
+		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "alpha", "dashboard" },
 		always_divide_middle = true,
 	},
