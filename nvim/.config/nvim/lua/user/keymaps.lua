@@ -75,7 +75,7 @@ keymap("n", "<A-Right>", ":vertical resize +2<cr>", opts)
 
 -- Buffer management
 -- Close buffers
-keymap("n", "<leader>bd", ":Bclose<cr>:tabclose<cr>gT", opts) -- close current buffer
+keymap("n", "<leader>bd", ":bd<cr>", opts) -- close current buffer
 keymap("n", "<leader>ba", ":bufdo bd<cr>", opts) -- close all buffers
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
