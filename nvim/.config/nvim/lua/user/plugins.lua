@@ -125,11 +125,20 @@ return packer.startup(function(use)
 	use({ "RRethy/vim-illuminate" }) -- Highlighting other uses of the word under the cursor
 
 	-- Telescope
+
+	-- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
+	use({
+		"nvim-telescope/telescope-fzf-native.nvim",
+		run = "make",
+		cond = vim.fn.executable("make") == 1,
+	})
+
 	-- Fuzzy Finder (files, lsp, etc)
 	use({
 		"nvim-telescope/telescope.nvim",
 		requires = { "nvim-lua/plenary.nvim" },
 	})
+
 	use({
 		"ahmedkhalf/project.nvim",
 		requires = { "nvim-telescope/telescope.nvim" },
@@ -143,9 +152,9 @@ return packer.startup(function(use)
 	-- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
 
 	-- Git
-	use({ "lewis6991/gitsigns.nvim" })
-	-- use 'tpope/vim-fugitive' -- Git commands in nvim
-	-- use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
+	use("lewis6991/gitsigns.nvim")
+	use("tpope/vim-fugitive") -- Git commands in nvim
+	use("tpope/vim-rhubarb") -- Fugitive-companion to interact with GitHub
 
 	-- Debug Adapter Protocol
 	--   use { "mfussenegger/nvim-dap" }
