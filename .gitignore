@@ -5,10 +5,5 @@ node_modules/
 logs/
 *.log
 
-# keep coc.nvim package list and configuration
-vim/.config/*
-!vim/.config/coc/extensions/package.json
-!vim/.config/nvim/
-
 core/.config/alacritty/themes/.selected_theme
 core/.config/alacritty/alacritty.theme-switch-backup.yml
