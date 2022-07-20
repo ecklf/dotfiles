@@ -143,6 +143,8 @@ keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>gb", "<cmd>:Git blame<CR>", opts)
+keymap("n", "<leader>gs", "<cmd>:Git status<CR>", opts)
 
 -- DAP
 -- keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)

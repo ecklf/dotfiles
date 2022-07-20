@@ -123,6 +123,7 @@ return packer.startup(function(use)
 	use({ "williamboman/nvim-lsp-installer" }) -- Simple to use language server installer
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- For formatters and linters
 	use({ "RRethy/vim-illuminate" }) -- Highlighting other uses of the word under the cursor
+	use({ "j-hui/fidget.nvim" }) -- Highlighting other uses of the word under the cursor
 
 	-- Telescope
 
@@ -130,7 +131,6 @@ return packer.startup(function(use)
 	use({
 		"nvim-telescope/telescope-fzf-native.nvim",
 		run = "make",
-		cond = vim.fn.executable("make") == 1,
 	})
 
 	-- Fuzzy Finder (files, lsp, etc)
