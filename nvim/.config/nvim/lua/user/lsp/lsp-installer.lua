@@ -4,20 +4,20 @@ if not status_ok then
 end
 
 local servers = {
-	"sumneko_lua",
-	"jsonls",
-	"yamlls",
 	"bashls",
-	"dockerls",
-	"terraformls",
-	"pyright",
-	"html",
 	"cssls",
-	"tailwindcss",
+	"dockerls",
 	"eslint",
-	"tsserver",
 	"graphql",
+	"html",
+	"jsonls",
+	"pyright",
 	"rust_analyzer",
+	"sumneko_lua",
+	"tailwindcss",
+	"terraformls",
+	"tsserver",
+	"yamlls",
 }
 
 lsp_installer.setup({
