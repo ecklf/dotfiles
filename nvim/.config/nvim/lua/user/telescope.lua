@@ -53,4 +53,9 @@ telescope.setup({
 	},
 })
 
+local status_ok_fzf = pcall(require, "fzf")
+if not status_ok_fzf then
+	return
+end
+
 telescope.load_extension("fzf")
