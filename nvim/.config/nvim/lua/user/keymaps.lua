@@ -21,8 +21,8 @@ vim.g.mapleader = ","
 vim.g.maplocalleader = ","
 
 -- Map copy/paste
-keymap("", "<leader>c", '"+y', opts)
-keymap("", "<leader>v", '"+p', opts)
+keymap("", "<leader>c", '"+y', opts_noremap)
+keymap("", "<leader>v", '"+p', opts_noremap)
 
 -- NORMAL --
 
@@ -127,6 +127,7 @@ keymap("v", ">", ">gv", opts)
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+keymap("n", "<leader>tr", ":NvimTreeRefresh<CR>", opts)
 
 -- null-ls
 keymap("n", "<leader>f", ":Format<CR>", opts)
