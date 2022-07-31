@@ -120,7 +120,8 @@ return packer.startup(function(use)
 
 	-- LSP
 	use({ "neovim/nvim-lspconfig" }) -- Enable LSP
-	use({ "williamboman/nvim-lsp-installer" }) -- Simple to use language server installer
+	use({ "williamboman/mason.nvim" }) -- Portable package manager for Neovim
+	use({ "williamboman/mason-lspconfig" }) -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- For formatters and linters
 	use({ "RRethy/vim-illuminate" }) -- Highlighting other uses of the word under the cursor
 	use({ "j-hui/fidget.nvim" }) -- Highlighting other uses of the word under the cursor
