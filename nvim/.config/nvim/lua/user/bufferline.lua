@@ -5,10 +5,14 @@ end
 
 bufferline.setup({
 	options = {
+		-- mode = "tabs",
+		separator_style = "thin", -- Seperator | "thick" | "thin" | "slant" | { 'any', 'any' },
+		show_buffer_close_icons = false,
+		show_close_icon = false,
+		color_icons = true,
 		close_command = "Bdelete! %d", -- Can be a string | function, see "Mouse actions"
 		right_mouse_command = "Bdelete! %d", -- Can be a string | function, see "Mouse actions"
 		offsets = { { filetype = "NvimTree", text = "", padding = 1 } },
-		separator_style = "thin", -- Seperator | "thick" | "thin" | { 'any', 'any' },
 	},
 	highlights = {
 		fill = {

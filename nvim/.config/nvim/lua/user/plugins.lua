@@ -73,6 +73,10 @@ return packer.startup(function(use)
 	use("moll/vim-bbye") -- Allows to delete buffers without closing windows
 	use("lukas-reineke/indent-blankline.nvim") -- Shows indentation marks
 	use("akinsho/toggleterm.nvim") -- Easily manage multiple terminal windows
+
+	-- Plug 'norcalli/nvim-colorizer.lua'
+	-- https://github.com/windwp/nvim-ts-autotag
+
 	-- Add/change/delete surrounding delimiter pairs with ease
 	-- use({
 	-- "kylechui/nvim-surround",
@@ -147,6 +151,7 @@ return packer.startup(function(use)
 
 	-- Treesitter
 	use({ "nvim-treesitter/nvim-treesitter" })
+	use({ "nvim-treesitter/nvim-treesitter-context", requires = { "nvim-treesitter/nvim-treesitter" } }) -- Show code context
 	use({ "nvim-treesitter/nvim-treesitter-textobjects", requires = { "nvim-treesitter/nvim-treesitter" } }) -- Additional textobjects for treesitter
 	use({ "JoosepAlviste/nvim-ts-context-commentstring", requires = { "nvim-treesitter/nvim-treesitter" } }) -- JSX commenting
 	use({ "windwp/nvim-autopairs" }) -- Auto ()/{}/[] pairs - integrates with both cmp and treesitter
