@@ -128,7 +128,7 @@ return packer.startup(function(use)
 	use({ "williamboman/mason-lspconfig" }) -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- For formatters and linters
 	use({ "RRethy/vim-illuminate" }) -- Highlighting other uses of the word under the cursor
-	use({ "j-hui/fidget.nvim" }) -- Highlighting other uses of the word under the cursor
+	use({ "j-hui/fidget.nvim" }) -- Standalone UI for nvim-lsp progress
 
 	-- Telescope
 
