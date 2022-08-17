@@ -28,12 +28,6 @@ Pre 10.15 Catalina:
 chsh -s $(which zsh)
 ```
 
-Neovim python provider:
-
-```shell
-python3 -m pip install --user --upgrade pynvim
-```
-
 Tmux Plugin Manager:
 
 ```shell
@@ -41,10 +35,12 @@ Tmux Plugin Manager:
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-Creating symlinks:
+Setting up symlinks:
 
 ```sh
-stow folderName # (to remove use -D)
-```
+# Creating 
+stow folderName 
+# Removing
+stow -D folderName 
 
-When using stow on vim you might need to run `:PlugInstall` and `:CocInstall`.
+```
