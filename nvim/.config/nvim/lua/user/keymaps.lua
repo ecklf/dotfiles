@@ -26,6 +26,9 @@ keymap("", "<leader>v", '"+p', opts_noremap)
 
 -- NORMAL --
 
+-- Copy relative file path to clipboard
+keymap("n", "<leader>cp", ':let @+ = expand("%")<CR>', opts)
+
 -- Prevent x from overriding what's in the clipboard.
 keymap("n", "x", '"_x', opts_noremap)
 keymap("n", "X", '"_x', opts_noremap)
