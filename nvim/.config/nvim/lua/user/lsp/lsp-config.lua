@@ -23,6 +23,7 @@ local servers = {
 	"terraformls",
 	"tsserver",
 	"yamlls",
+	"gopls",
 }
 
 mason_lspconfig.setup({
@@ -45,6 +46,11 @@ for _, server in pairs(servers) do
 	if server == "rust_analyzer" then
 		local rust_analyzer_opts = require("user.lsp.settings.rust_analyzer")
 		opts = vim.tbl_deep_extend("force", rust_analyzer_opts, opts)
+	end
+
+	if server == "gopls" then
+		local gopls_opts = require("user.lsp.settings.gopls")
+		opts = vim.tbl_deep_extend("force", gopls_opts, opts)
 	end
 
 	if server == "pyright" then
