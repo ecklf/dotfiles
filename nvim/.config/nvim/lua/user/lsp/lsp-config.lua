@@ -1,11 +1,22 @@
+local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
+if not lspconfig_status_ok then
+	return
+end
+
 local status_ok, mason_lspconfig = pcall(require, "mason-lspconfig")
 if not status_ok then
 	return
 end
 
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-	return
+local function union(a, b)
+	local result = {}
+	for _, v in pairs(a) do
+		table.insert(result, v)
+	end
+	for _, v in pairs(b) do
+		table.insert(result, v)
+	end
+	return result
 end
 
 local servers = {
@@ -13,6 +24,7 @@ local servers = {
 	"cssls",
 	"dockerls",
 	"eslint",
+	"gopls",
 	"graphql",
 	"html",
 	"jsonls",
@@ -23,11 +35,16 @@ local servers = {
 	"terraformls",
 	"tsserver",
 	"yamlls",
-	"gopls",
 }
 
+local formatters = {
+	"prettier",
+}
+
+local ensure_installed = union(servers, formatters)
+
 mason_lspconfig.setup({
-	ensure_installed = servers,
+	ensure_installed = ensure_installed,
 })
 
 local opts = {}

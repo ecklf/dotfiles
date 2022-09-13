@@ -11,10 +11,6 @@ end
 local tree_cb = nvim_tree_config.nvim_tree_callback
 
 nvim_tree.setup({
-	update_focused_file = {
-		enable = true,
-		--[[ update_cwd = true, ]]
-	},
 	renderer = {
 		root_folder_modifier = ":t",
 		icons = {
@@ -51,6 +47,25 @@ nvim_tree.setup({
 			info = "",
 			warning = "",
 			error = "",
+		},
+	},
+	update_focused_file = {
+		enable = true,
+		--[[ update_cwd = true, ]]
+		update_cwd = false,
+		update_root = false,
+		ignore_list = {},
+	},
+	actions = {
+		use_system_clipboard = true,
+		change_dir = {
+			--[[ Change the working directory when changing directories in the tree. ]]
+			--[[ enable = false, ]]
+			enable = true,
+			--[[ Use `:cd` instead of `:lcd` when changing directories. ]]
+			global = false,
+			--[[ Restrict changing to a directory above the global current working directory. ]]
+			restrict_above_cwd = false,
 		},
 	},
 	view = {
