@@ -4,6 +4,8 @@
 <dict>
 	<key>AllowClipboardAccess</key>
 	<true/>
+	<key>Command</key>
+	<string></string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>ayu-mirage</key>
@@ -1972,7 +1974,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string></string>
+			<string>/bin/sh -c "env THEME_SCHEME=dark login -fp $(whoami)"</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -2009,7 +2011,7 @@
 				<real>0.086274509803921567</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -2039,6 +2041,8 @@
 			<real>1</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
+			<key>Initial Text</key>
+			<string></string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
@@ -2660,7 +2664,7 @@
 			<key>Columns</key>
 			<integer>80</integer>
 			<key>Command</key>
-			<string></string>
+			<string>/bin/sh -c "env THEME_SCHEME=light login -fp $(whoami)"</string>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Blue Component</key>
@@ -2697,7 +2701,7 @@
 				<real>0.90980392156862744</real>
 			</dict>
 			<key>Custom Command</key>
-			<string>No</string>
+			<string>Yes</string>
 			<key>Custom Directory</key>
 			<string>Recycle</string>
 			<key>Default Bookmark</key>
@@ -3065,14 +3069,16 @@
 			</dict>
 			<key>Selection Color</key>
 			<dict>
+				<key>Alpha Component</key>
+				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.92549019607843142</real>
+				<real>0.80987548828125</real>
 				<key>Color Space</key>
 				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.9137254901960784</real>
+				<real>0.80987548828125</real>
 				<key>Red Component</key>
-				<real>0.90980392156862744</real>
+				<real>0.80987548828125</real>
 			</dict>
 			<key>Send Code When Idle</key>
 			<false/>
