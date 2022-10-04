@@ -27,7 +27,7 @@ local servers = {
 	"gopls",
 	"graphql",
 	"html",
-	"jsonls",
+	--[[ "jsonls", ]]
 	"pyright",
 	"rust_analyzer",
 	"sumneko_lua",

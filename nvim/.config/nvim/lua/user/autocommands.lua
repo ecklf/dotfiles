@@ -53,6 +53,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 	pattern = { "*" },
 	callback = function()
-		vim.cmd("lua vim.lsp.buf.formatting_sync(nil, 1000)")
+		vim.cmd("lua vim.lsp.buf.format(nil, 1000)")
 	end,
 })
