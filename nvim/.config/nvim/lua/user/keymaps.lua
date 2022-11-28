@@ -146,11 +146,17 @@ keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fr", ":Telescope lsp_references<CR>", opts)
 
 -- Git
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>gb", "<cmd>:Git blame<CR>", opts)
 keymap("n", "<leader>gs", "<cmd>:Git status<CR>", opts)
+
+-- Quickfix jumping
+keymap("n", "<leader>qn", ":try | cprev | catch | clast | catch | endtry<CR>", opts)
+keymap("n", "<leader>qm", ":try | cnext | catch | cfirst | catch | endtry<CR>", opts)
+keymap("n", "<leader>qc", ":cclose<CR>", opts)
 
 -- DAP
 -- keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
