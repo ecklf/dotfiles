@@ -37,9 +37,6 @@ local servers = {
 	"yamlls",
 }
 
-local formatters = {
-	"prettier",
-}
 
 local ensure_installed = servers
 
