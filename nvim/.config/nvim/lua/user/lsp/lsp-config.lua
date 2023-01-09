@@ -21,6 +21,7 @@ end
 
 local servers = {
 	"bashls",
+	--[[ "cssls", ]]
 	"stylelint_lsp",
 	"dockerls",
 	"eslint",
@@ -38,6 +39,7 @@ local servers = {
 }
 
 
+--[[ local ensure_installed = union(servers, formatters) ]]
 local ensure_installed = servers
 
 mason_lspconfig.setup({

@@ -24,6 +24,7 @@ export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$(go env GOPATH)/bin
 # OpenJDK
 export PATH="/usr/local/sbin:$PATH"
 
@@ -45,8 +46,11 @@ alias ping="ping -c 5"
 alias jcurl="curl -H 'Content-Type: application/json' '$@'"
 alias diskusage="sudo smartctl --all /dev/disk0"
 alias lnjava="sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk"
-alias noflakepls="git commit --allow-empty -m 'Trigger deployment'"
 alias to_webp="for i in *.* ; do cwebp -q 80 "$i" -o "${i%.*}.webp" ; done"
+
+
+alias noflakepls="git commit --allow-empty -m 'Trigger deployment'"
+alias nogpgflakepls="gpgconf --kill gpg-agent && gpg-connect-agent /bye"
 
 # IP
 alias ipi="ipconfig getifaddr en0"
@@ -89,6 +93,9 @@ alias pdbr="brew services restart postgresql"
 # Node
 alias nls="npm list -g --depth 0"
 alias cra="npx create-react-app $1"
+
+# Terraform
+alias tf="tf $1"
 
 # Make a repo commitizen friendly
 alias init_cz="commitizen init cz-conventional-changelog --yarn --dev --exact"

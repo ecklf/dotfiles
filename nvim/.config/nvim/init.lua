@@ -13,11 +13,12 @@ require("user.nvim-tree")
 require("user.bufferline")
 require("user.lualine")
 require("user.toggleterm")
-require("user.project")
 require("user.impatient")
 require("user.fidget")
 require("user.illuminate")
 require("user.indentline")
 require("user.alpha")
 require("user.lsp")
+require("user.copilot")
+--[[ require("user.project") ]]
 -- require "user.dap"

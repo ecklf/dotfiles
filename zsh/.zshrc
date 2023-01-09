@@ -58,6 +58,9 @@ if type exa > /dev/null 2>&1; then
   alias l='exa -Gl --icons'
   alias ls='exa -G --icons'
   alias la='exa -Ga --icons'
+  alias tree1='exa --tree --level=1 --icons .'
+  alias tree2='exa --tree --level=2 --icons .'
+  alias tree3='exa --tree --level=3 --icons .'
 else
   alias l='ls -Gl'
   alias ls='ls -G'
