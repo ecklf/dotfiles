@@ -129,7 +129,10 @@ return packer.startup(function(use)
 	use({ "williamboman/mason-lspconfig" }) -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- For formatters and linters
 	use({ "RRethy/vim-illuminate" }) -- Highlighting other uses of the word under the cursor
-	use({ "j-hui/fidget.nvim" }) -- Standalone UI for nvim-lsp progress
+	use({
+		"j-hui/fidget.nvim",
+		tag = "legacy",
+	}) -- Standalone UI for nvim-lsp progress
 	use({ "github/copilot.vim" }) -- GitHub Copilot
 
 	-- Telescope
@@ -158,6 +161,7 @@ return packer.startup(function(use)
 	use("lewis6991/gitsigns.nvim")
 	use("tpope/vim-fugitive") -- Git commands in nvim
 	use("tpope/vim-rhubarb") -- Fugitive-companion to interact with GitHub
+	use("f-person/git-blame.nvim")
 
 	-- Debug Adapter Protocol
 	--   use { "mfussenegger/nvim-dap" }
