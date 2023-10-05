@@ -118,6 +118,8 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_COLOR_SUCCESS="white"
 SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_GCLOUD_SHOW=false	
+SPACESHIP_ASYNC_SHOW=false
+SPACESHIP_ASYNC_SYMBOL="󰹻"
 
 # Spaceship theme
 zinit ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
