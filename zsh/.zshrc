@@ -47,6 +47,15 @@ function cheat(){
   command curl "cheat.sh/$1"
 }
 
+function copy_curr_branch(){
+  local ref="$(command git symbolic-ref HEAD 2> /dev/null)"
+
+  if [[ -n "$ref" ]]; then
+    echo "${ref#refs/heads/}" | pbcopy
+  fi
+}
+
+
 # Prefer nvim over vim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -124,6 +133,8 @@ zi ice svn pick"init.zsh"
 zi snippet PZT::modules/directory
 export AUTO_CD=true
 
+zi snippet OMZ::plugins/aws/aws.plugin.zsh
+
 # macOS specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
   zi ice svn pick"init.zsh"
@@ -143,6 +154,9 @@ zi light zsh-users/zsh-autosuggestions
 zi ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
 zi light zdharma/fast-syntax-highlighting
 
+zi ice lucid wait"0"
+zi light joshskidmore/zsh-fzf-history-search
+
 # zoxide > z
 # zi ice lucid wait"0"
 # zi light agkozak/zsh-z
@@ -155,5 +169,7 @@ else
   eval "$(fnm env --use-on-cd)"
 fi
 
-# pnpm autocomplete
+complete -o nospace -C /opt/homebrew/bin/terraform terraform
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc
+source /opt/homebrew/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc
 [[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true

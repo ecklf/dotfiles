@@ -14,6 +14,7 @@ fi
 
 # Exports
 source "$HOME/.cargo/env"
+export DOCKER_HOST=$(docker context inspect | jq '.[] | select(.Name == "'$(docker context show)'") | .Endpoints.docker.Host' -r)
 export INITVIM="~/.config/nvim/init.vim"
 export LC_ALL=en_US.UTF-8
 export PATH="/usr/local/opt/curl/bin:$PATH"
@@ -25,8 +26,15 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$(go env GOPATH)/bin
+# Haskell
+export PATH=$PATH:/Users/ecklf/.ghcup/bin
 # OpenJDK
 export PATH="/usr/local/sbin:$PATH"
+# Pnpm
+export PNPM_HOME="/Users/ecklf/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# Homebrew
+export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 
 # Tooling
 export NEXT_TELEMETRY_DISABLED=1
@@ -47,9 +55,9 @@ alias jcurl="curl -H 'Content-Type: application/json' '$@'"
 alias diskusage="sudo smartctl --all /dev/disk0"
 alias lnjava="sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk"
 alias to_webp="for i in *.* ; do cwebp -q 80 "$i" -o "${i%.*}.webp" ; done"
+alias to_png="for i in *.* ; do convert "$i" "${i%.*}.png" ; done"
 
-
-alias noflakepls="git commit --allow-empty -m 'Trigger deployment'"
+alias noflakepls="git commit --allow-empty -m 'force: CI'"
 alias nogpgflakepls="gpgconf --kill gpg-agent && gpg-connect-agent /bye"
 
 # IP
@@ -86,9 +94,9 @@ alias rdbd="brew services stop redis"
 alias rdbr="brew services restart redis"
 
 # PostgreSQL 
-alias pdbu="brew services start postgresql"
-alias pdbd="brew services stop postgresql"
-alias pdbr="brew services restart postgresql"
+alias pdbu="brew services start postgresql@15"
+alias pdbd="brew services stop postgresql@15"
+alias pdbr="brew services restart postgresql@15"
 
 # Node
 alias nls="npm list -g --depth 0"
