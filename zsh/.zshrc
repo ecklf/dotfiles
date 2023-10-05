@@ -55,7 +55,6 @@ function copy_curr_branch(){
   fi
 }
 
-
 # Prefer nvim over vim
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -86,19 +85,18 @@ fi
 precmd () {print -Pn "\e]0;%~\a"}
 
 # Check if zinit is installed, else autoinstall
-if [[ ! -d ~/.zi ]]; then
-  mkdir ~/.zi
-  git clone https://github.com/z-shell/zi.git ~/.zi/bin
+if [[ ! -d /Users/$(whoami)/.local/share/zinit ]]; then
+  bash -c "$(curl --fail --show-error --silent --location https://raw.githubusercontent.com/zdharma-continuum/zinit/HEAD/scripts/install.sh)"
 fi
 
 ###########################################################
-# ZSH / zi
+# ZSH / zinit
 ###########################################################
 source "$HOME/.bashrc"
-source "$HOME/.zi/bin/zi.zsh"
+source "/Users/$(whoami)/.local/share/zinit/zinit.git/zinit.zsh"
 
-autoload -Uz _zi
-(( ${+_comps} )) && _comps[zi]=_zi
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
 # fzf - respect .gitignore
 # https://github.com/junegunn/fzf#respecting-gitignore
@@ -122,44 +120,50 @@ SPACESHIP_DOCKER_SHOW=false
 SPACESHIP_GCLOUD_SHOW=false	
 
 # Spaceship theme
-zi ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
-zi light denysdovhan/spaceship-prompt
+zinit ice lucid pick'spaceship.zsh' compile'{lib/*,sections/*,tests/*.zsh}'
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    denysdovhan/spaceship-prompt \
+    zdharma-continuum/fast-syntax-highlighting \
+    zsh-users/zsh-completions \
+    zsh-users/zsh-autosuggestions \
+    joshskidmore/zsh-fzf-history-search \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust 
 
 # Snippets
-zi ice svn pick"init.zsh"
-zi snippet PZT::modules/git
+zinit ice svn pick"init.zsh"
+zinit snippet PZT::modules/git
 
-zi ice svn pick"init.zsh"
-zi snippet PZT::modules/directory
+zinit ice svn pick"init.zsh"
+zinit snippet PZT::modules/directory
 export AUTO_CD=true
 
-zi snippet OMZ::plugins/aws/aws.plugin.zsh
+zinit snippet OMZ::plugins/aws/aws.plugin.zsh
 
 # macOS specific
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  zi ice svn pick"init.zsh"
-  zi snippet PZT::modules/homebrew
+  zinit ice svn pick"init.zsh"
+  zinit snippet PZT::modules/homebrew
 
-  zi ice svn pick"init.zsh"
-  zi snippet PZT::modules/osx
+  zinit ice svn pick"init.zsh"
+  zinit snippet PZT::modules/osx
 fi
 
 # Plugins
-zi ice lucid wait"0" blockf
-zi light zsh-users/zsh-completions
+zinit ice lucid wait"0" blockf
+zinit ice lucid wait"0" atload"_zsh_autosuggest_start"
+zinit ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
+zinit ice lucid wait"0"
 
-zi ice lucid wait"0" atload"_zsh_autosuggest_start"
-zi light zsh-users/zsh-autosuggestions
-
-zi ice lucid wait"0" atinit"zpcompinit; zpcdreplay"
-zi light zdharma/fast-syntax-highlighting
-
-zi ice lucid wait"0"
-zi light joshskidmore/zsh-fzf-history-search
 
 # zoxide > z
-# zi ice lucid wait"0"
-# zi light agkozak/zsh-z
+# zinit ice lucid wait"0"
+# zinit light agkozak/zsh-z
 eval "$(zoxide init zsh)"
 
 # Specify fnm arch for M1
