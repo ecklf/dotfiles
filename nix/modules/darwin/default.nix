@@ -313,6 +313,8 @@
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
+    # Remove homebrew packages which aren't in the list
+    onActivation.cleanup = "zap";
     global.brewfile = true;
     masApps = {
       "Color Picker" = 1545870783;
