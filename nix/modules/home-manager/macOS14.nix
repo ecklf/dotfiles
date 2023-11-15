@@ -233,23 +233,21 @@
     starship = {
       enable = true;
       enableZshIntegration = true;
-      # SPACESHIP_CHAR_SYMBOL="▲"
-      # SPACESHIP_CHAR_SUFFIX=" "
       # SPACESHIP_VI_MODE_SHOW=false
       # SPACESHIP_PACKAGE_PREFIX="\n"
       # SPACESHIP_GIT_PREFIX="\n"
       # SPACESHIP_NODE_PREFIX="\n"
       # SPACESHIP_PACKAGE_SHOW=true
-      # SPACESHIP_BATTERY_SHOW=false
-      # SPACESHIP_PROMPT_ADD_NEWLINE=false
       # SPACESHIP_CHAR_COLOR_SUCCESS="green"
       # SPACESHIP_CHAR_COLOR_SUCCESS="white"
-      # SPACESHIP_DOCKER_SHOW=false
-      # SPACESHIP_GCLOUD_SHOW=false	
-      # SPACESHIP_ASYNC_SHOW=false
-      # SPACESHIP_ASYNC_SYMBOL="󰹻"
       settings = {
         add_newline = false;
+        gcloud = {
+          disabled = true;
+        };
+        docker_context = {
+          disabled = true;
+        };
         # format = lib.concatStrings [
         #   "$line_break"
         #   "$package"
@@ -265,7 +263,7 @@
     };
     zellij = {
       enable = true;
-      enableZshIntegration = true;
+      enableZshIntegration = false;
       settings = {
         theme = "catppuccin-mocha";
         default_layout = "default"; # compact
