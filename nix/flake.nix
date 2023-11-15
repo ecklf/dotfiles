@@ -4,6 +4,10 @@
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # nixos-22.11
+    helix-master = {
+      url = "github:SoraTenshi/helix/new-daily-driver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Manages configs links things into your home directory
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,8 +17,15 @@
   };
 
   # outputs = { self, nixpkgs, darwin, home-manager }: {
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, helix-master }:
     let
+      overlays = [
+        (final: prev: {
+          helix = helix-master.packages."aarch64-darwin".default;
+        })
+      ];
+      hostname = "macOS14";
+      username = "ecklf";
       configuration = { pkgs, lib, ... }: {
         # Used for backwards compatibility, please read the changelog before changing.
         # $ darwin-rebuild changelog
@@ -50,7 +61,7 @@
       # $ darwin-rebuild build --flake .#macOS14
       # Switch darwin flake using:
       # $ darwin-rebuild switch --flake ~/nix-flake#macOS14
-      darwinConfigurations."macOS14" = nix-darwin.lib.darwinSystem {
+      darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
@@ -62,14 +73,20 @@
           # ];
         };
         modules = [
+          {
+            nixpkgs.overlays = overlays;
+          }
           configuration
           ./modules/darwin
           home-manager.darwinModules.home-manager
           {
             home-manager = {
+              extraSpecialArgs = {
+                inherit hostname username helix-master;
+              };
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.ecklf.imports = [
+              users."${username}".imports = [
                 ./modules/home-manager/macOS14.nix
               ];
             };
@@ -77,6 +94,6 @@
         ];
       };
       # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."macOS14".pkgs;
+      darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
     };
 }

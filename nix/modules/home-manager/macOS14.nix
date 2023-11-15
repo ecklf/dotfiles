@@ -1,11 +1,12 @@
-({ config, lib, pkgs, ... }: {
+({ pkgs, hostname, username, ... }: 
+{
   imports = [
     ./modules/git
     ./modules/nvim
   ];
 
   home = {
-    stateVersion = "22.11"; # do not change
+    stateVersion = "23.05";
     packages = [ pkgs.ripgrep pkgs.fd pkgs.curl pkgs.less ];
     sessionVariables = {
       PAGER = "less";
@@ -15,6 +16,69 @@
   };
 
   programs = {
+    helix = {
+      enable = true;
+      settings = {
+        theme = "tokyonight_storm";
+        editor = {
+          line-number = "relative";
+          cursorline = true;
+          scrolloff = 5;
+          color-modes = true;
+          idle-timeout = 1;
+          true-color = true;
+          rainbow-brackets = true;
+          bufferline = "always";
+          rulers = [ 100 ];
+          popup-border = "all";
+          soft-wrap.enable = true;
+          completion-replace = true;
+          cursor-word = true;
+
+          sticky-context = {
+            enable = true;
+            indicator = false;
+          };
+
+          lsp = {
+            display-messages = true;
+            display-inlay-hints = true;
+          };
+        
+          whitespace.render = "all";
+          whitespace.characters = {
+            space = "·";
+            nbsp = "⍽";
+            tab = "→";
+            newline = "⤶";
+          };
+
+          gutters = [ "diagnostics" "line-numbers" "spacer" "diff"];
+          statusline = {
+            separator = "of";
+            left = [ "mode" "selections" "file-type" "register" "spinner" "diagnostics" ];
+            center = [ "file-name" ];
+            right = [ "file-encoding" "file-line-ending" "position-percentage" "spacer" "separator" "total-line-numbers" ];
+            mode = {
+              normal = "NOR";
+              insert = "INS";
+              select = "SEL";
+            };
+          };
+          indent-guides = {
+            render = true;
+            rainbow-option = "normal";
+          };
+        };
+
+        keys.normal = {
+          "X" = "extend_line_above";
+          "C-q" = ":bc";
+          "C-d" = ["half_page_down" "align_view_center"];
+          "C-u" = ["half_page_up" "align_view_center"];
+        };
+      };
+    };
     git = {
       enable = true;
       lfs = {

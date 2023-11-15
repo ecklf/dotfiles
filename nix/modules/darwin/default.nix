@@ -89,7 +89,6 @@
       pkgs.gomplate
       pkgs.graphicsmagick
       pkgs.graphviz
-      pkgs.helix
       pkgs.hexyl
       pkgs.htop
       pkgs.httpstat
