@@ -5,13 +5,13 @@
     userName = "Florentin Eckl";
     userEmail = "ecklf@icloud.com";
 
-    # delta = {
-    #   enable = true;
-    #   options = {
-    #     syntax-theme = "solarized-dark";
-    #     side-by-side = true;
-    #   };
-    # };
+    delta = {
+      enable = true;
+      options = {
+        syntax-theme = "TwoDark";
+        side-by-side = true;
+      };
+    };
 
     extraConfig = {
       github = {

@@ -17,6 +17,11 @@
   programs = {
     git = {
       enable = true;
+      lfs = {
+        enable = true;
+        # Skip automatic downloading of objects. Requires a manual `git lfs pull`
+        skipSmudge = false;
+      };
       ignores = [
         ".DS_Store"
         ".idea"
@@ -275,7 +280,7 @@
     };
     bat = {
       enable = true;
-      # config.theme = "TwoDark";
+      config.theme = "TwoDark";
     };
     eza = {
       enable = true;
