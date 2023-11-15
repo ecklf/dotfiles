@@ -1,5 +1,5 @@
-({ pkgs, ... }: {
-  users.users.ecklf.home = "/Users/ecklf";
+({ pkgs, username, hostname, ... }: {
+  users.users."${username}".home = "/Users/${username}";
 
   system.activationScripts.preActivation = {
     enable = true;
@@ -7,12 +7,12 @@
       if [ ! -d "/var/lib/postgresql/" ]; then
         echo "creating PostgreSQL data directory..."
         sudo mkdir -m 750 -p /var/lib/postgresql/
-        chown -R ecklf:staff /var/lib/postgresql/
+        chown -R ${username}:staff /var/lib/postgresql/
       fi
       if [ ! -d "/var/lib/redis/" ]; then
         echo "creating Redis data directory..."
         sudo mkdir -m 750 -p /var/lib/redis/
-        chown -R ecklf:staff /var/lib/redis/
+        chown -R ${username}:staff /var/lib/redis/
       fi
     '';
   };
@@ -20,7 +20,7 @@
   services = {
     postgresql = {
       enable = true;
-      initdbArgs = [ "-U ecklf" "--pgdata=/var/lib/postgresql/15" "--auth=trust" "--no-locale" "--encoding=UTF8" ];
+      initdbArgs = [ "-U ${username}" "--pgdata=/var/lib/postgresql/15" "--auth=trust" "--no-locale" "--encoding=UTF8" ];
       package = pkgs.postgresql_15;
       # TODO(ecklf) automate this
       # psql postgres -c "CREATE USER postgres WITH PASSWORD 'postgres';"
@@ -158,9 +158,9 @@
   };
 
   networking = {
-    computerName = "omega";
-    hostName = "omega";
-    localHostName = "omega";
+    hostName = hostname;
+    computerName = hostname;
+    localHostName = hostname;
   };
 
   system = {
@@ -314,6 +314,8 @@
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
+    # Remove homebrew packages which aren't in the list
+    onActivation.cleanup = "zap";
     global.brewfile = true;
     masApps = {
       "Color Picker" = 1545870783;
@@ -334,7 +336,6 @@
       "Pages" = 409201541;
       "Pure Paste" = 1611378436;
       "rcmd • App Switcher" = 1596283165;
-      "RetroClip" = 1332064978;
       "System Color Picker" = 1545870783;
       "Theine" = 955848755;
       "Velja" = 1607635845;
@@ -376,7 +377,6 @@
       "wiso-steuer-2022"
       "yubico-authenticator"
       # "blackhole-16ch"
-      # "cleanshot"
       # "diffmerge"
       # "google-cloud-sdk"
       # "ngrok"

@@ -4,6 +4,11 @@
     # Where we get most of our software. Giant mono repo with recipes
     # called derivations that say how to build software.
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable"; # nixos-22.11
+    # Helix master changes
+    helix-master = {
+      url = "github:SoraTenshi/helix/new-daily-driver";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Manages configs links things into your home directory
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -13,8 +18,10 @@
   };
 
   # outputs = { self, nixpkgs, darwin, home-manager }: {
-  outputs = inputs@{ self, nixpkgs, nix-darwin, home-manager }:
+  outputs = { self, nixpkgs, nix-darwin, home-manager, helix-master }:
     let
+      username = "ecklf";
+      hostname = "omega";
       configuration = { pkgs, lib, ... }: {
         # Used for backwards compatibility, please read the changelog before changing.
         # $ darwin-rebuild changelog
@@ -47,10 +54,10 @@
     in
     {
       # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#macOS14
+      # $ darwin-rebuild build --flake .#omega
       # Switch darwin flake using:
-      # $ darwin-rebuild switch --flake ~/nix-flake#macOS14
-      darwinConfigurations."macOS14" = nix-darwin.lib.darwinSystem {
+      # $ darwin-rebuild switch --flake ~/nix-flake#omega
+      darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
@@ -61,22 +68,27 @@
           #   "ngrok-3.3.4"
           # ];
         };
+
+        specialArgs = { inherit username hostname; };
         modules = [
           configuration
           ./modules/darwin
           home-manager.darwinModules.home-manager
           {
             home-manager = {
+              extraSpecialArgs = {
+                inherit username hostname;
+              };
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.ecklf.imports = [
-                ./modules/home-manager/macOS14.nix
+              users."${username}".imports = [
+                ./modules/home-manager/${hostname}.nix
               ];
             };
           }
         ];
       };
       # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."macOS14".pkgs;
+      darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
     };
 }

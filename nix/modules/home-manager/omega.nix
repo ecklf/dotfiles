@@ -5,7 +5,7 @@
   ];
 
   home = {
-    stateVersion = "22.11"; # do not change
+    stateVersion = "23.05";
     packages = [ pkgs.ripgrep pkgs.fd pkgs.curl pkgs.less ];
     sessionVariables = {
       PAGER = "less";

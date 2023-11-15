@@ -22,9 +22,9 @@ git clone git@github.com:ecklf/dotfiles.git
 
 ```sh
 # For the first run — `darwin-rebuild`` won't be installed in your path yet
-nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles/nix#macOS14
+nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles/nix#omega
 # Build the flake
-darwin-rebuild build --flake ~/dotfiles/nix#macOS14
+darwin-rebuild build --flake ~/dotfiles/nix#omega
 # Switch to the flake
-darwin-rebuild switch --flake ~/dotfiles/nix#macOS14
+darwin-rebuild switch --flake ~/dotfiles/nix#omega
 ```
