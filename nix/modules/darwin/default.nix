@@ -333,11 +333,12 @@
       "One Thing" = 1604176982;
       "Pages" = 409201541;
       "Pure Paste" = 1611378436;
+      "rcmd • App Switcher" = 1596283165;
       "RetroClip" = 1332064978;
+      "System Color Picker" = 1545870783;
       "Theine" = 955848755;
       "Velja" = 1607635845;
       "Xcode" = 497799835;
-      "rcmd • App Switcher" = 1596283165;
     };
     casks = [
       "affinity-designer"
