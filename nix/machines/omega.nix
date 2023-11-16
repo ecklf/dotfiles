@@ -1,7 +1,7 @@
 ({ config, lib, pkgs, ... }: {
   imports = [
-    ./modules/git
-    ./modules/nvim
+    ../modules/home-manager/modules/git
+    ../modules/home-manager/modules/nvim
   ];
 
   home = {

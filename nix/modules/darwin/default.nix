@@ -53,6 +53,7 @@
       # pkgs.redis
       # pkgs.vector
       # pkgs.watchman
+      pkgs.neofetch
       pkgs.ack
       pkgs.act
       pkgs.age
@@ -219,12 +220,11 @@
       };
       CustomUserPreferences = {
         NSGlobalDomain = {
-          # Set accent and highlight color to purple - TODO(ecklf) does not work reliably yet
-          # AppleAccentColor = 5;
-          # AppleAquaColorVariant = 1;
-          # AppleHighlightColor = "0.968627 0.831373 1.000000 Purple";
+          # Set accent and highlight color to purple (requires restart of Finder or reboot)
+          AppleAccentColor = 5;
+          AppleHighlightColor = "0.968627 0.831373 1.000000 Purple";
           # Auto mode for light/dark mode
-          # AppleInterfaceStyleSwitchesAutomatically = 1;
+          AppleInterfaceStyleSwitchesAutomatically = 1;
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
         };
@@ -245,11 +245,6 @@
           DSDontWriteNetworkStores = true;
           DSDontWriteUSBStores = true;
         };
-        # "com.apple.screensaver" = {
-        #   # Require password immediately after sleep or screen saver begins
-        #   askForPassword = 1;
-        #   askForPasswordDelay = 0;
-        # };
         "com.apple.screencapture" = {
           location = "~/";
           type = "png";
@@ -349,6 +344,7 @@
       "balenaetcher"
       "cleanshot"
       "dbeaver-community"
+      "diffmerge"
       "discord"
       "figma"
       "google-chrome"
@@ -377,7 +373,6 @@
       "wiso-steuer-2022"
       "yubico-authenticator"
       # "blackhole-16ch"
-      # "diffmerge"
       # "google-cloud-sdk"
       # "ngrok"
       # "topnotch"

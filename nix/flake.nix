@@ -82,7 +82,7 @@
               useGlobalPkgs = true;
               useUserPackages = true;
               users."${username}".imports = [
-                ./modules/home-manager/${hostname}.nix
+                ./machines/${hostname}.nix
               ];
             };
           }
