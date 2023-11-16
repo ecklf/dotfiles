@@ -72,7 +72,7 @@
         specialArgs = { inherit username hostname; };
         modules = [
           configuration
-          ./modules/darwin
+          ./darwin
           home-manager.darwinModules.home-manager
           {
             home-manager = {
