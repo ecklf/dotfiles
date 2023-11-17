@@ -1,7 +1,7 @@
-({ pkgs, username, hostname, ... }: {
+({ pkgs, username, hostname, casks, ... }: {
   imports = [
     ./system.nix
-    ./homebrew.nix
+    ./homebrew/${casks}.nix
   ];
 
   users.users.${username} = {
@@ -13,5 +13,12 @@
     hostName = hostname;
     computerName = hostname;
     localHostName = hostname;
+  };
+
+  environment = {
+    systemPath = [ "/opt/homebrew/bin" ];
+    pathsToLink = [ "/Applications" ];
+    shells = [ pkgs.bash pkgs.zsh ];
+    loginShell = pkgs.zsh;
   };
 })

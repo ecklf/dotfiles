@@ -28,6 +28,7 @@
           inherit self nixpkgs nur darwin home-manager overlays;
           system = "aarch64-darwin";
           username = "ecklf";
+          casks = "personal";
         };
       };
     };

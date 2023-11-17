@@ -5,6 +5,7 @@ hostname:
 , home-manager
 , system
 , username
+, casks
 , overlays
 , darwin
 , extraModules ? [ ]
@@ -20,7 +21,7 @@ let
 in
 darwin.lib.darwinSystem {
   inherit system;
-  specialArgs = { inherit system username hostname; };
+  specialArgs = { inherit system username hostname casks; };
   modules = [
     ({ pkgs, system, ... }: {
       # Used for backwards compatibility, please read the changelog before changing.
@@ -57,7 +58,7 @@ darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = {
-          inherit username hostname;
+          inherit username hostname casks;
         };
         users."${username}".imports = [
           ../profiles/${username}.nix
