@@ -81,7 +81,7 @@ _: {
           DSDontWriteUSBStores = true;
         };
         "com.apple.screencapture" = {
-          location = "~/";
+          location = "~/Pictures/";
           type = "png";
         };
         # "com.apple.Safari" = {

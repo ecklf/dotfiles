@@ -2,7 +2,7 @@ _: {
   homebrew = {
     enable = true;
     caskArgs.no_quarantine = true;
-    # Remove homebrew packages which aren't in the list
+    # Automatically remove packages not contained in list
     onActivation.cleanup = "zap";
     global.brewfile = true;
     masApps = {
@@ -29,6 +29,8 @@ _: {
       "Velja" = 1607635845;
       "Xcode" = 497799835;
     };
+    # Ideally leave this empty and only use nix to manage this 
+    brews = [ ];
     casks = [
       "affinity-designer"
       "affinity-photo"
@@ -69,8 +71,8 @@ _: {
       # "google-cloud-sdk"
       # "ngrok"
       # "topnotch"
+      # "wireshark"
     ];
     taps = [ ];
-    # brews = [ ]; # ideally not use this at all
   };
 }
