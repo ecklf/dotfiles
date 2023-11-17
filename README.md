@@ -6,8 +6,7 @@
 
 1. [Nix](https://nixos.org/download) — package and dotfiles management
 2. [Homebrew](https://brew.sh) — GUI app management
-
-Clone this repository.
+3. Clone this repository
 
 ```sh
 git clone git@github.com:ecklf/dotfiles.git
