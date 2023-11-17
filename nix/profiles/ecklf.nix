@@ -55,6 +55,7 @@
       prezto = {
         enable = true;
         pmodules = [
+          "git"
           "osx"
           "homebrew"
         ];
