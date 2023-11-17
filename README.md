@@ -4,9 +4,8 @@
 
 ### Installation
 
-1. [Nix](https://nixos.org/download) — package and dotfiles management
-2. [Homebrew](https://brew.sh) — GUI app management
-3. Clone this repository
+1. Install [nix](https://nixos.org/download) for package and dotfiles management
+2. Clone this repository
 
 ```sh
 git clone git@github.com:ecklf/dotfiles.git
@@ -14,8 +13,9 @@ git clone git@github.com:ecklf/dotfiles.git
 
 ### macOS
 
-1. Ensure Xcode command line tools are installed (should have been done by brew)
-2. Ensure you are signed into the App Store
+1. Install [homebrew](https://brew.sh) for GUI app management
+2. Ensure Xcode command line tools are installed (should have been done by brew)
+3. Ensure you are signed into the App Store
 
 For a fresh macOS install you can clear your bloated dock.
 
