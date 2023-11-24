@@ -67,6 +67,10 @@ _: {
           wvous-br-corner = 10; # Put display to sleep
           wvous-br-modifier = 1048576; # Require CMD to be held
         };
+        "com.apple.WindowManager" = {
+          # Disable click to show desktop (added in Sonoma)
+          EnableStandardClickToShowDesktop = 0;
+        };
         "com.apple.finder" = {
           # When performing a search, display folders first
           _FXSortFoldersFirst = true;
