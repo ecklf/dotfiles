@@ -41,8 +41,10 @@
       pkgs.dbmate
       pkgs.direnv
       pkgs.dive
+      pkgs.duti
       pkgs.emacs
       pkgs.eza
+      pkgs.fclones
       pkgs.fd
       pkgs.ffmpeg
       pkgs.fnm
@@ -68,6 +70,7 @@
       pkgs.imagemagick
       pkgs.inetutils
       pkgs.ipcalc
+      pkgs.irssi
       pkgs.jq
       pkgs.jwt-cli
       pkgs.k3d
@@ -77,6 +80,7 @@
       pkgs.lazygit
       pkgs.less
       pkgs.lnav
+      pkgs.meilisearch
       pkgs.mutagen
       pkgs.mutagen-compose
       pkgs.ncdu
@@ -90,6 +94,7 @@
       pkgs.pandoc
       pkgs.parallel
       pkgs.psutils
+      pkgs.pv
       pkgs.python310Packages.huggingface-hub
       pkgs.ripgrep
       pkgs.rustc
@@ -158,6 +163,10 @@
           "osx"
           "homebrew"
         ];
+      };
+      sessionVariables = {
+        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
+        PUPPETEER_EXECUTABLE_PATH = "which chromium";
       };
       shellAliases = {
         # Abbreviations
