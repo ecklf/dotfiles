@@ -71,15 +71,16 @@ in
       # stylelint_lsp
       nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint      
       nodePackages_latest.typescript-language-server
+      nodePackages_latest.stylelint
       nodePackages_latest."@tailwindcss/language-server"
       nodePackages_latest."@prisma/language-server"
       nodePackages_latest."graphql"
+      nodePackages_latest.dockerfile-language-server-nodejs
       # nodePackages_latest.volar # vue
       nodePackages_latest.bash-language-server
       sumneko-lua-language-server
       gopls
       rust-analyzer
-      docker
       pyright
       # terraform
       yaml-language-server
@@ -178,13 +179,15 @@ in
         type = "lua";
         config = builtins.readFile (./plugins/cmp.lua);
       }
+
+      luasnip # snippet engine
+      friendly-snippets # snippet collection
+
       cmp-buffer # buffer completions
       cmp-path # path completions
       cmp_luasnip # snippet completions
       cmp-nvim-lsp # completion for lsp
       cmp-nvim-lua # completion for lua
-      luasnip # snippet engine
-      friendly-snippets # snippet collection
 
       # -- Completion - Cargo.toml
       # use({
