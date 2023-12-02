@@ -29,6 +29,9 @@ _: {
       "Velja" = 1607635845;
       "Xcode" = 497799835;
     };
+    taps = [ 
+      "homebrew/cask-versions"
+    ];
     # Ideally leave this empty and only use nix to manage this 
     brews = [ ];
     casks = [
@@ -43,6 +46,7 @@ _: {
       "diffmerge"
       "discord"
       "figma"
+      "firefox-developer-edition"
       "google-chrome"
       "gpg-suite"
       "handbrake"

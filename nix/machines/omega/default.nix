@@ -50,6 +50,7 @@
           fonts = [
             # "GeistMono"
             "JetBrainsMono"
+            "GeistMono"
           ];
         })
       ];
