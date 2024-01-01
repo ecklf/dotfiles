@@ -38,8 +38,10 @@ _: {
       "affinity-designer"
       "affinity-photo"
       "affinity-publisher"
+      "anki"
       "appcleaner"
       "balenaetcher"
+      "bitwarden"
       "chromium"
       "cleanshot"
       "dbeaver-community"
@@ -53,9 +55,11 @@ _: {
       "iina"
       "imageoptim"
       "iterm2"
+      "jdownloader"
       "keka"
       "ledger-live"
       "logitech-options"
+      "macfuse"
       "mactex"
       "monitorcontrol"
       "obs"
@@ -65,6 +69,7 @@ _: {
       "spotify"
       "telegram"
       "texstudio"
+      "transmission"
       "tunnelblick"
       "utm"
       "veracrypt"
@@ -81,6 +86,5 @@ _: {
       # "topnotch"
       # "wireshark"
     ];
-    taps = [ ];
   };
 }

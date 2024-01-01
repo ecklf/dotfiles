@@ -10,9 +10,11 @@ _: {
       # Whether to enable quarantine for downloaded applications
       LaunchServices.LSQuarantine = false;
       dock = {
-        autohide = false;
+        autohide = true;
+        autohide-delay = 0.0;
+        autohide-time-modifier = 0.0;
         show-recents = false;
-        tilesize = 64;
+        tilesize = 55;
       };
       trackpad = {
         TrackpadThreeFingerDrag = true;
@@ -60,6 +62,8 @@ _: {
           AppleHighlightColor = "0.968627 0.831373 1.000000 Purple";
           # Auto mode for light/dark mode
           AppleInterfaceStyleSwitchesAutomatically = 1;
+          # Disable shake mouse to locate cursor
+          CGDisableCursorLocationMagnification = 1;
           # Add a context menu item for showing the Web Inspector in web views
           WebKitDeveloperExtras = true;
         };

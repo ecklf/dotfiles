@@ -35,7 +35,9 @@
       pkgs.cairo
       pkgs.cargo
       pkgs.cargo-nextest
+      pkgs.cargo-watch
       pkgs.certstrap
+      pkgs.clippy
       pkgs.cmake
       pkgs.curl
       pkgs.dbmate
@@ -79,6 +81,7 @@
       pkgs.lazydocker
       pkgs.lazygit
       pkgs.less
+      pkgs.libavif
       pkgs.lnav
       pkgs.meilisearch
       pkgs.mutagen
@@ -91,6 +94,7 @@
       pkgs.nmap
       pkgs.nnn
       pkgs.nodePackages_latest.aws-cdk
+      pkgs.ollama
       pkgs.pandoc
       pkgs.parallel
       pkgs.psutils
@@ -98,7 +102,9 @@
       pkgs.python310Packages.huggingface-hub
       pkgs.ripgrep
       pkgs.rustc
+      pkgs.rustfmt
       pkgs.scrcpy
+      pkgs.sea-orm-cli
       pkgs.smartmontools
       pkgs.stow
       pkgs.stylua
@@ -111,6 +117,7 @@
       pkgs.wget
       pkgs.youtube-dl
       pkgs.yq
+      pkgs.yt-dlp
       pkgs.yubikey-manager
       pkgs.yubikey-personalization
       pkgs.zellij
