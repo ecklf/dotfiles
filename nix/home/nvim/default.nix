@@ -213,6 +213,7 @@ in
       nvim-treesitter-textobjects # Additional textobjects for treesitter
       nvim-ts-context-commentstring # JSX commenting
       nvim-autopairs # Auto ()/{}/[] pairs - integrates with both cmp and treesitter
+      nvim-ts-autotag # Auto HTML tag closing - integrates with treesitter
       # -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
       {
         # For formatters and linters
