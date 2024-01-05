@@ -1007,6 +1007,10 @@
 	<false/>
 	<key>HotkeyMigratedFromSingleToMulti</key>
 	<true/>
+	<key>NeverWarnAboutShortLivedSessions_02E15D92-67B5-4A52-8072-1D63BA2FFC1A</key>
+	<true/>
+	<key>NeverWarnAboutShortLivedSessions_02E15D92-67B5-4A52-8072-1D63BA2FFC1A_selection</key>
+	<integer>0</integer>
 	<key>NeverWarnAboutShortLivedSessions_C053D583-2BC9-4322-9C12-C46DD3ECD0C7</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_C053D583-2BC9-4322-9C12-C46DD3ECD0C7_selection</key>
@@ -1677,7 +1681,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>JetBrainsMonoNerdFontCompleteM-Regular 14</string>
+			<string>JetBrainsMonoNFM-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -2367,7 +2371,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>JetBrainsMonoNerdFontCompleteM-Regular 14</string>
+			<string>JetBrainsMonoNFM-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -3057,7 +3061,7 @@
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>JetBrainsMonoNerdFontCompleteM-Regular 14</string>
+			<string>JetBrainsMonoNFM-Regular 14</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
