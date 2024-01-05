@@ -167,6 +167,7 @@ zinit ice lucid wait"0"
 # zinit ice lucid wait"0"
 # zinit light agkozak/zsh-z
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 
 # Specify fnm arch for M1
 if [[ $(arch) == "arm64" ]]; then

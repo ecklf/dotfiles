@@ -192,3 +192,6 @@ keymap("n", "<leader>qc", ":cclose<CR>", opts)
 -- if has("autocmd")
 --   autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 -- endif
+
+-- TODO
+--[[ vim.fn.setreg("q", 'ciw`^R"^[b') ]]

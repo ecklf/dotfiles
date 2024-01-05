@@ -2,23 +2,31 @@ return {
 	settings = {
 		-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 		["rust-analyzer"] = {
-			checkOnSave = {
-				command = "clippy",
+			imports = {
+				granularity = {
+					group = "module",
+				},
+				prefix = "self",
+			},
+			cargo = {
+				buildScripts = {
+					enable = true,
+				},
+				--[[ loadOutDirsFromCheck = true, ]]
+				--[[ allFeatures = false, ]]
+				--[[ features = { "native-tls" }, ]]
 			},
 			procMacro = {
 				enable = true,
 			},
-			files = {
-				excludeDirs = {
-					"node_modules",
-				},
-				watcherExclude = {
-					"node_modules",
-				},
+			check = {
+				--[[ enable = true, ]]
+				--[[ allFeatures = false, ]]
+				--[[ featureFlags = { "native-tls" }, ]]
 			},
-			--[[ cargo = { ]]
-			--[[   loadOutDirsFromCheck = true, ]]
-			--[[ }, ]]
+			checkOnSave = {
+				command = "clippy",
+			},
 		},
 	},
 }

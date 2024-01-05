@@ -129,5 +129,6 @@ alias avd="cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29"
 alias chrome_dbg="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222"
 
 # Misc
+# alias appid="osascript -e 'id of app "\""$@"\""'"
 alias ms="meilisearch --db-path ~/data.ms"
 . "$HOME/.cargo/env"
