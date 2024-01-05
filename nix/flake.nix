@@ -32,6 +32,12 @@
           username = "ecklf";
           casks = "personal";
         };
+        vercel = mkDarwin "vercel" {
+          inherit self nixpkgs nfnixpkgs nur darwin home-manager overlays;
+          system = "aarch64-darwin";
+          username = "ecklf";
+          casks = "work";
+        };
       };
     };
 }
