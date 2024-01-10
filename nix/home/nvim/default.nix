@@ -82,7 +82,7 @@ in
       gopls
       rust-analyzer
       pyright
-      # terraform
+      terraform-ls
       yaml-language-server
       # yamlls
       ripgrep
