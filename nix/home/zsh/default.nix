@@ -106,6 +106,16 @@
             };
           }
           {
+            name = "aws";
+            file = "aws.plugin.zsh";
+            src = pkgs.fetchFromGitHub {
+              owner = "ohmyzsh";
+              repo = "ohmyzsh";
+              rev = "5ea2c68be88452b33b35ba8004fc9094618bcd87";
+              hash = "sha256-Mhn66ZYqPL3z+tPcEUnF8ybckxybaV4TxNX+WUeClq4=";
+            } + "/plugins/aws";
+          }
+          {
             name = "enhancd";
             file = "init.sh";
             src = pkgs.fetchFromGitHub {
