@@ -65,17 +65,18 @@ _: {
       "session-manager-plugin"
       "slack"
       "spotify"
+      "telegram"
       "utm"
       "visual-studio-code"
       "vivaldi"
       "vlc"
       "yubico-authenticator"
-      # "zoom"
       # "blackhole-16ch"
       # "lulu"
       # "ngrok"
       # "topnotch"
       # "wireshark"
+      # "zoom"
     ];
   };
 }
