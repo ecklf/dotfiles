@@ -30,14 +30,13 @@
       pkgs.act
       pkgs.age
       pkgs.ansible
+      pkgs.awscli2
       pkgs.bitwarden-cli
       pkgs.caddy
       pkgs.cairo
-      pkgs.cargo
       pkgs.cargo-nextest
       pkgs.cargo-watch
       pkgs.certstrap
-      pkgs.clippy
       pkgs.cmake
       pkgs.curl
       pkgs.dbmate
@@ -57,6 +56,7 @@
       pkgs.git
       pkgs.git-lfs
       pkgs.gitui
+      pkgs.glances
       pkgs.glow
       pkgs.gnupg
       pkgs.gnused
@@ -101,8 +101,7 @@
       pkgs.pv
       pkgs.python310Packages.huggingface-hub
       pkgs.ripgrep
-      pkgs.rustc
-      pkgs.rustfmt
+      pkgs.rustup
       pkgs.scrcpy
       pkgs.sea-orm-cli
       pkgs.smartmontools
