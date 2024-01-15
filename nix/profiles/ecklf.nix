@@ -36,6 +36,7 @@
       pkgs.cairo
       pkgs.cargo-nextest
       pkgs.cargo-watch
+      pkgs.cargo-zigbuild
       pkgs.certstrap
       pkgs.cmake
       pkgs.curl
@@ -108,6 +109,7 @@
       pkgs.stow
       pkgs.stylua
       pkgs.subversion
+      pkgs.terraform
       pkgs.tmux
       pkgs.tree
       pkgs.trippy

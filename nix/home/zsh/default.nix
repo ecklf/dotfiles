@@ -56,6 +56,8 @@
         export PNPM_HOME="/Users/$(whoami)/Library/pnpm"
         export PATH="$PNPM_HOME:$PATH"
 
+        eval "$(direnv hook zsh)"
+
         # Adding color support for ls etc.
         precmd () {print -Pn "\e]0;%~\a"}
 
