@@ -1,4 +1,4 @@
-({ config, lib, pkgs, ... }: {
+({ config, lib, pkgs, nixpkgs-master, ... }: {
   imports = [
     ../home/bat
     ../home/eza
@@ -26,6 +26,7 @@
       # # pkgs.watchman
       # Not needed as home-manager installs it's own configured version
       # pkgs.neovim
+      nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
       pkgs.ack
       pkgs.act
       pkgs.age

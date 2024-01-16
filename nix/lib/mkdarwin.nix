@@ -1,6 +1,7 @@
 hostname:
 { self
 , nixpkgs
+, nixpkgs-master
 , nfnixpkgs
 , nur
 , home-manager
@@ -22,7 +23,7 @@ let
 in
 darwin.lib.darwinSystem {
   inherit system;
-  specialArgs = { inherit system nfnixpkgs username hostname casks; };
+  specialArgs = { inherit system nixpkgs-master nfnixpkgs username hostname casks; };
   modules = [
     ({ pkgs, system, ... }: {
       # Used for backwards compatibility, please read the changelog before changing.
@@ -59,7 +60,7 @@ darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = {
-          inherit username hostname casks;
+          inherit username hostname casks nixpkgs-master;
         };
         users."${username}".imports = [
           ../profiles/${username}.nix
