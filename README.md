@@ -17,7 +17,7 @@ git clone git@github.com:ecklf/dotfiles.git
 2. Ensure Xcode command line tools are installed (should have been done by brew)
 3. Ensure you are signed into the App Store
 
-For a fresh macOS install you can clear your bloated dock.
+For a fresh macOS install you can clear your bloated dock using:
 
 ```sh
 defaults write com.apple.dock persistent-apps -array && killall Dock
@@ -31,45 +31,4 @@ nix run nix-darwin --extra-experimental-features flakes --extra-experimental-fea
 darwin-rebuild build --flake ~/dotfiles/nix#omega
 # Switch to `omega` (see flake.nix)
 darwin-rebuild switch --flake ~/dotfiles/nix#omega
-```
-
-## Legacy GNU Stow
-
-### Install
-
-```sh
-# All packages
-brew bundle
-```
-
-⏤ or ⏤
-
-```sh
-# Minimum packages
-brew install zsh git subversion neovim
-```
-
-### Configuration
-
-Pre 10.15 Catalina:
-
-```sh
-chsh -s $(which zsh)
-```
-
-Tmux Plugin Manager:
-
-```shell
-# prefix + I to install
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-```
-
-### Setting up symlinks
-
-```sh
-# Creating 
-stow folderName 
-# Removing
-stow -D folderName 
-
 ```
