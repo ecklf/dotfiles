@@ -71,6 +71,7 @@
       pkgs.hexyl
       pkgs.htop
       pkgs.httpstat
+      pkgs.hyperfine
       pkgs.imagemagick
       pkgs.inetutils
       pkgs.ipcalc
