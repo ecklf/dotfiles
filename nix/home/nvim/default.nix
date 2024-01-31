@@ -35,7 +35,7 @@ let
     src = builtins.fetchGit {
       url = "ssh://git@github.com/catppuccin/nvim.git";
       ref = "main";
-      rev = "5e4be43e1a6acb044d5c55cd10f22461c40656ed";
+      rev = "bc1f2151f23227ba02ac203c2c59ad693352a741";
     };
   };
 in

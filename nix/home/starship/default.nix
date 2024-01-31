@@ -24,7 +24,7 @@ _: {
         #   "$line_break"
         #   "$character"
         # ];
-        command_timeout = 1000;
+        command_timeout = 1500;
         scan_timeout = 10;
         character = {
           success_symbol = "▲";
