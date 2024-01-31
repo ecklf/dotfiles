@@ -36,6 +36,7 @@
       pkgs.caddy
       pkgs.cairo
       pkgs.cargo-nextest
+      pkgs.cargo-sweep
       pkgs.cargo-watch
       pkgs.cargo-zigbuild
       pkgs.certstrap
@@ -100,6 +101,7 @@
       pkgs.ollama
       pkgs.pandoc
       pkgs.parallel
+      pkgs.plow
       pkgs.psutils
       pkgs.pv
       pkgs.python310Packages.huggingface-hub
@@ -108,6 +110,7 @@
       pkgs.scrcpy
       pkgs.sea-orm-cli
       pkgs.smartmontools
+      pkgs.speedtest-cli
       pkgs.stow
       pkgs.stylua
       pkgs.subversion
