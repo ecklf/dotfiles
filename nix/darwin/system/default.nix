@@ -1,4 +1,4 @@
-({ pkgs, username, hostname, casks, ... }: {
+({ pkgs, hostname, ... }: {
   imports = [
     ./${hostname}.nix
   ];
