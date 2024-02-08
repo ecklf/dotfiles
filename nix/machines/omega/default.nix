@@ -42,7 +42,7 @@
   };
 
   fonts = {
-    # This makes all fonts hard-managed via nix, will delete manually added ones
+    # This makes all fonts hard-managed via nix, might delete manually added ones
     fontDir.enable = true;
     fonts =
       [

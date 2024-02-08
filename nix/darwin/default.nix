@@ -1,6 +1,6 @@
 ({ pkgs, username, hostname, casks, ... }: {
   imports = [
-    ./system.nix
+    ./system
     ./homebrew/${casks}.nix
   ];
 

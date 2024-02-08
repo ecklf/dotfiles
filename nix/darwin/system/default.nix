@@ -1,4 +1,8 @@
-_: {
+({ pkgs, username, hostname, casks, ... }: {
+  imports = [
+    ./${hostname}.nix
+  ];
+
   system = {
     keyboard = {
       enableKeyMapping = true;
@@ -8,7 +12,6 @@ _: {
       # TODO(ecklf) add fix - Use scroll gesture with the Ctrl (^) modifier key to zoom
       # universalaccess.closeViewScrollWheelToggle = true;
       # Whether to enable quarantine for downloaded applications
-      LaunchServices.LSQuarantine = false;
       dock = {
         autohide = true;
         autohide-delay = 0.0;
@@ -148,4 +151,4 @@ _: {
       };
     };
   };
-}
+})
