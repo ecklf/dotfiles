@@ -101,7 +101,6 @@
       pkgs.ollama
       pkgs.pandoc
       pkgs.parallel
-      pkgs.plow
       pkgs.psutils
       pkgs.pv
       pkgs.python310Packages.huggingface-hub
