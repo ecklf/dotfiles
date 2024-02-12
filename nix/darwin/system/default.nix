@@ -1,6 +1,6 @@
 ({ pkgs, hostname, ... }: {
   imports = [
-    ./${hostname}.nix
+    ./${hostname}
   ];
 
   system = {
