@@ -63,6 +63,7 @@ _: {
       "mactex"
       "monitorcontrol"
       "obs"
+      "obsidian"
       "orbstack"
       "rapidapi"
       "raycast"

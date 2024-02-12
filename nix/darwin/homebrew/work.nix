@@ -58,6 +58,7 @@ _: {
       "logitech-options"
       "monitorcontrol"
       "notion"
+      "obsidian"
       "orbstack"
       "parallels"
       "rapidapi"
