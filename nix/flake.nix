@@ -1,8 +1,8 @@
 {
   description = "macOS";
   inputs = {
-	  # nixpkgs.url = "github:nixos/nixpkgs";
-	  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     nur.url = "github:nix-community/NUR";
     # Controls macOS system level software and settings including fonts
