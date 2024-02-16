@@ -1,4 +1,5 @@
 ({ pkgs, nfnixpkgs, username, hostname, ... }: {
+({ pkgs, username, hostname, ... }: {
   services = {
   };
 
@@ -13,9 +14,10 @@
     fontDir.enable = true;
     fonts =
       [
-        (nfnixpkgs.legacyPackages.aarch64-darwin.nerdfonts.override {
+        (pkgs.nerdfonts.override {
           fonts = [
             "JetBrainsMono"
+            "GeistMono"
           ];
         })
       ];

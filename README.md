@@ -32,3 +32,10 @@ darwin-rebuild build --flake ~/dotfiles/nix#omega
 # Switch to `omega` (see flake.nix)
 darwin-rebuild switch --flake ~/dotfiles/nix#omega
 ```
+
+```sh
+# Upgrading nix — https://nixos.org/manual/nix/stable/installation/upgrading
+# Updating packages
+nix flake lock --update-all
+nix flake lock --update-input <input>
+```

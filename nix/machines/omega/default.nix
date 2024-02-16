@@ -1,4 +1,4 @@
-({ pkgs, nfnixpkgs, username, hostname, ... }: {
+({ pkgs, username, hostname, ... }: {
   system.activationScripts.preActivation = {
     enable = true;
     text = ''
@@ -46,10 +46,10 @@
     fontDir.enable = true;
     fonts =
       [
-        (nfnixpkgs.legacyPackages.aarch64-darwin.nerdfonts.override {
+        (pkgs.nerdfonts.override {
           fonts = [
-            "GeistMono"
             "JetBrainsMono"
+            "GeistMono"
           ];
         })
       ];

@@ -1,9 +1,9 @@
 {
   description = "macOS";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+	  # nixpkgs.url = "github:nixos/nixpkgs";
+	  nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nfnixpkgs.url = "github:msfjarvis/nixpkgs/hs/nerdfonts-3.1.0"; # pr for nerdfonts 3.1.0 
     nur.url = "github:nix-community/NUR";
     # Controls macOS system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
@@ -17,7 +17,6 @@
     { self
     , nixpkgs
     , nixpkgs-master
-    , nfnixpkgs
     , nur
     , darwin
     , home-manager
@@ -29,13 +28,13 @@
     {
       darwinConfigurations = {
         omega = mkDarwin "omega" {
-          inherit self nixpkgs nixpkgs-master nfnixpkgs nur darwin home-manager overlays;
+          inherit self nixpkgs nixpkgs-master nur darwin home-manager overlays;
           system = "aarch64-darwin";
           username = "ecklf";
           casks = "personal";
         };
         vercel = mkDarwin "vercel" {
-          inherit self nixpkgs nixpkgs-master nfnixpkgs nur darwin home-manager overlays;
+          inherit self nixpkgs nixpkgs-master nur darwin home-manager overlays;
           system = "aarch64-darwin";
           username = "ecklf";
           casks = "work";

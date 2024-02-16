@@ -2,7 +2,6 @@ hostname:
 { self
 , nixpkgs
 , nixpkgs-master
-, nfnixpkgs
 , nur
 , home-manager
 , system
@@ -23,7 +22,7 @@ let
 in
 darwin.lib.darwinSystem {
   inherit system;
-  specialArgs = { inherit system nixpkgs-master nfnixpkgs username hostname casks; };
+  specialArgs = { inherit system nixpkgs-master username hostname casks; };
   modules = [
     ({ pkgs, system, ... }: {
       # Used for backwards compatibility, please read the changelog before changing.

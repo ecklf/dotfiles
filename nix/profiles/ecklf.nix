@@ -12,7 +12,7 @@
   ];
 
   home = {
-    stateVersion = "23.05";
+    stateVersion = "24.05";
     packages = [
       # # pkgs.cfssl
       # # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
@@ -26,6 +26,7 @@
       # # pkgs.watchman
       # Not needed as home-manager installs it's own configured version
       # pkgs.neovim
+      nixpkgs-master.legacyPackages.aarch64-darwin.plow
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
       pkgs.ack
       pkgs.act
