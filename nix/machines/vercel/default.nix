@@ -1,4 +1,3 @@
-({ pkgs, nfnixpkgs, username, hostname, ... }: {
 ({ pkgs, username, hostname, ... }: {
   services = {
   };
