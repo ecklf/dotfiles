@@ -11,7 +11,6 @@
 #   };
 # in
 
-
 let
   # configuration = pkgs.vimUtils.buildVimPlugin {
   #   pname = "configuration";
@@ -246,6 +245,12 @@ in
         type = "lua";
         config = builtins.readFile (./plugins/copilot.lua);
       }
+      # -- Git
+      {
+        plugin =  gitsigns-nvim;
+        type = "lua";
+        config = builtins.readFile (./plugins/gitsigns.lua);
+      }
       # Telescope
       telescope-fzf-native-nvim # Better fuzzy finding in telescope
       {
@@ -253,12 +258,6 @@ in
         plugin = telescope-nvim;
         type = "lua";
         config = builtins.readFile (./plugins/telescope.lua);
-      }
-      # -- Git
-      {
-        plugin = gitsigns-nvim;
-        type = "lua";
-        config = builtins.readFile (./plugins/gitsigns.lua);
       }
       vim-fugitive # Git commands in nvim
       vim-rhubarb # Fugitive-companion to interact with GitHub
