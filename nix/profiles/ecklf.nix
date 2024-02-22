@@ -28,6 +28,7 @@
       # pkgs.neovim
       nixpkgs-master.legacyPackages.aarch64-darwin.plow
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
+      pkgs.bun
       pkgs.ack
       pkgs.act
       pkgs.age
