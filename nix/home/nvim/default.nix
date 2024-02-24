@@ -216,9 +216,9 @@ in
       # -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
       {
         # For formatters and linters
-        plugin = none-ls-nvim;
+        plugin = null-ls-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/none-ls.lua);
+        config = builtins.readFile (./plugins/null-ls.lua);
       }
       {
         # Crates version autosuggestions 

@@ -1,14 +1,14 @@
-local none_ls_status_ok, none_ls = pcall(require, "none-ls")
-if not none_ls_status_ok then
+local null_ls_status_ok, null_ls = pcall(require, "null-ls")
+if not null_ls_status_ok then
 	return
 end
 
-local formatting = none_ls.builtins.formatting
-local diagnostics = none_ls.builtins.diagnostics
-local completion = none_ls.builtins.completion
+local formatting = null_ls.builtins.formatting
+local diagnostics = null_ls.builtins.diagnostics
+local completion = null_ls.builtins.completion
 
 -- https://github.com/prettier-solidity/prettier-plugin-solidity
-none_ls.setup({
+null_ls.setup({
 	debug = false,
 	sources = {
 		formatting.prettier.with({
