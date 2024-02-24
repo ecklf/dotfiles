@@ -7,6 +7,7 @@ hostname:
 , home-manager
 , system
 , username
+, profile
 , casks
 , overlays
 , darwin
@@ -23,7 +24,7 @@ let
 in
 darwin.lib.darwinSystem {
   inherit system;
-  specialArgs = { inherit system nixpkgs-stable nixpkgs-master username hostname casks; };
+  specialArgs = { inherit system nixpkgs-stable nixpkgs-master username profile hostname casks; };
   modules = [
     ({ pkgs, system, ... }: {
       # Used for backwards compatibility, please read the changelog before changing.
@@ -60,10 +61,10 @@ darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = {
-          inherit username hostname casks nixpkgs-master;
+          inherit username profile hostname casks nixpkgs-master;
         };
         users."${username}".imports = [
-          ../profiles/${username}.nix
+          ../profiles/${profile}
         ];
       };
     }

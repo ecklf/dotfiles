@@ -1,19 +1,20 @@
 ({ config, lib, pkgs, nixpkgs-master, ... }: {
   imports = [
-    ../home/bat
-    ../home/eza
-    ../home/fzf
-    ../home/git
-    ../home/nvim
-    ../home/starship
-    ../home/zellij
-    ../home/zoxide
-    ../home/zsh
+    ../../home/bat
+    ../../home/eza
+    ../../home/fzf
+    ../../home/git
+    ../../home/nvim
+    ../../home/starship
+    ../../home/zellij
+    ../../home/zoxide
+    ../../home/zsh
   ];
 
   home = {
     stateVersion = "24.05";
     packages = [
+      # Not needed as home-manager installs it's own configured version
       # pkgs.cfssl
       # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
       # pkgs.httpie
@@ -21,20 +22,19 @@
       # pkgs.mitmproxy
       # pkgs.nats-server
       # pkgs.natscli
+      # pkgs.neovim
       # pkgs.redis
       # pkgs.vector
       # pkgs.watchman
-      # Not needed as home-manager installs it's own configured version
-      # pkgs.neovim
-      nixpkgs-master.legacyPackages.aarch64-darwin.plow
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
-      pkgs.bun
+      nixpkgs-master.legacyPackages.aarch64-darwin.plow
       pkgs.ack
       pkgs.act
       pkgs.age
       pkgs.ansible
       pkgs.awscli2
       pkgs.bitwarden-cli
+      pkgs.bun
       pkgs.caddy
       pkgs.cairo
       pkgs.cargo-nextest
@@ -43,6 +43,7 @@
       pkgs.cargo-zigbuild
       pkgs.certstrap
       pkgs.cmake
+      pkgs.colima
       pkgs.curl
       pkgs.dbmate
       pkgs.direnv
