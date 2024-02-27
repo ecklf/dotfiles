@@ -4,12 +4,12 @@
     ../../home/eza
     ../../home/fzf
     ../../home/git
+    ../../home/nnn
     ../../home/nvim
     ../../home/starship
     ../../home/zellij
     ../../home/zoxide
     ../../home/zsh
-    ../../home/nnn
   ];
 
   home = {
@@ -46,7 +46,6 @@
       pkgs.cmake
       pkgs.colima
       pkgs.curl
-      pkgs.czkawka
       pkgs.dbmate
       pkgs.direnv
       pkgs.dive
@@ -101,6 +100,7 @@
       pkgs.nix-prefetch-github
       pkgs.nixpkgs-fmt
       pkgs.nmap
+      pkgs.nnn
       pkgs.nodePackages_latest.aws-cdk
       pkgs.ollama
       pkgs.pandoc
@@ -138,7 +138,6 @@
       PAGER = "less";
       CLICLOLOR = 1;
       EDITOR = "nvim";
-      VISUAL = "nvim";
     };
   };
 
