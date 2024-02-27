@@ -29,7 +29,7 @@ _: {
       "Velja" = 1607635845;
       "Xcode" = 497799835;
     };
-    taps = [ 
+    taps = [
       "homebrew/cask-versions"
     ];
     # Ideally leave this empty and only use nix to manage this 

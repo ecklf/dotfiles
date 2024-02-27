@@ -1,6 +1,5 @@
 ({ pkgs, username, hostname, ... }: {
-  services = {
-  };
+  services = { };
 
   environment = {
     systemPackages = [
