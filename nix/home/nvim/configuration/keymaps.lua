@@ -134,7 +134,7 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 keymap("n", "<leader>tr", ":NvimTreeRefresh<CR>", opts)
 
--- null-ls
+-- Conform
 keymap("n", "<leader>f", ":Format<CR>", opts)
 
 -- Comment

@@ -54,37 +54,35 @@ in
     '';
     # https://search.nixos.org/packages
     extraPackages = with pkgs; [
-      # Formatters
-      nodePackages_latest.prettier # webdev
-      stylua # lua
-      shfmt # sh
-      nixpkgs-fmt # nix
-      rustfmt # rust
-      python310Packages.black # python
-      # Linters
-      statix # nix
-      shellcheck # sh
-      python310Packages.flake8
-      # LSP
-      # nodePackages_latest.eslint
-      # stylelint_lsp
-      nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint      
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.stylelint
-      nodePackages_latest."@tailwindcss/language-server"
-      nodePackages_latest."@prisma/language-server"
-      nodePackages_latest."graphql"
-      nodePackages_latest.dockerfile-language-server-nodejs
       # nodePackages_latest.volar # vue
-      nodePackages_latest.bash-language-server
-      sumneko-lua-language-server
+      # stylelint_lsp
+      # yamlls
       gopls
-      rust-analyzer
+      nixpkgs-fmt # nix
+      nodePackages_latest."@prisma/language-server"
+      nodePackages_latest."@tailwindcss/language-server"
+      nodePackages_latest."graphql"
+      nodePackages_latest.bash-language-server
+      nodePackages_latest.dockerfile-language-server-nodejs
+      nodePackages_latest.eslint
+      nodePackages_latest.prettier # webdev
+      nodePackages_latest.stylelint
+      nodePackages_latest.typescript-language-server
+      nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint      
       pyright
+      python310Packages.black # python
+      python310Packages.flake8
+      ripgrep
+      rust-analyzer
+      rustfmt
+      shellcheck
+      shfmt
+      statix # nix / seems to be broken
+      stylua
+      sumneko-lua-language-server
       terraform-ls
       yaml-language-server
-      # yamlls
-      ripgrep
+      vale
     ];
     plugins = with pkgs.vimPlugins; [
       # Core
@@ -215,10 +213,16 @@ in
       nvim-ts-autotag # Auto HTML tag closing - integrates with treesitter
       # -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
       {
-        # For formatters and linters
-        plugin = null-ls-nvim;
+        # Formatter 
+        plugin = conform-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/null-ls.lua);
+        config = builtins.readFile (./plugins/conform.lua);
+      }
+      {
+        # Linters
+        plugin = nvim-lint;
+        type = "lua";
+        config = builtins.readFile (./plugins/nvim-lint.lua);
       }
       {
         # Crates version autosuggestions 
