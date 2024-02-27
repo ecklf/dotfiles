@@ -46,6 +46,7 @@
       pkgs.cmake
       pkgs.colima
       pkgs.curl
+      pkgs.czkawka
       pkgs.dbmate
       pkgs.direnv
       pkgs.dive

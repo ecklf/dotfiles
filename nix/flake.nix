@@ -32,7 +32,7 @@
           inherit self nixpkgs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
           system = "aarch64-darwin";
           username = "ecklf";
-          profile = "ecklf";
+          profile = "personal";
           casks = "personal";
         };
         vercel = mkDarwin "vercel" {
