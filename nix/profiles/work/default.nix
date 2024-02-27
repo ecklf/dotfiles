@@ -1,4 +1,4 @@
-({ config, lib, pkgs, nixpkgs-master, ... }: {
+({ config, profile, lib, pkgs, nixpkgs-master, ... }: {
   imports = [
     ../../home/bat
     ../../home/eza
@@ -9,6 +9,7 @@
     ../../home/zellij
     ../../home/zoxide
     ../../home/zsh
+    ../../home/nnn
   ];
 
   home = {
@@ -104,7 +105,6 @@
       pkgs.nix-prefetch-github
       pkgs.nixpkgs-fmt
       pkgs.nmap
-      pkgs.nnn
       pkgs.nodePackages_latest.aws-cdk
       pkgs.ollama
       pkgs.pandoc
@@ -142,6 +142,7 @@
       PAGER = "less";
       CLICLOLOR = 1;
       EDITOR = "nvim";
+      VISUAL = "nvim";
     };
   };
 

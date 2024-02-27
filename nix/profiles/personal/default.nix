@@ -9,6 +9,7 @@
     ../../home/zellij
     ../../home/zoxide
     ../../home/zsh
+    ../../home/nnn
   ];
 
   home = {
@@ -99,7 +100,6 @@
       pkgs.nix-prefetch-github
       pkgs.nixpkgs-fmt
       pkgs.nmap
-      pkgs.nnn
       pkgs.nodePackages_latest.aws-cdk
       pkgs.ollama
       pkgs.pandoc
@@ -137,6 +137,7 @@
       PAGER = "less";
       CLICLOLOR = 1;
       EDITOR = "nvim";
+      VISUAL = "nvim";
     };
   };
 
