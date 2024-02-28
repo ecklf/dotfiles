@@ -94,7 +94,29 @@ in
       iceberg
       ayu-vim
       catppuccin
-      nvim-web-devicons # required by nvim-tree, lualine
+      {
+        # required by nvim-tree, lualine
+        plugin = nvim-web-devicons;
+        type = "lua";
+        config = /* lua */ ''
+            require("nvim-web-devicons").setup({
+            override_by_extension = {
+              ["rs"] = {
+               icon = "",
+               color = "#6f5242",
+               cterm_color = "95",
+               name = "Rs",
+              },
+              ["toml"] = {
+                icon = "",
+                color = "#333333",
+                cterm_color = "231",
+                name = "Toml",
+              },
+            }
+          })
+        '';
+      }
       {
         plugin = nvim-tree-lua;
         type = "lua";
