@@ -1,4 +1,4 @@
-({ pkgs, hostname, ... }: {
+({ pkgs, hostname, username, ... }: {
   imports = [
     ./${hostname}
   ];
@@ -85,6 +85,8 @@
           # ShowHardDrivesOnDesktop = true;
           # ShowMountedServersOnDesktop = true;
           # ShowRemovableMediaOnDesktop = true;
+          NewWindowTarget = "PfHm";
+          NewWindowTargetPath = "file:///Users/${username}/";
         };
         "com.apple.desktopservices" = {
           # Avoid creating .DS_Store files on network or USB volumes
