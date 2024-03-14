@@ -2,7 +2,7 @@ _: {
   programs = {
     eza = {
       enable = true;
-      enableAliases = true;
+      enableZshIntegration = true;
       extraOptions = [
         "-G"
       ];
