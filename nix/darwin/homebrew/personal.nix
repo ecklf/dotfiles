@@ -62,6 +62,7 @@ _: {
       "macfuse"
       "mactex"
       "monitorcontrol"
+      "notion"
       "obs"
       "obsidian"
       "orbstack"
