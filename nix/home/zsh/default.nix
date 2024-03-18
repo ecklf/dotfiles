@@ -4,7 +4,7 @@
     zsh = {
       enable = true;
       enableCompletion = true;
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       zsh-abbr.abbreviations = { };
       # Whether to enable Bash And Zsh shell history suggest box - easily view, navigate, search and manage your command history
