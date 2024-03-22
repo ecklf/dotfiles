@@ -64,7 +64,7 @@ darwin.lib.darwinSystem {
           inherit username profile hostname casks nixpkgs-master;
         };
         users."${username}".imports = [
-          ../profiles/${profile}
+          ../profiles
         ];
       };
     }

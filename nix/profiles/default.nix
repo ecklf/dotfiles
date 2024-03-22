@@ -1,19 +1,26 @@
 ({ config, profile, lib, pkgs, nixpkgs-master, ... }: {
   imports = [
-    ../../home/bat
-    ../../home/eza
-    ../../home/fzf
-    ../../home/git
-    ../../home/nvim
-    ../../home/starship
-    ../../home/zellij
-    ../../home/zoxide
-    ../../home/zsh
-    ../../home/nnn
+    ../home/bat
+    ../home/eza
+    ../home/fzf
+    ../home/git
+    ../home/nnn
+    ../home/nvim
+    ../home/starship
+    ../home/zellij
+    ../home/zoxide
+    ../home/zsh
+    ./${profile}
   ];
 
   home = {
     stateVersion = "24.05";
+    sessionVariables = {
+      PAGER = "less";
+      CLICLOLOR = 1;
+      EDITOR = "nvim";
+      VISUAL = "nvim";
+    };
     packages = [
       # Not needed as home-manager installs it's own configured version
       # pkgs.cfssl
@@ -32,7 +39,6 @@
       pkgs.ack
       pkgs.act
       pkgs.age
-      pkgs.ansible
       pkgs.awscli2
       pkgs.bitwarden-cli
       pkgs.bun
@@ -49,6 +55,8 @@
       pkgs.dbmate
       pkgs.direnv
       pkgs.dive
+      pkgs.docker
+      pkgs.docker-compose
       pkgs.duti
       pkgs.emacs
       pkgs.eza
@@ -91,12 +99,6 @@
       pkgs.less
       pkgs.libavif
       pkgs.lnav
-      pkgs.lua51Packages.lua
-      pkgs.lua51Packages.luacheck
-      pkgs.lua51Packages.luarocks
-      pkgs.lua51Packages.luafilesystem
-      pkgs.lua51Packages.busted
-      pkgs.meilisearch
       pkgs.mutagen
       pkgs.mutagen-compose
       pkgs.ncdu
@@ -106,7 +108,6 @@
       pkgs.nixpkgs-fmt
       pkgs.nmap
       pkgs.nodePackages_latest.aws-cdk
-      pkgs.ollama
       pkgs.pandoc
       pkgs.parallel
       pkgs.psutils
@@ -138,12 +139,6 @@
       pkgs.zoxide
       pkgs.zsh
     ];
-    sessionVariables = {
-      PAGER = "less";
-      CLICLOLOR = 1;
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-    };
   };
 
   programs = {
