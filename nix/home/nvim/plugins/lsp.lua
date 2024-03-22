@@ -23,7 +23,7 @@ local setup = function()
 	local config = {
 		virtual_text = false, -- disable virtual text
 		signs = {
-			active = signs,   -- show signs
+			active = signs, -- show signs
 		},
 		update_in_insert = true,
 		underline = true,
@@ -132,11 +132,23 @@ for _, server in pairs(servers) do
 		-- capabilities = require("user.lsp.handlers").capabilities,
 	}
 
+	if server == "tsserver" then
+		local tsserver_opts = {
+			settings = {
+				maxTsServerMemory = 12000,
+				typescript = {
+					preferGoToSourceDefinition = true,
+				},
+			},
+		}
+		opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+	end
+
 	if server == "eslint" then
 		local eslint_opts = {
 			settings = {
 				settings = {
-					packageManager = 'pnpm'
+					packageManager = "pnpm",
 				},
 			},
 		}
