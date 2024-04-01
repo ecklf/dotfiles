@@ -46,6 +46,7 @@
     fontDir.enable = true;
     fonts =
       [
+        pkgs.inter
         (pkgs.nerdfonts.override {
           fonts = [
             "JetBrainsMono"
