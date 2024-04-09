@@ -78,6 +78,8 @@ _: {
       "visual-studio-code"
       "vivaldi"
       "vlc"
+      "whatsapp"
+      "whisky"
       "windscribe"
       "wiso-steuer-2022"
       "yubico-authenticator"
