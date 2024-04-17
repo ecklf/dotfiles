@@ -51,6 +51,7 @@
       pkgs.certstrap
       pkgs.cmake
       pkgs.colima
+      pkgs.cowsay
       pkgs.curl
       pkgs.dbmate
       pkgs.direnv
@@ -70,6 +71,7 @@
       pkgs.gh
       pkgs.git
       pkgs.git-lfs
+      pkgs.git-trim
       pkgs.gitui
       pkgs.glances
       pkgs.glow
