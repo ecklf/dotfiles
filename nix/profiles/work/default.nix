@@ -8,4 +8,12 @@
       pkgs.lua51Packages.luarocks
     ];
   };
+
+  programs = {
+    zsh = {
+      shellAliases = {
+        dsf = "/Users/$(whoami)/Projects/vercel/deploy-single-file/bin/deploy-single-file";
+      };
+    };
+  };
 })
