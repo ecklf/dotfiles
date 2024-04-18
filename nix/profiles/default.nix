@@ -183,6 +183,8 @@
         ];
       };
       sessionVariables = {
+        NEXT_TELEMETRY_DISABLED = 1;
+        MEILI_NO_ANALYTICS = true;
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
         PUPPETEER_EXECUTABLE_PATH = "which chromium";
       };
