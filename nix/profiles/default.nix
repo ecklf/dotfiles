@@ -116,6 +116,7 @@
       pkgs.pv
       pkgs.python310Packages.huggingface-hub
       pkgs.ripgrep
+      pkgs.rsync
       pkgs.rustup
       pkgs.scrcpy
       pkgs.sea-orm-cli
