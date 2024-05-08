@@ -35,6 +35,7 @@
       # pkgs.vector
       # pkgs.watchman
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
+      nixpkgs-master.legacyPackages.aarch64-darwin.cargo-tauri
       nixpkgs-master.legacyPackages.aarch64-darwin.plow
       pkgs.ack
       pkgs.act
