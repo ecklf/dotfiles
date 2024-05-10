@@ -115,7 +115,7 @@
       pkgs.parallel
       pkgs.psutils
       pkgs.pv
-      pkgs.python310Packages.huggingface-hub
+      pkgs.python312Packages.huggingface-hub
       pkgs.ripgrep
       pkgs.rsync
       pkgs.rustup
