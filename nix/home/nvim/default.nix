@@ -70,8 +70,8 @@ in
       nodePackages_latest.typescript-language-server
       nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint      
       pyright
-      python310Packages.black # python
-      python310Packages.flake8
+      python312Packages.black # python
+      python312Packages.flake8
       ripgrep
       rust-analyzer
       rustfmt

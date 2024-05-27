@@ -35,6 +35,7 @@
       # pkgs.vector
       # pkgs.watchman
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
+      nixpkgs-master.legacyPackages.aarch64-darwin.cargo-tauri
       nixpkgs-master.legacyPackages.aarch64-darwin.plow
       pkgs.ack
       pkgs.act
@@ -114,7 +115,7 @@
       pkgs.parallel
       pkgs.psutils
       pkgs.pv
-      pkgs.python310Packages.huggingface-hub
+      pkgs.python312Packages.huggingface-hub
       pkgs.ripgrep
       pkgs.rsync
       pkgs.rustup
@@ -184,6 +185,8 @@
         ];
       };
       sessionVariables = {
+        NEXT_TELEMETRY_DISABLED = 1;
+        MEILI_NO_ANALYTICS = true;
         PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
         PUPPETEER_EXECUTABLE_PATH = "which chromium";
       };

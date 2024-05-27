@@ -10,6 +10,8 @@ conform.setup({
 		python = { "isort", "black" },
 		javascript = { "prettier" },
 		typescript = { "prettier" },
+		javascriptreact = { "prettier" },
+		typescriptreact = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
 		sh = { "shfmt" },
