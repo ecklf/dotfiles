@@ -27,6 +27,7 @@ _: {
       "System Color Picker" = 1545870783;
       "Theine" = 955848755;
       "Velja" = 1607635845;
+      "WhatsApp" = 310633997;
       "Xcode" = 497799835;
     };
     taps = [
@@ -59,6 +60,7 @@ _: {
       "jdownloader"
       "keka"
       "ledger-live"
+      "lm-studio"
       "logitech-options"
       "macfuse"
       "mactex"
@@ -66,6 +68,7 @@ _: {
       "notion"
       "obs"
       "obsidian"
+      "ollama"
       "orbstack"
       "rapidapi"
       "raycast"
@@ -79,7 +82,6 @@ _: {
       "visual-studio-code"
       "vivaldi"
       "vlc"
-      "whatsapp"
       "whisky"
       "windscribe"
       "wiso-steuer-2022"
