@@ -131,6 +131,7 @@
       pkgs.tree
       pkgs.trippy
       pkgs.trivy
+      pkgs.typeshare
       pkgs.upx
       pkgs.wget
       pkgs.youtube-dl
