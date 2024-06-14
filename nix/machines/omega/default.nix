@@ -2,6 +2,11 @@
   system.activationScripts.preActivation = {
     enable = true;
     text = ''
+      if [ ! -d "/usr/local/bin/gsed" ]; then
+        sudo ln -s $(which sed) /usr/local/bin/gsed
+        echo "Symbolic link created for gsed."
+      fi
+
       if [ ! -d "/var/lib/postgresql/" ]; then
         echo "creating PostgreSQL data directory..."
         sudo mkdir -m 750 -p /var/lib/postgresql/
