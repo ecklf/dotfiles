@@ -1,6 +1,7 @@
 ({ config, profile, lib, pkgs, nixpkgs-master, ... }: {
   home = {
     packages = [
+      pkgs.aws-iam-authenticator
       pkgs.lua51Packages.busted
       pkgs.lua51Packages.lua
       pkgs.lua51Packages.luacheck
