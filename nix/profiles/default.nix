@@ -37,6 +37,8 @@
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-tauri
       nixpkgs-master.legacyPackages.aarch64-darwin.plow
+      nixpkgs-master.legacyPackages.aarch64-darwin.youtube-dl
+      nixpkgs-master.legacyPackages.aarch64-darwin.yt-dlp
       pkgs.ack
       pkgs.act
       pkgs.age
@@ -134,9 +136,7 @@
       pkgs.typeshare
       pkgs.upx
       pkgs.wget
-      pkgs.youtube-dl
       pkgs.yq
-      pkgs.yt-dlp
       pkgs.yubikey-manager
       pkgs.yubikey-personalization
       pkgs.zellij
