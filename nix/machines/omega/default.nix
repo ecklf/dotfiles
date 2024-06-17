@@ -2,7 +2,7 @@
   system.activationScripts.preActivation = {
     enable = true;
     text = ''
-      if [ ! -d "/usr/local/bin/gsed" ]; then
+      if [ ! -L "/usr/local/bin/gsed" ]; then
         sudo ln -s $(which sed) /usr/local/bin/gsed
         echo "Symbolic link created for gsed."
       fi
