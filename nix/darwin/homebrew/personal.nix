@@ -68,7 +68,6 @@ _: {
       "notion"
       "obs"
       "obsidian"
-      "ollama"
       "orbstack"
       "rapidapi"
       "raycast"

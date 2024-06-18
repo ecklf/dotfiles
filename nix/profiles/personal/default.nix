@@ -3,7 +3,6 @@
     packages = [
       /* pkgs.ansible */
       pkgs.meilisearch
-      pkgs.ollama
     ];
   };
 })
