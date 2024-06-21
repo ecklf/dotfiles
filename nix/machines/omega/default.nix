@@ -47,9 +47,7 @@
   };
 
   fonts = {
-    # This makes all fonts hard-managed via nix, might delete manually added ones
-    fontDir.enable = true;
-    fonts =
+    packages =
       [
         pkgs.inter
         (pkgs.nerdfonts.override {
