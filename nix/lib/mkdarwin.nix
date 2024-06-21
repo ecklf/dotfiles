@@ -61,7 +61,7 @@ darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = {
-          inherit username profile hostname casks nixpkgs-master;
+          inherit username profile hostname casks nixpkgs-master nixpkgs-stable;
         };
         users."${username}".imports = [
           ../profiles
