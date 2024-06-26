@@ -83,6 +83,7 @@
       pkgs.gnutls
       pkgs.go
       pkgs.gomplate
+      pkgs.google-cloud-sdk
       pkgs.graphicsmagick
       pkgs.graphviz
       pkgs.helix
