@@ -5,28 +5,31 @@
 ### Installation
 
 1. Install [nix](https://nixos.org/download) for package and dotfiles management
-2. Clone this repository
+2. Install [homebrew](https://brew.sh) for GUI app management
+3. Ensure Xcode command line tools are installed and you are signed into the App Store
+4. Ensure you are signed into the App Store
+5. Clone this repository
 
 ```sh
 git clone git@github.com:ecklf/dotfiles.git
 ```
 
-### macOS
+### Fresh Install
 
-1. Install [homebrew](https://brew.sh) for GUI app management
-2. Ensure Xcode command line tools are installed (should have been done by brew)
-3. Ensure you are signed into the App Store
+For the first run — `darwin-rebuild` won't be installed in your path yet
+```sh
+nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles/nix#omega
+```
 
-For a fresh macOS install you can clear your bloated dock using:
+Clear the default macOS dock:
 
 ```sh
 defaults write com.apple.dock persistent-apps -array && killall Dock
 ```
 
+### Usage
+
 ```sh
-# For the first run — `darwin-rebuild`` won't be installed in your path yet
-nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles/nix#omega
-# For consecutive runs
 # Build the flake `omega` (see flake.nix)
 darwin-rebuild build --flake ~/dotfiles/nix#omega
 # Switch to `omega` (see flake.nix)
