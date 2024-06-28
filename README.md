@@ -37,7 +37,7 @@ darwin-rebuild switch --flake ~/dotfiles/nix#omega
 ```
 
 ```sh
-# Upgrading nix — https://nixos.org/manual/nix/stable/installation/upgrading
+# Upgrading nix — https://nix.dev/manual/nix/2.22/installation/upgrading
 # Updating packages
 nix flake lock --update-all
 nix flake lock --update-input <input>
