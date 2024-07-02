@@ -34,6 +34,7 @@
       # pkgs.redis
       # pkgs.vector
       # pkgs.watchman
+      nixpkgs-master.legacyPackages.aarch64-darwin.bitwarden-cli
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
       nixpkgs-master.legacyPackages.aarch64-darwin.cargo-tauri
       nixpkgs-master.legacyPackages.aarch64-darwin.plow
@@ -43,7 +44,6 @@
       pkgs.act
       pkgs.age
       pkgs.awscli2
-      pkgs.bitwarden-cli
       pkgs.bun
       pkgs.caddy
       pkgs.cairo
