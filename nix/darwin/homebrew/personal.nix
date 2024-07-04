@@ -34,7 +34,9 @@ _: {
       "homebrew/cask-versions"
     ];
     # Ideally leave this empty and only use nix to manage this 
-    brews = [ ];
+    brews = [
+      "czkawka"
+    ];
     casks = [
       "affinity-designer"
       "affinity-photo"
@@ -43,6 +45,7 @@ _: {
       "appcleaner"
       "balenaetcher"
       "bitwarden"
+      "steam"
       "chromium"
       "cleanshot"
       "darktable"
