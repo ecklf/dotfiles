@@ -60,6 +60,9 @@
       };
       CustomUserPreferences = {
         NSGlobalDomain = {
+          # Reduce menu bar spacing
+          NSStatusItemSpacing = 12; # X
+          NSStatusItemSelectionPadding = 6; # Y
           # Set accent and highlight color to purple (requires restart of Finder or reboot)
           AppleAccentColor = 5;
           AppleHighlightColor = "0.968627 0.831373 1.000000 Purple";
