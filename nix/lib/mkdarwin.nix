@@ -19,12 +19,20 @@ let
     (final: prev: {
       #   zls = zls-master.packages.${system}.default;
       #   helix = helix-master.packages.${system}.default;
+      stable = import nixpkgs-stable {
+        system = system;
+        config.allowUnfree = true;
+      };
+      master = import nixpkgs-master {
+        system = system;
+        config.allowUnfree = true;
+      };
     })
   ];
 in
 darwin.lib.darwinSystem {
   inherit system;
-  specialArgs = { inherit system nixpkgs-stable nixpkgs-master username profile hostname casks; };
+  specialArgs = { inherit system username profile hostname casks; };
   modules = [
     ({ pkgs, system, ... }: {
       # Used for backwards compatibility, please read the changelog before changing.
@@ -61,7 +69,7 @@ darwin.lib.darwinSystem {
         useGlobalPkgs = true;
         useUserPackages = true;
         extraSpecialArgs = {
-          inherit username profile hostname casks nixpkgs-master nixpkgs-stable;
+          inherit username profile hostname;
         };
         users."${username}".imports = [
           ../profiles

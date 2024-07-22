@@ -1,4 +1,4 @@
-({ config, lib, pkgs, nixpkgs-master, ... }: {
+({ config, lib, pkgs, ... }: {
   home = {
     packages = [
       /* pkgs.ansible */

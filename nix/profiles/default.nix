@@ -1,4 +1,4 @@
-({ config, profile, lib, pkgs, nixpkgs-master, ... }: {
+({ config, profile, lib, pkgs, ... }: {
   imports = [
     ../home/bat
     ../home/eza
@@ -34,12 +34,12 @@
       # pkgs.redis
       # pkgs.vector
       # pkgs.watchman
-      nixpkgs-master.legacyPackages.aarch64-darwin.bitwarden-cli
-      nixpkgs-master.legacyPackages.aarch64-darwin.cargo-lambda
-      nixpkgs-master.legacyPackages.aarch64-darwin.cargo-tauri
-      nixpkgs-master.legacyPackages.aarch64-darwin.plow
-      nixpkgs-master.legacyPackages.aarch64-darwin.youtube-dl
-      nixpkgs-master.legacyPackages.aarch64-darwin.yt-dlp
+      pkgs.master.bitwarden-cli
+      pkgs.master.cargo-lambda
+      pkgs.master.cargo-tauri
+      pkgs.master.plow
+      pkgs.master.youtube-dl
+      pkgs.master.yt-dlp
       pkgs.ack
       pkgs.act
       pkgs.age
