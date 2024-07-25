@@ -239,6 +239,7 @@
         dcdv = "docker-compose down -v";
         # lnjava = "sudo ln -sfn /usr/local/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk";
         # Node
+        p = "pnpm";
         nls = "npm list -g --depth 0";
         yat = "yarn add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio";
         # reshim = "asdf reshim nodejs";
