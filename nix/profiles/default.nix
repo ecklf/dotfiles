@@ -198,7 +198,6 @@
         m = "make";
         n = "nvim";
         o = "open";
-        p = "python3";
         # General
         tree1 = "exa --tree --level=1 --icons .";
         tree2 = "exa --tree --level=2 --icons .";
