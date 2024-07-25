@@ -23,7 +23,7 @@ local setup = function()
 	local config = {
 		virtual_text = false, -- disable virtual text
 		signs = {
-			active = signs, -- show signs
+			active = signs,   -- show signs
 		},
 		update_in_insert = true,
 		underline = true,
@@ -75,12 +75,12 @@ local function lsp_keymaps(bufnr)
 end
 
 local on_attach = function(client, bufnr)
-	if client.name == "eslint" then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = bufnr,
-			command = "EslintFixAll",
-		})
-	end
+	--[[ if client.name == "eslint" then ]]
+	--[[ 	vim.api.nvim_create_autocmd("BufWritePre", { ]]
+	--[[ 		buffer = bufnr, ]]
+	--[[ 		command = "EslintFixAll", ]]
+	--[[ 	}) ]]
+	--[[ end ]]
 
 	if client.name == "tsserver" then
 		client.server_capabilities.document_formatting = false
