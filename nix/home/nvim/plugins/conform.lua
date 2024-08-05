@@ -3,19 +3,33 @@ if not conform_status_ok then
 	return
 end
 
+local function biome_or_prettier(bufnr)
+	local biome_json = vim.fs.find({ "biome.json" }, {
+		upward = true,
+		stop = vim.loop.os_homedir(),
+		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+	})[1]
+
+	if biome_json then
+		return { "biome" }
+	else
+		return { "prettier" }
+	end
+end
+
 local formatters = {
 	lua = { "stylua" },
 	python = { "isort", "black" },
-	json = { "biome" },
-	jsonc = { "biome" },
-	astro = { "biome" },
-	svelte = { "biome" },
-	vue = { "biome" },
-	css = { "biome" },
-	javascript = { "biome" },
-	typescript = { "biome" },
-	javascriptreact = { "biome" },
-	typescriptreact = { "biome" },
+	json = biome_or_prettier,
+	jsonc = biome_or_prettier,
+	astro = biome_or_prettier,
+	svelte = biome_or_prettier,
+	vue = biome_or_prettier,
+	css = biome_or_prettier,
+	javascript = biome_or_prettier,
+	typescript = biome_or_prettier,
+	javascriptreact = biome_or_prettier,
+	typescriptreact = biome_or_prettier,
 	html = { "prettier" },
 	sh = { "shfmt" },
 	toml = { "prettier" },
