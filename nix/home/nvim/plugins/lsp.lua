@@ -109,6 +109,7 @@ local servers = {
 	"stylelint_lsp",
 	"dockerls",
 	"eslint",
+	"biome",
 	"gopls",
 	"graphql",
 	--[[ "jsonls", ]]
