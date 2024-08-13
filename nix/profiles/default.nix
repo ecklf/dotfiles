@@ -34,12 +34,6 @@
       # pkgs.redis
       # pkgs.vector
       # pkgs.watchman
-      pkgs.master.bitwarden-cli
-      pkgs.master.cargo-lambda
-      pkgs.master.cargo-tauri
-      pkgs.master.plow
-      pkgs.master.youtube-dl
-      pkgs.master.yt-dlp
       pkgs.ack
       pkgs.act
       pkgs.age
@@ -63,6 +57,7 @@
       pkgs.docker-compose
       pkgs.duti
       pkgs.emacs
+      pkgs.envsubst
       pkgs.eza
       pkgs.fclones
       pkgs.fd
@@ -105,6 +100,12 @@
       pkgs.less
       pkgs.libavif
       pkgs.lnav
+      pkgs.master.bitwarden-cli
+      pkgs.master.cargo-lambda
+      pkgs.master.cargo-tauri
+      pkgs.master.plow
+      pkgs.master.youtube-dl
+      pkgs.master.yt-dlp
       pkgs.mutagen
       pkgs.mutagen-compose
       pkgs.ncdu
@@ -160,6 +161,7 @@
         ".idea"
         ".scratch"
         "__scratch"
+        "biome.json"
       ];
       # signing = {
       #   signByDefault = true;
