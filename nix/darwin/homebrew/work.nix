@@ -46,7 +46,7 @@ _: {
       "dbeaver-community"
       "discord"
       "figma"
-      "firefox-developer-edition"
+      "firefox@developer-edition"
       "google-chrome"
       "gpg-suite"
       "graphql-playground"
