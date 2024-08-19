@@ -20,6 +20,7 @@
       CLICLOLOR = 1;
       EDITOR = "nvim";
       VISUAL = "nvim";
+      GSETTINGS_SCHEMA_DIR = "/opt/homebrew/share/glib-2.0/schemas";
     };
     packages = [
       # Not needed as home-manager installs it's own configured version
@@ -57,7 +58,6 @@
       pkgs.docker-compose
       pkgs.duti
       pkgs.emacs
-      pkgs.envsubst
       pkgs.eza
       pkgs.fclones
       pkgs.fd
@@ -119,7 +119,6 @@
       pkgs.parallel
       pkgs.psutils
       pkgs.pv
-      pkgs.python312Packages.huggingface-hub
       pkgs.ripgrep
       pkgs.rsync
       pkgs.rustup
@@ -161,7 +160,6 @@
         ".idea"
         ".scratch"
         "__scratch"
-        "biome.json"
       ];
       # signing = {
       #   signByDefault = true;
@@ -179,7 +177,6 @@
       enable = true;
       profileExtra = ''
         eval "$(/opt/homebrew/bin/brew shellenv)"
-        export NODE_OPTIONS=--max-old-space-size=8096
       '';
       prezto = {
         enable = true;
