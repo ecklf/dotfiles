@@ -48,7 +48,6 @@
       pkgs.cargo-zigbuild
       pkgs.certstrap
       pkgs.cmake
-      pkgs.colima
       pkgs.cowsay
       pkgs.curl
       pkgs.dbmate
