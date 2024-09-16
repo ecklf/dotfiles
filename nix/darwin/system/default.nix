@@ -60,6 +60,8 @@
       };
       CustomUserPreferences = {
         NSGlobalDomain = {
+          # Sequoia+: Double click window title bar to fill screen
+          AppleActionOnDoubleClick = "Fill";
           # Reduce menu bar spacing
           NSStatusItemSpacing = 12; # X
           NSStatusItemSelectionPadding = 6; # Y
@@ -78,7 +80,9 @@
           wvous-br-modifier = 1048576; # Require CMD to be held
         };
         "com.apple.WindowManager" = {
-          # Disable click to show desktop (added in Sonoma)
+          # Sequoia+: Disable margins on tiled windows 
+          EnableTiledWindowMargins = 0;
+          # Sonoma+: Disable click to show desktop
           EnableStandardClickToShowDesktop = 0;
         };
         "com.apple.finder" = {
