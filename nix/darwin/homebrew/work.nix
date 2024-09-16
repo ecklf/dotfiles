@@ -72,6 +72,7 @@ _: {
       "visual-studio-code"
       "vivaldi"
       "vlc"
+      "yaak"
       "yubico-authenticator"
       # "blackhole-16ch"
       # "lulu"

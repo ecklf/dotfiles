@@ -22,6 +22,9 @@
       VISUAL = "nvim";
       GSETTINGS_SCHEMA_DIR = "/opt/homebrew/share/glib-2.0/schemas";
     };
+    file = {
+      ".config/ghostty/config".source = ./../config/ghostty/config;
+    };
     packages = [
       # Not needed as home-manager installs it's own configured version
       # pkgs.cfssl
