@@ -10,12 +10,18 @@ local function get_linters_by_ft(bufnr)
 		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
 	})[1]
 
+	local biome_jsonc = vim.fs.find({ "biome.jsonc" }, {
+		upward = true,
+		stop = vim.loop.os_homedir(),
+		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
+	})[1]
+
 	local linters = {
 		markdown = { "vale" },
 		python = { "pylint" },
 	}
 
-	if biome_json then
+	if biome_json or biome_jsonc then
 		linters.javascript = { "biomejs" }
 		linters.typescript = { "biomejs" }
 		linters.javascriptreact = { "biomejs" }
