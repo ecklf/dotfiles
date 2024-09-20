@@ -1,6 +1,8 @@
 ({ config, profile, lib, pkgs, nixpkgs-master, ... }: {
   home = {
     packages = [
+      pkgs.go-task
+      pkgs.goreleaser
       pkgs.aws-iam-authenticator
       pkgs.lua51Packages.busted
       pkgs.lua51Packages.lua
