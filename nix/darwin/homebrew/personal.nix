@@ -72,6 +72,7 @@ _: {
       "obs"
       "obsidian"
       "orbstack"
+      "python-tk"
       "rapidapi"
       "raycast"
       "spotify"
