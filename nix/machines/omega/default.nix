@@ -20,6 +20,11 @@
     '';
   };
 
+  system.activationScripts.preUserActivation = {
+    enable = true;
+    text = builtins.readFile ./../../scripts/patch-screencapture-approvals.sh;
+  };
+
   services = {
     postgresql = {
       enable = true;

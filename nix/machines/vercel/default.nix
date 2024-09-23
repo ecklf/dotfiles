@@ -1,12 +1,7 @@
 ({ pkgs, username, hostname, ... }: {
-  system.activationScripts.preActivation = {
+  system.activationScripts.postUserActivation = {
     enable = true;
-    text = ''
-      if [ ! -L "/usr/local/bin/gsed" ]; then
-        sudo ln -s $(which sed) /usr/local/bin/gsed
-        echo "Symbolic link created for gsed."
-      fi
-    '';
+    text = builtins.readFile ./../../scripts/patch-screencapture-approvals.sh;
   };
 
   services = { };
