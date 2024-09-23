@@ -76,7 +76,6 @@ _: {
       "rapidapi"
       "raycast"
       "spotify"
-      "steam"
       "telegram"
       "texstudio"
       "transmission"
