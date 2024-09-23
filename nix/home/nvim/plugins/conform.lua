@@ -4,7 +4,7 @@ if not conform_status_ok then
 end
 
 local function biome_or_prettier(bufnr)
-	local biome_json = vim.fs.find({ "biome.json" }, {
+	local biome_json = vim.fs.find({ "biome.json", "biome.jsonc" }, {
 		upward = true,
 		stop = vim.loop.os_homedir(),
 		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
