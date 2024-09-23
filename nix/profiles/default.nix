@@ -42,6 +42,7 @@
       pkgs.act
       pkgs.age
       pkgs.awscli2
+      pkgs.btop
       pkgs.bun
       pkgs.caddy
       pkgs.cairo
