@@ -57,16 +57,16 @@ in
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
+      biome
       gopls
       nixpkgs-fmt
-      biome # faster prettier
-      nodePackages_latest.prettier # webdev
       nodePackages_latest."@prisma/language-server"
       nodePackages_latest."@tailwindcss/language-server"
       nodePackages_latest."graphql"
       nodePackages_latest.bash-language-server
       nodePackages_latest.dockerfile-language-server-nodejs
       nodePackages_latest.eslint
+      nodePackages_latest.prettier # webdev
       nodePackages_latest.stylelint
       nodePackages_latest.typescript-language-server
       nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint      
@@ -82,8 +82,8 @@ in
       stylua
       sumneko-lua-language-server
       terraform-ls
-      yaml-language-server
       vale
+      yaml-language-server
     ];
     plugins = with pkgs.vimPlugins; [
       # Core
