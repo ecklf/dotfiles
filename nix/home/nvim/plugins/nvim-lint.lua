@@ -4,13 +4,7 @@ if not nvim_lint_status_ok then
 end
 
 local function get_linters_by_ft(bufnr)
-	local biome_json = vim.fs.find({ "biome.json" }, {
-		upward = true,
-		stop = vim.loop.os_homedir(),
-		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
-	})[1]
-
-	local biome_jsonc = vim.fs.find({ "biome.jsonc" }, {
+	local biome_json = vim.fs.find({ "biome.json", "biome.jsonc" }, {
 		upward = true,
 		stop = vim.loop.os_homedir(),
 		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
@@ -21,7 +15,7 @@ local function get_linters_by_ft(bufnr)
 		python = { "pylint" },
 	}
 
-	if biome_json or biome_jsonc then
+	if biome_json then
 		linters.javascript = { "biomejs" }
 		linters.typescript = { "biomejs" }
 		linters.javascriptreact = { "biomejs" }
