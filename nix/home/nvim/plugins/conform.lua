@@ -18,25 +18,25 @@ local function biome_or_prettier(bufnr)
 end
 
 local formatters = {
-	lua = { "stylua" },
-	python = { "isort", "black" },
+	astro = biome_or_prettier,
+	css = biome_or_prettier,
+	go = { "goimports", "gofmt" },
+	html = { "prettier" },
+	javascript = biome_or_prettier,
+	javascriptreact = biome_or_prettier,
 	json = biome_or_prettier,
 	jsonc = biome_or_prettier,
-	astro = biome_or_prettier,
-	svelte = biome_or_prettier,
-	vue = biome_or_prettier,
-	css = biome_or_prettier,
-	javascript = biome_or_prettier,
-	typescript = biome_or_prettier,
-	javascriptreact = biome_or_prettier,
-	typescriptreact = biome_or_prettier,
-	html = { "prettier" },
-	sh = { "shfmt" },
-	toml = { "prettier" },
-	rust = { "rustfmt" },
-	go = { "goimports", "gofmt" },
+	lua = { "stylua" },
 	nix = { "nixpkgs_fmt" },
+	python = { "isort", "black" },
+	rust = { "rustfmt" },
+	sh = { "shfmt" },
+	svelte = biome_or_prettier,
 	terraform = { "terraform_fmt" },
+	toml = { "prettier" },
+	typescript = biome_or_prettier,
+	typescriptreact = biome_or_prettier,
+	vue = biome_or_prettier,
 }
 
 conform.setup({
@@ -46,7 +46,7 @@ conform.setup({
 		[formatters.lua[1]] = {
 			---@diagnostic disable-next-line: unused-local
 			condition = function(self, ctx)
-				if string.match(ctx.dirname, "/vercel/proxy/") then
+				if string.match(ctx.dirname, "vercel/proxy") then
 					return false
 				end
 

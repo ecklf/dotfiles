@@ -17,16 +17,16 @@ local function get_linters_by_ft(bufnr)
 
 	if biome_json then
 		linters.javascript = { "biomejs" }
-		linters.typescript = { "biomejs" }
 		linters.javascriptreact = { "biomejs" }
-		linters.typescriptreact = { "biomejs" }
 		linters.svelte = { "biomejs" }
+		linters.typescript = { "biomejs" }
+		linters.typescriptreact = { "biomejs" }
 	else
 		linters.javascript = { "eslint" }
-		linters.typescript = { "eslint" }
 		linters.javascriptreact = { "eslint" }
-		linters.typescriptreact = { "eslint" }
 		linters.svelte = { "eslint" }
+		linters.typescript = { "eslint" }
+		linters.typescriptreact = { "eslint" }
 	end
 
 	return linters
