@@ -82,7 +82,7 @@ local on_attach = function(client, bufnr)
 	--[[ 	}) ]]
 	--[[ end ]]
 
-	if client.name == "tsserver" then
+	if client.name == "ts_ls" then
 		client.server_capabilities.document_formatting = false
 	end
 
@@ -120,7 +120,7 @@ local servers = {
 	"lua_ls",
 	"tailwindcss",
 	"terraformls",
-	"tsserver",
+	"ts_ls",
 	"yamlls",
 }
 
@@ -134,8 +134,8 @@ for _, server in pairs(servers) do
 		-- capabilities = require("user.lsp.handlers").capabilities,
 	}
 
-	if server == "tsserver" then
-		local tsserver_opts = {
+	if server == "ts_ls" then
+		local ts_ls_opts = {
 			settings = {
 				maxTsServerMemory = 12000,
 				typescript = {
@@ -153,7 +153,7 @@ for _, server in pairs(servers) do
 				},
 			},
 		}
-		opts = vim.tbl_deep_extend("force", tsserver_opts, opts)
+		opts = vim.tbl_deep_extend("force", ts_ls_opts, opts)
 	end
 
 	if server == "eslint" then
