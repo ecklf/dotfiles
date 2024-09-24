@@ -6,7 +6,7 @@
 
 1. Install [nix](https://nixos.org/download) for package and dotfiles management
 2. Install [homebrew](https://brew.sh) for GUI app management
-3. Ensure Xcode command line tools are installed and you are signed into the App Store
+3. Ensure Xcode command line tools are installed
 4. Ensure you are signed into the App Store
 5. Clone this repository
 
