@@ -156,6 +156,19 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", ts_ls_opts, opts)
 	end
 
+	if server == "biome" then
+		local biome_opts = {
+			settings = {
+				settings = {
+					init_options = {
+						timeout = 10000, -- Set the desired timeout in milliseconds
+					},
+				},
+			},
+		}
+		opts = vim.tbl_deep_extend("force", biome_opts, opts)
+	end
+
 	if server == "eslint" then
 		local eslint_opts = {
 			settings = {
