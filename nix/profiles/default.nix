@@ -103,11 +103,10 @@
       pkgs.less
       pkgs.libavif
       pkgs.lnav
-      pkgs.master.bitwarden-cli
+      /* pkgs.stable.bitwarden-cli */
       pkgs.master.cargo-lambda
       pkgs.master.cargo-tauri
       pkgs.master.plow
-      pkgs.master.youtube-dl
       pkgs.master.yt-dlp
       pkgs.mutagen
       pkgs.mutagen-compose
