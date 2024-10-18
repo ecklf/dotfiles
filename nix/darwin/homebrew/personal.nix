@@ -96,6 +96,7 @@ _: {
       # "ngrok"
       # "topnotch"
       # "wireshark"
+      "safari-technology-preview"
     ];
   };
 }
