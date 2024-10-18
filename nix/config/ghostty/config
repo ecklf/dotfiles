@@ -1,11 +1,15 @@
 theme = "catppuccin-mocha"
 font-family = "JetBrainsMonoNL NFM Medium"
 font-size = 13
-cursor-style-blink = true
 macos-option-as-alt = true
 keybind = super+alt+l=goto_split:right
 keybind = super+alt+h=goto_split:left
 keybind = super+alt+j=goto_split:bottom
 keybind = super+alt+k=goto_split:top
+cursor-color = #ffffff
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+macos-titlebar-style = native
 # window-decoration = false
-
+# macos-non-native-fullscreen = true
