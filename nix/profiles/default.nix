@@ -59,7 +59,6 @@
       pkgs.dive
       pkgs.docker
       pkgs.docker-compose
-      pkgs.duti
       pkgs.emacs
       pkgs.eza
       pkgs.fclones
