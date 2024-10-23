@@ -1,13 +1,23 @@
-({ pkgs, username, hostname, ... }: {
-  system.activationScripts.postUserActivation = {
+({ pkgs, username, hostname, ... }:
+let
+  scriptFiles = [
+    ./../../scripts/patch-screencapture-approvals.sh
+    ./../../scripts/patch-default-apps.sh
+  ];
+  activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
+in
+{
+
+  system.activationScripts.extraActivation = {
     enable = true;
-    text = builtins.readFile ./../../scripts/patch-screencapture-approvals.sh;
+    text = activationScript;
   };
 
   services = { };
 
   environment = {
     systemPackages = [
+      pkgs.duti
       pkgs.coreutils
     ];
   };
