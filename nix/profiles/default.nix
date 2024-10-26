@@ -222,10 +222,11 @@
         ipi = "ipconfig getifaddr en0";
         ipe = "curl ifconfig.me";
         # Media 
-        to_webp = ''for i in *.* ; do cwebp -q 80 "$i " -o "''${i%.*}.webp" ; done'';
-        to_png = ''for i in *.* ; do convert "''$i " "''${i%.*}.png" ; done'';
-        dl = "youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 ''$1";
-        dl_mp3 = "youtube-dl --extract-audio --audio-format mp3 ''$1";
+        to_webp = ''for i in *.* ; do cwebp -q 80 "$i" -o "''${i%.*}.webp" ; done'';
+        to_png = ''for i in *.* ; do convert "''$i" "''${i%.*}.png" ; done'';
+        to_mp4 = ''for i in *.* ; do ffmpeg -i "''$i" "''${i%.*}-o.mp4" ; done'';
+        dl = "yt-dlp -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio' --merge-output-format mp4 ''$1";
+        dl_mp3 = "yt-dlp --extract-audio --audio-format mp3 ''$1";
         # Misc
         tb = "nc termbin.com 9999";
         wttr = "curl v2.wttr.in/Munich";
