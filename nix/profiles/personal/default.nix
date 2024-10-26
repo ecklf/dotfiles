@@ -2,7 +2,7 @@
   home = {
     packages = [
       pkgs.meilisearch
-      pkgs.stripe-cli
+      pkgs.master.stripe-cli
     ];
   };
 })
