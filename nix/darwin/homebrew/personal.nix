@@ -74,6 +74,7 @@ _: {
       "orbstack"
       "rapidapi"
       "raycast"
+      "safari-technology-preview"
       "spotify"
       "steam"
       "telegram"
@@ -96,7 +97,6 @@ _: {
       # "ngrok"
       # "topnotch"
       # "wireshark"
-      "safari-technology-preview"
     ];
   };
 }
