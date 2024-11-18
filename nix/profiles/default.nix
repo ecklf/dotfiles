@@ -47,7 +47,7 @@
       pkgs.caddy
       pkgs.cairo
       pkgs.cargo-nextest
-      pkgs.cargo-sweep
+      pkgs.master.cargo-sweep
       pkgs.cargo-watch
       pkgs.cargo-zigbuild
       pkgs.certstrap
