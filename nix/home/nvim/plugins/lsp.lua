@@ -40,6 +40,9 @@ local setup = function()
 
 	vim.diagnostic.config(config)
 
+	-- disables lsp logs to ~./local/state/nvim/lsp.log
+	vim.lsp.set_log_level("off")
+
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 		border = "rounded",
 	})
@@ -99,6 +102,7 @@ local on_attach = function(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 setup()
