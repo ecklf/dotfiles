@@ -1,19 +1,12 @@
-({ config, username, hostname, lib, pkgs, ... }: {
-  networking.hostName = "nixos"; # Define your hostname.
-  # Pick only one of the below networking options.
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks = {
-    "placeholderssid".psk = "placeholderpassword";
-  };
-  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
-
+({ config, username, hostname, lib, pkgs, timezone, ... }: {
+  networking.hostName = "${hostname}";
+  time.timeZone = "${timezone}";
+  # Post install: set a new password with ‘passwd’.
+  # Enable ‘sudo’ for the user.
   users.users."${username}" = {
     isNormalUser = true;
-    initialPassword = "init123"; # Post install: set a new password with ‘passwd’.
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    initialPassword = "init123";
+    extraGroups = [ "wheel" ];
     packages = with pkgs; [
       firefox
       tree

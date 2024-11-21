@@ -31,6 +31,14 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # END HARDWARE CONFIGURATION
 
+
+  # Pick only one of the below networking options.
+  # networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
+  networking.wireless.networks = {
+    "placeholderssid".psk = "placeholderpassword";
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
