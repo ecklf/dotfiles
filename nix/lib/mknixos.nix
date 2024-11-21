@@ -5,7 +5,7 @@ hostname:
 , username
 , profile
 , overlays
-, extraModules ? [ ] # default to an empty list if not provided
+, extraModules ? [ ]
 , extraHomeModules ? [ ]
 , efiSysMountPoint ? "/boot"
 }:
@@ -25,6 +25,7 @@ lib.nixosSystem {
       ({ config, ... }: {
         home-manager.sharedModules = [ ] ++ extraHomeModules;
       })
+      ../os/nixos
     ] ++ extraModules ++ [
       ../machines/${hostname}
       inputs.home-manager.nixosModules.home-manager
