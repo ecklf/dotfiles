@@ -1,10 +1,11 @@
 {
   description = "NixOS and Darwin flakes";
   inputs = {
+    nixpkgs-nixos.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
-    nixpkgs-nixos.url = "github:nixos/nixpkgs/nixos-unstable";
     nur.url = "github:nix-community/NUR";
     # Controls macOS system level software and settings including fonts
     darwin.url = "github:lnl7/nix-darwin";
@@ -15,11 +16,12 @@
   };
 
   outputs =
-    { self
+    inputs @ { self
     , nixpkgs
     , nixpkgs-stable
     , nixpkgs-master
     , nixpkgs-nixos
+    , nixos-hardware
     , nur
     , darwin
     , home-manager
@@ -31,7 +33,7 @@
     in
     {
       nixosConfigurations = {
-        omega = mkNixOS "snowflake" {
+        snowflake = mkNixOS "snowflake" {
           inherit inputs overlays;
           nixpkgs = nixpkgs-nixos;
           system = "x86_64-linux";
