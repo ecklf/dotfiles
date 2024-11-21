@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, username, ... }: {
   # BEGIN HARDWARE CONFIGURATION
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -46,7 +46,7 @@
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
 
-  users.users.ecklf = {
+  users.users."${username}" = {
     isNormalUser = true;
     initialPassword = "init123"; # Post install: set a new password with ‘passwd’.
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -63,7 +63,7 @@
     vim
   ];
 
-  home-manager.users.ecklf = {
+  home-manager.users."${username}" = {
     programs.home-manager.enable = true;
     programs.zsh.enable = true;
     home.stateVersion = "24.11";
