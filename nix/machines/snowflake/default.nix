@@ -27,10 +27,9 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
-  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # END HARDWARE CONFIGURATION
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   time.timeZone = timezone;
   networking.hostName = hostname;
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
