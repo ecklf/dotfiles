@@ -93,7 +93,7 @@
         "server string" = "%h server (Samba, NixOS)";
         # "server string" = "nixos";
         "netbios name" = "${hostname}";
-        "security" = "user ";
+        "security" = "user";
         # "use sendfile" = "yes";
         "min protocol" = "SMB2";
         "max protocol" = "SMB3";
