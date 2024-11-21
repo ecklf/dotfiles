@@ -1,7 +1,6 @@
 {
   description = "NixOS and Darwin flakes";
   inputs = {
-    nixpkgs-nixos.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:nixos/nixos-hardware";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs";
@@ -20,7 +19,6 @@
     , nixpkgs
     , nixpkgs-stable
     , nixpkgs-master
-    , nixpkgs-nixos
     , nixos-hardware
     , nur
     , darwin
@@ -34,8 +32,8 @@
     {
       nixosConfigurations = {
         snowflake = mkNixOS "snowflake" {
-          inherit inputs overlays;
-          nixpkgs = nixpkgs-nixos;
+          inherit inputs overlays nixpkgs nixpkgs-stable nixpkgs-master;
+          nixpkgs = nixpkgs;
           system = "x86_64-linux";
           username = "ecklf";
           profile = "server";
