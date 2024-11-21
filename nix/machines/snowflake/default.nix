@@ -1,4 +1,4 @@
-{ config, lib, pkgs, username, ... }: {
+{ config, lib, pkgs, username, hostname, ... }: {
   system.stateVersion = "24.11";
   # BEGIN HARDWARE CONFIGURATION
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
@@ -77,55 +77,37 @@
     '';
   };
 
-  # Enable Samba sharing
-  services.samba.openFirewall = true;
   # Make shares visible for windows 10 clients
   services.samba-wsdd.enable = true;
   services.samba = {
     enable = true;
+    openFirewall = true;
     # Post install: run this setup
     # sudo pdbedit -L -v
     # sudo smbpasswd -a nix
-    settings = ''
-      fruit:appl = yes
-      fruit:model = Xserve
-      workgroup = WORKGROUP
-      server string = %h server (Samba, NixOS)
-      #server string = nixos
-      netbios name = nixos
-      security = user 
-      #use sendfile = yes
-      min protocol = SMB2
-      max protocol = SMB3
-      # Note: localhost is the ipv6 localhost ::1
-      # hosts allow = 192.168.0. 127.0.0.1 localhost
-      # hosts deny = 0.0.0.0/0
-      guest account = nobody
-      map to guest = bad user
-      server role = standalone server
-      obey pam restrictions = yes
-      # This boolean parameter controls whether Samba attempts to sync the Unix
-      # password with the SMB password when the encrypted SMB password in the
-      # passdb is changed.
-      unix password sync = yes
-    '';
-    shares = {
-      homes = {
-        browseable = "no";
-        "read only" = "no";
-        "guest ok" = "no";
-        # File creation mask is set to 0700 for security reasons. If you want to
-        # create files with group=rw permissions, set next parameter to 0775.
-        "create mask" = "0700";
-        # Directory creation mask is set to 0700 for security reasons. If you want to
-        # create dirs. with group=rw permissions, set next parameter to 0775.
-        "directory mask" = "0700";
-        # By default, \\server\username shares can be connected to by anyone
-        # with access to the samba server.
-        # Un-comment the following parameter to make sure that only "username"
-        # can connect to \\server\username
-        # This might need tweaking when using external authentication schemes
-        "valid users" = "%S";
+    settings = {
+      global = {
+        "fruit:appl" = "yes";
+        "fruit:model" = "Xserve";
+        "workgroup" = "WORKGROUP";
+        "server string" = "%h server (Samba, NixOS)";
+        # "server string" = "nixos";
+        "netbios name" = "${hostname}";
+        "security" = "user ";
+        # "use sendfile" = "yes";
+        "min protocol" = "SMB2";
+        "max protocol" = "SMB3";
+        # Note: localhost is the ipv6 localhost ::1
+        # "hosts allow" = "192.168.0. 127.0.0.1 localhost";
+        # "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+        "server role" = "standalone server";
+        "obey pam restrictions" = "yes";
+        # This boolean parameter controls whether Samba attempts to sync the Unix
+        # password with the SMB password when the encrypted SMB password in the
+        # passdb is changed.
+        "unix password sync" = "yes";
       };
       public = {
         path = "/mnt/share";
