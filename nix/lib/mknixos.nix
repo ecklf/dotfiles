@@ -25,6 +25,7 @@ let
       };
     })
   ];
+  inherit lib;
 in
 lib.nixosSystem {
   inherit system;
