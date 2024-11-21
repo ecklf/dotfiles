@@ -1,6 +1,8 @@
 hostname:
 { inputs
 , nixpkgs
+, nixpkgs-stable
+, nixpkgs-master
 , system
 , username
 , profile
@@ -11,8 +13,18 @@ hostname:
 , timezone ? "Europe/Berlin"
 }:
 let
-  systemSpecificOverlays = [ ];
-  inherit (nixpkgs) lib;
+  systemSpecificOverlays = [
+    (final: prev: {
+      stable = import nixpkgs-stable {
+        system = system;
+        config.allowUnfree = true;
+      };
+      master = import nixpkgs-master {
+        system = system;
+        config.allowUnfree = true;
+      };
+    })
+  ];
 in
 lib.nixosSystem {
   inherit system;
@@ -20,6 +32,7 @@ lib.nixosSystem {
   modules =
     [
       {
+        hostPlatform = system;
         nixpkgs.overlays = systemSpecificOverlays ++ overlays;
         nixpkgs.config.allowUnfree = true;
       }
