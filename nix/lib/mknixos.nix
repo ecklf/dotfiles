@@ -35,7 +35,7 @@ lib.nixosSystem {
           useGlobalPkgs = true;
           useUserPackages = true;
           extraSpecialArgs = {
-            inherit inputs username profile hostname, timezone;
+            inherit inputs username profile hostname timezone;
           };
           users."${username}".imports = [
             /* ../profiles */
