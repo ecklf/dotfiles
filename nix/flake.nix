@@ -38,7 +38,7 @@
           nixpkgs = nixpkgs-nixos;
           system = "x86_64-linux";
           username = "ecklf";
-          profile = "personal";
+          profile = "server";
           extraModules = [ ];
           extraHomeModules = [ ];
         };
