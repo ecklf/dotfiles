@@ -38,7 +38,7 @@ lib.nixosSystem {
             inherit inputs username profile hostname timezone;
           };
           users."${username}".imports = [
-            /* ../profiles */
+            ../profiles/${profile}
           ];
         };
       }

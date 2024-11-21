@@ -22,9 +22,5 @@
     initialPassword = "init123";
     # Enable ‘sudo’ for the user
     extraGroups = [ "wheel" ];
-    packages = with pkgs; [
-      firefox
-      tree
-    ];
   };
 })

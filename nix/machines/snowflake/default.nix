@@ -40,16 +40,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  users.users."${username}" = {
-    isNormalUser = true;
-    initialPassword = "init123"; # Post install: set a new password with ‘passwd’.
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    packages = with pkgs; [
-      firefox
-      tree
-    ];
-  };
-
   # To search: $ nix search wget
   environment.systemPackages = with pkgs; [
     cryptsetup
@@ -60,9 +50,8 @@
   home-manager.users."${username}" = {
     programs.home-manager.enable = true;
     programs.zsh.enable = true;
-    home.stateVersion = "24.11";
+    home.stateVersion = "25.05";
   };
-
-  system.stateVersion = "24.11";
+  system.stateVersion = "25.05";
 }
 
