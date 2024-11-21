@@ -1,4 +1,5 @@
 { config, lib, pkgs, username, ... }: {
+  system.stateVersion = "24.11";
   # BEGIN HARDWARE CONFIGURATION
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -52,6 +53,95 @@
     programs.zsh.enable = true;
     home.stateVersion = "24.11";
   };
-  system.stateVersion = "24.11";
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
+  # Mount encrypted drive
+  fileSystems."/share" =
+    {
+      neededForBoot = false;
+      device = "/dev/mapper/media_crypt";
+      mountPoint = "/mnt/share";
+      options = [
+        "defaults"
+        "nofail"
+      ];
+      fsType = "ext4";
+    };
+
+  environment.etc.crypttab = {
+    enable = true;
+    text = ''
+      media_crypt /dev/disk/by-uuid/65e8c3f1-0d46-4625-8406-03d0a654645d /root/keyfile luks,nofail,timeout=10
+    '';
+  };
+
+  # Enable Samba sharing
+  services.samba.openFirewall = true;
+  # Make shares visible for windows 10 clients
+  services.samba-wsdd.enable = true;
+  services.samba = {
+    enable = true;
+    # Post install: run this setup
+    # sudo pdbedit -L -v
+    # sudo smbpasswd -a nix
+    extraConfig = ''
+      fruit:appl = yes
+      fruit:model = Xserve
+      workgroup = WORKGROUP
+      server string = %h server (Samba, NixOS)
+      #server string = nixos
+      netbios name = nixos
+      security = user 
+      #use sendfile = yes
+      min protocol = SMB2
+      max protocol = SMB3
+      # Note: localhost is the ipv6 localhost ::1
+      # hosts allow = 192.168.0. 127.0.0.1 localhost
+      # hosts deny = 0.0.0.0/0
+      guest account = nobody
+      map to guest = bad user
+      server role = standalone server
+      obey pam restrictions = yes
+      # This boolean parameter controls whether Samba attempts to sync the Unix
+      # password with the SMB password when the encrypted SMB password in the
+      # passdb is changed.
+      unix password sync = yes
+    '';
+    shares = {
+      homes = {
+        browseable = "no";
+        "read only" = "no";
+        "guest ok" = "no";
+        # File creation mask is set to 0700 for security reasons. If you want to
+        # create files with group=rw permissions, set next parameter to 0775.
+        "create mask" = "0700";
+        # Directory creation mask is set to 0700 for security reasons. If you want to
+        # create dirs. with group=rw permissions, set next parameter to 0775.
+        "directory mask" = "0700";
+        # By default, \\server\username shares can be connected to by anyone
+        # with access to the samba server.
+        # Un-comment the following parameter to make sure that only "username"
+        # can connect to \\server\username
+        # This might need tweaking when using external authentication schemes
+        "valid users" = "%S";
+      };
+      public = {
+        path = "/mnt/share";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0755";
+        "directory mask" = "0755";
+        "force user" = "${username}";
+        "force group" = "wheel";
+      };
+    };
+  };
+
+  # networking.firewall.enable = false; # Disable the firewall.
+  networking.firewall.allowedTCPPorts = [ 445 139 ]; # samba ports
+  networking.firewall.allowedUDPPorts = [ 137 138 ]; # samba ports
 }
 
