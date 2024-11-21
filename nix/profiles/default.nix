@@ -14,7 +14,7 @@
   ];
 
   home = {
-    stateVersion = "24.11";
+    stateVersion = "24.05";
     sessionVariables = {
       PAGER = "less";
       CLICLOLOR = 1;
