@@ -20,113 +20,104 @@
       VISUAL = "nvim";
     };
     packages = [
-      pkgs.ack
-      #  pkgs.act
-      #  pkgs.age
-      #  pkgs.awscli2
-      #  pkgs.btop
-      #  pkgs.bun
-      #  pkgs.caddy
-      #  pkgs.cairo
-      #  pkgs.cargo-nextest
-      #  pkgs.master.cargo-sweep
-      #  pkgs.cargo-watch
-      #  pkgs.cargo-zigbuild
-      #  pkgs.certstrap
-      #  pkgs.cmake
-      #  pkgs.cowsay
-      #  pkgs.curl
-      #  pkgs.dbmate
-      #  pkgs.direnv
-      #  pkgs.dive
-      #  pkgs.docker
-      #  pkgs.docker-compose
-      #  pkgs.emacs
-      #  pkgs.eza
-      #  pkgs.fclones
-      #  pkgs.fd
-      #  pkgs.ffmpeg
-      #  pkgs.fnm
-      #  pkgs.fx
-      #  pkgs.fzf
-      #  pkgs.gawk
-      #  pkgs.gh
-      #  pkgs.git
-      #  pkgs.git-lfs
-      #  pkgs.git-trim
-      #  pkgs.gitui
-      #  pkgs.glances
-      #  pkgs.glow
-      #  pkgs.gnupg
-      #  pkgs.gnused
-      #  pkgs.gnutls
-      #  pkgs.go
-      #  pkgs.gomplate
-      #  pkgs.google-cloud-sdk
-      #  pkgs.graphicsmagick
-      #  pkgs.graphviz
-      #  pkgs.helix
-      #  pkgs.hexyl
-      #  pkgs.htop
-      #  pkgs.httpstat
-      #  pkgs.hyperfine
-      #  pkgs.imagemagick
-      #  pkgs.inetutils
-      #  pkgs.ipcalc
-      #  pkgs.irssi
-      #  pkgs.jq
-      #  pkgs.jwt-cli
-      #  pkgs.k3d
-      #  pkgs.k9s
-      #  pkgs.kubectl
-      #  pkgs.lazydocker
-      #  pkgs.lazygit
-      #  pkgs.less
-      #  pkgs.libavif
-      #  pkgs.lnav
-      #  /* pkgs.stable.bitwarden-cli */
-      #  pkgs.master.cargo-lambda
-      #  pkgs.master.cargo-tauri
-      #  pkgs.master.plow
-      #  pkgs.master.yt-dlp
-      #  pkgs.mutagen
-      #  pkgs.mutagen-compose
-      #  pkgs.ncdu
-      #  pkgs.neofetch
-      #  pkgs.ngrok
-      #  pkgs.nix-prefetch-github
-      #  pkgs.nixpkgs-fmt
-      #  pkgs.nmap
-      #  pkgs.nodePackages_latest.aws-cdk
-      #  pkgs.pandoc
-      #  pkgs.parallel
-      #  pkgs.psutils
-      #  pkgs.pv
-      #  pkgs.ripgrep
-      #  pkgs.rsync
-      #  pkgs.rustup
-      #  pkgs.scrcpy
-      #  pkgs.sea-orm-cli
-      #  pkgs.smartmontools
-      #  pkgs.speedtest-cli
-      #  pkgs.stow
-      #  pkgs.stylua
-      #  pkgs.subversion
-      #  pkgs.terraform
-      #  pkgs.tmux
-      #  pkgs.tree
-      #  pkgs.trippy
-      #  pkgs.trivy
-      #  pkgs.typeshare
-      #  pkgs.upx
-      #  pkgs.wget
-      #  pkgs.yq
-      #  pkgs.yubikey-manager
-      #  pkgs.yubikey-personalization
-      #  pkgs.zellij
-      #  pkgs.zig
-      #  pkgs.zoxide
-      #  pkgs.zsh
+      pkgs.stable.ack
+      pkgs.act
+      pkgs.age
+      /* pkgs.awscli2 */
+      /* pkgs.btop */
+      /* pkgs.bun */
+      /* pkgs.caddy */
+      /* pkgs.cairo */
+      /* pkgs.cargo-nextest */
+      /* pkgs.master.cargo-sweep */
+      /* pkgs.cargo-watch */
+      /* pkgs.cargo-zigbuild */
+      /* pkgs.certstrap */
+      /* pkgs.cmake */
+      /* pkgs.cowsay */
+      /* pkgs.curl */
+      /* pkgs.dbmate */
+      /* pkgs.direnv */
+      /* pkgs.dive */
+      /* pkgs.docker */
+      /* pkgs.docker-compose */
+      /* pkgs.eza */
+      /* pkgs.fclones */
+      /* pkgs.fd */
+      /* pkgs.ffmpeg */
+      /* pkgs.fnm */
+      /* pkgs.fx */
+      /* pkgs.fzf */
+      /* pkgs.gawk */
+      /* pkgs.gh */
+      /* pkgs.git */
+      /* pkgs.git-lfs */
+      /* pkgs.git-trim */
+      /* pkgs.gitui */
+      /* pkgs.glances */
+      /* pkgs.gnupg */
+      /* pkgs.gnused */
+      /* pkgs.gnutls */
+      /* pkgs.go */
+      /* pkgs.gomplate */
+      /* pkgs.google-cloud-sdk */
+      /* pkgs.graphicsmagick */
+      /* pkgs.graphviz */
+      /* pkgs.hexyl */
+      /* pkgs.htop */
+      /* pkgs.httpstat */
+      /* pkgs.hyperfine */
+      /* pkgs.imagemagick */
+      /* pkgs.inetutils */
+      /* pkgs.ipcalc */
+      /* pkgs.irssi */
+      /* pkgs.jq */
+      /* pkgs.jwt-cli */
+      /* pkgs.k3d */
+      /* pkgs.k9s */
+      /* pkgs.kubectl */
+      /* pkgs.lazydocker */
+      /* pkgs.lazygit */
+      /* pkgs.less */
+      /* pkgs.libavif */
+      /* pkgs.lnav */
+      /* /* pkgs.stable.bitwarden-cli */ */
+      /* pkgs.master.cargo-lambda */
+      /* pkgs.master.cargo-tauri */
+      /* pkgs.master.plow */
+      /* pkgs.master.yt-dlp */
+      /* pkgs.mutagen */
+      /* pkgs.mutagen-compose */
+      /* pkgs.ncdu */
+      /* pkgs.neofetch */
+      /* pkgs.ngrok */
+      /* pkgs.nix-prefetch-github */
+      /* pkgs.nixpkgs-fmt */
+      /* pkgs.nmap */
+      /* pkgs.nodePackages_latest.aws-cdk */
+      /* pkgs.parallel */
+      /* pkgs.psutils */
+      /* pkgs.pv */
+      /* pkgs.ripgrep */
+      /* pkgs.rsync */
+      /* pkgs.rustup */
+      /* pkgs.sea-orm-cli */
+      /* pkgs.smartmontools */
+      /* pkgs.speedtest-cli */
+      /* pkgs.stylua */
+      /* pkgs.subversion */
+      /* pkgs.terraform */
+      /* pkgs.tmux */
+      /* pkgs.tree */
+      /* pkgs.trippy */
+      /* pkgs.trivy */
+      /* pkgs.typeshare */
+      /* pkgs.upx */
+      /* pkgs.wget */
+      /* pkgs.yq */
+      /* pkgs.zig */
+      /* pkgs.zoxide */
+      /* pkgs.zsh */
     ];
   };
 
