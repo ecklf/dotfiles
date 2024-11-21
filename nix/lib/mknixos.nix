@@ -25,8 +25,9 @@ let
       };
     })
   ];
+  inherit (nixpkgs) lib;
 in
-nixpkgs.lib.nixosSystem {
+lib.nixosSystem {
   inherit system;
   specialArgs = { inherit system username profile hostname timezone; };
   modules =
