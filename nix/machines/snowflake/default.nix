@@ -50,8 +50,8 @@
   home-manager.users."${username}" = {
     programs.home-manager.enable = true;
     programs.zsh.enable = true;
-    home.stateVersion = "25.05";
+    home.stateVersion = "24.11";
   };
-  system.stateVersion = "25.05";
+  system.stateVersion = "24.11";
 }
 
