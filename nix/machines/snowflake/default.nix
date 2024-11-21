@@ -8,7 +8,7 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-label/NIXMAIN";
+      device = "/dev/disk/by-label/NIXROOT";
       fsType = "ext4";
     };
 
