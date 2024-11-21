@@ -32,7 +32,6 @@ nixpkgs.lib.nixosSystem {
   modules =
     [
       {
-        hostPlatform = system;
         nixpkgs.overlays = systemSpecificOverlays ++ overlays;
         nixpkgs.config.allowUnfree = true;
       }
