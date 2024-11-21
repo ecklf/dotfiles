@@ -20,113 +20,87 @@
       VISUAL = "nvim";
     };
     packages = [
-      pkgs.stable.ack
-      #  pkgs.act
-      #  pkgs.age
-      #  pkgs.awscli2
-      #  pkgs.btop
-      #  pkgs.bun
-      #  pkgs.caddy
-      #  pkgs.cairo
-      #  pkgs.cargo-nextest
-      #  pkgs.master.cargo-sweep
-      #  pkgs.cargo-watch
-      #  pkgs.cargo-zigbuild
-      #  pkgs.certstrap
-      #  pkgs.cmake
-      #  pkgs.cowsay
-      #  pkgs.curl
-      #  pkgs.dbmate
-      #  pkgs.direnv
-      #  pkgs.dive
-      #  pkgs.docker
-      #  pkgs.docker-compose
-      #  pkgs.emacs
-      #  pkgs.eza
-      #  pkgs.fclones
-      #  pkgs.fd
-      #  pkgs.ffmpeg
-      #  pkgs.fnm
-      #  pkgs.fx
-      #  pkgs.fzf
-      #  pkgs.gawk
-      #  pkgs.gh
-      #  pkgs.git
-      #  pkgs.git-lfs
-      #  pkgs.git-trim
-      #  pkgs.gitui
-      #  pkgs.glances
-      #  pkgs.glow
-      #  pkgs.gnupg
-      #  pkgs.gnused
-      #  pkgs.gnutls
-      #  pkgs.go
-      #  pkgs.gomplate
-      #  pkgs.google-cloud-sdk
-      #  pkgs.graphicsmagick
-      #  pkgs.graphviz
-      #  pkgs.helix
-      #  pkgs.hexyl
-      #  pkgs.htop
-      #  pkgs.httpstat
-      #  pkgs.hyperfine
-      #  pkgs.imagemagick
-      #  pkgs.inetutils
-      #  pkgs.ipcalc
-      #  pkgs.irssi
-      #  pkgs.jq
-      #  pkgs.jwt-cli
-      #  pkgs.k3d
-      #  pkgs.k9s
-      #  pkgs.kubectl
-      #  pkgs.lazydocker
-      #  pkgs.lazygit
-      #  pkgs.less
-      #  pkgs.libavif
-      #  pkgs.lnav
-      #  /* pkgs.stable.bitwarden-cli */
-      #  pkgs.master.cargo-lambda
-      #  pkgs.master.cargo-tauri
-      #  pkgs.master.plow
-      #  pkgs.master.yt-dlp
-      #  pkgs.mutagen
-      #  pkgs.mutagen-compose
-      #  pkgs.ncdu
-      #  pkgs.neofetch
-      #  pkgs.ngrok
-      #  pkgs.nix-prefetch-github
-      #  pkgs.nixpkgs-fmt
-      #  pkgs.nmap
-      #  pkgs.nodePackages_latest.aws-cdk
-      #  pkgs.pandoc
-      #  pkgs.parallel
-      #  pkgs.psutils
-      #  pkgs.pv
-      #  pkgs.ripgrep
-      #  pkgs.rsync
-      #  pkgs.rustup
-      #  pkgs.scrcpy
-      #  pkgs.sea-orm-cli
-      #  pkgs.smartmontools
-      #  pkgs.speedtest-cli
-      #  pkgs.stow
-      #  pkgs.stylua
-      #  pkgs.subversion
-      #  pkgs.terraform
-      #  pkgs.tmux
-      #  pkgs.tree
-      #  pkgs.trippy
-      #  pkgs.trivy
-      #  pkgs.typeshare
-      #  pkgs.upx
-      #  pkgs.wget
-      #  pkgs.yq
-      #  pkgs.yubikey-manager
-      #  pkgs.yubikey-personalization
-      #  pkgs.zellij
-      #  pkgs.zig
-      #  pkgs.zoxide
-      #  pkgs.zsh
+      pkgs.ack # A grep-like tool tailored to working with large trees of source code
+      pkgs.age # Modern encryption tool with small explicit keys
+      pkgs.awscli2 # Unified tool to manage your AWS services
+      pkgs.btop # A monitor of resources
+      pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
+      pkgs.cargo-zigbuild # A tool to compile Cargo projects with zig as the linker
+      pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
+      pkgs.cmake # CMake is an open-source, cross-platform family of tools designed to build, test and package software
+      pkgs.curl # A command line tool for transferring files with URL syntax
+      pkgs.dbmate # Database migration tool
+      pkgs.direnv # A shell extension that manages your environment
+      pkgs.dive # A tool for exploring each layer in a docker image
+      pkgs.docker # NVIDIA Container Toolkit
+      pkgs.docker-compose # Multi-container orchestration for Docker
+      pkgs.eza # A modern, maintained replacement for ls
+      pkgs.fclones # Efficient Duplicate File Finder and Remover
+      pkgs.fd # Suite of speech signal processing tools
+      pkgs.ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video (Jellyfin fork)
+      pkgs.fnm # Fast and simple Node.js version manager
+      pkgs.fx # Terminal JSON viewer
+      pkgs.fzf # A command-line fuzzy finder
+      pkgs.gawk # GNU implementation of the Awk programming language
+      pkgs.gh # GitHub CLI tool
+      pkgs.git # Distributed version control system
+      pkgs.git-lfs # Git extension for versioning large files
+      pkgs.gitui # Blazing fast terminal-ui for Git written in Rust
+      pkgs.glances # Cross-platform curses-based monitoring tool
+      pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
+      pkgs.gnused # GNU sed, a batch stream editor
+      pkgs.gnutls # The GNU Transport Layer Security Library
+      pkgs.go # The Go Programming language
+      pkgs.gomplate # A flexible commandline tool for template rendering
+      pkgs.graphicsmagick # Swiss army knife of image processing
+      pkgs.hexyl # A command-line hex viewer
+      pkgs.htop # An interactive process viewer for Linux, with vim-style keybindings
+      pkgs.httpstat # curl statistics made simple
+      pkgs.hyperfine # Command-line benchmarking tool
+      pkgs.imagemagick # A software suite to create, edit, compose, or convert bitmap images
+      pkgs.inetutils # Collection of common network programs
+      pkgs.ipcalc # Simple IP network calculator
+      pkgs.jq # A lightweight and flexible command-line JSON processor
+      pkgs.k3d # A helper to run k3s (Lightweight Kubernetes. 5 less than k8s) in a docker container
+      pkgs.k9s # Kubernetes CLI To Manage Your Clusters In Style
+      pkgs.kubectl # Production-Grade Container Scheduling and Management
+      pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
+      pkgs.lazygit # Simple terminal UI for git commands
+      pkgs.less # A more advanced file pager than 'more'
+      pkgs.lnav # The Logfile Navigator
+      pkgs.master.plow # A high-performance HTTP benchmarking tool that includes a real-time web UI and terminal display
+      pkgs.master.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
+      pkgs.mutagen # Make remote development work with your local tools
+      pkgs.mutagen-compose # Compose with Mutagen integration
+      pkgs.ncdu # Disk usage analyzer with an ncurses interface
+      pkgs.neofetch # A fast, highly customizable system info script
+      pkgs.ngrok # A Python wrapper for ngrok
+      pkgs.nix-prefetch-github # Prefetch sources from github
+      pkgs.nixpkgs-fmt # Nix code formatter for nixpkgs
+      pkgs.nmap # A free and open source utility for network discovery and security auditing
+      pkgs.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
+      pkgs.pandoc # Conversion between documentation formats
+      pkgs.parallel # Shell tool for executing jobs in parallel
+      pkgs.pv # A Wave-to-Notes transcriber
+      pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
+      pkgs.rsync # Fast incremental file transfer utility
+      pkgs.rustup # The Rust toolchain installer
+      pkgs.smartmontools # Tools for monitoring the health of hard drives
+      pkgs.speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
+      pkgs.stylua # An opinionated Lua code formatter
+      pkgs.subversion # A version control system intended to be a compelling replacement for CVS in the open source community
+      pkgs.terraform # OpenTofu, Terraform, Terragrunt and Atmos version manager written in Go
+      pkgs.tmux # Terminal multiplexer
+      pkgs.tree # Command to produce a depth indented directory listing
+      pkgs.trippy # A network diagnostic tool
+      pkgs.upx # The Ultimate Packer for eXecutables
+      pkgs.wget # Tool for retrieving files using HTTP, HTTPS, and FTP
+      pkgs.yq # Portable command-line YAML processor
+      pkgs.yubikey-personalization # A library and command line tool to personalize YubiKeys
+      pkgs.zellij # A terminal workspace with batteries included
+      pkgs.zig # General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
+      pkgs.zoxide # A fast cd command that learns your habits
+      pkgs.zsh # The Z shell
     ];
   };
 
