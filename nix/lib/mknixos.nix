@@ -36,10 +36,10 @@ lib.nixosSystem {
         nixpkgs.overlays = systemSpecificOverlays ++ overlays;
         nixpkgs.config.allowUnfree = true;
       }
+      ../os/nixos
       ({ config, ... }: {
         home-manager.sharedModules = [ ] ++ extraHomeModules;
       })
-      ../os/nixos
     ] ++ extraModules ++ [
       ../machines/${hostname}
       inputs.home-manager.nixosModules.home-manager

@@ -1,5 +1,4 @@
-{ config, lib, pkgs, username, hostname, ... }: {
-  system.stateVersion = "24.11";
+{ config, lib, pkgs, username, hostname, timezone, ... }: {
   # BEGIN HARDWARE CONFIGURATION
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
@@ -32,10 +31,17 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # END HARDWARE CONFIGURATION
 
+  time.timeZone = timezone;
+  networking.hostName = hostname;
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
   networking.wireless.networks = {
     "placeholderssid".psk = "placeholderpassword";
   };
+
+  # networking.firewall.enable = false; # Disable the firewall.
+  networking.firewall.allowedTCPPorts = [ 445 139 ]; # samba ports
+  networking.firewall.allowedUDPPorts = [ 137 138 ]; # samba ports
+
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -122,8 +128,6 @@
     };
   };
 
-  # networking.firewall.enable = false; # Disable the firewall.
-  networking.firewall.allowedTCPPorts = [ 445 139 ]; # samba ports
-  networking.firewall.allowedUDPPorts = [ 137 138 ]; # samba ports
+  system.stateVersion = "24.11";
 }
 

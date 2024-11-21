@@ -1,4 +1,4 @@
-({ config, username, hostname, lib, pkgs, timezone, ... }: {
+({ config, username, lib, pkgs, ... }: {
   nix = {
     package = pkgs.nixVersions.stable;
     settings.auto-optimise-store = true;
@@ -11,10 +11,6 @@
   programs.zsh.enable = true;
   environment.shells = [ pkgs.bashInteractive pkgs.zsh ];
   environment.pathsToLink = [ "/share/zsh" ];
-  # Networking
-  networking.hostName = "${hostname}";
-  # Date & Time
-  time.timeZone = "${timezone}";
   # Users
   users.users."${username}" = {
     isNormalUser = true;
