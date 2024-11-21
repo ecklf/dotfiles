@@ -86,7 +86,7 @@
     # Post install: run this setup
     # sudo pdbedit -L -v
     # sudo smbpasswd -a nix
-    extraConfig = ''
+    settings = ''
       fruit:appl = yes
       fruit:model = Xserve
       workgroup = WORKGROUP
