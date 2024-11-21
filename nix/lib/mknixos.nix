@@ -19,12 +19,27 @@ lib.nixosSystem {
   modules =
     [
       {
-        nixpkgs. overlays = systemSpecificOverlays ++ overlays;
+        nixpkgs.overlays = systemSpecificOverlays ++ overlays;
         nixpkgs.config.allowUnfree = true;
       }
       ({ config, ... }: {
-        home-manager.sharedModules =
-          [ ] ++ extraHomeModules;
+        home-manager.sharedModules = [ ] ++ extraHomeModules;
       })
-    ] ++ extraModules ++ [ ];
+    ] ++ extraModules ++ [
+      ../machines/${hostname}
+      inputs.home-manager.nixosModules.home-manager
+      {
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = {
+            inherit inputs username profile hostname;
+          };
+          users."${username}".imports = [
+            /* ../profiles */
+          ];
+        };
+      }
+    ];
 }
+
