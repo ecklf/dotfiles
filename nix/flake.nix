@@ -34,7 +34,7 @@
     {
       nixosConfigurations = {
         snowflake = mkNixOS "snowflake" {
-          inherit inputs overlays nixpkgs nixpkgs-stable nixpkgs-master;
+          inherit inputs nixpkgs nixpkgs-stable nixpkgs-master overlays;
           system = "x86_64-linux";
           username = "ecklf";
           profile = "server";
