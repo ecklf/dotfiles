@@ -66,7 +66,7 @@ These steps are for a UEFI system with GPT partitioning. Adjust as needed.
 
 ```sh
 # Identify disk
-lsblk # identify disk
+lsblk
 # Partition disk
 sudo fdisk /dev/sdX
 > g (gpt disk label)
@@ -81,8 +81,7 @@ sudo fdisk /dev/sdX
 > default (fill up partition)
 > default (fill up partition)
 > w (write)
-# Identify partitions, label and make fs
-lsblk
+# Create file systems
 sudo mkfs.fat -F 32 /dev/sdX1
 sudo fatlabel /dev/sdX1 NIXBOOT
 sudo mkfs.ext4 /dev/sdX2 -L NIXROOT
