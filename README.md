@@ -5,23 +5,21 @@
 ### Setup 
 
 > [!TIP]
-> The macOS dock can be wiped with:
+> The Dock can be wiped with:
 > ```sh
 > defaults write com.apple.dock persistent-apps -array && killall Dock
 > ```
 
-**1: Install [nix](https://nixos.org/download)**
+**1: Install [nix](https://nixos.org/download) and [homebrew](https://brew.sh)**
 
-**2: Install [homebrew](https://brew.sh)**
+**2: Ensure Xcode command line tools are installed (setting up _homebrew_ should have already done this)**
 
-**3: Ensure Xcode command line tools are installed (setting up brew should already do this)**
-
-**4: Ensure you are signed into the App Store (when providing app ids for `mas`)**
+**3: Ensure you are signed into the App Store (if using app ids in `mas` configuration)**
 
 ### Using this repository
 
 > [!IMPORTANT]  
-> For the very first run, `darwin-rebuild` won't be installed in your path.
+> For the very first run, `darwin-rebuild` won't be installed in your path
 > ```sh
 > nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles/nix#omega
 > ```
@@ -41,7 +39,7 @@ darwin-rebuild switch --flake ~/dotfiles/nix#omega
 
 ### Setup
 
-**1: Download [ISO image](https://nixos.org/download/#nixos-iso) and flash USB, boot**
+**1: Download [ISO image](https://nixos.org/download/#nixos-iso), flash it to USB, and boot**
 
 **2: Setup Wireless (optional)**
 ```sh
@@ -59,7 +57,13 @@ ip a
 ping google.com
 ```
 
-**3: Partitioning**
+**3: Partition Disks**
+
+These steps are for a UEFI system with GPT partitioning. Adjust as needed.
+
+> [!IMPORTANT]  
+> Ensure the label steps for `NIXROOT` and `NIXBOOT` are not skipped as they are used in the configuration.
+
 ```sh
 # Identify disk
 lsblk # identify disk
