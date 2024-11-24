@@ -11,8 +11,11 @@
 > ```
 
 **1: Install [nix](https://nixos.org/download)**
+
 **2: Install [homebrew](https://brew.sh)**
+
 **3: Ensure Xcode command line tools are installed (setting up brew should already do this)**
+
 **4: Ensure you are signed into the App Store (when providing app ids for `mas`)**
 
 ### Using this repository
@@ -39,6 +42,7 @@ darwin-rebuild switch --flake ~/dotfiles/nix#omega
 ### Setup
 
 **1: Download [ISO image](https://nixos.org/download/#nixos-iso) and flash USB, boot**
+
 **2: Setup Wireless (optional)**
 ```sh
 sudo systemctl start wpa_supplicant
@@ -54,6 +58,7 @@ wpa_cli
 ip a
 ping google.com
 ```
+
 **3: Partitioning**
 ```sh
 # Identify disk
@@ -86,12 +91,14 @@ sudo chmod 600 /mnt/.swapfile
 sudo mkswap /mnt/.swapfile
 sudo swapon /mnt/.swapfile
 ```
+
 **4: Installation**
 ```sh
 sudo nixos-generate-config --root /mnt
 cd /mnt
 sudo nixos-install
 ```
+
 **5: Add nix channels**
 ```sh
 # Add home-manager channel (update version if needed)
@@ -115,7 +122,7 @@ sudo nixos-rebuild switch --flake '~/dotfiles/nix#snowflake'
 > sudo passwd
 > ```
 
-Setting up Samba if used by configuration:
+Set up Samba if used by configuration:
 
 ```sh
 # See user info
