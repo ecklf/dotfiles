@@ -1,5 +1,10 @@
-{ config, lib, pkgs, username, hostname, timezone, ... }: {
+{ config, lib, pkgs, modulesPath, username, hostname, timezone, ... }: {
   # BEGIN HARDWARE CONFIGURATION
+  imports =
+    [
+      (modulesPath + "/installer/scan/not-detected.nix")
+    ];
+
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
@@ -27,9 +32,11 @@
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
-  # END HARDWARE CONFIGURATION
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # END HARDWARE CONFIGURATION
+
   time.timeZone = timezone;
   networking.hostName = hostname;
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
@@ -40,7 +47,6 @@
   # networking.firewall.enable = false; # Disable the firewall.
   networking.firewall.allowedTCPPorts = [ 445 139 ]; # samba ports
   networking.firewall.allowedUDPPorts = [ 137 138 ]; # samba ports
-
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
