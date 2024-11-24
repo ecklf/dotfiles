@@ -132,7 +132,7 @@ Set up Samba if used by configuration:
 # See user info
 sudo pdbedit -L -v
 # Add samba password
-sudo smbpasswd -a ecklf
+sudo smbpasswd -a $(whoami) 
 # Debug samba issues
 sudo systemctl status mnt-share.mount
 ```
