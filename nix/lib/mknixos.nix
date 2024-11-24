@@ -15,7 +15,7 @@ hostname:
 let
   systemSpecificOverlays = [
     (final: prev: {
-      unstable = import nixpkgs {
+      stable = import nixpkgs-stable {
         system = system;
         config.allowUnfree = true;
       };
@@ -25,7 +25,7 @@ let
       };
     })
   ];
-  inherit (nixpkgs-stable) lib;
+  inherit (nixpkgs) lib;
 in
 lib.nixosSystem {
   inherit system;
