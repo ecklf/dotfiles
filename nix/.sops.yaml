@@ -1,0 +1,13 @@
+# This example uses YAML anchors which allows reuse of multiple keys 
+# without having to repeat yourself.
+# Also see https://github.com/Mic92/dotfiles/blob/master/nixos/.sops.yaml
+# for a more complex example.
+keys:
+  - &admin_snowflake age18nnsmj2fa5jqez24jqyxacrge0a8khlwc9dfxe0tpty0ag0uvfcq6w58zm
+  - &server_snowflake age1qwq9wqq6k8de2e7mjt4k3739t6anus8huxlp2xh8hwzlsky5tpsq0ujnx2
+creation_rules:
+  - path_regex: machines/snowflake/secrets/[^/]+\.(yaml|yml)$
+    key_groups:
+    - age:
+      - *admin_snowflake
+      - *server_snowflake

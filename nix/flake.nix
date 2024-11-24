@@ -4,8 +4,14 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
+    # Nix user repository 
     nur.url = "github:nix-community/NUR";
-    # Controls macOS system level software and settings including fonts
+    # Atomic secret provisioning for NixOS based on sops
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # Nix modules for darwin aka macOS 
     darwin = {
       url = "github:lnl7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,6 +29,7 @@
     , nixpkgs-stable
     , nixpkgs-master
     , nur
+    , sops-nix
     , darwin
     , home-manager
     }:
@@ -34,7 +41,7 @@
     {
       nixosConfigurations = {
         snowflake = mkNixOS "snowflake" {
-          inherit inputs nixpkgs nixpkgs-stable nixpkgs-master overlays;
+          inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
           system = "x86_64-linux";
           username = "ecklf";
           profile = "server";

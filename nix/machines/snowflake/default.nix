@@ -37,20 +37,41 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # END HARDWARE CONFIGURATION
 
-  time.timeZone = timezone;
-  networking.hostName = hostname;
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-  networking.wireless.networks = {
-    "placeholderssid".psk = "placeholderpassword";
+  sops = {
+    defaultSopsFile = ./secrets/networks.yaml;
+    age = {
+      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      keyFile = "/root/age-keys.txt";
+      generateKey = true;
+    };
+    secrets.wireless_env = { };
   };
 
-  # networking.firewall.enable = false; # Disable the firewall.
-  networking.firewall.allowedTCPPorts = [ 445 139 ]; # samba ports
-  networking.firewall.allowedUDPPorts = [ 137 138 ]; # samba ports
+  time.timeZone = timezone;
+
+  networking = {
+    hostName = hostname;
+    wireless = {
+      # Enables wireless support via wpa_supplicant.
+      enable = true;
+      secretsFile = config.sops.secrets.wireless_env.path;
+      networks = {
+        "chiboshijian".pskRaw = "ext:m1_psk";
+      };
+    };
+    firewall = {
+      enable = true;
+      # Samba ports
+      allowedTCPPorts = [ 445 139 ];
+      allowedUDPPorts = [ 137 138 ];
+    };
+  };
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
   # To search: $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -149,6 +170,16 @@
       };
     };
   };
+
+  # systemd.services.kbdrate-setup = {
+  #   description = "Set keyboard repeat rate and delay";
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "local-fs.target" ];
+  #   serviceConfig = with pkgs; {
+  #     Type = "oneshot";
+  #     ExecStart = "${kbd}/bin/kbdrate -r 500 -d 0";
+  #   };
+  # };
 
   services.interception-tools = {
     enable = true;

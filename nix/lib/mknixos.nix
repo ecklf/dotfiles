@@ -3,6 +3,8 @@ hostname:
 , nixpkgs
 , nixpkgs-stable
 , nixpkgs-master
+, nur
+, sops-nix
 , system
 , username
 , profile
@@ -36,6 +38,7 @@ lib.nixosSystem {
         nixpkgs.overlays = systemSpecificOverlays ++ overlays;
         nixpkgs.config.allowUnfree = true;
       }
+      sops-nix.nixosModules.sops
       ../os/nixos
       ({ config, ... }: {
         home-manager.sharedModules = [ ] ++ extraHomeModules;
