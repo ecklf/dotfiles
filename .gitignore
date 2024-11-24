@@ -5,6 +5,9 @@ node_modules/
 logs/
 *.log
 
+# nix builds
+**/result
+
 core/.config/alacritty/themes/.selected_theme
 core/.config/alacritty/alacritty.theme-switch-backup.yml
-nix/result
+

@@ -1,87 +1,58 @@
 ({ config, profile, lib, pkgs, ... }: {
   imports = [
-    ../home/bat
-    ../home/eza
-    ../home/fzf
-    ../home/git
-    ../home/nnn
-    ../home/nvim
-    ../home/starship
-    ../home/zellij
-    ../home/zoxide
-    ../home/zsh
-    ./${profile}
+    ../../home/bat
+    ../../home/eza
+    ../../home/fzf
+    ../../home/git
+    ../../home/nnn
+    ../../home/nvim
+    ../../home/starship
+    ../../home/zellij
+    ../../home/zoxide
+    ../../home/zsh
   ];
 
   home = {
-    stateVersion = "24.05";
     sessionVariables = {
       PAGER = "less";
       CLICLOLOR = 1;
       EDITOR = "nvim";
       VISUAL = "nvim";
-      GSETTINGS_SCHEMA_DIR = "/opt/homebrew/share/glib-2.0/schemas";
-    };
-    file = {
-      ".config/ghostty/config".source = ./../config/ghostty/config;
     };
     packages = [
-      # pkgs.cfssl # Cloudflare's PKI and TLS toolkit
-      # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
-      # pkgs.httpie # A command line HTTP client whose goal is to make CLI human-friendly
-      # pkgs.lima # Linux virtual machines (on macOS, in most cases)
-      # pkgs.mitmproxy # Man-in-the-middle proxy
-      # pkgs.nats-server # High-Performance server for NATS
-      # pkgs.natscli # NATS Command Line Interface
-      # pkgs.neovim # Vim text editor fork focused on extensibility and agility
-      # pkgs.redis # An open source, advanced key-value store
-      # pkgs.vector # A high-performance observability data pipeline
-      # pkgs.watchman # Watches files and takes action when they change
       pkgs.ack # A grep-like tool tailored to working with large trees of source code
-      pkgs.act # Run your GitHub Actions locally
       pkgs.age # Modern encryption tool with small explicit keys
       pkgs.awscli2 # Unified tool to manage your AWS services
       pkgs.btop # A monitor of resources
-      pkgs.bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
       pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
-      pkgs.cairo # A 2D graphics library with support for multiple output devices
-      pkgs.cargo-nextest # Next-generation test runner for Rust projects
-      pkgs.cargo-watch # A Cargo subcommand for watching over Cargo project's source
       pkgs.cargo-zigbuild # A tool to compile Cargo projects with zig as the linker
       pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
       pkgs.cmake # CMake is an open-source, cross-platform family of tools designed to build, test and package software
-      pkgs.cowsay # Cowsay reborn, written in Go
       pkgs.curl # A command line tool for transferring files with URL syntax
       pkgs.dbmate # Database migration tool
       pkgs.direnv # A shell extension that manages your environment
       pkgs.dive # A tool for exploring each layer in a docker image
       pkgs.docker # NVIDIA Container Toolkit
       pkgs.docker-compose # Multi-container orchestration for Docker
-      pkgs.emacs # The extensible, customizable GNU text editor
       pkgs.eza # A modern, maintained replacement for ls
       pkgs.fclones # Efficient Duplicate File Finder and Remover
       pkgs.fd # Suite of speech signal processing tools
       pkgs.ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video (Jellyfin fork)
       pkgs.fnm # Fast and simple Node.js version manager
       pkgs.fx # Terminal JSON viewer
-      pkgs.fzf #
+      pkgs.fzf # A command-line fuzzy finder
       pkgs.gawk # GNU implementation of the Awk programming language
       pkgs.gh # GitHub CLI tool
       pkgs.git # Distributed version control system
       pkgs.git-lfs # Git extension for versioning large files
-      pkgs.git-trim # Automatically trims your branches whose tracking remote refs are merged or gone
       pkgs.gitui # Blazing fast terminal-ui for Git written in Rust
       pkgs.glances # Cross-platform curses-based monitoring tool
-      pkgs.glow # Render markdown on the CLI, with pizzazz!
       pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
       pkgs.gnused # GNU sed, a batch stream editor
       pkgs.gnutls # The GNU Transport Layer Security Library
       pkgs.go # The Go Programming language
       pkgs.gomplate # A flexible commandline tool for template rendering
-      pkgs.google-cloud-sdk # Tools for the google cloud platform
       pkgs.graphicsmagick # Swiss army knife of image processing
-      pkgs.graphviz # Graph visualization tools
-      pkgs.helix # A post-modern modal text editor
       pkgs.hexyl # A command-line hex viewer
       pkgs.htop # An interactive process viewer for Linux, with vim-style keybindings
       pkgs.httpstat # curl statistics made simple
@@ -89,20 +60,14 @@
       pkgs.imagemagick # A software suite to create, edit, compose, or convert bitmap images
       pkgs.inetutils # Collection of common network programs
       pkgs.ipcalc # Simple IP network calculator
-      pkgs.irssi # Terminal based IRC client
       pkgs.jq # A lightweight and flexible command-line JSON processor
-      pkgs.jwt-cli # Super fast CLI tool to decode and encode JWTs
       pkgs.k3d # A helper to run k3s (Lightweight Kubernetes. 5 less than k8s) in a docker container
       pkgs.k9s # Kubernetes CLI To Manage Your Clusters In Style
       pkgs.kubectl # Production-Grade Container Scheduling and Management
       pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
       pkgs.lazygit # Simple terminal UI for git commands
       pkgs.less # A more advanced file pager than 'more'
-      pkgs.libavif # C implementation of the AV1 Image File Format
       pkgs.lnav # The Logfile Navigator
-      pkgs.master.cargo-lambda # A Cargo subcommand to help you work with AWS Lambda
-      pkgs.master.cargo-sweep # A Cargo subcommand for cleaning up unused build files generated by Cargo
-      pkgs.master.cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
       pkgs.master.plow # A high-performance HTTP benchmarking tool that includes a real-time web UI and terminal display
       pkgs.master.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
       pkgs.mutagen # Make remote development work with your local tools
@@ -116,29 +81,21 @@
       pkgs.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
       pkgs.pandoc # Conversion between documentation formats
       pkgs.parallel # Shell tool for executing jobs in parallel
-      pkgs.psutils # Collection of useful utilities for manipulating PS documents
       pkgs.pv # A Wave-to-Notes transcriber
       pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
       pkgs.rsync # Fast incremental file transfer utility
       pkgs.rustup # The Rust toolchain installer
-      pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
-      pkgs.sea-orm-cli #  Command line utility for SeaORM
       pkgs.smartmontools # Tools for monitoring the health of hard drives
       pkgs.speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
-      # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
-      pkgs.stow # A tool for managing the installation of multiple software packages in the same run-time directory tree
       pkgs.stylua # An opinionated Lua code formatter
       pkgs.subversion # A version control system intended to be a compelling replacement for CVS in the open source community
       pkgs.terraform # OpenTofu, Terraform, Terragrunt and Atmos version manager written in Go
       pkgs.tmux # Terminal multiplexer
       pkgs.tree # Command to produce a depth indented directory listing
       pkgs.trippy # A network diagnostic tool
-      pkgs.trivy # A simple and comprehensive vulnerability scanner for containers, suitable for CI
-      pkgs.typeshare # Command Line Tool for generating language files with typeshare
       pkgs.upx # The Ultimate Packer for eXecutables
       pkgs.wget # Tool for retrieving files using HTTP, HTTPS, and FTP
       pkgs.yq # Portable command-line YAML processor
-      pkgs.yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
       pkgs.yubikey-personalization # A library and command line tool to personalize YubiKeys
       pkgs.zellij # A terminal workspace with batteries included
       pkgs.zig # General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
@@ -161,10 +118,6 @@
         ".scratch"
         "__scratch"
       ];
-      # signing = {
-      #   signByDefault = true;
-      #   signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBY2vg6JN45hpcl9HH279/ityPEGGOrDjY3KdyulOUmX";
-      # };
       extraConfig = {
         # Sign all commits using ssh key
         commit.gpgsign = true;
@@ -175,22 +128,16 @@
     };
     zsh = {
       enable = true;
-      profileExtra = ''
-        eval "$(/opt/homebrew/bin/brew shellenv)"
-      '';
+      profileExtra = '' '';
       prezto = {
         enable = true;
         pmodules = [
           "git"
-          "osx"
-          "homebrew"
         ];
       };
       sessionVariables = {
         NEXT_TELEMETRY_DISABLED = 1;
         MEILI_NO_ANALYTICS = true;
-        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
-        PUPPETEER_EXECUTABLE_PATH = "which chromium";
       };
       shellAliases = {
         # Abbreviations

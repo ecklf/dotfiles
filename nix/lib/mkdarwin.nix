@@ -54,7 +54,7 @@ darwin.lib.darwinSystem {
       programs.zsh.enable = true;
     })
 
-    ../darwin
+    ../os/darwin
     ../machines/${hostname}
 
   ] ++ extraModules ++ [
