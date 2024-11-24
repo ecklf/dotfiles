@@ -120,6 +120,23 @@
         # passdb is changed.
         "unix password sync" = "yes";
       };
+      homes = {
+        browseable = "no";
+        "read only" = "no";
+        "guest ok" = "no";
+        # File creation mask is set to 0700 for security reasons. If you want to
+        # create files with group=rw permissions, set next parameter to 0775.
+        "create mask" = "0700";
+        # Directory creation mask is set to 0700 for security reasons. If you want to
+        # create dirs. with group=rw permissions, set next parameter to 0775.
+        "directory mask" = "0700";
+        # By default, \\server\username shares can be connected to by anyone
+        # with access to the samba server.
+        # Un-comment the following parameter to make sure that only "username"
+        # can connect to \\server\username
+        # This might need tweaking when using external authentication schemes
+        "valid users" = "%S";
+      };
       public = {
         path = "/mnt/share";
         browseable = "yes";
