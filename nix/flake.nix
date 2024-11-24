@@ -42,7 +42,6 @@
           extraHomeModules = [ ];
         };
       };
-
       darwinConfigurations = {
         omega = mkDarwin "omega" {
           inherit self nixpkgs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
