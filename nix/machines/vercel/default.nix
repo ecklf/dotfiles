@@ -1,19 +1,21 @@
-({ pkgs, username, hostname, ... }:
-let
+({
+  pkgs,
+  username,
+  hostname,
+  ...
+}: let
   scriptFiles = [
     ./../../scripts/patch-screencapture-approvals.sh
     ./../../scripts/patch-default-apps.sh
   ];
   activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
-in
-{
-
+in {
   system.activationScripts.extraActivation = {
     enable = true;
     text = activationScript;
   };
 
-  services = { };
+  services = {};
 
   environment = {
     systemPackages = [
@@ -23,14 +25,13 @@ in
   };
 
   fonts = {
-    packages =
-      [
-        (pkgs.nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-            "GeistMono"
-          ];
-        })
-      ];
+    packages = [
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "GeistMono"
+        ];
+      })
+    ];
   };
 })

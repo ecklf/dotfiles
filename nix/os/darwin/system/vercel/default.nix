@@ -1,7 +1,9 @@
 _: {
   system = {
     defaults = {
-      /* LaunchServices.LSQuarantine = false; */
+      /*
+      LaunchServices.LSQuarantine = false;
+      */
     };
   };
 }

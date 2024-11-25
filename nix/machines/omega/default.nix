@@ -1,12 +1,15 @@
-({ pkgs, username, hostname, ... }:
-let
+({
+  pkgs,
+  username,
+  hostname,
+  ...
+}: let
   scriptFiles = [
     ./../../scripts/patch-screencapture-approvals.sh
     ./../../scripts/patch-default-apps.sh
   ];
   activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
-in
-{
+in {
   system.activationScripts.preActivation = {
     enable = true;
     text = ''
@@ -36,7 +39,7 @@ in
   services = {
     postgresql = {
       enable = true;
-      initdbArgs = [ "-U ${username}" "--pgdata=/var/lib/postgresql/15" "--auth=trust" "--no-locale" "--encoding=UTF8" ];
+      initdbArgs = ["-U ${username}" "--pgdata=/var/lib/postgresql/15" "--auth=trust" "--no-locale" "--encoding=UTF8"];
       package = pkgs.postgresql_15;
       # TODO(ecklf) automate this
       # psql postgres -c "CREATE USER postgres WITH PASSWORD 'postgres';"
@@ -61,15 +64,14 @@ in
   };
 
   fonts = {
-    packages =
-      [
-        pkgs.inter
-        (pkgs.nerdfonts.override {
-          fonts = [
-            "JetBrainsMono"
-            "GeistMono"
-          ];
-        })
-      ];
+    packages = [
+      pkgs.inter
+      (pkgs.nerdfonts.override {
+        fonts = [
+          "JetBrainsMono"
+          "GeistMono"
+        ];
+      })
+    ];
   };
 })

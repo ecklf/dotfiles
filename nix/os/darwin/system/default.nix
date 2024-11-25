@@ -1,4 +1,9 @@
-({ pkgs, hostname, username, ... }: {
+({
+  pkgs,
+  hostname,
+  username,
+  ...
+}: {
   imports = [
     ./${hostname}
   ];
@@ -23,7 +28,7 @@
         TrackpadThreeFingerDrag = true;
       };
       finder = {
-        # Whether to show icons on the desktop or not 
+        # Whether to show icons on the desktop or not
         # CreateDesktop = false;
         ShowPathbar = true;
         ShowStatusBar = true;
@@ -32,12 +37,12 @@
         FXEnableExtensionChangeWarning = false;
         # Default view — “icnv” = Icon, “Nlsv” = List, “clmv” = Column, “Flwv” = Gallery
         FXPreferredViewStyle = "Nlsv";
-        # Change the default search scope. Use “SCcf” to default to current folder.	
+        # Change the default search scope. Use “SCcf” to default to current folder.
         FXDefaultSearchScope = "SCcf";
       };
       NSGlobalDomain = {
         AppleShowAllExtensions = true;
-        # Boost keyboard speed and disable any auto correction 
+        # Boost keyboard speed and disable any auto correction
         KeyRepeat = 1;
         InitialKeyRepeat = 10;
         ApplePressAndHoldEnabled = false;
@@ -80,7 +85,7 @@
           wvous-br-modifier = 1048576; # Require CMD to be held
         };
         "com.apple.WindowManager" = {
-          # Sequoia+: Disable margins on tiled windows 
+          # Sequoia+: Disable margins on tiled windows
           EnableTiledWindowMargins = 0;
           # Sonoma+: Disable click to show desktop
           EnableStandardClickToShowDesktop = 0;

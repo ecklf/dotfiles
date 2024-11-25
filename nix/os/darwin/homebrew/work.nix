@@ -33,8 +33,8 @@ _: {
     taps = [
       "homebrew/cask-versions"
     ];
-    # Ideally leave this empty and only use nix to manage this 
-    brews = [ ];
+    # Ideally leave this empty and only use nix to manage this
+    brews = [];
     casks = [
       "affinity-designer"
       "affinity-photo"

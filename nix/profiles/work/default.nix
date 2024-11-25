@@ -1,4 +1,11 @@
-({ config, profile, lib, pkgs, nixpkgs-master, ... }: {
+({
+  config,
+  profile,
+  lib,
+  pkgs,
+  nixpkgs-master,
+  ...
+}: {
   home = {
     packages = [
       pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication

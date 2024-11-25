@@ -1,4 +1,10 @@
-({ config, profile, lib, pkgs, ... }: {
+({
+  config,
+  profile,
+  lib,
+  pkgs,
+  ...
+}: {
   imports = [
     ../home/bat
     ../home/eza
@@ -220,7 +226,7 @@
         wget = "wget -c ";
         ipi = "ipconfig getifaddr en0";
         ipe = "curl ifconfig.me";
-        # Media 
+        # Media
         to_webp = ''for i in *.* ; do cwebp -q 80 "$i" -o "''${i%.*}.webp" ; done'';
         to_png = ''for i in *.* ; do convert "''$i" "''${i%.*}.png" ; done'';
         to_mp4 = ''for i in *.* ; do ffmpeg -i "''$i" "''${i%.*}-o.mp4" ; done'';
@@ -253,7 +259,7 @@
         iosd = "xcrun xctrace list devices"; # shows iOS devices
         # Terraform
         tf = "tf $1";
-        # Credentials 
+        # Credentials
         # google_cred="export GOOGLE_APPLICATION_CREDENTIALS='~/service-account.json'";
         # avd="cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29";
         # chrome_dbg="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222";

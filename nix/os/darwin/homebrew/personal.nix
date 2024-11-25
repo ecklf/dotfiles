@@ -33,7 +33,7 @@ _: {
     taps = [
       "homebrew/cask-versions"
     ];
-    # Ideally leave this empty and only use nix to manage this 
+    # Ideally leave this empty and only use nix to manage this
     brews = [
       "czkawka"
     ];

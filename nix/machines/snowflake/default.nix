@@ -1,29 +1,35 @@
-{ config, lib, pkgs, modulesPath, username, hostname, timezone, ... }: {
+{
+  config,
+  lib,
+  pkgs,
+  modulesPath,
+  username,
+  hostname,
+  timezone,
+  ...
+}: {
   # BEGIN HARDWARE CONFIGURATION
-  imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+  ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
-  fileSystems."/" =
-    {
-      device = "/dev/disk/by-label/NIXROOT";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-label/NIXROOT";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    {
-      device = "/dev/disk/by-label/NIXBOOT";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-label/NIXBOOT";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
 
-  swapDevices = [ ];
+  swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -40,11 +46,11 @@
   sops = {
     defaultSopsFile = ./secrets/networks.yaml;
     age = {
-      sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       keyFile = "/root/age-keys.txt";
       generateKey = true;
     };
-    secrets.wireless_env = { };
+    secrets.wireless_env = {};
   };
 
   time.timeZone = timezone;
@@ -62,8 +68,8 @@
     firewall = {
       enable = true;
       # Samba ports
-      allowedTCPPorts = [ 445 139 ];
-      allowedUDPPorts = [ 137 138 ];
+      allowedTCPPorts = [445 139];
+      allowedUDPPorts = [137 138];
     };
   };
 
@@ -90,17 +96,16 @@
   services.openssh.enable = true;
 
   # Mount encrypted drive
-  fileSystems."/share" =
-    {
-      neededForBoot = false;
-      device = "/dev/mapper/media_crypt";
-      mountPoint = "/mnt/share";
-      options = [
-        "defaults"
-        "nofail"
-      ];
-      fsType = "ext4";
-    };
+  fileSystems."/share" = {
+    neededForBoot = false;
+    device = "/dev/mapper/media_crypt";
+    mountPoint = "/mnt/share";
+    options = [
+      "defaults"
+      "nofail"
+    ];
+    fsType = "ext4";
+  };
 
   environment.etc.crypttab = {
     enable = true;
@@ -196,4 +201,3 @@
 
   system.stateVersion = "24.05";
 }
-

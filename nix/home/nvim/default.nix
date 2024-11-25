@@ -1,5 +1,8 @@
-{ pkgs, lib, ... }:
-
+{
+  pkgs,
+  lib,
+  ...
+}:
 # let
 #   fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
 #     pname = "${lib.strings.sanitizeDerivationName repo}";
@@ -10,14 +13,12 @@
 #     };
 #   };
 # in
-
 let
   # configuration = pkgs.vimUtils.buildVimPlugin {
   #   pname = "configuration";
   #   version = "1.0.0";
   #   src = ./configuration;
   # };
-
   iceberg = pkgs.vimUtils.buildVimPlugin {
     pname = "iceberg";
     version = "HEAD";
@@ -37,9 +38,7 @@ let
       rev = "bc1f2151f23227ba02ac203c2c59ad693352a741";
     };
   };
-in
-
-{
+in {
   programs.neovim = {
     enable = true;
     defaultEditor = true;
@@ -70,7 +69,7 @@ in
       nodePackages_latest.prettier # webdev
       nodePackages_latest.stylelint
       nodePackages_latest.typescript-language-server
-      nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint      
+      nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
       pyright
       python312Packages.black # python
       python312Packages.flake8
@@ -99,47 +98,51 @@ in
         # required by nvim-tree, lualine
         plugin = nvim-web-devicons;
         type = "lua";
-        config = /* lua */ ''
-            require("nvim-web-devicons").setup({
-            override_by_extension = {
-              ["rs"] = {
-               icon = "",
-               color = "#6f5242",
-               cterm_color = "95",
-               name = "Rs",
-              },
-              ["toml"] = {
-                icon = "",
-                color = "#333333",
-                cterm_color = "231",
-                name = "Toml",
-              },
-            }
-          })
-        '';
+        config =
+          /*
+          lua
+          */
+          ''
+              require("nvim-web-devicons").setup({
+              override_by_extension = {
+                ["rs"] = {
+                 icon = "",
+                 color = "#6f5242",
+                 cterm_color = "95",
+                 name = "Rs",
+                },
+                ["toml"] = {
+                  icon = "",
+                  color = "#333333",
+                  cterm_color = "231",
+                  name = "Toml",
+                },
+              }
+            })
+          '';
       }
       {
         plugin = nvim-tree-lua;
         type = "lua";
-        config = builtins.readFile (./plugins/nvim-tree.lua);
+        config = builtins.readFile ./plugins/nvim-tree.lua;
       }
       {
         # Greeter UI
         plugin = alpha-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/alpha.lua);
+        config = builtins.readFile ./plugins/alpha.lua;
       }
       {
         # Better status line
         plugin = lualine-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/lualine.lua);
+        config = builtins.readFile ./plugins/lualine.lua;
       }
       {
         # Tab-like buffers
         plugin = bufferline-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/bufferline.lua);
+        config = builtins.readFile ./plugins/bufferline.lua;
       }
       {
         # Allows to delete buffers without closing windows
@@ -149,13 +152,13 @@ in
         # Shows indentation markss
         plugin = indent-blankline-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/indentline.lua);
+        config = builtins.readFile ./plugins/indentline.lua;
       }
       {
         # Easily manage multiple terminal windows
         plugin = toggleterm-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/toggleterm.lua);
+        config = builtins.readFile ./plugins/toggleterm.lua;
       }
       # {
       # plugin = nvim-colorizer;
@@ -165,11 +168,15 @@ in
         # Add/change/delete surrounding delimiter pairs with ease
         plugin = nvim-surround;
         type = "lua";
-        config = /* lua */ ''
-          require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-          })
-        '';
+        config =
+          /*
+          lua
+          */
+          ''
+            require("nvim-surround").setup({
+              -- Configuration here, or leave empty to use defaults
+            })
+          '';
       }
       # Detect tabstop and shiftwidth automatically
       vim-sleuth
@@ -177,7 +184,7 @@ in
         # Add/change/delete surrounding delimiter pairs with ease
         plugin = comment-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/comment.lua);
+        config = builtins.readFile ./plugins/comment.lua;
       }
 
       # -- Highlight, list and search todo comments in your projects
@@ -197,7 +204,7 @@ in
       {
         plugin = nvim-cmp;
         type = "lua";
-        config = builtins.readFile (./plugins/cmp.lua);
+        config = builtins.readFile ./plugins/cmp.lua;
       }
 
       luasnip # snippet engine
@@ -220,14 +227,14 @@ in
         # LSP
         plugin = nvim-lspconfig;
         type = "lua";
-        config = builtins.readFile (./plugins/lsp.lua);
+        config = builtins.readFile ./plugins/lsp.lua;
       }
 
       # -- Treesitter
       {
         plugin = nvim-treesitter.withAllGrammars;
         type = "lua";
-        config = builtins.readFile (./plugins/treesitter.lua);
+        config = builtins.readFile ./plugins/treesitter.lua;
       }
       nvim-treesitter-context # Show code context
       nvim-treesitter-textobjects # Additional textobjects for treesitter
@@ -236,55 +243,55 @@ in
       nvim-ts-autotag # Auto HTML tag closing - integrates with treesitter
       # -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
       {
-        # Formatter 
+        # Formatter
         plugin = conform-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/conform.lua);
+        config = builtins.readFile ./plugins/conform.lua;
       }
       {
         # Linters
         plugin = nvim-lint;
         type = "lua";
-        config = builtins.readFile (./plugins/nvim-lint.lua);
+        config = builtins.readFile ./plugins/nvim-lint.lua;
       }
       {
-        # Crates version autosuggestions 
+        # Crates version autosuggestions
         plugin = crates-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/crates.lua);
+        config = builtins.readFile ./plugins/crates.lua;
       }
 
       {
         # Highlighting other uses of the word under the cursor
         plugin = vim-illuminate;
         type = "lua";
-        config = builtins.readFile (./plugins/illuminate.lua);
+        config = builtins.readFile ./plugins/illuminate.lua;
       }
       {
         # nvim-lsp progress
         plugin = fidget-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/fidget.lua);
+        config = builtins.readFile ./plugins/fidget.lua;
       }
       {
         # nvim-lsp progress
         plugin = copilot-vim;
         type = "lua";
-        config = builtins.readFile (./plugins/copilot.lua);
+        config = builtins.readFile ./plugins/copilot.lua;
       }
       # -- Git
       {
         plugin = gitsigns-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/gitsigns.lua);
+        config = builtins.readFile ./plugins/gitsigns.lua;
       }
       # Telescope
       telescope-fzf-native-nvim # Better fuzzy finding in telescope
       {
-        # Fuzzy finder 
+        # Fuzzy finder
         plugin = telescope-nvim;
         type = "lua";
-        config = builtins.readFile (./plugins/telescope.lua);
+        config = builtins.readFile ./plugins/telescope.lua;
       }
       vim-fugitive # Git commands in nvim
       vim-rhubarb # Fugitive-companion to interact with GitHub

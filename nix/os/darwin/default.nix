@@ -1,4 +1,10 @@
-({ pkgs, username, hostname, casks, ... }: {
+({
+  pkgs,
+  username,
+  hostname,
+  casks,
+  ...
+}: {
   imports = [
     ./system
     ./homebrew/${casks}.nix
@@ -16,8 +22,8 @@
   };
 
   environment = {
-    systemPath = [ "/opt/homebrew/bin" ];
-    pathsToLink = [ "/Applications" ];
-    shells = [ pkgs.bash pkgs.zsh ];
+    systemPath = ["/opt/homebrew/bin"];
+    pathsToLink = ["/Applications"];
+    shells = [pkgs.bash pkgs.zsh];
   };
 })
