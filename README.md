@@ -21,14 +21,14 @@
 > [!IMPORTANT]  
 > For the very first run, `darwin-rebuild` won't be installed in your path
 > ```sh
-> nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles/nix#omega
+> nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles#omega
 > ```
 
 ```sh
 # Build the flake `omega` (see flake.nix)
-darwin-rebuild build --flake ~/dotfiles/nix#omega
+darwin-rebuild build --flake ~/dotfiles#omega
 # Switch to `omega` (see flake.nix)
-darwin-rebuild switch --flake ~/dotfiles/nix#omega
+darwin-rebuild switch --flake ~/dotfiles#omega
 ```
 
 ## NixOS
@@ -112,9 +112,9 @@ sudo nix-channel --update
 ### Using this repository
 ```sh
 # Build the flake `snowflake` (see flake.nix)
-sudo nixos-rebuild build --flake '~/dotfiles/nix#snowflake'
+sudo nixos-rebuild build --flake '~/dotfiles#snowflake'
 # Switch to `snowflake` (see flake.nix)
-sudo nixos-rebuild switch --flake '~/dotfiles/nix#snowflake'
+sudo nixos-rebuild switch --flake '~/dotfiles#snowflake'
 ```
 
 ### Post Install
