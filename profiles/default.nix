@@ -30,6 +30,9 @@
     };
     file = {
       ".config/ghostty/config".source = ./../config/ghostty/config;
+      ".config/iterm2/com.googlecode.iterm2.plist".source = ./../config/iterm2/com.googlecode.iterm2.plist;
+      ".config/iterm2/nordic_light.itermcolors".source = ./../config/iterm2/nordic_light.itermcolors;
+      ".config/iterm2/nordic_dark.itermcolors".source = ./../config/iterm2/nordic_dark.itermcolors;
     };
     packages = [
       # pkgs.cfssl # Cloudflare's PKI and TLS toolkit
