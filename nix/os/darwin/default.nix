@@ -19,6 +19,5 @@
     systemPath = [ "/opt/homebrew/bin" ];
     pathsToLink = [ "/Applications" ];
     shells = [ pkgs.bash pkgs.zsh ];
-    loginShell = pkgs.zsh;
   };
 })

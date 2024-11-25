@@ -17,8 +17,8 @@ in
 
   environment = {
     systemPackages = [
-      pkgs.duti
       pkgs.coreutils
+      pkgs.master.duti
     ];
   };
 

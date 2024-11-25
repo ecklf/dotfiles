@@ -11,7 +11,7 @@ in
     enable = true;
     text = ''
       if [ ! -L "/usr/local/bin/gsed" ]; then
-        sudo ln -s $(which sed) /usr/local/bin/gsed
+        sudo ln -s "$(which sed)" /usr/local/bin/gsed
         echo "Symbolic link created for gsed."
       fi
 
@@ -56,7 +56,7 @@ in
   environment = {
     systemPackages = [
       pkgs.coreutils
-      pkgs.duti
+      pkgs.master.duti
     ];
   };
 

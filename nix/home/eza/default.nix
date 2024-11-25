@@ -6,7 +6,7 @@ _: {
       extraOptions = [
         "-G"
       ];
-      icons = true;
+      icons = "auto";
       git = true;
     };
   };
