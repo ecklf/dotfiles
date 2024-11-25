@@ -71,6 +71,11 @@
           command curl "cheat.sh/$1"
         }
 
+        function update_input() {
+          input=$(nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf)
+          nix flake lock --update-input "$input"
+        }
+
         # Copies current branch name to clipboard
         function copy_curr_branch(){
           local ref="$(command git symbolic-ref HEAD 2> /dev/null)"
