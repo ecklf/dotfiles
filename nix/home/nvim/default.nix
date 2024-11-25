@@ -59,7 +59,8 @@ in
       # yamlls
       biome
       gopls
-      nixpkgs-fmt
+      nixd # nix lsp
+      alejandra # nix formatter
       nodePackages_latest."@prisma/language-server"
       nodePackages_latest."@tailwindcss/language-server"
       nodePackages_latest."graphql"
@@ -78,7 +79,6 @@ in
       rustfmt
       shellcheck
       shfmt
-      statix # nix / seems to be broken
       stylua
       sumneko-lua-language-server
       terraform-ls

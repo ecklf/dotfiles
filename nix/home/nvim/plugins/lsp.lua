@@ -109,23 +109,24 @@ setup()
 
 local servers = {
 	"bashls",
-	--[[ "cssls", ]]
-	"stylelint_lsp",
+	"biome",
 	"dockerls",
 	"eslint",
-	"biome",
 	"gopls",
 	"graphql",
-	--[[ "jsonls", ]]
 	"html",
 	"jsonls",
+	"lua_ls",
+	"nixd",
 	"pyright",
 	"rust_analyzer",
-	"lua_ls",
+	"stylelint_lsp",
 	"tailwindcss",
 	"terraformls",
 	"ts_ls",
 	"yamlls",
+	--[[ "cssls", ]]
+	--[[ "jsonls", ]]
 }
 
 local opts = {}
@@ -171,6 +172,31 @@ for _, server in pairs(servers) do
 			},
 		}
 		opts = vim.tbl_deep_extend("force", biome_opts, opts)
+	end
+
+	if server == "nixd" then
+		local nixd_opts = {
+			cmd = { "nixd" },
+			settings = {
+				nixd = {
+					nixpkgs = {
+						expr = "import <nixpkgs> { }",
+					},
+					formatting = {
+						command = { "alejandra" },
+					},
+					--[[ options = { ]]
+					--[[ 	nixpkgs = { ]]
+					--[[ 		expr = '(builtins.getFlake "/home/ecklf/dotfiles/nix").nixosConfigurations.snowflake.options', ]]
+					--[[ 	}, ]]
+					--[[ 	home_manager = { ]]
+					--[[ 		expr = '(builtins.getFlake "/home/ecklf/dotfiles/nix").nixosConfigurations.snowflake.options', ]]
+					--[[ 	}, ]]
+					--[[ }, ]]
+				},
+			},
+		}
+		opts = vim.tbl_deep_extend("force", nixd_opts, opts)
 	end
 
 	if server == "eslint" then

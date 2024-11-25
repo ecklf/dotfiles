@@ -76,7 +76,7 @@
       pkgs.neofetch # A fast, highly customizable system info script
       pkgs.ngrok # A Python wrapper for ngrok
       pkgs.nix-prefetch-github # Prefetch sources from github
-      pkgs.nixpkgs-fmt # Nix code formatter for nixpkgs
+      pkgs.alejandra # Nix code formatter
       pkgs.nmap # A free and open source utility for network discovery and security auditing
       pkgs.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
       pkgs.pandoc # Conversion between documentation formats
