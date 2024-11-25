@@ -1,4 +1,4 @@
-# dotfiles
+# NixOS / Darwin Configurations
 
 ## Darwin
 
