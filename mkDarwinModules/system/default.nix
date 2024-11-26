@@ -1,12 +1,31 @@
 ({
   pkgs,
-  hostname,
   username,
+  hostname,
+  casks,
   ...
 }: {
   imports = [
-    ./${hostname}
+    ./noquarantine.nix
+    ../homebrew/${casks}.nix
   ];
+
+  users.users.${username} = {
+    home = "/Users/${username}";
+    shell = pkgs.zsh;
+  };
+
+  networking = {
+    hostName = hostname;
+    computerName = hostname;
+    localHostName = hostname;
+  };
+
+  environment = {
+    systemPath = ["/opt/homebrew/bin"];
+    pathsToLink = ["/Applications"];
+    shells = [pkgs.bash pkgs.zsh];
+  };
 
   system = {
     keyboard = {
@@ -16,7 +35,6 @@
     defaults = {
       # TODO(ecklf) add fix - Use scroll gesture with the Ctrl (^) modifier key to zoom
       # universalaccess.closeViewScrollWheelToggle = true;
-      # Whether to enable quarantine for downloaded applications
       dock = {
         autohide = true;
         autohide-delay = 0.0;
