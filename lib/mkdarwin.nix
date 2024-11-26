@@ -57,7 +57,7 @@ in
           programs.zsh.enable = true;
         })
 
-        ../os/darwin
+        ../mkDarwinModules
         ../machines/${hostname}
       ]
       ++ extraModules

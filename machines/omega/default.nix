@@ -10,6 +10,8 @@
   ];
   activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
 in {
+  noquarantine.enable = true;
+
   system.activationScripts.preActivation = {
     enable = true;
     text = ''
