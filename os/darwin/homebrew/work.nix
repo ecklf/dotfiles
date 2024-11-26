@@ -58,6 +58,7 @@ _: {
       "linear-linear"
       "logitech-options"
       "monitorcontrol"
+      "notchnook"
       "notion"
       "obsidian"
       "orbstack"

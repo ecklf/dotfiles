@@ -68,6 +68,7 @@ _: {
       "macfuse"
       "mactex"
       "monitorcontrol"
+      "notchnook"
       "notion"
       "obs"
       "obsidian"
