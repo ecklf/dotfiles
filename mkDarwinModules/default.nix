@@ -11,19 +11,22 @@
     ./homebrew/${casks}.nix
   ];
 
-  options.darwinModules = lib.mkOption {
+  options.mkDarwinModules = lib.mkOption {
     type = lib.types.submodule {
       options = {
         enable = lib.mkOption {
           type = lib.types.bool;
           description = "Enable mkDarwinModules";
-          default = true;
         };
         lsQuarantine = lib.mkOption {
           type = lib.types.bool;
-          default = false;
+          description = "Whether to enable LSQuarantine for downloaded files";
         };
       };
+    };
+    default = {
+      enable = true;
+      lsQuarantine = false;
     };
   };
 
@@ -45,15 +48,19 @@
       shells = [pkgs.bash pkgs.zsh];
     };
 
-    system = lib.mkIf config.darwinModules.enable {
+    system = lib.mkIf config.mkDarwinModules.enable {
       keyboard = {
         enableKeyMapping = true;
         remapCapsLockToEscape = true;
       };
       defaults = {
-        LaunchServices.LSQuarantine = config.darwinModules.lsQuarantine;
-        # TODO(ecklf) add fix - Use scroll gesture with the Ctrl (^) modifier key to zoom
-        # universalaccess.closeViewScrollWheelToggle = true;
+        LaunchServices.LSQuarantine = config.mkDarwinModules.lsQuarantine;
+        universalaccess = {
+          # Use scroll gesture with the Ctrl (^) modifier key to zoom
+          closeViewScrollWheelToggle = true;
+          # Follow the keyboard focus while zoomed in
+          closeViewZoomFollowsFocus = true;
+        };
         dock = {
           autohide = true;
           autohide-delay = 0.0;
