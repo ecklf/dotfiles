@@ -4,11 +4,10 @@
   config,
   username,
   hostname,
-  casks,
   ...
 }: {
   imports = [
-    ./homebrew/${casks}.nix
+    ./homebrew.nix
   ];
 
   options.mkDarwinModules = lib.mkOption {
@@ -22,25 +21,33 @@
           type = lib.types.bool;
           description = "Whether to enable LSQuarantine for downloaded files";
         };
-        screenShotFolder = lib.mkOption {
-          type = lib.types.str;
-          description = "Screenshot folder path";
-        };
-        screenShotFormat = lib.mkOption {
-          type = lib.types.enum ["png" "jpg"];
-          description = "Screenshot file format ['png', 'jpg']";
+        screenshot = lib.mkOption {
+          type = lib.types.submodule {
+            options = {
+              path = lib.mkOption {
+                type = lib.types.str;
+                description = "Screenshot folder path";
+              };
+              format = lib.mkOption {
+                type = lib.types.enum ["png" "jpg"];
+                description = "Screenshot file format ['png', 'jpg']";
+              };
+            };
+          };
         };
       };
     };
     default = {
       enable = true;
       lsQuarantine = false;
-      screenShotFolder = "~/Pictures/";
-      screenShotFormat = "png";
+      screenshot = {
+        format = "png";
+        path = "~/Pictures/";
+      };
     };
   };
 
-  config = {
+  config = lib.mkIf config.mkDarwinModules.enable {
     users.users.${username} = {
       home = "/Users/${username}";
       shell = pkgs.zsh;
@@ -58,7 +65,7 @@
       shells = [pkgs.bash pkgs.zsh];
     };
 
-    system = lib.mkIf config.mkDarwinModules.enable {
+    system = {
       keyboard = {
         enableKeyMapping = true;
         remapCapsLockToEscape = true;
@@ -160,8 +167,8 @@
             DSDontWriteUSBStores = true;
           };
           "com.apple.screencapture" = {
-            location = config.mkDarwinModules.screenShotFolder;
-            type = config.mkDarwinModules.screenShotFormat;
+            location = config.mkDarwinModules.screenshot.path;
+            type = config.mkDarwinModules.screenshot.format;
           };
           # "com.apple.Safari" = {
           #   # Privacy: don’t send search queries to Apple

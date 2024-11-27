@@ -1,0 +1,244 @@
+({
+  lib,
+  config,
+  ...
+}: {
+  options.mkHomebrewModules = lib.mkOption {
+    type = lib.types.submodule {
+      options = {
+        enable = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Enable mkDarwinModules";
+        };
+        minimal = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Install minimal software";
+        };
+        developer = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Install developer software";
+        };
+        affinity = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Install affinity-suite software";
+        };
+        messenger = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Install messenger software";
+        };
+        disk = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Install disk tools";
+        };
+        monitor = lib.mkOption {
+          default = true;
+          type = lib.types.bool;
+          description = "Install monitor-control applications";
+        };
+        personal = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install personal-related software";
+        };
+        work = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install work-related software";
+        };
+        photography = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install photography software";
+        };
+        movie = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install movie creation software";
+        };
+        music = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install music creation software";
+        };
+        latex = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install LaTeX software";
+        };
+        downloader = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install downloader software";
+        };
+        tax = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install tax software";
+        };
+        language = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install language study applications";
+        };
+        wine = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install wine software";
+        };
+        game = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install gaming-related software";
+        };
+      };
+    };
+  };
+
+  config = lib.mkIf config.mkHomebrewModules.enable {
+    homebrew = {
+      enable = true;
+      caskArgs.no_quarantine = true;
+      # Automatically remove packages not contained in list
+      onActivation.cleanup = "zap";
+      global.brewfile = true;
+      masApps =
+        {}
+        // lib.optionalAttrs config.mkHomebrewModules.minimal {
+          "Cursor Pro" = 1447043133;
+          "Dato" = 1470584107;
+          "Hidden Bar" = 1452453066;
+          "Keynote" = 409183694;
+          "Keystroke Pro" = 1572206224;
+          "Mirror Magnet" = 1563698880;
+          "Numbers" = 409203825;
+          "One Thing" = 1604176982;
+          "Pages" = 409201541;
+          "Pure Paste" = 1611378436;
+          "Theine" = 955848755;
+          "Velja" = 1607635845;
+        }
+        // lib.optionalAttrs config.mkHomebrewModules.developer {
+          "Couverture" = 1552415914;
+          "EasyRes" = 688211836;
+          "rcmd • App Switcher" = 1596283165;
+          "System Color Picker" = 1545870783;
+          "Xcode" = 497799835;
+        }
+        // lib.optionalAttrs config.mkHomebrewModules.messenger {
+          "WhatsApp" = 310633997;
+        }
+        // lib.optionalAttrs config.mkHomebrewModules.personal {
+          "Notability" = 360593530;
+        }
+        // lib.optionalAttrs config.mkHomebrewModules.movie {
+          "Final Cut Pro" = 424389933;
+        }
+        // lib.optionalAttrs config.mkHomebrewModules.music {
+          "Logic Pro" = 634148309;
+        };
+      taps = [
+        "homebrew/cask-versions"
+      ];
+      # Ideally leave this empty and only use nix to manage this
+      brews = lib.flatten ([]
+        ++ lib.optional config.mkHomebrewModules.minimal [
+          "czkawka"
+        ]);
+
+      casks = lib.flatten ([]
+        ++ lib.optional config.mkHomebrewModules.minimal [
+          "appcleaner"
+          "bitwarden"
+          "cleanshot"
+          "iina"
+          "keka"
+          "ledger-live"
+          "librewolf"
+          "lm-studio"
+          "obsidian"
+          "raycast"
+          "vivaldi"
+          "vlc"
+        ]
+        ++ lib.optional config.mkHomebrewModules.developer [
+          "dbeaver-community"
+          "diffmerge"
+          "figma"
+          "firefox@developer-edition"
+          "google-chrome"
+          "gpg-suite"
+          "graphql-playground"
+          "iterm2"
+          "lm-studio"
+          "orbstack"
+          "rapidapi"
+          "safari-technology-preview"
+          "utm"
+          "visual-studio-code"
+          "yaak"
+        ]
+        ++ lib.optional config.mkHomebrewModules.affinity [
+          "affinity-designer"
+          "affinity-photo"
+          "affinity-publisher"
+        ]
+        ++ lib.optional config.mkHomebrewModules.messenger [
+          "discord"
+          "spotify"
+          "telegram"
+        ]
+        ++ lib.optional config.mkHomebrewModules.disk [
+          "balenaetcher"
+          "macfuse"
+          "veracrypt"
+        ]
+        ++ lib.optional config.mkHomebrewModules.monitor [
+          "logitech-options"
+          "monitorcontrol"
+          "notchnook"
+        ]
+        ++ lib.optional config.mkHomebrewModules.personal []
+        ++ lib.optional config.mkHomebrewModules.work [
+          "linear-linear"
+          "notion"
+          "session-manager-plugin"
+          "slack"
+          # "zoom"
+        ]
+        ++ lib.optional config.mkHomebrewModules.photography [
+          "darktable"
+          "imageoptim"
+          "xnviewmp"
+        ]
+        ++ lib.optional config.mkHomebrewModules.movie [
+          "handbrake"
+          "obs"
+        ]
+        ++ lib.optional config.mkHomebrewModules.music [
+          "blackhole-16ch"
+          "spotify"
+        ]
+        ++ lib.optional config.mkHomebrewModules.latex [
+          "mactex"
+          "texstudio"
+        ]
+        ++ lib.optional config.mkHomebrewModules.downloader [
+          "jdownloader"
+          "transmission"
+          "tunnelblick"
+          "windscribe"
+          # "lulu"
+          # "wireshark"
+        ]
+        ++ lib.optional config.mkHomebrewModules.tax [
+          "wiso-steuer-2022"
+          # "wiso-steuer-2023"
+          # "wiso-steuer-2024"
+        ]
+        ++ lib.optional config.mkHomebrewModules.language [
+          "anki"
+        ]
+        ++ lib.optional config.mkHomebrewModules.wine [
+          "whisky"
+        ]
+        ++ lib.optional config.mkHomebrewModules.game [
+          "steam"
+        ]);
+    };
+  };
+})

@@ -10,6 +10,20 @@
   ];
   activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
 in {
+  mkHomebrewModules = {
+    personal = false;
+    work = true;
+    photography = true;
+    movie = true;
+    music = false;
+    latex = false;
+    downloader = false;
+    tax = false;
+    language = false;
+    wine = false;
+    game = false;
+  };
+
   system.activationScripts.extraActivation = {
     enable = true;
     text = activationScript;
