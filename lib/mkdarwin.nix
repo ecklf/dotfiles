@@ -1,6 +1,4 @@
 hostname: {
-  self,
-  nixpkgs,
   nixpkgs-stable,
   nixpkgs-master,
   nur,
@@ -33,11 +31,7 @@ in
     specialArgs = {inherit system username profile hostname casks;};
     modules =
       [
-        ({
-          pkgs,
-          system,
-          ...
-        }: {
+        ({system, ...}: {
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
           system.stateVersion = 5;
@@ -63,7 +57,7 @@ in
       ++ extraModules
       ++ [
         nur.nixosModules.nur
-        ({config, ...}: {
+        ({...}: {
           home-manager.sharedModules = [];
         })
 

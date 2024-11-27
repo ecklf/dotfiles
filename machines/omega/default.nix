@@ -1,7 +1,6 @@
 ({
   pkgs,
   username,
-  hostname,
   ...
 }: let
   scriptFiles = [
@@ -10,7 +9,7 @@
   ];
   activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
 in {
-  mkHomebrewModules = {
+  homebrewModules = {
     personal = true;
     work = false;
     photography = true;

@@ -1,9 +1,4 @@
-({
-  config,
-  lib,
-  pkgs,
-  ...
-}: {
+({pkgs, ...}: {
   home = {
     packages = [
       pkgs.master.stripe-cli # A command-line tool for Stripe

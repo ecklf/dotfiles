@@ -1,10 +1,4 @@
-({
-  config,
-  profile,
-  lib,
-  pkgs,
-  ...
-}: {
+({pkgs, ...}: {
   imports = [
     ../../home/bat
     ../../home/eza

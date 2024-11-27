@@ -3,7 +3,7 @@
   config,
   ...
 }: {
-  options.mkHomebrewModules = lib.mkOption {
+  options.homebrewModules = lib.mkOption {
     type = lib.types.submodule {
       options = {
         enable = lib.mkOption {
@@ -89,7 +89,7 @@
     };
   };
 
-  config = lib.mkIf config.mkHomebrewModules.enable {
+  config = lib.mkIf config.homebrewModules.enable {
     homebrew = {
       enable = true;
       caskArgs.no_quarantine = true;
@@ -98,7 +98,7 @@
       global.brewfile = true;
       masApps =
         {}
-        // lib.optionalAttrs config.mkHomebrewModules.minimal {
+        // lib.optionalAttrs config.homebrewModules.minimal {
           "Cursor Pro" = 1447043133;
           "Dato" = 1470584107;
           "Hidden Bar" = 1452453066;
@@ -112,23 +112,23 @@
           "Theine" = 955848755;
           "Velja" = 1607635845;
         }
-        // lib.optionalAttrs config.mkHomebrewModules.developer {
+        // lib.optionalAttrs config.homebrewModules.developer {
           "Couverture" = 1552415914;
           "EasyRes" = 688211836;
           "rcmd • App Switcher" = 1596283165;
           "System Color Picker" = 1545870783;
           "Xcode" = 497799835;
         }
-        // lib.optionalAttrs config.mkHomebrewModules.messenger {
+        // lib.optionalAttrs config.homebrewModules.messenger {
           "WhatsApp" = 310633997;
         }
-        // lib.optionalAttrs config.mkHomebrewModules.personal {
+        // lib.optionalAttrs config.homebrewModules.personal {
           "Notability" = 360593530;
         }
-        // lib.optionalAttrs config.mkHomebrewModules.movie {
+        // lib.optionalAttrs config.homebrewModules.movie {
           "Final Cut Pro" = 424389933;
         }
-        // lib.optionalAttrs config.mkHomebrewModules.music {
+        // lib.optionalAttrs config.homebrewModules.music {
           "Logic Pro" = 634148309;
         };
       taps = [
@@ -136,12 +136,12 @@
       ];
       # Ideally leave this empty and only use nix to manage this
       brews = lib.flatten ([]
-        ++ lib.optional config.mkHomebrewModules.minimal [
+        ++ lib.optional config.homebrewModules.minimal [
           "czkawka"
         ]);
 
       casks = lib.flatten ([]
-        ++ lib.optional config.mkHomebrewModules.minimal [
+        ++ lib.optional config.homebrewModules.minimal [
           "appcleaner"
           "bitwarden"
           "cleanshot"
@@ -154,8 +154,9 @@
           "raycast"
           "vivaldi"
           "vlc"
+          "yubico-authenticator"
         ]
-        ++ lib.optional config.mkHomebrewModules.developer [
+        ++ lib.optional config.homebrewModules.developer [
           "dbeaver-community"
           "diffmerge"
           "figma"
@@ -172,52 +173,52 @@
           "visual-studio-code"
           "yaak"
         ]
-        ++ lib.optional config.mkHomebrewModules.affinity [
+        ++ lib.optional config.homebrewModules.affinity [
           "affinity-designer"
           "affinity-photo"
           "affinity-publisher"
         ]
-        ++ lib.optional config.mkHomebrewModules.messenger [
+        ++ lib.optional config.homebrewModules.messenger [
           "discord"
           "spotify"
           "telegram"
         ]
-        ++ lib.optional config.mkHomebrewModules.disk [
+        ++ lib.optional config.homebrewModules.disk [
           "balenaetcher"
           "macfuse"
           "veracrypt"
         ]
-        ++ lib.optional config.mkHomebrewModules.monitor [
+        ++ lib.optional config.homebrewModules.monitor [
           "logitech-options"
           "monitorcontrol"
           "notchnook"
         ]
-        ++ lib.optional config.mkHomebrewModules.personal []
-        ++ lib.optional config.mkHomebrewModules.work [
+        ++ lib.optional config.homebrewModules.personal []
+        ++ lib.optional config.homebrewModules.work [
           "linear-linear"
           "notion"
           "session-manager-plugin"
           "slack"
           # "zoom"
         ]
-        ++ lib.optional config.mkHomebrewModules.photography [
+        ++ lib.optional config.homebrewModules.photography [
           "darktable"
           "imageoptim"
           "xnviewmp"
         ]
-        ++ lib.optional config.mkHomebrewModules.movie [
+        ++ lib.optional config.homebrewModules.movie [
           "handbrake"
           "obs"
         ]
-        ++ lib.optional config.mkHomebrewModules.music [
+        ++ lib.optional config.homebrewModules.music [
           "blackhole-16ch"
           "spotify"
         ]
-        ++ lib.optional config.mkHomebrewModules.latex [
+        ++ lib.optional config.homebrewModules.latex [
           "mactex"
           "texstudio"
         ]
-        ++ lib.optional config.mkHomebrewModules.downloader [
+        ++ lib.optional config.homebrewModules.downloader [
           "jdownloader"
           "transmission"
           "tunnelblick"
@@ -225,18 +226,18 @@
           # "lulu"
           # "wireshark"
         ]
-        ++ lib.optional config.mkHomebrewModules.tax [
+        ++ lib.optional config.homebrewModules.tax [
           "wiso-steuer-2022"
           # "wiso-steuer-2023"
           # "wiso-steuer-2024"
         ]
-        ++ lib.optional config.mkHomebrewModules.language [
+        ++ lib.optional config.homebrewModules.language [
           "anki"
         ]
-        ++ lib.optional config.mkHomebrewModules.wine [
+        ++ lib.optional config.homebrewModules.wine [
           "whisky"
         ]
-        ++ lib.optional config.mkHomebrewModules.game [
+        ++ lib.optional config.homebrewModules.game [
           "steam"
         ]);
     };
