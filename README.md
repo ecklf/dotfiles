@@ -1,4 +1,4 @@
-# NixOS / Darwin Configurations
+# Darwin / NixOS Configurations
 
 ## Darwin
 
