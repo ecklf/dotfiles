@@ -38,7 +38,7 @@ in
           nixpkgs.config.allowUnfree = true;
         }
         sops-nix.nixosModules.sops
-        ../mkNixosModules
+        ../systemModules/nixos
         ({config, ...}: {
           home-manager.sharedModules = [] ++ extraHomeModules;
         })
