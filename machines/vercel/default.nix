@@ -1,11 +1,15 @@
 ({pkgs, ...}: {
   homebrewModules = {
+    affinity = true;
+    developer = true;
+    messenger = true;
+    monitor = true;
     personal = false;
     work = true;
     disk = false;
     photography = false;
-    movie = true;
-    music = true;
+    movie = false;
+    music = false;
     latex = false;
     downloader = false;
     tax = false;

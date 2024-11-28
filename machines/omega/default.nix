@@ -4,6 +4,10 @@
   ...
 }: {
   homebrewModules = {
+    affinity = true;
+    developer = true;
+    messenger = true;
+    monitor = true;
     personal = true;
     work = false;
     disk = true;
