@@ -1,3 +1,4 @@
+echo "patching default macOS apps..."
 duti -s com.colliderli.iina .mp4 all
 duti -s com.colliderli.iina .mov all
 duti -s com.colliderli.iina .webm all

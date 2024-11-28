@@ -2,13 +2,7 @@
   pkgs,
   username,
   ...
-}: let
-  scriptFiles = [
-    ./../../scripts/patch-screencapture-approvals.sh
-    ./../../scripts/patch-default-apps.sh
-  ];
-  activationScript = builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
-in {
+}: {
   homebrewModules = {
     personal = true;
     work = false;
@@ -43,11 +37,6 @@ in {
         chown -R ${username}:staff /var/lib/redis/
       fi
     '';
-  };
-
-  system.activationScripts.extraActivation = {
-    enable = true;
-    text = activationScript;
   };
 
   services = {

@@ -7,6 +7,7 @@
   ...
 }: {
   imports = [
+    ./activationScripts
     ./homebrew.nix
   ];
 
