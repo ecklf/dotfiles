@@ -112,7 +112,7 @@
       onActivation.cleanup = "zap";
       global.brewfile = true;
       masApps =
-        lib.mkIf
+        lib.mkIf config.homebrewModules.enableAppStore
         config.homebrewModules.extraApps
         // lib.optionalAttrs config.homebrewModules.minimal {
           "Cursor Pro" = 1447043133;
