@@ -81,6 +81,11 @@
           nix flake lock --update-input "$input"
         }
 
+        # bundle_id $1, returns the macOS bundle id for the provided app name
+        function bundle-id() {
+          osascript -e "id of app \"$1\""
+        }
+
         # Copies current branch name to clipboard
         function copy_curr_branch(){
           local ref="$(command git symbolic-ref HEAD 2> /dev/null)"
