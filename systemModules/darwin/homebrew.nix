@@ -90,12 +90,12 @@
           default = {};
         };
         extraBrews = lib.mkOption {
-          type = lib.types.listOf lib.types.string;
+          type = lib.types.listOf lib.types.str;
           default = [];
           description = "Extra CLI software to install";
         };
         extraCasks = lib.mkOption {
-          type = lib.types.listOf lib.types.string;
+          type = lib.types.listOf lib.types.str;
           default = [];
           description = "Extra GUI software to install";
         };
