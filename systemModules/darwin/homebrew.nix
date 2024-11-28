@@ -11,28 +11,29 @@
           type = lib.types.bool;
           description = "Enable homebrewModules";
         };
+        enableAppStore = lib.mkOption {
+          type = lib.types.bool;
+          description = "Enable installing App Store software";
+          default = true;
+        };
         minimal = lib.mkOption {
           default = true;
           type = lib.types.bool;
           description = "Install minimal software";
         };
         developer = lib.mkOption {
-          default = true;
           type = lib.types.bool;
           description = "Install developer software";
         };
         affinity = lib.mkOption {
-          default = true;
           type = lib.types.bool;
           description = "Install affinity-suite software";
         };
         messenger = lib.mkOption {
-          default = true;
           type = lib.types.bool;
           description = "Install messenger software";
         };
         monitor = lib.mkOption {
-          default = true;
           type = lib.types.bool;
           description = "Install monitor-control applications";
         };
@@ -111,6 +112,7 @@
       onActivation.cleanup = "zap";
       global.brewfile = true;
       masApps =
+        lib.mkIf
         config.homebrewModules.extraApps
         // lib.optionalAttrs config.homebrewModules.minimal {
           "Cursor Pro" = 1447043133;
@@ -145,9 +147,7 @@
         // lib.optionalAttrs config.homebrewModules.music {
           "Logic Pro" = 634148309;
         };
-      taps = [
-        "homebrew/cask-versions"
-      ];
+      # taps = [];
       # Ideally leave this empty and only use nix to manage this
       brews = let
         brewList = lib.flatten ([]
@@ -168,14 +168,16 @@
           "keka"
           "ledger-live"
           "librewolf"
-          "lm-studio"
           "obsidian"
           "raycast"
           "vivaldi"
           "vlc"
-          "yubico-authenticator"
+        ]
+        ++ lib.optional (config.homebrewModules.developer && lib.optional builtins.currentSystem == "aarch64-darwin") [
+          "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
+          "yubico-authenticator"
           "dbeaver-community"
           "diffmerge"
           "figma"

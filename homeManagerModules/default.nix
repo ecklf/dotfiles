@@ -92,11 +92,13 @@ in {
           # pkgs.mitmproxy # Man-in-the-middle proxy
           # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
         ]
+        ++ lib.optional (config.homeManagerModules.minimal && lib.optional builtins.currentSystem == "aarch64-darwin") [
+          pkgs.fclones # Efficient Duplicate File Finder and Remover - does not work on x86_64
+        ]
         ++ lib.optional config.homeManagerModules.minimal [
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
           pkgs.curl # A command line tool for transferring files with URL syntax
           pkgs.eza # A modern, maintained replacement for ls
-          pkgs.fclones # Efficient Duplicate File Finder and Remover
           pkgs.fd # Suite of speech signal processing tools
           pkgs.fzf # Fuzzy finder for your shell
           pkgs.git # Distributed version control system

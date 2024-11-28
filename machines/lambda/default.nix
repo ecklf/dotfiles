@@ -1,8 +1,13 @@
 ({...}: {
   homebrewModules = {
+    enableAppStore = false;
+    developer = false;
+    affinity = false;
+    messenger = false;
+    monitor = false;
+    disk = false;
     personal = false;
     work = false;
-    disk = false;
     photography = false;
     movie = false;
     music = false;
@@ -12,6 +17,8 @@
     language = false;
     wine = false;
     game = false;
+    extraApps = false;
+    extraBrews = false;
     extraCasks = ["spotify"];
   };
 })
