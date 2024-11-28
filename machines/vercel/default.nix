@@ -8,9 +8,10 @@ in {
   homebrewModules = {
     personal = false;
     work = true;
-    photography = true;
+    disk = false;
+    photography = false;
     movie = true;
-    music = false;
+    music = true;
     latex = false;
     downloader = false;
     tax = false;

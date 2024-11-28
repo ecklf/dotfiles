@@ -12,6 +12,7 @@ in {
   homebrewModules = {
     personal = true;
     work = false;
+    disk = true;
     photography = true;
     movie = true;
     music = true;

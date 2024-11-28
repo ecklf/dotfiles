@@ -31,15 +31,14 @@
           type = lib.types.bool;
           description = "Install messenger software";
         };
-        disk = lib.mkOption {
-          default = true;
-          type = lib.types.bool;
-          description = "Install disk tools";
-        };
         monitor = lib.mkOption {
           default = true;
           type = lib.types.bool;
           description = "Install monitor-control applications";
+        };
+        disk = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install disk tools";
         };
         personal = lib.mkOption {
           type = lib.types.bool;
@@ -85,6 +84,21 @@
           type = lib.types.bool;
           description = "Install gaming-related software";
         };
+        extraApps = lib.mkOption {
+          type = lib.types.attrsOf lib.types.int;
+          description = "Extra App Store software to install";
+          default = {};
+        };
+        extraBrews = lib.mkOption {
+          type = lib.types.listOf lib.types.string;
+          default = [];
+          description = "Extra CLI software to install";
+        };
+        extraCasks = lib.mkOption {
+          type = lib.types.listOf lib.types.string;
+          default = [];
+          description = "Extra GUI software to install";
+        };
       };
     };
   };
@@ -97,7 +111,7 @@
       onActivation.cleanup = "zap";
       global.brewfile = true;
       masApps =
-        {}
+        config.homebrewModules.extraApps
         // lib.optionalAttrs config.homebrewModules.minimal {
           "Cursor Pro" = 1447043133;
           "Dato" = 1470584107;
@@ -135,12 +149,17 @@
         "homebrew/cask-versions"
       ];
       # Ideally leave this empty and only use nix to manage this
-      brews = lib.flatten ([]
-        ++ lib.optional config.homebrewModules.minimal [
-          "czkawka"
-        ]);
+      brews = let
+        brewList =
+          config.homebrewModules.extraBrews
+          ++ lib.optional config.homebrewModules.personal [
+            "czkawka"
+          ];
+      in
+        lib.optional (lib.length brewList > 0) brewList;
 
-      casks = lib.flatten ([]
+      casks = lib.flatten (
+        config.homebrewModules.extraCasks
         ++ lib.optional config.homebrewModules.minimal [
           "appcleaner"
           "bitwarden"
@@ -239,7 +258,8 @@
         ]
         ++ lib.optional config.homebrewModules.game [
           "steam"
-        ]);
+        ]
+      );
     };
   };
 })
