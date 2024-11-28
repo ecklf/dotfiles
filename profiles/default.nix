@@ -14,6 +14,7 @@ in {
     ../home/nnn
     ../home/nvim
     ../home/starship
+    ../home/yazi
     ../home/zellij
     ../home/zoxide
     ../home/zsh
@@ -53,6 +54,7 @@ in {
       # pkgs.natscli # NATS Command Line Interface
       # pkgs.neovim # Vim text editor fork focused on extensibility and agility
       # pkgs.redis # An open source, advanced key-value store
+      # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
       # pkgs.vector # A high-performance observability data pipeline
       # pkgs.watchman # Watches files and takes action when they change
       pkgs.ack # A grep-like tool tailored to working with large trees of source code
@@ -143,7 +145,6 @@ in {
       pkgs.sea-orm-cli #  Command line utility for SeaORM
       pkgs.smartmontools # Tools for monitoring the health of hard drives
       pkgs.speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
-      # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
       pkgs.stow # A tool for managing the installation of multiple software packages in the same run-time directory tree
       pkgs.stylua # An opinionated Lua code formatter
       pkgs.subversion # A version control system intended to be a compelling replacement for CVS in the open source community
@@ -155,6 +156,7 @@ in {
       pkgs.typeshare # Command Line Tool for generating language files with typeshare
       pkgs.upx # The Ultimate Packer for eXecutables
       pkgs.wget # Tool for retrieving files using HTTP, HTTPS, and FTP
+      pkgs.yazi
       pkgs.yq # Portable command-line YAML processor
       pkgs.yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
       pkgs.yubikey-personalization # A library and command line tool to personalize YubiKeys
