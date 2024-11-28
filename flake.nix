@@ -42,7 +42,7 @@
         inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "ecklf";
-        profile = "server";
+        profile = "minimal";
         extraModules = [];
         extraHomeModules = [];
       };
@@ -59,6 +59,12 @@
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "work";
+      };
+      lambda = mkDarwin "lambda" {
+        inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
+        system = "x86_64-darwin";
+        username = "ecklf";
+        profile = "minimal";
       };
     };
   };
