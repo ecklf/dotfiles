@@ -150,13 +150,13 @@
       ];
       # Ideally leave this empty and only use nix to manage this
       brews = let
-        brewList =
-          config.homebrewModules.extraBrews
+        brewList = lib.flatten ([]
+          ++ config.homebrewModules.extraBrews
           ++ lib.optional config.homebrewModules.personal [
             "czkawka"
-          ];
+          ]);
       in
-        lib.optional (lib.length brewList > 0) brewList;
+        lib.mkIf (lib.length brewList > 0) brewList;
 
       casks = lib.flatten (
         config.homebrewModules.extraCasks
