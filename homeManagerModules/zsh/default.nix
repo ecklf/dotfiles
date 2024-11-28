@@ -60,6 +60,7 @@
         # pnpm
         export PNPM_HOME="/Users/$(whoami)/Library/pnpm"
         export PATH="$PNPM_HOME:$PATH"
+        export PATH="$HOME/development/flutter/bin:$PATH"
 
         eval "$(direnv hook zsh)"
 

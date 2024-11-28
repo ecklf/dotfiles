@@ -49,18 +49,16 @@
     };
     darwinConfigurations = {
       omega = mkDarwin "omega" {
-        inherit nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "personal";
-        casks = "personal";
       };
       vercel = mkDarwin "vercel" {
-        inherit nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "work";
-        casks = "work";
       };
     };
   };
