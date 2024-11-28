@@ -54,8 +54,11 @@ in
             extraSpecialArgs = {
               inherit inputs username profile hostname timezone;
             };
+            sharedModules = [
+              ../homeManagerModules
+            ];
             users."${username}".imports = [
-              ../profiles/${profile}
+              ../profiles/${profile}.nix
             ];
           };
         }

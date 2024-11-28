@@ -1,4 +1,5 @@
 hostname: {
+  inputs,
   nixpkgs-stable,
   nixpkgs-master,
   nur,
@@ -6,7 +7,6 @@ hostname: {
   system,
   username,
   profile,
-  casks,
   overlays,
   darwin,
   extraModules ? [],
@@ -28,7 +28,7 @@ hostname: {
 in
   darwin.lib.darwinSystem {
     inherit system;
-    specialArgs = {inherit system username profile hostname casks;};
+    specialArgs = {inherit inputs system username profile hostname;};
     modules =
       [
         ({system, ...}: {
@@ -69,8 +69,11 @@ in
             extraSpecialArgs = {
               inherit username profile hostname;
             };
+            sharedModules = [
+              ../homeManagerModules
+            ];
             users."${username}".imports = [
-              ../profiles
+              ../profiles/${profile}.nix
             ];
           };
         }
