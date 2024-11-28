@@ -125,11 +125,11 @@
           "Pure Paste" = 1611378436;
           "Theine" = 955848755;
           "Velja" = 1607635845;
+          "rcmd • App Switcher" = 1596283165;
         }
         // lib.optionalAttrs config.homebrewModules.developer {
           "Couverture" = 1552415914;
           "EasyRes" = 688211836;
-          "rcmd • App Switcher" = 1596283165;
           "System Color Picker" = 1545870783;
           "Xcode" = 497799835;
         }
