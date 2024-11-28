@@ -58,23 +58,4 @@
     StandardErrorPath = "/tmp/postgres.error.log";
     StandardOutPath = "/tmp/postgres.log";
   };
-
-  environment = {
-    systemPackages = [
-      pkgs.coreutils
-      pkgs.master.duti
-    ];
-  };
-
-  fonts = {
-    packages = [
-      pkgs.inter
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "GeistMono"
-        ];
-      })
-    ];
-  };
 })

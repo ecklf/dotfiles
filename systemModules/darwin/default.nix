@@ -36,6 +36,10 @@
             };
           };
         };
+        extraNerdFonts = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          description = "Extra nerd fonts to install";
+        };
       };
     };
     default = {
@@ -45,6 +49,7 @@
         format = "png";
         path = "~/Pictures/";
       };
+      extraNerdFonts = [];
     };
   };
 
@@ -62,8 +67,27 @@
 
     environment = {
       systemPath = ["/opt/homebrew/bin"];
+      systemPackages = [
+        pkgs.coreutils
+        pkgs.master.duti
+      ];
       pathsToLink = ["/Applications"];
       shells = [pkgs.bash pkgs.zsh];
+    };
+
+    fonts = {
+      packages = [
+        pkgs.inter
+        (pkgs.nerdfonts.override {
+          fonts = lib.flatten (
+            [
+              "JetBrainsMono"
+              "GeistMono"
+            ]
+            ++ config.mkDarwinModules.extraNerdFonts
+          );
+        })
+      ];
     };
 
     system = {

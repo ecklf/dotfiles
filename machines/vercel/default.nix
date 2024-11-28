@@ -13,24 +13,5 @@
     wine = false;
     game = false;
   };
-
   services = {};
-
-  environment = {
-    systemPackages = [
-      pkgs.coreutils
-      pkgs.master.duti
-    ];
-  };
-
-  fonts = {
-    packages = [
-      (pkgs.nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-          "GeistMono"
-        ];
-      })
-    ];
-  };
 })
