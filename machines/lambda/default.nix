@@ -17,8 +17,6 @@
     language = false;
     wine = false;
     game = false;
-    extraApps = false;
-    extraBrews = false;
     extraCasks = ["spotify"];
   };
 })
