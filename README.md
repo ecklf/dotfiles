@@ -18,17 +18,35 @@
 
 ### Using this repository
 
+**1: Enable `Full Disk Access` for the Terminal application**
+
+**2: Configure SSH**
+
+Generate a new one if needed:
+```sh
+cd ~/.ssh && ssh-keygen
+ssh-add ~/.ssh/id_ed25519
+```
+
+Add your key to `~/.ssh/config` and to your GitHub account:
+```
+Host github.com
+  IdentityFile ~/.ssh/id_ed25519
+```
 > [!IMPORTANT]  
 > For the very first run, `darwin-rebuild` won't be installed in your path
 > ```sh
-> nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles#omega
+> # Build the flake (for {SYSTEM} see `darwinConfigurations` in flake.nix)
+> nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles#{SYSTEM}
 > ```
 
+For concurrent runs (see `darwinConfigurations` in `flake.nix`):
+
 ```sh
-# Build the flake `omega` (see flake.nix)
-darwin-rebuild build --flake ~/dotfiles#omega
-# Switch to `omega` (see flake.nix)
-darwin-rebuild switch --flake ~/dotfiles#omega
+# Build configuration (for {SYSTEM} see `darwinConfigurations` in flake.nix)
+darwin-rebuild build --flake ~/dotfiles#{SYSTEM}
+# Build and switch configuration (for {SYSTEM} see `darwinConfigurations` in flake.nix)
+darwin-rebuild switch --flake ~/dotfiles#{SYSTEM}
 ```
 
 ## NixOS
@@ -111,10 +129,10 @@ sudo nix-channel --update
 
 ### Using this repository
 ```sh
-# Build the flake `snowflake` (see flake.nix)
-sudo nixos-rebuild build --flake '~/dotfiles#snowflake'
-# Switch to `snowflake` (see flake.nix)
-sudo nixos-rebuild switch --flake '~/dotfiles#snowflake'
+# Build configuration (for {SYSTEM} see `nixosConfigurations` in flake.nix)
+sudo nixos-rebuild build --flake '~/dotfiles#{SYSTEM}'
+# Build and switch configuration (for {SYSTEM} see `nixosConfigurations` in flake.nix)
+sudo nixos-rebuild switch --flake '~/dotfiles#{SYSTEM}'
 ```
 
 ### Post Install
