@@ -11,12 +11,12 @@
     ./homebrew.nix
   ];
 
-  options.mkDarwinModules = lib.mkOption {
+  options.darwinModules = lib.mkOption {
     type = lib.types.submodule {
       options = {
         enable = lib.mkOption {
           type = lib.types.bool;
-          description = "Enable mkDarwinModules";
+          description = "Enable darwinModules";
         };
         lsQuarantine = lib.mkOption {
           type = lib.types.bool;
@@ -53,7 +53,7 @@
     };
   };
 
-  config = lib.mkIf config.mkDarwinModules.enable {
+  config = lib.mkIf config.darwinModules.enable {
     users.users.${username} = {
       home = "/Users/${username}";
       shell = pkgs.zsh;
@@ -84,7 +84,7 @@
               "JetBrainsMono"
               "GeistMono"
             ]
-            ++ config.mkDarwinModules.extraNerdFonts
+            ++ config.darwinModules.extraNerdFonts
           );
         })
       ];
@@ -96,7 +96,7 @@
         remapCapsLockToEscape = true;
       };
       defaults = {
-        LaunchServices.LSQuarantine = config.mkDarwinModules.lsQuarantine;
+        LaunchServices.LSQuarantine = config.darwinModules.lsQuarantine;
         universalaccess = {
           # Use scroll gesture with the Ctrl (^) modifier key to zoom
           closeViewScrollWheelToggle = true;
@@ -191,8 +191,8 @@
             DSDontWriteUSBStores = true;
           };
           "com.apple.screencapture" = {
-            location = config.mkDarwinModules.screenshot.path;
-            type = config.mkDarwinModules.screenshot.format;
+            location = config.darwinModules.screenshot.path;
+            type = config.darwinModules.screenshot.format;
           };
           # "com.apple.Safari" = {
           #   # Privacy: don’t send search queries to Apple
