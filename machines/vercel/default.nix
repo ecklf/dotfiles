@@ -1,4 +1,4 @@
-({pkgs, ...}: {
+(_: {
   homebrewModules = {
     affinity = true;
     developer = true;
@@ -8,8 +8,8 @@
     work = true;
     disk = false;
     photography = false;
-    movie = false;
-    music = false;
+    movie = true;
+    music = true;
     latex = false;
     downloader = false;
     tax = false;
@@ -18,4 +18,6 @@
     game = false;
   };
   services = {};
+
+  activationScriptModules.extraPreActivationScripts = [];
 })

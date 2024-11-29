@@ -1,4 +1,4 @@
-({...}: {
+(_: {
   homebrewModules = {
     enableAppStore = false;
     developer = false;
