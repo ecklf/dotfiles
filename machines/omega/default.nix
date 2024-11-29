@@ -2,14 +2,16 @@
   pkgs,
   username,
   ...
-}: {
+}: let
+  isWorkMachine = false;
+in {
   homebrewModules = {
     affinity = true;
     developer = true;
     messenger = true;
     monitor = true;
-    personal = true;
-    work = false;
+    personal = !isWorkMachine;
+    work = isWorkMachine;
     disk = true;
     photography = true;
     movie = true;

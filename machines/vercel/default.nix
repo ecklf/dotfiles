@@ -1,11 +1,13 @@
-(_: {
+(_: let
+  isWorkMachine = true;
+in {
   homebrewModules = {
     affinity = true;
     developer = true;
     messenger = true;
     monitor = true;
-    personal = false;
-    work = true;
+    personal = !isWorkMachine;
+    work = isWorkMachine;
     disk = false;
     photography = false;
     movie = true;
@@ -17,7 +19,8 @@
     wine = false;
     game = false;
   };
-  services = {};
 
   activationScriptModules.extraPreActivationScripts = [];
+
+  services = {};
 })
