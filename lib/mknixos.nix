@@ -38,7 +38,7 @@ in
           nixpkgs.config.allowUnfree = true;
         }
         sops-nix.nixosModules.sops
-        ../systemModules/nixos
+        ../modlules/system/nixos
         ({config, ...}: {
           home-manager.sharedModules = [] ++ extraHomeModules;
         })
@@ -55,7 +55,7 @@ in
               inherit inputs username profile hostname timezone;
             };
             sharedModules = [
-              ../homeManagerModules
+              ../modules/home
             ];
             users."${username}".imports = [
               ../profiles/${profile}.nix

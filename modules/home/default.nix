@@ -67,21 +67,12 @@ in {
         // lib.optionalAttrs
         isDarwin
         {
-          ".config/ghostty/config".source = ./../config/ghostty/config;
-          ".config/iterm2/com.googlecode.iterm2.plist".source = ./../config/iterm2/com.googlecode.iterm2.plist;
-          ".config/iterm2/nordic_light.itermcolors".source = ./../config/iterm2/nordic_light.itermcolors;
-          ".config/iterm2/nordic_dark.itermcolors".source = ./../config/iterm2/nordic_dark.itermcolors;
+          ".config/ghostty/config".source = ./config/ghostty/config;
+          ".config/iterm2/com.googlecode.iterm2.plist".source = ./config/iterm2/com.googlecode.iterm2.plist;
+          ".config/iterm2/nordic_light.itermcolors".source = ./config/iterm2/nordic_light.itermcolors;
+          ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
         };
 
-      # pkgs.cfssl # Cloudflare's PKI and TLS toolkit
-      # pkgs.httpie # A command line HTTP client whose goal is to make CLI human-friendly
-      # pkgs.nats-server # High-Performance server for NATS
-      # pkgs.natscli # NATS Command Line Interface
-      # pkgs.neovim # Vim text editor fork focused on extensibility and agility
-      # pkgs.redis # An open source, advanced key-value store
-      # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
-      # pkgs.vector # A high-performance observability data pipeline
-      # pkgs.watchman # Watches files and takes action when they change
       packages = lib.flatten ([]
         ++ lib.optional isDarwin [
           pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
@@ -221,7 +212,7 @@ in {
           pkgs.master.go-task # A task runner / simpler Make alternative written in Go
         ]
         ++ lib.optional config.homeManagerModules.hipster [
-          # Hipster Editors
+          # Hipster editors
           pkgs.emacs # The extensible, customizable GNU text editor
           pkgs.helix # A post-modern modal text editor
           # Misc
@@ -230,6 +221,16 @@ in {
           # pkgs.mutagen # Make remote development work with your local tools
           # pkgs.mutagen-compose # Compose with Mutagen integration
           # pkgs.pv # A Wave-to-Notes transcriber
+          # Sort these
+          # pkgs.cfssl # Cloudflare's PKI and TLS toolkit
+          # pkgs.httpie # A command line HTTP client whose goal is to make CLI human-friendly
+          # pkgs.nats-server # High-Performance server for NATS
+          # pkgs.natscli # NATS Command Line Interface
+          # pkgs.neovim # Vim text editor fork focused on extensibility and agility
+          # pkgs.redis # An open source, advanced key-value store
+          # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
+          # pkgs.vector # A high-performance observability data pipeline
+          # pkgs.watchman # Watches files and takes action when they change
         ]);
     };
 

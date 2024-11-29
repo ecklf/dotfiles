@@ -51,7 +51,7 @@ in
           programs.zsh.enable = true;
         })
 
-        ../systemModules/darwin
+        ../modules/system/darwin
         ../machines/${hostname}
       ]
       ++ extraModules
@@ -70,7 +70,7 @@ in
               inherit username profile hostname;
             };
             sharedModules = [
-              ../homeManagerModules
+              ../modules/home
             ];
             users."${username}".imports = [
               ../profiles/${profile}.nix
