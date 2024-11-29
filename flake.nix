@@ -63,7 +63,7 @@
       lambda = mkDarwin "lambda" {
         inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
         system = "x86_64-darwin";
-        username = "ecklf";
+        username = "lambda";
         profile = "minimal";
       };
     };

@@ -67,7 +67,7 @@ in
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit username profile hostname;
+              inherit system username profile hostname;
             };
             sharedModules = [
               ../modules/home

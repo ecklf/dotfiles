@@ -1,4 +1,5 @@
 ({
+  system,
   pkgs,
   lib,
   config,
@@ -66,7 +67,10 @@
     };
 
     environment = {
-      systemPath = ["/opt/homebrew/bin"];
+      systemPath =
+        if system == "aarch64-darwin"
+        then ["/opt/homebrew/bin"]
+        else ["/usr/local/bin"];
       systemPackages = [
         pkgs.coreutils
         pkgs.master.duti

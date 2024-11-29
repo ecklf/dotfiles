@@ -1,4 +1,5 @@
 ({
+  system,
   lib,
   config,
   pkgs,
@@ -58,7 +59,7 @@ in {
           EDITOR = "nvim";
           VISUAL = "nvim";
         }
-        // lib.optionalAttrs isDarwin
+        // lib.optionalAttrs (isDarwin && system == "aarch64-darwin")
         {
           GSETTINGS_SCHEMA_DIR = "/opt/homebrew/share/glib-2.0/schemas";
         };
@@ -83,7 +84,7 @@ in {
           # pkgs.mitmproxy # Man-in-the-middle proxy
           # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
         ]
-        ++ lib.optional (config.homeManagerModules.minimal && lib.optional builtins.currentSystem == "aarch64-darwin") [
+        ++ lib.optional (config.homeManagerModules.minimal && lib.optional system == "aarch64-darwin") [
           # Fails to compile on x86_64
           pkgs.fclones # Efficient Duplicate File Finder and Remover
         ]
@@ -262,9 +263,15 @@ in {
       };
       zsh = {
         enable = true;
-        profileExtra = lib.mkIf isDarwin ''
-          eval "$(/opt/homebrew/bin/brew shellenv)"
-        '';
+        profileExtra = lib.mkIf isDarwin (
+          if system == "aarch64-darwin"
+          then ''
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+          ''
+          else ''
+            eval "$(/usr/local/bin/brew shellenv)"
+          ''
+        );
         prezto = {
           enable = true;
           pmodules = lib.flatten ([
