@@ -97,6 +97,12 @@
       };
       defaults = {
         LaunchServices.LSQuarantine = config.mkDarwinModules.lsQuarantine;
+        universalaccess = {
+          # Use scroll gesture with the Ctrl (^) modifier key to zoom
+          closeViewScrollWheelToggle = true;
+          # Follow the keyboard focus while zoomed in
+          closeViewZoomFollowsFocus = true;
+        };
         dock = {
           autohide = true;
           autohide-delay = 0.0;
@@ -108,8 +114,7 @@
           TrackpadThreeFingerDrag = true;
         };
         finder = {
-          # Whether to show icons on the desktop or not
-          # CreateDesktop = false;
+          # CreateDesktop = false; # Disable icons on desktop
           ShowPathbar = true;
           ShowStatusBar = true;
           _FXShowPosixPathInTitle = true;
@@ -160,13 +165,6 @@
             # Add a context menu item for showing the Web Inspector in web views
             WebKitDeveloperExtras = true;
           };
-          # TODO fix
-          # "com.apple.universalaccess" = {
-          #   # Use scroll gesture with the Ctrl (^) modifier key to zoom
-          #   closeViewScrollWheelToggle = true;
-          #   # Follow the keyboard focus while zoomed in
-          #   closeViewZoomFollowsFocus = true;
-          # };
           "com.apple.dock" = {
             wvous-br-corner = 10; # Put display to sleep
             wvous-br-modifier = 1048576; # Require CMD to be held
