@@ -93,10 +93,13 @@ in {
           # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
         ]
         ++ lib.optional (config.homeManagerModules.minimal && lib.optional builtins.currentSystem == "aarch64-darwin") [
-          pkgs.fclones # Efficient Duplicate File Finder and Remover - does not work on x86_64
+          # Fails to compile on x86_64
+          pkgs.fclones # Efficient Duplicate File Finder and Remover
         ]
         ++ lib.optional config.homeManagerModules.minimal [
+          # pkgs.nixpkgs-fmt # Nix code formatter for nixpkgs
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
+          pkgs.alejandra # Nix code formatter
           pkgs.curl # A command line tool for transferring files with URL syntax
           pkgs.eza # A modern, maintained replacement for ls
           pkgs.fd # Suite of speech signal processing tools
@@ -110,6 +113,7 @@ in {
           pkgs.lazygit # Simple terminal UI for git commands
           pkgs.less # A more advanced file pager than 'more'
           pkgs.neofetch # A fast, highly customizable system info script
+          pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
           pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
           pkgs.rsync # Fast incremental file transfer utility
@@ -120,11 +124,9 @@ in {
           pkgs.wget # Tool for retrieving files using HTTP, HTTPS, and FTP
           pkgs.yazi # A fast, modern, and minimalistic cli file explorer
           pkgs.yq # Portable command-line YAML processor
+          pkgs.zellij # A terminal workspace with batteries included
           pkgs.zoxide # A fast cd command that learns your habits
           pkgs.zsh # The Z shell
-          pkgs.alejandra # Nix code formatter
-          pkgs.nix-prefetch-github # Prefetch sources from github
-          # pkgs.nixpkgs-fmt # Nix code formatter for nixpkgs
         ]
         ++ lib.optional config.homeManagerModules.developer [
           # Development
@@ -140,7 +142,6 @@ in {
           pkgs.stylua # An opinionated Lua code formatter
           pkgs.typeshare # Command Line Tool for generating language files with typeshare
           pkgs.upx # The Ultimate Packer for eXecutables
-          pkgs.zellij # A terminal workspace with batteries included
           pkgs.zig # General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
           # Runtimes
           pkgs.fnm # Fast and simple Node.js version manager
