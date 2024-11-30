@@ -38,6 +38,14 @@
     overlays = [];
   in {
     nixosConfigurations = {
+      kairos = mkNixOS "kairos" {
+        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        system = "x86_64-linux";
+        username = "kairos";
+        profile = "minimal";
+        extraModules = [];
+        extraHomeModules = [];
+      };
       snowflake = mkNixOS "snowflake" {
         inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
