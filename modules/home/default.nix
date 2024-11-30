@@ -45,6 +45,11 @@ in {
           type = lib.types.bool;
           description = "Install hipster software";
         };
+        extraPackages = lib.mkOption {
+          type = lib.types.listOf lib.types.package;
+          default = [];
+          description = "Extra packages to install";
+        };
       };
     };
   };
@@ -74,7 +79,8 @@ in {
           ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
         };
 
-      packages = lib.flatten ([]
+      packages = lib.flatten (
+        config.homeManagerModules.extraPackages
         ++ lib.optional isDarwin [
           pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
           pkgs.gnused # GNU sed, a batch stream editor
@@ -93,8 +99,10 @@ in {
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
           pkgs.alejandra # Nix code formatter
           pkgs.curl # A command line tool for transferring files with URL syntax
+          pkgs.direnv # A shell extension that manages your environment
           pkgs.eza # A modern, maintained replacement for ls
           pkgs.fd # Suite of speech signal processing tools
+          pkgs.fnm # Fast and simple Node.js version manager
           pkgs.fzf # Fuzzy finder for your shell
           pkgs.git # Distributed version control system
           pkgs.git-lfs # Git extension for versioning large files
@@ -136,7 +144,6 @@ in {
           pkgs.upx # The Ultimate Packer for eXecutables
           pkgs.zig # General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
           # Runtimes
-          pkgs.fnm # Fast and simple Node.js version manager
           pkgs.bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
           pkgs.go # The Go Programming language
           # Containers
@@ -150,7 +157,6 @@ in {
           # Helpers
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           pkgs.age # Modern encryption tool with small explicit keys
-          pkgs.direnv # A shell extension that manages your environment
           pkgs.jwt-cli # Super fast CLI tool to decode and encode JWTs
           pkgs.hexyl # A command-line hex viewer
           pkgs.fx # Terminal JSON viewer
@@ -232,7 +238,8 @@ in {
           # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
           # pkgs.vector # A high-performance observability data pipeline
           # pkgs.watchman # Watches files and takes action when they change
-        ]);
+        ]
+      );
     };
 
     programs = {
