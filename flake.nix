@@ -43,6 +43,7 @@
         system = "x86_64-linux";
         username = "kairos";
         profile = "minimal";
+        timezone = "America/New_York";
         extraModules = [];
         extraHomeModules = [];
       };

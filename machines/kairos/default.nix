@@ -12,11 +12,13 @@
     ./hardware-configuration.nix
   ];
 
+  time.timeZone = timezone;
   boot.tmp.cleanOnBoot = true;
   zramSwap.enable = false;
-  networking.hostName = "racknerd-5a39c8a";
+  networking.hostName = hostname;
   networking.domain = "";
   services.openssh.enable = true;
+  users.defaultUserShell = pkgs.zsh;
   users.users.root.openssh.authorizedKeys.keys = [];
   users.users."${username}".openssh.authorizedKeys.keys = [];
   system.stateVersion = "23.11";
