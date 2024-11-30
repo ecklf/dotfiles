@@ -42,7 +42,7 @@
         inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "kairos";
-        profile = "minimal";
+        profile = "vps";
         timezone = "America/New_York";
         extraModules = [];
         extraHomeModules = [];
