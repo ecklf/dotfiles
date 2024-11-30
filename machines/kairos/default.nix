@@ -22,4 +22,12 @@
   users.users.root.openssh.authorizedKeys.keys = [];
   users.users."${username}".openssh.authorizedKeys.keys = [];
   system.stateVersion = "23.11";
+
+  config.homeManagerModules.extraPackages = [
+    pkgs.rustup # The Rust toolchain installer
+    pkgs.dive # A tool for exploring each layer in a docker image
+    pkgs.docker # NVIDIA Container Toolkit
+    pkgs.docker-compose # Multi-container orchestration for Docker
+    pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
+  ];
 }
