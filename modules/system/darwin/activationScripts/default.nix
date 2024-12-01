@@ -5,7 +5,7 @@
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
-  extraActivationScriptPath = ./extraActivation;
+  userActivationScriptsPath = ./userActivation;
 in {
   options.activationScriptModules = lib.mkOption {
     type = lib.types.submodule {
@@ -59,15 +59,15 @@ in {
       '';
     };
 
-    system.activationScripts.extraActivation = {
+    system.activationScripts.postUserActivation = {
       enable = true;
       text = let
         scriptFiles = lib.flatten ([]
           ++ lib.optional config.activationScriptModules.patches.screenCaptureApprovals [
-            "${extraActivationScriptPath}/patch-screencapture-approvals.sh"
+            "${userActivationScriptsPath}/patch-screencapture-approvals.sh"
           ]
           ++ lib.optional config.activationScriptModules.patches.defaultApplications [
-            "${extraActivationScriptPath}/patch-default-apps.sh"
+            "${userActivationScriptsPath}/patch-default-apps.sh"
           ]);
       in
         builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);

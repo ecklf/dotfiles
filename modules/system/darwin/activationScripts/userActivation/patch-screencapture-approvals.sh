@@ -1,4 +1,4 @@
-echo "patching macOS Sequoia screen capture approvals..."
+echo "patching macOS Sequoia screen capture approvals for $(whoami)..."
 screenCaptureApps=(
   "/Applications/CleanShot X.app/Contents/MacOS/CleanShot X"
   "/Applications/zoom.us.app/Contents/MacOS/zoom.us"
