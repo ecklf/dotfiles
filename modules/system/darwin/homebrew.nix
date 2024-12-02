@@ -245,6 +245,7 @@
           "transmission"
           "tunnelblick"
           "windscribe"
+          "surfshark"
           # "lulu"
           # "wireshark"
         ]
