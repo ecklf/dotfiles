@@ -173,19 +173,20 @@ in {
           pkgs.gh # GitHub CLI tool
           # Monitoring, Network and Benchmarking
           pkgs.btop # A monitor of resources
+          pkgs.frp # A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet
           pkgs.glances # Cross-platform curses-based monitoring tool
-          pkgs.ncdu # Disk usage analyzer with an ncurses interface
-          pkgs.smartmontools # Tools for monitoring the health of hard drives
-          pkgs.trivy # A simple and comprehensive vulnerability scanner for containers, suitable for CI
           pkgs.httpstat # curl statistics made simple
           pkgs.hyperfine # Command-line benchmarking tool
           pkgs.inetutils # Collection of common network programs
           pkgs.ipcalc # Simple IP network calculator
           pkgs.master.plow # A high-performance HTTP benchmarking tool that includes a real-time web UI and terminal display
+          pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.ngrok # A Python wrapper for ngrok
           pkgs.nmap # A free and open source utility for network discovery and security auditing
+          pkgs.smartmontools # Tools for monitoring the health of hard drives
           pkgs.speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
           pkgs.trippy # A network diagnostic tool
+          pkgs.trivy # A simple and comprehensive vulnerability scanner for containers, suitable for CI
           # Cloud platforms
           pkgs.awscli2 # Unified tool to manage your AWS services
           pkgs.google-cloud-sdk # Tools for the google cloud platform
