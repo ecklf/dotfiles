@@ -147,6 +147,7 @@ in {
           pkgs.bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
           pkgs.go # The Go Programming language
           # Containers
+          pkgs.devbox # Instant, easy, predictable shells and containers
           pkgs.dive # A tool for exploring each layer in a docker image
           pkgs.docker # NVIDIA Container Toolkit
           pkgs.docker-compose # Multi-container orchestration for Docker
