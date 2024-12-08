@@ -358,6 +358,8 @@ in {
             tf = "tf $1";
             # Kubernetes
             k = "kubectl";
+            t = "task";
+            tl = "task --list-all";
             # Credentials
             # google_cred="export GOOGLE_APPLICATION_CREDENTIALS='~/service-account.json'";
             # avd="cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29";
