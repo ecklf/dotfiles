@@ -31,6 +31,7 @@ Host github.com
 
 > [!IMPORTANT]  
 > For the very first run, `darwin-rebuild` won't be installed in your path
+> 
 > Values for `{SYSTEM}` can be found in `darwinConfigurations` in `flake.nix`:
 > ```sh
 > nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles#{SYSTEM}
