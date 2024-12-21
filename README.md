@@ -4,21 +4,13 @@
 
 ### Setup 
 
-> [!TIP]
-> The Dock can be wiped with:
-> ```sh
-> defaults write com.apple.dock persistent-apps -array && killall Dock
-> ```
+**1: Checklist**
 
-**1: Install [nix](https://nixos.org/download) and [homebrew](https://brew.sh)**
+Run the following checklist script to prepare your system for using this repository :
 
-**2: Ensure Xcode command line tools are installed (setting up _homebrew_ should have already done this)**
-
-**3: Ensure you are signed into the App Store (if using app ids in `mas` configuration)**
-
-### Using this repository
-
-**1: Enable `Full Disk Access` for the Terminal application**
+```sh
+./init-macos.sh # you may need to also run chmod +x init-macos.sh
+```
 
 **2: Configure SSH**
 
@@ -33,6 +25,9 @@ Add your key to `~/.ssh/config` and to your GitHub account:
 Host github.com
   IdentityFile ~/.ssh/id_ed25519
 ```
+
+### Using this repository
+
 > [!IMPORTANT]  
 > For the very first run, `darwin-rebuild` won't be installed in your path
 > ```sh
