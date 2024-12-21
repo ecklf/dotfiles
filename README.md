@@ -6,10 +6,10 @@
 
 **1: Checklist**
 
-Run the following checklist script to prepare your system for using this repository :
+Run the following checklist script to prepare your system for using this repository:
 
 ```sh
-./init-macos.sh # you may need to also run chmod +x init-macos.sh
+./init-macos.sh
 ```
 
 **2: Configure SSH**
@@ -28,19 +28,18 @@ Host github.com
 
 ### Using this repository
 
+
 > [!IMPORTANT]  
 > For the very first run, `darwin-rebuild` won't be installed in your path
+> Values for `{SYSTEM}` can be found in `darwinConfigurations` in `flake.nix`:
 > ```sh
-> # Build the flake (for {SYSTEM} see `darwinConfigurations` in flake.nix)
 > nix run nix-darwin --extra-experimental-features flakes --extra-experimental-features nix-command -- switch --flake ~/dotfiles#{SYSTEM}
 > ```
 
-For concurrent runs (see `darwinConfigurations` in `flake.nix`):
-
 ```sh
-# Build configuration (for {SYSTEM} see `darwinConfigurations` in flake.nix)
+# Build configuration
 darwin-rebuild build --flake ~/dotfiles#{SYSTEM}
-# Build and switch configuration (for {SYSTEM} see `darwinConfigurations` in flake.nix)
+# Build and switch configuration
 darwin-rebuild switch --flake ~/dotfiles#{SYSTEM}
 ```
 
