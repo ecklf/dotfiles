@@ -1,14 +1,21 @@
-{
-  config,
-  pkgs,
-  lib,
-  libs,
-  ...
-}: {
+{...}: {
   programs.git = {
     enable = true;
     userName = "Florentin Eckl";
     userEmail = "ecklf@icloud.com";
+
+    lfs = {
+      enable = true;
+      # Skip automatic downloading of objects. Requires a manual `git lfs pull`
+      skipSmudge = false;
+    };
+
+    ignores = [
+      ".DS_Store"
+      ".idea"
+      ".scratch"
+      "__scratch"
+    ];
 
     delta = {
       enable = true;
@@ -18,7 +25,17 @@
       };
     };
 
+    # signing = {
+    #   signByDefault = true;
+    #   signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBY2vg6JN45hpcl9HH279/ityPEGGOrDjY3KdyulOUmX";
+    # };
+
     extraConfig = {
+      # Sign all commits using ssh key
+      commit.gpgsign = true;
+      gpg.format = "ssh";
+      user.signingkey = "~/.ssh/id_ed25519.pub";
+      # ssh.program = "/usr/local/bin/op-ssh-sign";
       github = {
         user = "ecklf";
       };
