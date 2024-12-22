@@ -121,6 +121,7 @@ in {
       '';
       shellAliases =
         {
+          nix-shell = "nix-shell --run zsh";
           # Abbreviations
           c = "clear";
           m = "make";
