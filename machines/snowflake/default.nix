@@ -81,6 +81,7 @@
 
   # To search: $ nix search wget
   environment.systemPackages = with pkgs; [
+    apfs-fuse
     cryptsetup
     wget
     vim
