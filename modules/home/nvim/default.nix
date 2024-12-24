@@ -70,6 +70,7 @@ in {
       nodePackages_latest.stylelint
       nodePackages_latest.typescript-language-server
       nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
+      pylint
       pyright
       python312Packages.black # python
       python312Packages.flake8
