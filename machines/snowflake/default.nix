@@ -81,6 +81,7 @@
 
   # To search: $ nix search wget
   environment.systemPackages = with pkgs; [
+    apfs-fuse
     cryptsetup
     wget
     vim
@@ -145,6 +146,8 @@
         # password with the SMB password when the encrypted SMB password in the
         # passdb is changed.
         "unix password sync" = "yes";
+        "min receivefile size" = "16384";
+        "getwd cache" = "true";
       };
       homes = {
         browseable = "no";

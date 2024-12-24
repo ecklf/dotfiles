@@ -13,9 +13,16 @@
   nixpkgs.config.permittedInsecurePackages = [];
   # Shells and environment
   programs.zsh.enable = true;
-  environment.shells = [pkgs.bashInteractive pkgs.zsh];
-  environment.pathsToLink = ["/share/zsh"];
+  environment = {
+    shells = [pkgs.bashInteractive pkgs.zsh];
+    pathsToLink = ["/share/zsh"];
+    systemPackages = [
+      pkgs.coreutils
+      pkgs.busybox
+    ];
+  };
   # Users
+  users.defaultUserShell = pkgs.zsh;
   users.users."${username}" = {
     isNormalUser = true;
     # Post install: set a new password with ‘passwd’
