@@ -155,10 +155,13 @@ in {
           pkgs.k3d # A helper to run k3s (Lightweight Kubernetes. 5 less than k8s) in a docker container
           pkgs.k9s # Kubernetes CLI To Manage Your Clusters In Style
           pkgs.kubectl # Production-Grade Container Scheduling and Management
+          pkgs.kubectl-cnpg # Plugin for kubectl to manage a CloudNativePG cluster in Kubernetes
           pkgs.kubectx # Fast way to switch between clusters and namespaces in kubectl!
           pkgs.kubent # Easily check your cluster for use of deprecated APIs
           pkgs.kubernetes-helm # Package manager for kubernetes
           pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
+          # Databases
+          pkgs.postgresql
           # Helpers
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           pkgs.age # Modern encryption tool with small explicit keys
