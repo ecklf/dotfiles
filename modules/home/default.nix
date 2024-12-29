@@ -159,6 +159,8 @@ in {
           pkgs.kubectx # Fast way to switch between clusters and namespaces in kubectl!
           pkgs.kubent # Easily check your cluster for use of deprecated APIs
           pkgs.kubernetes-helm # Package manager for kubernetes
+          pkgs.skaffold # Easy and Repeatable Kubernetes Development
+          pkgs.entr # Run arbitrary commands when files change
           pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
           # Databases
           pkgs.postgresql
