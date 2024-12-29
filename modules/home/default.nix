@@ -161,6 +161,7 @@ in {
           pkgs.kubernetes-helm # Package manager for kubernetes
           pkgs.skaffold # Easy and Repeatable Kubernetes Development
           pkgs.entr # Run arbitrary commands when files change
+          pkgs.tilt # A multi-service development environment for teams on Kubernetes
           pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
           # Databases
           pkgs.postgresql
