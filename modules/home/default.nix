@@ -116,11 +116,11 @@ in {
           pkgs.neofetch # A fast, highly customizable system info script
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
+          pkgs.pv # Tool for monitoring the progress of data through a pipeline
           pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
           pkgs.rsync # Fast incremental file transfer utility
           pkgs.stow # A tool for managing the installation of multiple software packages in the same run-time directory tree
           pkgs.subversion # A version control system intended to be a compelling replacement for CVS in the open source community
-          pkgs.tmux # Terminal multiplexer
           pkgs.tree # Command to produce a depth indented directory listing
           pkgs.wget # Tool for retrieving files using HTTP, HTTPS, and FTP
           pkgs.yazi # A fast, modern, and minimalistic cli file explorer
