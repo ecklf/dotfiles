@@ -164,7 +164,7 @@ in {
           pkgs.tilt # A multi-service development environment for teams on Kubernetes
           pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
           # Databases
-          pkgs.postgresql
+          pkgs.postgresql_17
           # Helpers
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           pkgs.age # Modern encryption tool with small explicit keys
