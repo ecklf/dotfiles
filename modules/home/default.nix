@@ -166,16 +166,17 @@ in {
           # Databases
           pkgs.postgresql_17
           # Helpers
-          pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           pkgs.age # Modern encryption tool with small explicit keys
-          pkgs.jwt-cli # Super fast CLI tool to decode and encode JWTs
-          pkgs.hexyl # A command-line hex viewer
+          pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
+          pkgs.direnv # A shell extension that manages your environment
           pkgs.fx # Terminal JSON viewer
           pkgs.glow # Render markdown on the CLI, with pizzazz!
-          pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
-          pkgs.graphviz # Graph visualization tools
           pkgs.gomplate # A flexible commandline tool for template rendering
+          pkgs.graphviz # Graph visualization tools
+          pkgs.hexyl # A command-line hex viewer
+          pkgs.jwt-cli # Super fast CLI tool to decode and encode JWTs
           pkgs.lnav # The Logfile Navigator
+          pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           # Database
           pkgs.dbmate # Database migration tool
           pkgs.sea-orm-cli #  Command line utility for SeaORM
@@ -196,6 +197,7 @@ in {
           pkgs.nmap # A free and open source utility for network discovery and security auditing
           pkgs.smartmontools # Tools for monitoring the health of hard drives
           pkgs.speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
+          pkgs.subfinder # Subdomain discovery tool
           pkgs.trippy # A network diagnostic tool
           pkgs.trivy # A simple and comprehensive vulnerability scanner for containers, suitable for CI
           # Cloud platforms
