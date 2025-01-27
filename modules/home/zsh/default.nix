@@ -95,7 +95,7 @@ in {
 
         function update_input() {
           input=$(nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf)
-          nix flake lock --update-input "$input"
+          nix flake update "$input"
         }
 
         # bundle_id $1, returns the macOS bundle id for the provided app name

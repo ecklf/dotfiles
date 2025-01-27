@@ -154,6 +154,6 @@ sudo systemctl status mnt-share.mount
 ```sh
 # Upgrading nix — https://nix.dev/manual/nix/2.22/installation/upgrading
 # Updating flake inputs
-nix flake lock --update-all
-nix flake lock --update-input <input>
+nix flake update 
+nix flake update <input>
 ```
