@@ -25,7 +25,7 @@ let
     src = builtins.fetchGit {
       url = "ssh://git@github.com/cocopon/iceberg.vim.git";
       # ref = "master";
-      rev = "e01ac08c2202e7544531f4d806f6893539da6471";
+      rev = "23835d5ed696436f716cbfdb56a93a7850fe3b18";
     };
   };
 
