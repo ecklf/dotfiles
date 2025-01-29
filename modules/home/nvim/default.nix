@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{pkgs, ...}:
 # let
 #   fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
 #     pname = "${lib.strings.sanitizeDerivationName repo}";
