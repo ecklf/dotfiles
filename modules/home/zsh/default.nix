@@ -210,8 +210,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-autosuggestions";
-            rev = "c3d4e576c9c86eac62884bd47c01f6faed043fc5";
-            hash = "sha256-B+Kz3B7d97CM/3ztpQyVkE6EfMipVF8Y4HJNfSRXHtU=";
+            rev = "0e810e5afa27acbd074398eefbe28d13005dbc15";
+            hash = "sha256-85aw9OM2pQPsWklXjuNOzp9El1MsNb+cIiZQVHUzBnk=";
           };
         }
         {
@@ -219,8 +219,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-completions";
-            rev = "9e341f6a202e83e2dc0a587f4970fa375de84d4e";
-            sha256 = "sha256-HVuCHOCP2zeUY59JYhzQi6tHYBDUwNeY5fm8pALVxpc=";
+            rev = "85e041be36a33d8f6ca71746654406425d3a910f";
+            sha256 = "sha256-jamYAmvanI/upc1PsRA/6VLiER8qJ3kOCgXsPT9WkYU";
           };
         }
         {
@@ -231,8 +231,8 @@ in {
             {
               owner = "ohmyzsh";
               repo = "ohmyzsh";
-              rev = "5ea2c68be88452b33b35ba8004fc9094618bcd87";
-              hash = "sha256-Mhn66ZYqPL3z+tPcEUnF8ybckxybaV4TxNX+WUeClq4=";
+              rev = "33d4db7feeacaf82c8e277555010cd6f5d9f1c7c";
+              hash = "sha256-uTyUXEqPblKTyy08OQj2EuzadQMqzY7rjWg3sbT+EHs=";
             }
             + "/plugins/aws";
         }
@@ -242,8 +242,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "babarot";
             repo = "enhancd";
-            rev = "230695f8da8463b18121f58d748851a67be19a00";
-            sha256 = "sha256-XJl0XVtfi/NTysRMWant84uh8+zShTRwd7t2cxUk+qU=";
+            rev = "5afb4eb6ba36c15821de6e39c0a7bb9d6b0ba415";
+            sha256 = "sha256-pKQbwiqE0KdmRDbHQcW18WfxyJSsKfymWt/TboY2iic=";
           };
         }
       ];
