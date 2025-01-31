@@ -141,6 +141,7 @@
         }
         // lib.optionalAttrs config.homebrewModules.personal {
           "Notability" = 360593530;
+          "PDFgear: PDF Editor & Reader" = 6469021132;
         }
         // lib.optionalAttrs config.homebrewModules.movie {
           "Final Cut Pro" = 424389933;
