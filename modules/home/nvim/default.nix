@@ -15,25 +15,15 @@ let
   #   version = "1.0.0";
   #   src = ./configuration;
   # };
-  iceberg = pkgs.vimUtils.buildVimPlugin {
-    pname = "iceberg";
-    version = "HEAD";
-    src = builtins.fetchGit {
-      url = "ssh://git@github.com/cocopon/iceberg.vim.git";
-      # ref = "master";
-      rev = "23835d5ed696436f716cbfdb56a93a7850fe3b18";
-    };
-  };
-
-  catppuccin = pkgs.vimUtils.buildVimPlugin {
-    pname = "catppuccin";
-    version = "HEAD";
-    src = builtins.fetchGit {
-      url = "ssh://git@github.com/catppuccin/nvim.git";
-      ref = "main";
-      rev = "f67b886d65a029f12ffa298701fb8f1efd89295d";
-    };
-  };
+  # iceberg = pkgs.vimUtils.buildVimPlugin {
+  #   pname = "iceberg";
+  #   version = "HEAD";
+  #   src = builtins.fetchGit {
+  #     url = "ssh://git@github.com/cocopon/iceberg.vim.git";
+  #     # ref = "master";
+  #     rev = "23835d5ed696436f716cbfdb56a93a7850fe3b18";
+  #   };
+  # };
 in {
   programs.neovim = {
     enable = true;
@@ -87,10 +77,9 @@ in {
       plenary-nvim # useful lua functions used ny lots of plugins - required by Telescope
       impatient-nvim # improves loading times
       # Colorschemes
-      # (fromGitHub "HEAD" "cocopon/iceberg.vim")
-      iceberg
+      iceberg-vim
       ayu-vim
-      catppuccin
+      catppuccin-nvim
       {
         # required by nvim-tree, lualine
         plugin = nvim-web-devicons;
