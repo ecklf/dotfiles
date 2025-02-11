@@ -38,7 +38,7 @@ in {
       ${builtins.readFile ./configuration/autocommands.lua}
     '';
     # https://search.nixos.org/packages
-    extraPackages = with pkgs; [
+    extraPackages = with pkgs.stable; [
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
