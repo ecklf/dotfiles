@@ -16,7 +16,7 @@ in {
     downloader = true;
     tax = true;
     language = true;
-    wine = true;
-    game = true;
+    wine = false;
+    game = false;
   };
 })
