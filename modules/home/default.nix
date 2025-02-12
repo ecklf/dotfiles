@@ -77,6 +77,7 @@ in {
           ".config/iterm2/com.googlecode.iterm2.plist".source = ./config/iterm2/com.googlecode.iterm2.plist;
           ".config/iterm2/nordic_light.itermcolors".source = ./config/iterm2/nordic_light.itermcolors;
           ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
+          ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
         };
 
       packages = lib.flatten (
