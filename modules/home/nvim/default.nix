@@ -38,38 +38,38 @@ in {
       ${builtins.readFile ./configuration/autocommands.lua}
     '';
     # https://search.nixos.org/packages
-    extraPackages = with pkgs; [
+    extraPackages = [
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
-      biome
-      gopls
-      nixd # nix lsp
-      alejandra # nix formatter
-      nodePackages_latest."@prisma/language-server"
-      nodePackages_latest."@tailwindcss/language-server"
-      nodePackages_latest."graphql"
-      nodePackages_latest.bash-language-server
-      nodePackages_latest.dockerfile-language-server-nodejs
-      nodePackages_latest.eslint
-      nodePackages_latest.prettier # webdev
-      nodePackages_latest.stylelint
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
-      pylint
-      pyright
-      python312Packages.black # python
-      python312Packages.flake8
-      ripgrep
-      rust-analyzer
-      rustfmt
-      shellcheck
-      shfmt
-      stylua
-      sumneko-lua-language-server
-      terraform-ls
-      vale
-      yaml-language-server
+      pkgs.stable.biome
+      pkgs.stable.gopls
+      pkgs.stable.nixd # nix lsp
+      pkgs.stable.alejandra # nix formatter
+      pkgs.stable.nodePackages_latest."@prisma/language-server"
+      pkgs.stable.nodePackages_latest."@tailwindcss/language-server"
+      pkgs.stable.nodePackages_latest."graphql"
+      pkgs.stable.nodePackages_latest.bash-language-server
+      pkgs.stable.nodePackages_latest.dockerfile-language-server-nodejs
+      pkgs.master.nodePackages_latest.eslint
+      pkgs.stable.nodePackages_latest.prettier # webdev
+      pkgs.stable.nodePackages_latest.stylelint
+      pkgs.stable.nodePackages_latest.typescript-language-server
+      pkgs.stable.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
+      pkgs.stable.pylint
+      pkgs.stable.pyright
+      pkgs.stable.python312Packages.black # python
+      pkgs.stable.python312Packages.flake8
+      pkgs.stable.ripgrep
+      pkgs.stable.rust-analyzer
+      pkgs.stable.rustfmt
+      pkgs.stable.shellcheck
+      pkgs.stable.shfmt
+      pkgs.stable.stylua
+      pkgs.stable.sumneko-lua-language-server
+      pkgs.stable.terraform-ls
+      pkgs.stable.vale
+      pkgs.stable.yaml-language-server
     ];
     plugins = with pkgs.vimPlugins; [
       # Core
