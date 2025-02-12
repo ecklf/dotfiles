@@ -211,7 +211,7 @@
           "veracrypt"
         ]
         ++ lib.optional config.homebrewModules.monitor [
-          "logitech-options"
+          "logi-options+"
           "monitorcontrol"
           "notchnook"
         ]
