@@ -138,6 +138,7 @@
         }
         // lib.optionalAttrs config.homebrewModules.messenger {
           "WhatsApp" = 310633997;
+          "KakaoTalk" = 869223134;
         }
         // lib.optionalAttrs config.homebrewModules.personal {
           "Notability" = 360593530;
