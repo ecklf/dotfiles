@@ -225,6 +225,7 @@ in {
         ]
         ++ lib.optional config.homeManagerModules.work [
           pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication
+          pkgs.python312Full # Python
           pkgs.goreleaser # Deliver Go binaries as fast and easily as possible
           pkgs.lua51Packages.busted # Elegant Lua unit testing
           pkgs.lua51Packages.lua # Powerful, fast, lightweight, embeddable scripting language
