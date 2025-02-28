@@ -181,7 +181,7 @@
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
-          "yubico-authenticator"
+          "zed"
           "dbeaver-community"
           "diffmerge"
           "figma"
@@ -195,6 +195,7 @@
           "utm"
           "visual-studio-code"
           "yaak"
+          "yubico-authenticator"
         ]
         ++ lib.optional config.homebrewModules.affinity [
           "affinity-designer"
