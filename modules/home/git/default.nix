@@ -35,6 +35,7 @@
       commit.gpgsign = true;
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
+      url."ssh://git@github.com:".insteadOf = "https://github.com";
       # ssh.program = "/usr/local/bin/op-ssh-sign";
       github = {
         user = "ecklf";
