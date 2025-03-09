@@ -21,6 +21,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -32,12 +36,24 @@
     sops-nix,
     darwin,
     home-manager,
+    disko,
   }: let
     mkDarwin = import ./lib/mkdarwin.nix;
     mkNixOS = import ./lib/mknixos.nix;
     overlays = [];
   in {
     nixosConfigurations = {
+      soma = mkNixOS "soma" {
+        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        system = "x86_64-linux";
+        username = "soma";
+        profile = "vps";
+        timezone = "Germany/Berlin";
+        extraModules = [
+          disko.nixosModules.disko
+        ];
+        extraHomeModules = [];
+      };
       kairos = mkNixOS "kairos" {
         inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
