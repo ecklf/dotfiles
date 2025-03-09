@@ -214,6 +214,8 @@ in {
           pkgs.libavif # C implementation of the AV1 Image File Format
           pkgs.master.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
           pkgs.psutils # Collection of useful utilities for manipulating PS documents
+          # Nix
+          pkgs.nixos-anywhere # NixOS installer for any Linux distribution
           # Yubikey
           # pkgs.yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
           # pkgs.yubikey-personalization # A library and command line tool to personalize YubiKeys
