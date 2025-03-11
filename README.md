@@ -16,7 +16,8 @@ Run the following checklist script to prepare your system for using this reposit
 
 Generate a new one if needed:
 ```sh
-cd ~/.ssh && ssh-keygen
+cd ~/.ssh
+ssh-keygen -C "your_email@example.com"
 ssh-add ~/.ssh/id_ed25519
 ```
 
@@ -125,9 +126,9 @@ sudo nix-channel --update
 ### Using this repository
 ```sh
 # Build configuration (for {SYSTEM} see `nixosConfigurations` in flake.nix)
-sudo nixos-rebuild build --flake '~/dotfiles#{SYSTEM}'
+sudo nixos-rebuild build --flake ~/dotfiles#{SYSTEM}
 # Build and switch configuration (for {SYSTEM} see `nixosConfigurations` in flake.nix)
-sudo nixos-rebuild switch --flake '~/dotfiles#{SYSTEM}'
+sudo nixos-rebuild switch --flake ~/dotfiles#{SYSTEM}
 ```
 
 ### Post Install
