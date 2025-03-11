@@ -30,7 +30,7 @@
   ];
   users.users."${username}" = {
     isNormalUser = true;
-    extraGroups = ["wheel"]; # Or the group with sudo privileges
+    extraGroups = ["wheel" "networkmanager"];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com"
@@ -53,7 +53,8 @@
   services.k3s.role = "server";
   services.k3s.extraFlags = toString [
     # "--debug"
-    "--write-kubeconfig-mode '0644'"
+    "--write-kubeconfig-mode '644'"
+    "--write-kubeconfig-group ':wheel'"
   ];
 
   system.stateVersion = "24.05";
