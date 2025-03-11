@@ -47,7 +47,7 @@
         inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "soma";
-        profile = "vps";
+        profile = "k8s";
         timezone = "Germany/Berlin";
         extraModules = [
           disko.nixosModules.disko
