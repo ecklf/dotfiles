@@ -58,6 +58,7 @@
     role = "server";
     extraFlags = toString [
       # "--debug"
+      "--disable=traefik"
       "--write-kubeconfig-mode=644"
     ];
   };
