@@ -54,6 +54,17 @@
         ];
         extraHomeModules = [];
       };
+      skia = mkNixOS "skia" {
+        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        system = "x86_64-linux";
+        username = "skia";
+        profile = "k8s";
+        timezone = "Germany/Berlin";
+        extraModules = [
+          disko.nixosModules.disko
+        ];
+        extraHomeModules = [];
+      };
       kairos = mkNixOS "kairos" {
         inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
