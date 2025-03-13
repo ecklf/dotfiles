@@ -63,8 +63,15 @@ in {
         printf "\e[?1042l"
         # Emacs keybindings
         bindkey -e
+
         # Map end-of-line key in the same way as zprezto editor module to prevent issue with tmux-resurrect.
         bindkey "^E" end-of-line
+
+        # Edit command line in $EDITOR
+        autoload edit-command-line
+        zle -N edit-command-line
+        bindkey "^X^E" edit-command-line
+
         # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
         setopt CLOBBER
       '';
