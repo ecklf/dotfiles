@@ -35,7 +35,8 @@ if ! confirm "Do you have homebrew installed?"; then
 fi
 
 if confirm "Do you have App Store software that you want to use?"; then
-  if ! confirm "Please sign in the App Store. Done?"; then
+  open /System/Applications/App\ Store.app
+  if ! confirm "Please sign into the App Store. Done?"; then
     exit 1
   fi
 fi
