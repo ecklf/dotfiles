@@ -9,7 +9,7 @@
 Run the following checklist script to prepare your system for using this repository:
 
 ```sh
-./init-macos.sh
+./scripts/init-macos.sh
 ```
 
 **2: Configure SSH**
