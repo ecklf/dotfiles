@@ -118,7 +118,6 @@
         // lib.optionalAttrs config.homebrewModules.minimal {
           "Cursor Pro" = 1447043133;
           "Dato" = 1470584107;
-          "Hidden Bar" = 1452453066;
           "Keynote" = 409183694;
           "Keystroke Pro" = 1572206224;
           "Mirror Magnet" = 1563698880;
@@ -169,6 +168,7 @@
           "cleanshot"
           "iina"
           "iterm2"
+          "jordanbaird-ice"
           "keka"
           "ledger-live"
           "obsidian"
