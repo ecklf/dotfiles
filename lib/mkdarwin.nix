@@ -32,11 +32,10 @@ in
     modules =
       [
         ({system, ...}: {
+          ids.gids.nixbld = 30000;
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
-          system.stateVersion = 5;
-          # Auto upgrade nix package and the daemon service.
-          services.nix-daemon.enable = true;
+          system.stateVersion = 6;
           # Necessary for using flakes on this system.
           nix.extraOptions = ''
             experimental-features = nix-command flakes

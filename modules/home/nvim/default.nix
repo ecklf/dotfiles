@@ -46,9 +46,8 @@ in {
       pkgs.stable.gopls
       pkgs.stable.nixd # nix lsp
       pkgs.stable.alejandra # nix formatter
-      pkgs.stable.nodePackages_latest."@prisma/language-server"
       pkgs.stable.nodePackages_latest."@tailwindcss/language-server"
-      pkgs.stable.nodePackages_latest."graphql"
+      # pkgs.stable.nodePackages_latest."graphql"
       pkgs.stable.nodePackages_latest.bash-language-server
       pkgs.stable.nodePackages_latest.dockerfile-language-server-nodejs
       pkgs.master.nodePackages_latest.eslint
