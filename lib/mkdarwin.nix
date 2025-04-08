@@ -1,6 +1,6 @@
 hostname: {
   inputs,
-  nixpkgs-stable,
+  nixpkgs-unstable,
   nixpkgs-master,
   nur,
   home-manager,
@@ -15,7 +15,7 @@ hostname: {
     (final: prev: {
       #   zls = zls-master.packages.${system}.default;
       #   helix = helix-master.packages.${system}.default;
-      stable = import nixpkgs-stable {
+      unstable = import nixpkgs-unstable {
         system = system;
         config.allowUnfree = true;
       };

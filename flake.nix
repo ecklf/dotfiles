@@ -1,8 +1,8 @@
 {
   description = "NixOS and Darwin flakes";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # Nix user repository
     nur.url = "github:nix-community/NUR";
@@ -30,7 +30,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nixpkgs-stable,
+    nixpkgs-unstable,
     nixpkgs-master,
     nur,
     sops-nix,
@@ -44,7 +44,7 @@
   in {
     nixosConfigurations = {
       soma = mkNixOS "soma" {
-        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "soma";
         profile = "k8s";
@@ -55,7 +55,7 @@
         extraHomeModules = [];
       };
       skia = mkNixOS "skia" {
-        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "skia";
         profile = "k8s";
@@ -66,7 +66,7 @@
         extraHomeModules = [];
       };
       kairos = mkNixOS "kairos" {
-        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "kairos";
         profile = "vps";
@@ -75,7 +75,7 @@
         extraHomeModules = [];
       };
       snowflake = mkNixOS "snowflake" {
-        inherit inputs nixpkgs nixpkgs-stable nixpkgs-master nur sops-nix overlays;
+        inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
         system = "x86_64-linux";
         username = "ecklf";
         profile = "minimal";
@@ -85,19 +85,19 @@
     };
     darwinConfigurations = {
       omega = mkDarwin "omega" {
-        inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "personal";
       };
       vercel = mkDarwin "vercel" {
-        inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "work";
       };
       lambda = mkDarwin "lambda" {
-        inherit inputs nixpkgs-stable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
         system = "x86_64-darwin";
         username = "lambda";
         profile = "minimal";

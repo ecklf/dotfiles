@@ -1,7 +1,7 @@
 hostname: {
   inputs,
   nixpkgs,
-  nixpkgs-stable,
+  nixpkgs-unstable,
   nixpkgs-master,
   nur,
   sops-nix,
@@ -16,7 +16,7 @@ hostname: {
 }: let
   systemSpecificOverlays = [
     (final: prev: {
-      stable = import nixpkgs-stable {
+      unstable = import nixpkgs-unstable {
         system = system;
         config.allowUnfree = true;
       };

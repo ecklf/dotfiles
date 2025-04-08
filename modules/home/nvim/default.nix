@@ -42,33 +42,33 @@ in {
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
-      pkgs.stable.biome
-      pkgs.stable.gopls
-      pkgs.stable.nixd # nix lsp
-      pkgs.stable.alejandra # nix formatter
-      pkgs.stable.nodePackages_latest."@tailwindcss/language-server"
-      # pkgs.stable.nodePackages_latest."graphql"
-      pkgs.stable.nodePackages_latest.bash-language-server
-      pkgs.stable.nodePackages_latest.dockerfile-language-server-nodejs
+      pkgs.biome
+      pkgs.gopls
+      pkgs.nixd # nix lsp
+      pkgs.alejandra # nix formatter
+      pkgs.nodePackages_latest."@tailwindcss/language-server"
+      # pkgs.nodePackages_latest."graphql"
+      pkgs.nodePackages_latest.bash-language-server
+      pkgs.nodePackages_latest.dockerfile-language-server-nodejs
       pkgs.master.nodePackages_latest.eslint
-      pkgs.stable.nodePackages_latest.prettier # webdev
-      pkgs.stable.nodePackages_latest.stylelint
-      pkgs.stable.nodePackages_latest.typescript-language-server
-      pkgs.stable.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
-      pkgs.stable.pylint
-      pkgs.stable.pyright
-      pkgs.stable.python312Packages.black # python
-      pkgs.stable.python312Packages.flake8
-      pkgs.stable.ripgrep
-      pkgs.stable.rust-analyzer
-      pkgs.stable.rustfmt
-      pkgs.stable.shellcheck
-      pkgs.stable.shfmt
-      pkgs.stable.stylua
-      pkgs.stable.sumneko-lua-language-server
-      pkgs.stable.terraform-ls
-      pkgs.stable.vale
-      pkgs.stable.yaml-language-server
+      pkgs.nodePackages_latest.prettier # webdev
+      pkgs.nodePackages_latest.stylelint
+      pkgs.nodePackages_latest.typescript-language-server
+      pkgs.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
+      pkgs.pylint
+      pkgs.pyright
+      pkgs.python312Packages.black # python
+      pkgs.python312Packages.flake8
+      pkgs.ripgrep
+      pkgs.rust-analyzer
+      pkgs.rustfmt
+      pkgs.shellcheck
+      pkgs.shfmt
+      pkgs.stylua
+      pkgs.sumneko-lua-language-server
+      pkgs.terraform-ls
+      pkgs.vale
+      pkgs.yaml-language-server
     ];
     plugins = with pkgs.vimPlugins; [
       # Core
@@ -217,7 +217,106 @@ in {
 
       # -- Treesitter
       {
-        plugin = nvim-treesitter.withAllGrammars;
+        plugin = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+          p.asm
+          p.astro
+          p.awk
+          p.bash
+          p.bibtex
+          p.c
+          p.c_sharp
+          p.cmake
+          p.comment
+          p.commonlisp
+          p.cpp
+          p.css
+          p.csv
+          p.dart
+          p.diff
+          p.disassembly
+          p.dockerfile
+          p.elixir
+          p.gdshader
+          p.git_config
+          p.git_rebase
+          p.gitattributes
+          p.gitcommit
+          p.gitignore
+          p.glsl
+          p.gnuplot
+          p.go
+          p.goctl
+          p.gdscript
+          p.gomod
+          p.gosum
+          p.gotmpl
+          p.gowork
+          p.gpg
+          p.graphql
+          p.haskell
+          p.haskell_persistent
+          p.hcl
+          p.helm
+          p.hjson
+          p.hlsl
+          p.html
+          p.http
+          p.java
+          p.javadoc
+          p.javascript
+          p.jq
+          p.jsdoc
+          p.json
+          p.json5
+          p.jsonc
+          p.jsonnet
+          p.kcl
+          p.kconfig
+          p.latex
+          p.ledger
+          p.llvm
+          p.lua
+          p.luadoc
+          p.lua
+          p.luau
+          p.make
+          p.markdown
+          p.markdown_inline
+          p.matlab
+          p.mermaid
+          p.nginx
+          p.nix
+          p.nu
+          p.python
+          p.ql
+          p.tree-sitter-query
+          p.r
+          p.regex
+          p.tree-sitter-requirements
+          p.ruby
+          p.rust
+          p.scss
+          p.sql
+          p.ssh_config
+          p.svelte
+          p.swift
+          p.terraform
+          p.tmux
+          p.toml
+          p.tsv
+          p.tsx
+          p.typescript
+          p.typespec
+          p.vim
+          p.vimdoc
+          p.vue
+          p.wgsl
+          p.wgsl_bevy
+          p.xml
+          p.xresources
+          p.yaml
+          p.zig
+        ]);
         type = "lua";
         config = builtins.readFile ./plugins/treesitter.lua;
       }

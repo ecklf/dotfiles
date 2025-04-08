@@ -252,7 +252,7 @@ in {
           # pkgs.natscli # NATS Command Line Interface
           # pkgs.neovim # Vim text editor fork focused on extensibility and agility
           # pkgs.redis # An open source, advanced key-value store
-          # pkgs.stable.bitwarden-cli # A secure and free password manager for all of your devices
+          # pkgs.bitwarden-cli # A secure and free password manager for all of your devices
           # pkgs.vector # A high-performance observability data pipeline
           # pkgs.watchman # Watches files and takes action when they change
         ]
