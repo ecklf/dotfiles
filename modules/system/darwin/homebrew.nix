@@ -128,6 +128,7 @@
           "Theine" = 955848755;
           "Velja" = 1607635845;
           "rcmd • App Switcher" = 1596283165;
+          "Bitwarden" = 1352778147;
         }
         // lib.optionalAttrs config.homebrewModules.developer {
           "Couverture" = 1552415914;
@@ -164,7 +165,6 @@
         config.homebrewModules.extraCasks
         ++ lib.optional config.homebrewModules.minimal [
           "appcleaner"
-          "bitwarden"
           "cleanshot"
           "iina"
           "iterm2"
