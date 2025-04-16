@@ -112,8 +112,7 @@
       # Automatically remove packages not contained in list
       onActivation.cleanup = "zap";
       global.brewfile = true;
-      masApps =
-        lib.mkIf config.homebrewModules.enableAppStore
+      masApps = lib.mkIf config.homebrewModules.enableAppStore (
         config.homebrewModules.extraApps
         // lib.optionalAttrs config.homebrewModules.minimal {
           "Cursor Pro" = 1447043133;
@@ -149,7 +148,8 @@
         }
         // lib.optionalAttrs config.homebrewModules.music {
           "Logic Pro" = 634148309;
-        };
+        }
+      );
       # taps = [];
       # Ideally leave this empty and only use nix to manage this
       brews = let

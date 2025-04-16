@@ -10,8 +10,8 @@ in {
     work = isWorkMachine;
     disk = false;
     photography = false;
-    movie = true;
-    music = true;
+    movie = false;
+    music = false;
     latex = false;
     downloader = false;
     tax = false;
