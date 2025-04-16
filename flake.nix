@@ -89,6 +89,7 @@
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "personal";
+        patchBld = true;
       };
       vercel = mkDarwin "vercel" {
         inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;

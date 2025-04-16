@@ -10,6 +10,7 @@ hostname: {
   overlays,
   darwin,
   extraModules ? [],
+  patchBld ? false,
 }: let
   systemSpecificOverlays = [
     (final: prev: {
@@ -31,8 +32,12 @@ in
     specialArgs = {inherit inputs system username profile hostname;};
     modules =
       [
-        ({system, ...}: {
-          ids.gids.nixbld = 30000;
+        ({
+          system,
+          lib,
+          ...
+        }: {
+          ids.gids = lib.mkIf patchBld {nixbld = 30000;};
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
           system.stateVersion = 6;
