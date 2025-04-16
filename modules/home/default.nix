@@ -83,6 +83,7 @@ in {
       packages = lib.flatten (
         config.homeManagerModules.extraPackages
         ++ lib.optional isDarwin [
+          pkgs.mas # Mac App Store command line interface
           pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
           pkgs.gnused # GNU sed, a batch stream editor
           pkgs.gnutls # The GNU Transport Layer Security Library
@@ -227,13 +228,16 @@ in {
         ]
         ++ lib.optional config.homeManagerModules.work [
           pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication
-          pkgs.python312Full # Python
           pkgs.goreleaser # Deliver Go binaries as fast and easily as possible
           pkgs.lua51Packages.busted # Elegant Lua unit testing
           pkgs.lua51Packages.lua # Powerful, fast, lightweight, embeddable scripting language
           pkgs.lua51Packages.luacheck # A static analyzer and a linter for Lua
           pkgs.lua51Packages.luafilesystem # File System Library for the Lua Programming Language
           pkgs.lua51Packages.luarocks # A package manager for Lua
+          pkgs.python312Full # Python
+          pkgs.python312Packages.setuptools
+          pkgs.python312Packages.setuptoolsBuildHook
+          pkgs.python312Packages.distutils
         ]
         ++ lib.optional config.homeManagerModules.hipster [
           # Hipster editors
