@@ -122,7 +122,6 @@
           "Keystroke Pro" = 1572206224;
           "Mirror Magnet" = 1563698880;
           "Numbers" = 409203825;
-          "One Thing" = 1604176982;
           "Pages" = 409201541;
           "Pure Paste" = 1611378436;
           "Theine" = 955848755;
