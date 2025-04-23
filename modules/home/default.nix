@@ -15,6 +15,7 @@ in {
     ./nnn
     ./nvim
     ./starship
+    ./tmux
     ./yazi
     ./zellij
     ./zoxide
