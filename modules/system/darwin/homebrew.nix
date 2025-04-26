@@ -180,8 +180,8 @@
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
-          "zed"
           "dbeaver-community"
+          "deskpad"
           "diffmerge"
           "figma"
           "firefox@developer-edition"
@@ -195,6 +195,7 @@
           "visual-studio-code"
           "yaak"
           "yubico-authenticator"
+          "zed"
         ]
         ++ lib.optional config.homebrewModules.affinity [
           "affinity-designer"
