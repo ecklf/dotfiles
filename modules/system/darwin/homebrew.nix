@@ -180,6 +180,7 @@
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
+          "beekeeper-studio"
           "dbeaver-community"
           "deskpad"
           "diffmerge"
