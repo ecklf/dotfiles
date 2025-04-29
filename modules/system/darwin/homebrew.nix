@@ -204,6 +204,7 @@
         ]
         ++ lib.optional config.homebrewModules.messenger [
           "discord"
+          "legcord"
           "spotify"
           "telegram"
         ]
