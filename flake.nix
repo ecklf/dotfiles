@@ -103,6 +103,12 @@
         username = "lambda";
         profile = "minimal";
       };
+      mbp = mkDarwin "mbp" {
+        inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
+        system = "aarch64-darwin";
+        username = "ecklf";
+        profile = "nobrew";
+      };
     };
   };
 }
