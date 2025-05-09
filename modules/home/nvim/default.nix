@@ -24,6 +24,15 @@ let
   #     rev = "23835d5ed696436f716cbfdb56a93a7850fe3b18";
   #   };
   # };
+  kanso = pkgs.vimUtils.buildVimPlugin {
+    pname = "kanso";
+    version = "HEAD";
+    src = builtins.fetchGit {
+      url = "ssh://git@github.com/webhooked/kanso.nvim.git";
+      ref = "main";
+      rev = "7205d3902adf14c11b6aee658d6dcddd37b7ba95";
+    };
+  };
 in {
   programs.neovim = {
     enable = true;
@@ -326,6 +335,12 @@ in {
       nvim-autopairs # Auto ()/{}/[] pairs - integrates with both cmp and treesitter
       nvim-ts-autotag # Auto HTML tag closing - integrates with treesitter
       # -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
+      {
+        # Colorschemes
+        plugin = kanso;
+        type = "lua";
+        config = builtins.readFile ./plugins/kanso.lua;
+      }
       {
         # Formatter
         plugin = conform-nvim;
