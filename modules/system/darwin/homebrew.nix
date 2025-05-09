@@ -167,6 +167,7 @@
           "cleanshot"
           "iina"
           "iterm2"
+          "ghostty"
           "jordanbaird-ice"
           "keka"
           "ledger-live"
