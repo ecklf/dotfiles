@@ -1,4 +1,5 @@
-theme = "catppuccin-mocha"
+# theme = dark:catppuccin-mocha,light:catppuccin-latte
+theme = dark:kanso-zen,light:kanso-pearl
 font-family = "JetBrainsMonoNL NFM Medium"
 font-size = 13
 macos-option-as-alt = true
