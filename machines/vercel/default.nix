@@ -15,7 +15,7 @@ in {
     latex = false;
     downloader = false;
     tax = false;
-    language = false;
+    language = true;
     wine = false;
     game = false;
   };
