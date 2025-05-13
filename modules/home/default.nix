@@ -61,6 +61,7 @@ in {
       sessionVariables =
         {
           PAGER = "less";
+          MANPAGER = "most";
           CLICLOLOR = 1;
           EDITOR = "nvim";
           VISUAL = "nvim";
@@ -117,6 +118,7 @@ in {
           pkgs.jq # A lightweight and flexible command-line JSON processor
           pkgs.lazygit # Simple terminal UI for git commands
           pkgs.less # A more advanced file pager than 'more'
+          pkgs.most # A pager with syntax highlighting for man pages
           pkgs.neofetch # A fast, highly customizable system info script
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
