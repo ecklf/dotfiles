@@ -219,6 +219,9 @@ in {
           pkgs.psutils # Collection of useful utilities for manipulating PS documents
           # Nix
           pkgs.nixos-anywhere # NixOS installer for any Linux distribution
+          # Docs
+          pkgs.wikiman # Offline search engine for manual pages
+          pkgs.tealdeer # A very fast implementation of tldr in Rust
           # Yubikey
           # pkgs.yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
           # pkgs.yubikey-personalization # A library and command line tool to personalize YubiKeys
