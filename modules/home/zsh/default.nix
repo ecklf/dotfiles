@@ -134,6 +134,7 @@ in {
           m = "make";
           n = "nvim";
           # General
+          fman = "compgen -c | fzf | xargs man";
           tree1 = "exa --tree --level=1 --icons .";
           tree2 = "exa --tree --level=2 --icons .";
           tree3 = "exa --tree --level=3 --icons .";
