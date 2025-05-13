@@ -175,7 +175,7 @@
           "raycast"
           "vivaldi"
           "vlc"
-          "zen-browser"
+          "zen"
         ]
         ++ lib.optional (config.homebrewModules.developer && lib.optional system == "aarch64-darwin") [
           "lm-studio"
