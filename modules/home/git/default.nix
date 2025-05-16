@@ -49,6 +49,10 @@
       push = {
         autoSetupRemote = true;
       };
+      # branch = {
+      #   "main".pushRemote = "no_push";
+      #   "master".pushRemote = "no_push";
+      # };
       core = {
         editor = "nvim";
         fileMode = false;
