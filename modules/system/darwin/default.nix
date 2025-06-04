@@ -59,13 +59,11 @@
       home = "/Users/${username}";
       shell = pkgs.zsh;
     };
-
     networking = {
       hostName = hostname;
       computerName = hostname;
       localHostName = hostname;
     };
-
     environment = {
       systemPath =
         if system == "aarch64-darwin"
@@ -78,7 +76,6 @@
       pathsToLink = ["/Applications"];
       shells = [pkgs.bash pkgs.zsh];
     };
-
     fonts = {
       packages = [
         pkgs.inter
@@ -86,7 +83,6 @@
         pkgs.nerd-fonts.geist-mono
       ];
     };
-
     system = {
       keyboard = {
         enableKeyMapping = true;
