@@ -58,74 +58,81 @@ in {
           eval "$(/usr/local/bin/brew shellenv)"
         ''
       );
-      initExtraFirst = ''
-        # Disable macOS Dock bouncing (xterm bellIsUrgent)
-        printf "\e[?1042l"
-        # Emacs keybindings
-        bindkey -e
 
-        # Map end-of-line key in the same way as zprezto editor module to prevent issue with tmux-resurrect.
-        bindkey "^E" end-of-line
+      initContent = lib.mkMerge [
+        # Before CompInit
+        (lib.mkBefore ''
+          # Disable macOS Dock bouncing (xterm bellIsUrgent)
+          printf "\e[?1042l"
+          # Emacs keybindings
+          bindkey -e
 
-        # Edit command line in $EDITOR
-        autoload edit-command-line
-        zle -N edit-command-line
-        bindkey "^X^E" edit-command-line
+          # Map end-of-line key in the same way as zprezto editor module to prevent issue with tmux-resurrect.
+          bindkey "^E" end-of-line
 
-        # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
-        setopt CLOBBER
-      '';
-      initExtraBeforeCompInit = ''
-        zstyle ':completion:*' menu select
-        zmodload zsh/complist
-      '';
-      initExtra = ''
-        # pnpm
-        export PNPM_HOME="/Users/$(whoami)/Library/pnpm"
-        export PATH="$PNPM_HOME:$PATH"
-        export PATH="$HOME/development/flutter/bin:$PATH"
+          # Edit command line in $EDITOR
+          autoload edit-command-line
+          zle -N edit-command-line
+          bindkey "^X^E" edit-command-line
 
-        eval "$(direnv hook zsh)"
+          # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
+          setopt CLOBBER
+        '')
+        # Init
+        (lib.mkOrder 550 ''
+          zstyle ':completion:*' menu select
+          zmodload zsh/complist
+        '')
+        # Config
+        ''
+          # pnpm
+          export PNPM_HOME="/Users/$(whoami)/Library/pnpm"
+          export PATH="$PNPM_HOME:$PATH"
+          export PATH="$HOME/development/flutter/bin:$PATH"
 
-        # Adding color support for ls etc.
-        precmd () {print -Pn "\e]0;%~\a"}
+          eval "$(direnv hook zsh)"
 
-        # Include hidden files
-        _comp_options+=(globdots)
-        autoload -Uz url-quote-magic
-        zle -N self-insert url-quote-magic
+          # Adding color support for ls etc.
+          precmd () {print -Pn "\e]0;%~\a"}
 
-        # cheat $1, returns RL examples of provided tool
-        function cheat(){
-          command curl "cheat.sh/$1"
-        }
+          # Include hidden files
+          _comp_options+=(globdots)
+          autoload -Uz url-quote-magic
+          zle -N self-insert url-quote-magic
 
-        function update_input() {
-          input=$(nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf)
-          nix flake update "$input"
-        }
+          # cheat $1, returns RL examples of provided tool
+          function cheat(){
+            command curl "cheat.sh/$1"
+          }
 
-        # bundle_id $1, returns the macOS bundle id for the provided app name
-        function bundle-id() {
-          osascript -e "id of app \"$1\""
-        }
+          function update_input() {
+            input=$(nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf)
+            nix flake update "$input"
+          }
 
-        # Copies current branch name to clipboard
-        function copy_curr_branch(){
-          local ref="$(command git symbolic-ref HEAD 2> /dev/null)"
+          # bundle_id $1, returns the macOS bundle id for the provided app name
+          function bundle-id() {
+            osascript -e "id of app \"$1\""
+          }
 
-          if [[ -n "$ref" ]]; then
-            echo "''${ref#refs/heads/}" | pbcopy
+          # Copies current branch name to clipboard
+          function copy_curr_branch(){
+            local ref="$(command git symbolic-ref HEAD 2> /dev/null)"
+
+            if [[ -n "$ref" ]]; then
+              echo "''${ref#refs/heads/}" | pbcopy
+            fi
+          }
+
+          if [[ $(arch) == "arm64" ]]; then
+            eval "$(fnm env --arch arm64 --use-on-cd)"
+          else
+            eval "$(fnm env --use-on-cd)"
           fi
-        }
+          eval "$(task --completion zsh)"
+        ''
+      ];
 
-        if [[ $(arch) == "arm64" ]]; then
-          eval "$(fnm env --arch arm64 --use-on-cd)"
-        else
-          eval "$(fnm env --use-on-cd)"
-        fi
-        eval "$(task --completion zsh)"
-      '';
       shellAliases =
         {
           nix-shell = "nix-shell --run zsh";
