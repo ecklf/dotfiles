@@ -1,4 +1,4 @@
-echo "patching macOS screen capture approvals for user $NIX_RUN_USER"
+echo "Patching macOS screen capture approvals"
 screenCaptureApps=(
   "/Applications/CleanShot X.app/Contents/MacOS/CleanShot X"
   "/Applications/zoom.us.app/Contents/MacOS/zoom.us"

@@ -62,9 +62,16 @@ in {
     system.activationScripts.postActivation = {
       enable = true;
       text = let
-        initUsername = ''export NIX_RUN_USER=${username}'';
+        initUsername = ''
+          echo "Running post activation scripts for user ${username}"
+          export NIX_RUN_USER=${username}
+        '';
+        # Should avoid a logout/login cycle when changing settings
+        respring = ''
+          sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+        '';
         patchDefaultApps = ''
-          echo "patching macOS default apps for user ${username}"
+          echo "Patching macOS default apps"
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .mp4 all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .mov all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .webm all
@@ -123,7 +130,8 @@ in {
             [
               patchDefaultApps
             ])
-          ++ scriptContents;
+          ++ scriptContents
+          ++ [respring];
       in
         builtins.concatStringsSep "\n" fullScript;
     };
