@@ -59,18 +59,19 @@ in {
       '';
     };
 
-    system.activationScripts.postUserActivation = {
-      enable = true;
-      text = let
-        scriptFiles = lib.flatten ([]
-          ++ lib.optional config.activationScriptModules.patches.screenCaptureApprovals [
-            "${userActivationScriptsPath}/patch-screencapture-approvals.sh"
-          ]
-          ++ lib.optional config.activationScriptModules.patches.defaultApplications [
-            "${userActivationScriptsPath}/patch-default-apps.sh"
-          ]);
-      in
-        builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
-    };
+    # There is no postUserActivationScripts in nix-darwin, anymore. TODO figure out how to run these scripts based on user
+    # system.activationScripts.postActivation = {
+    #   enable = true;
+    #   text = let
+    #     scriptFiles = lib.flatten ([]
+    #       ++ lib.optional config.activationScriptModules.patches.screenCaptureApprovals [
+    #         "${userActivationScriptsPath}/patch-screencapture-approvals.sh"
+    #       ]
+    #       ++ lib.optional config.activationScriptModules.patches.defaultApplications [
+    #         "${userActivationScriptsPath}/patch-default-apps.sh"
+    #       ]);
+    #   in
+    #     builtins.concatStringsSep "\n" (map (file: builtins.readFile file) scriptFiles);
+    # };
   };
 })

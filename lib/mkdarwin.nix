@@ -38,6 +38,8 @@ in
           ...
         }: {
           ids.gids = lib.mkIf patchBld {nixbld = 30000;};
+          # The user used for options that previously applied to the user running darwin-rebuild.
+          system.primaryUser = username;
           # Used for backwards compatibility, please read the changelog before changing.
           # $ darwin-rebuild changelog
           system.stateVersion = 6;
