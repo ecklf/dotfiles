@@ -18,6 +18,6 @@ in {
     language = true;
     wine = false;
     game = false;
-    extraCasks = ["chromium" "gog-galaxy"];
+    extraCasks = ["chromium" "gog-galaxy" "steam"];
   };
 })
