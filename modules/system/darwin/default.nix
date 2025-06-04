@@ -182,6 +182,18 @@
             NewWindowTarget = "PfHm";
             NewWindowTargetPath = "file:///Users/${username}/";
           };
+          "com.apple.symbolichotkeys" = {
+            AppleSymbolicHotKeys = {
+              # Disable 'Cmd + Space' for Spotlight Search
+              "64" = {
+                enabled = false;
+              };
+              # Disable 'Cmd + Alt + Space' for Finder search window
+              "65" = {
+                enabled = false;
+              };
+            };
+          };
           "com.apple.desktopservices" = {
             # Avoid creating .DS_Store files on network or USB volumes
             DSDontWriteNetworkStores = true;
