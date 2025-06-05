@@ -130,7 +130,6 @@
         }
         // lib.optionalAttrs config.homebrewModules.developer {
           "Couverture" = 1552415914;
-          "EasyRes" = 688211836;
           "System Color Picker" = 1545870783;
           "Xcode" = 497799835;
         }
