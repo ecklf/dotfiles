@@ -61,7 +61,7 @@ in {
       sessionVariables =
         {
           PAGER = "less";
-          MANPAGER = "most";
+          MANPAGER = "less";
           CLICLOLOR = 1;
           EDITOR = "nvim";
           VISUAL = "nvim";
@@ -80,6 +80,7 @@ in {
           ".config/iterm2/com.googlecode.iterm2.plist".source = ./config/iterm2/com.googlecode.iterm2.plist;
           ".config/iterm2/nordic_light.itermcolors".source = ./config/iterm2/nordic_light.itermcolors;
           ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
+          ".wezterm.lua".source = ./config/wezterm/config;
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
         };
 
