@@ -195,6 +195,7 @@
           "safari-technology-preview"
           "utm"
           "visual-studio-code"
+          "wezterm"
           "yaak"
           "yubico-authenticator"
           "zed"
