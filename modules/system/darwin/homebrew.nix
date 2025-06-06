@@ -131,6 +131,7 @@
         // lib.optionalAttrs config.homebrewModules.developer {
           "Couverture" = 1552415914;
           "System Color Picker" = 1545870783;
+          "Gifski" = 1351639930;
           "Xcode" = 497799835;
         }
         // lib.optionalAttrs config.homebrewModules.messenger {
