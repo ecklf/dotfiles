@@ -329,9 +329,29 @@ in {
         type = "lua";
         config = builtins.readFile ./plugins/treesitter.lua;
       }
-      nvim-treesitter-context # Show code context
+      {
+        plugin = nvim-treesitter-context; # Show code context
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
+            require("treesitter-context").setup({})
+          '';
+      }
       nvim-treesitter-textobjects # Additional textobjects for treesitter
-      nvim-ts-context-commentstring # JSX commenting
+      {
+        plugin = nvim-ts-context-commentstring;
+        type = "lua";
+        config =
+          /*
+          lua
+          */
+          ''
+            require("ts_context_commentstring").setup({})
+          '';
+      }
       nvim-autopairs # Auto ()/{}/[] pairs - integrates with both cmp and treesitter
       nvim-ts-autotag # Auto HTML tag closing - integrates with treesitter
       # -- use { "p00f/nvim-ts-rainbows" } -- Rainbow parentheses - integrates with treesitter
