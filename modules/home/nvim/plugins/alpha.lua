@@ -1,5 +1,5 @@
 local status_ok, alpha = pcall(require, "alpha")
-if not status_ok then
+if not status_ok or vim.g.vscode then
 	return
 end
 

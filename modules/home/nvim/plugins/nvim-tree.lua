@@ -1,5 +1,5 @@
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
-if not status_ok then
+if not status_ok or vim.g.vscode then
 	print("Failed to load nvim-tree")
 	return
 end

@@ -1,5 +1,5 @@
 local status_ok, lualine = pcall(require, "lualine")
-if not status_ok then
+if not status_ok or vim.g.vscode then
 	return
 end
 

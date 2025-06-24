@@ -95,7 +95,7 @@ local on_attach = function(client, bufnr)
 
 	lsp_keymaps(bufnr)
 	local status_ok, illuminate = pcall(require, "illuminate")
-	if not status_ok then
+	if not status_ok or vim.g.vscode then
 		return
 	end
 	illuminate.on_attach(client)
