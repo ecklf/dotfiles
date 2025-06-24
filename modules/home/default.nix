@@ -175,6 +175,7 @@ in {
           pkgs.postgresql_17
           # Helpers
           pkgs.age # Modern encryption tool with small explicit keys
+          pkgs.biome # Toolchain of the web
           pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
           pkgs.direnv # A shell extension that manages your environment
           pkgs.fx # Terminal JSON viewer
