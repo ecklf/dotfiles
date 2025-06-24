@@ -174,6 +174,7 @@ in {
           # Databases
           pkgs.postgresql_17
           # Helpers
+          pkgs.ast-grep # A tool to search for AST nodes in source code
           pkgs.age # Modern encryption tool with small explicit keys
           pkgs.biome # Toolchain of the web
           pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
