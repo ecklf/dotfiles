@@ -174,13 +174,6 @@ in {
       }
       # Detect tabstop and shiftwidth automatically
       vim-sleuth
-      {
-        # Add/change/delete surrounding delimiter pairs with ease
-        plugin = comment-nvim;
-        type = "lua";
-        config = builtins.readFile ./plugins/comment.lua;
-      }
-
       # -- Highlight, list and search todo comments in your projects
       # -- use {
       # -- "folke/todo-comments.nvim",
