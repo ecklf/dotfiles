@@ -5,6 +5,8 @@ end
 
 local dashboard = require("alpha.themes.dashboard")
 
+-- nix-shell -p python3 python3Packages.typer python3Packages.opencv-python python3Packages.numpy
+
 dashboard.section.header.val = {
 	"                                   ",
 	"                                   ",
