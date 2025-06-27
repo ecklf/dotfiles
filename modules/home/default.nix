@@ -124,6 +124,7 @@ in {
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
           pkgs.pv # Tool for monitoring the progress of data through a pipeline
+          pkgs.repgrep # Interactive replacer for ripgrep that makes it easy to find and replace across files on the command line
           pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
           pkgs.rsync # Fast incremental file transfer utility
           pkgs.stow # A tool for managing the installation of multiple software packages in the same run-time directory tree
@@ -190,11 +191,14 @@ in {
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           # Database
           pkgs.dbmate # Database migration tool
+          pkgs.rainfrog # Database management TUI for postgres
           pkgs.sea-orm-cli #  Command line utility for SeaORM
           # GitHub
           pkgs.act # Run your GitHub Actions locally
           pkgs.gh # GitHub CLI tool
-          # Monitoring, Network and Benchmarking
+          pkgs.serie # Rich git commit graph in your terminal, like magic
+          # Networking / Monitoring / Benchmarking
+          pkgs.atac # Simple API client (postman like) in your terminal
           pkgs.btop # A monitor of resources
           pkgs.frp # A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet
           pkgs.glances # Cross-platform curses-based monitoring tool
@@ -211,12 +215,12 @@ in {
           pkgs.subfinder # Subdomain discovery tool
           pkgs.trippy # A network diagnostic tool
           pkgs.trivy # A simple and comprehensive vulnerability scanner for containers, suitable for CI
-          # Cloud platforms
+          # Cloud
           pkgs.awscli2 # Unified tool to manage your AWS services
           pkgs.google-cloud-sdk # Tools for the google cloud platform
           pkgs.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
           pkgs.terraform # OpenTofu, Terraform, Terragrunt and Atmos version manager written in Go
-          # Graphics and media
+          # Media
           pkgs.cairo # A 2D graphics library with support for multiple output devices
           pkgs.ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video (Jellyfin fork)
           pkgs.graphicsmagick # Swiss army knife of image processing
@@ -227,6 +231,7 @@ in {
           # Nix
           pkgs.nixos-anywhere # NixOS installer for any Linux distribution
           # Docs
+          pkgs.tui-journal # A terminal-based journal application
           pkgs.wikiman # Offline search engine for manual pages
           pkgs.tealdeer # A very fast implementation of tldr in Rust
           # Yubikey
