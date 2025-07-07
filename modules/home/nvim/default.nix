@@ -51,7 +51,7 @@ in {
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
-      pkgs.biome
+      pkgs.unstable.biome
       pkgs.gopls
       pkgs.nixd # nix lsp
       pkgs.alejandra # nix formatter
