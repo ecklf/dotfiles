@@ -33,6 +33,12 @@ let
       rev = "7205d3902adf14c11b6aee658d6dcddd37b7ba95";
     };
   };
+
+  custom-snippets = pkgs.vimUtils.buildVimPlugin {
+    pname = "custom-snippets";
+    version = "1.0.0";
+    src = ./plugins/custom-snippets;
+  };
 in {
   programs.neovim = {
     enable = true;
@@ -196,6 +202,7 @@ in {
 
       luasnip # snippet engine
       friendly-snippets # snippet collection
+      custom-snippets # custom snippets
 
       cmp-buffer # buffer completions
       cmp-path # path completions

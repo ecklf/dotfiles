@@ -1,0 +1,30 @@
+{
+  "Gen Function $": {
+    "prefix": "gg",
+    "body": [
+      "function* () {\n\t$0\n}"
+    ],
+    "description": "Generator function"
+  },
+  "Gen Function $ (wrapped)": {
+    "prefix": "egg",
+    "body": [
+      "Effect.gen(function* () {\n\t$0\n})"
+    ],
+    "description": "Effect.gen with Generator function"
+  },
+  "Gen Yield $": {
+    "prefix": "yy",
+    "body": [
+      "yield* $0"
+    ],
+    "description": "Yield generator calling"
+  },
+  "Gen Yield $ (const)": {
+    "prefix": "cyy",
+    "body": [
+      "const $1 = yield* $0"
+    ],
+    "description": "Yield generator calling and assign to const"
+  }
+}
