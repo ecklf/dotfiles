@@ -181,6 +181,7 @@
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
+          "coconutbattery"
           "cursor"
           "beekeeper-studio"
           "dbeaver-community"
