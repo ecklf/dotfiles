@@ -115,18 +115,19 @@
       masApps = lib.mkIf config.homebrewModules.enableAppStore (
         config.homebrewModules.extraApps
         // lib.optionalAttrs config.homebrewModules.minimal {
+          "Bitwarden" = 1352778147;
           "Cursor Pro" = 1447043133;
           "Dato" = 1470584107;
+          "GoodNotes 6: AI Notes & Docs" = 1444383602;
           "Keynote" = 409183694;
           "Keystroke Pro" = 1572206224;
           "Mirror Magnet" = 1563698880;
           "Numbers" = 409203825;
           "Pages" = 409201541;
           "Pure Paste" = 1611378436;
+          "rcmd • App Switcher" = 1596283165;
           "Theine" = 955848755;
           "Velja" = 1607635845;
-          "rcmd • App Switcher" = 1596283165;
-          "Bitwarden" = 1352778147;
         }
         // lib.optionalAttrs config.homebrewModules.developer {
           "Couverture" = 1552415914;
