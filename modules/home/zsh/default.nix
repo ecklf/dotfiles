@@ -90,6 +90,9 @@ in {
           export PATH="$PNPM_HOME:$PATH"
           export PATH="$HOME/development/flutter/bin:$PATH"
 
+          # Go
+          export GOPATH="/Users/$(whoami)/go"
+
           eval "$(direnv hook zsh)"
 
           # Adding color support for ls etc.
