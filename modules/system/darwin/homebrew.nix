@@ -182,9 +182,10 @@
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
+          "nosql-workbench"
+          "beekeeper-studio"
           "coconutbattery"
           "cursor"
-          "beekeeper-studio"
           "dbeaver-community"
           "deskpad"
           "diffmerge"
