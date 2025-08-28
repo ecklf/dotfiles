@@ -138,6 +138,10 @@ in {
           pkgs.zsh # The Z shell
         ]
         ++ lib.optional config.homeManagerModules.developer [
+          # AI agents
+          pkgs.claude-code
+          pkgs.crush
+          pkgs.opencode
           # Development
           pkgs.cargo-nextest # Next-generation test runner for Rust projects
           pkgs.cargo-watch # A Cargo subcommand for watching over Cargo project's source
