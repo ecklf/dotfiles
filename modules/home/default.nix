@@ -141,7 +141,7 @@ in {
           # AI agents
           pkgs.claude-code
           pkgs.crush
-          pkgs.opencode
+          pkgs.master.opencode
           # Development
           pkgs.cargo-nextest # Next-generation test runner for Rust projects
           pkgs.cargo-watch # A Cargo subcommand for watching over Cargo project's source
