@@ -77,6 +77,12 @@ in {
 
           # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
           setopt CLOBBER
+
+          # Enable correction
+          setopt CORRECT
+
+          # Case insensitive globbing
+          setopt NO_CASE_GLOB
         '')
         # Init
         (lib.mkOrder 550 ''
