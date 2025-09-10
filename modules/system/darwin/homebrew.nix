@@ -272,6 +272,7 @@
         ]
         ++ lib.optional config.homebrewModules.game [
           "steam"
+          "mgba-app"
         ]
       );
     };
