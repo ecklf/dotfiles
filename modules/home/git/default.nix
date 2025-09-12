@@ -30,6 +30,10 @@
     #   signing.key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBY2vg6JN45hpcl9HH279/ityPEGGOrDjY3KdyulOUmX";
     # };
 
+    aliases = {
+      open = "!f() { open \"$(git config --get remote.origin.url | sed -E \"s/\\.git$//;s/git@github\\.com:/https:\\/\\/github.com\\//\")\"; }; f";
+    };
+
     extraConfig = {
       # Sign all commits using ssh key
       commit.gpgsign = true;
