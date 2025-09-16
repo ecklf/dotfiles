@@ -149,10 +149,10 @@
             NSStatusItemSpacing = 12; # X
             NSStatusItemSelectionPadding = 6; # Y
             # Set accent and highlight color to purple (requires restart of Finder or reboot)
-            AppleAccentColor = 5;
-            AppleHighlightColor = "0.968627 0.831373 1.000000 Purple";
+            # AppleAccentColor = 5;
+            # AppleHighlightColor = "0.968627 0.831373 1.000000 Purple";
             # Auto mode for light/dark mode
-            AppleInterfaceStyleSwitchesAutomatically = 1;
+            # AppleInterfaceStyleSwitchesAutomatically = 1;
             # Disable shake mouse to locate cursor
             CGDisableCursorLocationMagnification = 1;
             # Add a context menu item for showing the Web Inspector in web views
