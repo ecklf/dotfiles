@@ -79,10 +79,10 @@ in {
           setopt CLOBBER
 
           # Enable correction
-          setopt CORRECT
+          # setopt CORRECT
 
           # Case insensitive globbing
-          setopt NO_CASE_GLOB
+          # setopt NO_CASE_GLOB
         '')
         # Init
         (lib.mkOrder 550 ''
