@@ -79,8 +79,12 @@
     fonts = {
       packages = [
         pkgs.inter
-        pkgs.nerd-fonts.jetbrains-mono
         pkgs.nerd-fonts.geist-mono
+        pkgs.nerd-fonts.noto
+        pkgs.nerd-fonts.inconsolata
+        pkgs.nerd-fonts.jetbrains-mono
+        pkgs.nerd-fonts.iosevka
+        pkgs.nerd-fonts.iosevka-term
       ];
     };
     system = {
