@@ -124,6 +124,7 @@
           "Mirror Magnet" = 1563698880;
           "Numbers" = 409203825;
           "Pages" = 409201541;
+          "Passepartout, VPN Client" = 1433648537;
           "Pure Paste" = 1611378436;
           "rcmd • App Switcher" = 1596283165;
           "Theine" = 955848755;
@@ -166,9 +167,9 @@
         ++ lib.optional config.homebrewModules.minimal [
           "appcleaner"
           "cleanshot"
+          "ghostty"
           "iina"
           "iterm2"
-          "ghostty"
           "jordanbaird-ice"
           "keka"
           "ledger-live"
