@@ -181,7 +181,7 @@
           "vlc"
           "zen"
         ]
-        ++ lib.optional (config.homebrewModules.developer && lib.optional system == "aarch64-darwin") [
+        ++ lib.optional (config.homebrewModules.developer && system == "aarch64-darwin") [
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [

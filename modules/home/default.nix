@@ -96,7 +96,7 @@ in {
           # pkgs.mitmproxy # Man-in-the-middle proxy
           # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
         ]
-        ++ lib.optional (config.homeManagerModules.minimal && lib.optional system == "aarch64-darwin") [
+        ++ lib.optional (config.homeManagerModules.minimal && system == "aarch64-darwin") [
           # Fails to compile on x86_64
           pkgs.fclones # Efficient Duplicate File Finder and Remover
         ]
