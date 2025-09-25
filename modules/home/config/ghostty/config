@@ -2,7 +2,7 @@
 theme = dark:kanso-zen,light:kanso-pearl
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 13
-macos-option-as-alt = true
+macos-option-as-alt = left
 keybind = super+alt+l=goto_split:right
 keybind = super+alt+h=goto_split:left
 keybind = super+alt+j=goto_split:bottom
@@ -15,3 +15,8 @@ macos-titlebar-style = native
 # window-decoration = false
 # macos-non-native-fullscreen = true
 macos-icon = xray
+split-divider-color = #666666
+resize-overlay = always
+copy-on-select = true
+clipboard-paste-protection = false
+scrollback-limit = 1000000
