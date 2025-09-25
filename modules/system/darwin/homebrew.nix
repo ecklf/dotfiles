@@ -157,6 +157,8 @@
         brewList = lib.flatten ([]
           ++ config.homebrewModules.extraBrews
           ++ lib.optional config.homebrewModules.personal [
+            "libimobiledevice"
+            "ideviceinstaller"
             "czkawka"
           ]);
       in
@@ -183,7 +185,6 @@
           "lm-studio"
         ]
         ++ lib.optional config.homebrewModules.developer [
-          "nosql-workbench"
           "beekeeper-studio"
           "coconutbattery"
           "cursor"
@@ -194,7 +195,7 @@
           "firefox@developer-edition"
           "google-chrome"
           "gpg-suite"
-          "lm-studio"
+          "nosql-workbench"
           "orbstack"
           "rapidapi"
           "safari-technology-preview"
@@ -240,7 +241,7 @@
           "xnviewmp"
         ]
         ++ lib.optional config.homebrewModules.movie [
-          "handbrake"
+          "handbrake-app"
           "obs"
         ]
         ++ lib.optional config.homebrewModules.music [
