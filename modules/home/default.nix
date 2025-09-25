@@ -214,6 +214,7 @@ in {
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.ngrok # A Python wrapper for ngrok
           pkgs.nmap # A free and open source utility for network discovery and security auditing
+          pkgs.s-tui # Stress-Terminal UI monitoring tool
           pkgs.smartmontools # Tools for monitoring the health of hard drives
           pkgs.speedtest-cli # Command line interface for testing internet bandwidth using speedtest.net
           pkgs.subfinder # Subdomain discovery tool
