@@ -196,6 +196,7 @@
           "google-chrome"
           "gpg-suite"
           "nosql-workbench"
+          "obs"
           "orbstack"
           "rapidapi"
           "safari-technology-preview"
@@ -242,7 +243,6 @@
         ]
         ++ lib.optional config.homebrewModules.movie [
           "handbrake-app"
-          "obs"
         ]
         ++ lib.optional config.homebrewModules.music [
           "blackhole-16ch"
