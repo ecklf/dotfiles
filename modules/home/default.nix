@@ -256,7 +256,6 @@ in {
           pkgs.lua51Packages.luacheck # A static analyzer and a linter for Lua
           pkgs.lua51Packages.luafilesystem # File System Library for the Lua Programming Language
           pkgs.lua51Packages.luarocks # A package manager for Lua
-          pkgs.python312Full # Python
           pkgs.python312Packages.setuptools
           pkgs.python312Packages.setuptoolsBuildHook
           pkgs.python312Packages.distutils
