@@ -64,7 +64,7 @@ in {
       pkgs.nodePackages_latest."@tailwindcss/language-server"
       # pkgs.nodePackages_latest."graphql"
       pkgs.nodePackages_latest.bash-language-server
-      pkgs.nodePackages_latest.dockerfile-language-server
+      pkgs.nodePackages_latest.dockerfile-language-server-nodejs
       pkgs.master.nodePackages_latest.eslint
       pkgs.nodePackages_latest.prettier # webdev
       pkgs.nodePackages_latest.stylelint
