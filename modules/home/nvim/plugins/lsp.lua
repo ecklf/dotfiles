@@ -142,12 +142,10 @@ for _, server in pairs(servers) do
 	if server == "vtsls" then
 		local vtsls_opts = {
 			settings = {
-				vtsls = {
+				typescript = {
 					tsserver = {
 						maxTsServerMemory = 8192,
 					},
-				},
-				typescript = {
 					inlayHints = {
 						includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
 						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
