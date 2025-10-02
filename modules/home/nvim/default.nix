@@ -69,6 +69,7 @@ in {
       pkgs.nodePackages_latest.prettier # webdev
       pkgs.nodePackages_latest.stylelint
       pkgs.nodePackages_latest.typescript-language-server
+      pkgs.vtsls # vscode based typescript lsp (better perf)
       pkgs.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright

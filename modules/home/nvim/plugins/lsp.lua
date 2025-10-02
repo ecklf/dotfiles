@@ -85,7 +85,7 @@ local on_attach = function(client, bufnr)
 	--[[ 	}) ]]
 	--[[ end ]]
 
-	if client.name == "ts_ls" then
+	if client.name == "vtsls" then
 		client.server_capabilities.document_formatting = false
 	end
 
@@ -123,7 +123,7 @@ local servers = {
 	"stylelint_lsp",
 	"tailwindcss",
 	"terraformls",
-	"ts_ls",
+	"vtsls",
 	"yamlls",
 	--[[ "cssls", ]]
 	--[[ "jsonls", ]]
@@ -139,10 +139,14 @@ for _, server in pairs(servers) do
 		-- capabilities = require("user.lsp.handlers").capabilities,
 	}
 
-	if server == "ts_ls" then
-		local ts_ls_opts = {
+	if server == "vtsls" then
+		local vtsls_opts = {
 			settings = {
-				maxTsServerMemory = 12000,
+				vtsls = {
+					tsserver = {
+						maxTsServerMemory = 8192,
+					},
+				},
 				typescript = {
 					inlayHints = {
 						includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
@@ -158,7 +162,7 @@ for _, server in pairs(servers) do
 				},
 			},
 		}
-		opts = vim.tbl_deep_extend("force", ts_ls_opts, opts)
+		opts = vim.tbl_deep_extend("force", vtsls_opts, opts)
 	end
 
 	if server == "biome" then
