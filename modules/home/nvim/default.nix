@@ -69,7 +69,6 @@ in {
       pkgs.nodePackages_latest.prettier # webdev
       pkgs.nodePackages_latest.stylelint
       pkgs.nodePackages_latest.typescript-language-server
-      pkgs.vtsls # vscode based typescript lsp (better perf)
       pkgs.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
@@ -88,6 +87,7 @@ in {
     ];
     plugins = with pkgs.vimPlugins; [
       # Core
+      typescript-tools-nvim
       # use("wbthomason/packer.nvim") -- packer self-manage
       plenary-nvim # useful lua functions used ny lots of plugins - required by Telescope
       impatient-nvim # improves loading times

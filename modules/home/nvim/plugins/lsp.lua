@@ -1,7 +1,4 @@
-local lspconfig_status_ok, lspconfig = pcall(require, "lspconfig")
-if not lspconfig_status_ok then
-	return
-end
+
 
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
@@ -85,7 +82,7 @@ local on_attach = function(client, bufnr)
 	--[[ 	}) ]]
 	--[[ end ]]
 
-	if client.name == "vtsls" then
+	if client.name == "typescript-tools" then
 		client.server_capabilities.document_formatting = false
 	end
 
@@ -123,7 +120,7 @@ local servers = {
 	"stylelint_lsp",
 	"tailwindcss",
 	"terraformls",
-	"vtsls",
+	-- "vtsls",
 	"yamlls",
 	--[[ "cssls", ]]
 	--[[ "jsonls", ]]
@@ -139,29 +136,7 @@ for _, server in pairs(servers) do
 		-- capabilities = require("user.lsp.handlers").capabilities,
 	}
 
-	if server == "vtsls" then
-		local vtsls_opts = {
-			settings = {
-				typescript = {
-					tsserver = {
-						maxTsServerMemory = 8192,
-					},
-					inlayHints = {
-						includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-						includeInlayFunctionParameterTypeHints = true,
-						includeInlayVariableTypeHints = true,
-						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-						includeInlayPropertyDeclarationTypeHints = true,
-						includeInlayFunctionLikeReturnTypeHints = true,
-						includeInlayEnumMemberValueHints = true,
-					},
-					preferGoToSourceDefinition = true,
-				},
-			},
-		}
-		opts = vim.tbl_deep_extend("force", vtsls_opts, opts)
-	end
+
 
 	if server == "biome" then
 		local biome_opts = {
@@ -290,5 +265,29 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	end
 
-	lspconfig[server].setup(opts)
+	vim.lsp.config[server] = opts
+end
+
+-- TypeScript Tools setup
+local typescript_tools_status_ok, typescript_tools = pcall(require, "typescript-tools")
+if typescript_tools_status_ok then
+	typescript_tools.setup({
+		on_attach = on_attach,
+		capabilities = capabilities,
+		settings = {
+			tsserver_max_memory = 8192,
+			complete_function_calls = true,
+			include_completions_with_insert_text = true,
+			tsserver_file_preferences = {
+				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+				includeInlayFunctionParameterTypeHints = true,
+				includeInlayVariableTypeHints = true,
+				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+				includeInlayPropertyDeclarationTypeHints = true,
+				includeInlayFunctionLikeReturnTypeHints = true,
+				includeInlayEnumMemberValueHints = true,
+			},
+		},
+	})
 end
