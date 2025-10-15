@@ -29,6 +29,10 @@ quick-terminal-animation-duration = 0
 macos-window-buttons = hidden
 macos-titlebar-style = native
 macos-titlebar-proxy-icon = hidden
+
 macos-option-as-alt = left
+keybind = alt+arrow_left=unbind
+keybind = alt+arrow_right=unbind
+
 # macos-non-native-fullscreen = true
 # macos-icon = xray 
