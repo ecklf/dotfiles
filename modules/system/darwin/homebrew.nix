@@ -217,6 +217,7 @@
           "legcord"
           "spotify"
           "telegram"
+          "halloy"
         ]
         ++ lib.optional config.homebrewModules.disk [
           "balenaetcher"
