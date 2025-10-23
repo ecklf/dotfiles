@@ -203,6 +203,7 @@
           "utm"
           "visual-studio-code"
           "wezterm"
+          "wireshark"
           "yaak"
           "yubico-authenticator"
           "zed"
@@ -260,10 +261,9 @@
           "windscribe"
           "surfshark"
           # "lulu"
-          # "wireshark"
         ]
         ++ lib.optional config.homebrewModules.tax [
-          "wiso-steuer-2022"
+          # "wiso-steuer-2022"
           # "wiso-steuer-2023"
           # "wiso-steuer-2024"
         ]
