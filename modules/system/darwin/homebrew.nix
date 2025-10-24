@@ -203,7 +203,7 @@
           "utm"
           "visual-studio-code"
           "wezterm"
-          "wireshark"
+          "wireshark-app"
           "yaak"
           "yubico-authenticator"
           "zed"
