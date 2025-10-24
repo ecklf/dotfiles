@@ -274,8 +274,9 @@
           "whisky"
         ]
         ++ lib.optional config.homebrewModules.game [
-          "steam"
+          "gog-galaxy"
           "mgba-app"
+          "steam"
         ]
       );
     };

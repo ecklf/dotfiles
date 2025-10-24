@@ -17,7 +17,7 @@ in {
     tax = false;
     language = true;
     wine = false;
-    game = false;
+    game = true;
   };
 
   activationScriptModules.extraPreActivationScripts = [];
