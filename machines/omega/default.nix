@@ -17,7 +17,7 @@ in {
     tax = true;
     language = true;
     wine = false;
-    game = false;
-    extraCasks = ["chromium" "gog-galaxy" "steam" "mgba-app"];
+    game = true;
+    extraCasks = ["chromium"];
   };
 })
