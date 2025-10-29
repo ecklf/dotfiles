@@ -1,5 +1,3 @@
-
-
 local status_cmp_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_cmp_ok then
 	return
@@ -82,6 +80,10 @@ local on_attach = function(client, bufnr)
 	--[[ 	}) ]]
 	--[[ end ]]
 
+	if client.name == "rust_analyzer" then
+		pcall(vim.lsp.inlay_hint.enable, true, { bufnr = bufnr })
+	end
+
 	if client.name == "typescript-tools" then
 		client.server_capabilities.document_formatting = false
 	end
@@ -135,8 +137,6 @@ for _, server in pairs(servers) do
 		-- on_attach = require("user.lsp.handlers").on_attach,
 		-- capabilities = require("user.lsp.handlers").capabilities,
 	}
-
-
 
 	if server == "biome" then
 		local biome_opts = {
@@ -212,9 +212,10 @@ for _, server in pairs(servers) do
 			settings = {
 				-- https://github.com/rust-analyzer/rust-analyzer/blob/master/docs/user/generated_config.adoc
 				["rust-analyzer"] = {
-					checkOnSave = {
+					check = {
 						command = "clippy",
 					},
+					checkOnSave = true,
 					procMacro = {
 						enable = true,
 					},
@@ -266,6 +267,7 @@ for _, server in pairs(servers) do
 	end
 
 	vim.lsp.config[server] = opts
+	vim.lsp.enable(server)
 end
 
 -- TypeScript Tools setup
