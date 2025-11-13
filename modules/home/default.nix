@@ -208,6 +208,7 @@ in {
           pkgs.glances # Cross-platform curses-based monitoring tool
           pkgs.httpstat # curl statistics made simple
           pkgs.hyperfine # Command-line benchmarking tool
+          pkgs.wrk # A HTTP benchmarking tool
           pkgs.inetutils # Collection of common network programs
           pkgs.ipcalc # Simple IP network calculator
           pkgs.master.plow # A high-performance HTTP benchmarking tool that includes a real-time web UI and terminal display
