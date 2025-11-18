@@ -87,8 +87,6 @@ in {
     ];
     plugins = with pkgs.vimPlugins; [
       # Core
-      typescript-tools-nvim
-      # use("wbthomason/packer.nvim") -- packer self-manage
       plenary-nvim # useful lua functions used ny lots of plugins - required by Telescope
       impatient-nvim # improves loading times
       # Colorschemes
@@ -218,14 +216,15 @@ in {
       # 	requires = { "nvim-lua/plenary.nvim" },
       # })
 
+      # LSP
+      typescript-tools-nvim
       {
-        # LSP
         plugin = nvim-lspconfig;
         type = "lua";
         config = builtins.readFile ./plugins/lsp.lua;
       }
 
-      # -- Treesitter
+      # Treesitter
       {
         plugin = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
           p.asm
@@ -380,7 +379,6 @@ in {
         type = "lua";
         config = builtins.readFile ./plugins/crates.lua;
       }
-
       {
         # Highlighting other uses of the word under the cursor
         plugin = vim-illuminate;
@@ -399,7 +397,7 @@ in {
         type = "lua";
         config = builtins.readFile ./plugins/copilot.lua;
       }
-      # -- Git
+      # Git
       {
         plugin = gitsigns-nvim;
         type = "lua";
