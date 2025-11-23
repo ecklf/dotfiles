@@ -231,7 +231,9 @@
           "monitorcontrol"
           "notchnook"
         ]
-        ++ lib.optional config.homebrewModules.personal []
+        ++ lib.optional config.homebrewModules.personal [
+          "arduino-ide"
+        ]
         ++ lib.optional config.homebrewModules.work [
           "linear-linear"
           "notion"
@@ -263,11 +265,7 @@
           "surfshark"
           # "lulu"
         ]
-        ++ lib.optional config.homebrewModules.tax [
-          # "wiso-steuer-2022"
-          # "wiso-steuer-2023"
-          # "wiso-steuer-2024"
-        ]
+        ++ lib.optional config.homebrewModules.tax []
         ++ lib.optional config.homebrewModules.language [
           "anki"
         ]
