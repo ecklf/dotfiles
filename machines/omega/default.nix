@@ -18,6 +18,6 @@ in {
     language = true;
     wine = false;
     game = true;
-    extraCasks = ["chromium"];
+    extraCasks = ["chromium" "thonny"];
   };
 })
