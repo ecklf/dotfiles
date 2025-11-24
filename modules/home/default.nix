@@ -153,6 +153,7 @@ in {
           pkgs.master.cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
           pkgs.master.cargo-release # A Cargo subcommand to help you release your Rust projects
           pkgs.master.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers
+          pkgs.master.probe-rs-tools # CLI tool for on-chip debugging and flashing of ARM chips
           pkgs.pandoc # Conversion between documentation formats
           pkgs.rustup # The Rust toolchain installer
           pkgs.stylua # An opinionated Lua code formatter
@@ -250,6 +251,7 @@ in {
           pkgs.meilisearch # Powerful, fast, and an easy to use search engine
           pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
           pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
+          pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
         ]
         ++ lib.optional config.homeManagerModules.work [
           pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication
