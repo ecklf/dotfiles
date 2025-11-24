@@ -182,9 +182,8 @@ in {
           # Databases
           pkgs.postgresql_17
           # Helpers
-          pkgs.ast-grep # A tool to search for AST nodes in source code
           pkgs.age # Modern encryption tool with small explicit keys
-          pkgs.unstable.biome # Toolchain of the web
+          pkgs.ast-grep # A tool to search for AST nodes in source code
           pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
           pkgs.direnv # A shell extension that manages your environment
           pkgs.fx # Terminal JSON viewer
@@ -194,7 +193,9 @@ in {
           pkgs.hexyl # A command-line hex viewer
           pkgs.jwt-cli # Super fast CLI tool to decode and encode JWTs
           pkgs.lnav # The Logfile Navigator
+          pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
+          pkgs.unstable.biome # Toolchain of the web
           # Database
           pkgs.dbmate # Database migration tool
           pkgs.rainfrog # Database management TUI for postgres
@@ -251,7 +252,6 @@ in {
           pkgs.meilisearch # Powerful, fast, and an easy to use search engine
           pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
           pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
-          pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
         ]
         ++ lib.optional config.homeManagerModules.work [
           pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication
