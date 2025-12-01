@@ -14,6 +14,7 @@ in {
     ./git
     ./nnn
     ./nvim
+    ./ssh
     ./starship
     ./tmux
     ./yazi
