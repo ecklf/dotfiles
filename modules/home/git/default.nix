@@ -6,8 +6,7 @@
 
     lfs = {
       enable = true;
-      # Skip automatic downloading of objects. Requires a manual `git lfs pull`
-      skipSmudge = false;
+      skipSmudge = false; # Skip automatic downloading of objects. Requires a manual `git lfs pull`
     };
 
     ignores = [
@@ -35,8 +34,7 @@
     };
 
     extraConfig = {
-      # Sign all commits using ssh key
-      commit.gpgsign = true;
+      commit.gpgsign = true; # Sign all commits using ssh key
       gpg.format = "ssh";
       user.signingkey = "~/.ssh/id_ed25519.pub";
       url."ssh://git@github.com:".insteadOf = "https://github.com";
