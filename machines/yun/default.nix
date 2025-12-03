@@ -51,6 +51,7 @@
   };
 
   networking = {
+    hostId = "a0aefbe2"; # first 8 characters from /etc/machine-id
     hostName = hostname;
     wireless = {
       enable = true;
@@ -68,6 +69,8 @@
   };
 
   # Use the systemd-boot EFI boot loader.
+  boot.supportedFilesystems = ["zfs"];
+  boot.zfs.forceImportRoot = false;
   boot.loader = {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
