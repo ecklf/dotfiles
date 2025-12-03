@@ -69,9 +69,9 @@
     };
     firewall = {
       enable = true;
-      # Samba ports
-      allowedTCPPorts = [445 139];
-      allowedUDPPorts = [137 138];
+      # Samba + Immich
+      allowedTCPPorts = [445 139 2283];
+      allowedUDPPorts = [137 138 2283];
     };
   };
 
@@ -177,6 +177,20 @@
         "force user" = "${username}";
         "force group" = "wheel";
       };
+    };
+  };
+
+  users.users.immich.extraGroups = ["video" "render"];
+  services.immich = {
+    enable = true;
+    port = 2283;
+    host = "0.0.0.0"; # Makes it accessible on your network
+    openFirewall = true; # Auto-opens the port
+    accelerationDevices = null;
+    mediaLocation = "/storage/set1/immich";
+    environment = {
+      IMMICH_VERSION = "2.3.1";
+      IMMICH_TELEMETRY_EXCLUDE = "host,api,io,repo,job";
     };
   };
 
