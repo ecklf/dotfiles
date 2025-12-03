@@ -44,7 +44,7 @@
   # END HARDWARE CONFIGURATION
 
   sops = {
-    defaultSopsFile = ./secrets/networks.yaml;
+    defaultSopsFile = ../../lib/secrets/networks.yaml;
     age = {
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       keyFile = "/root/age-keys.txt";
@@ -62,7 +62,7 @@
       enable = true;
       secretsFile = config.sops.secrets.wireless_env.path;
       networks = {
-        "chiboshijian".pskRaw = "ext:m1_psk";
+        "squirrel-house".pskRaw = "ext:w1_psk";
       };
     };
     firewall = {

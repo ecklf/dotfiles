@@ -39,14 +39,24 @@
 
   time.timeZone = timezone;
 
+  sops = {
+    defaultSopsFile = ../../lib/secrets/networks.yaml;
+    age = {
+      sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
+      # keyFile = "/root/age-keys.txt";
+      keyFile = "/home/nixos/.config/sops/age/keys.txt";
+      generateKey = true;
+    };
+    secrets.wireless_env = {};
+  };
+
   networking = {
     hostName = hostname;
     wireless = {
       enable = true;
+      secretsFile = config.sops.secrets.wireless_env.path;
       networks = {
-        "squirrel-house" = {
-          psk = "mock";
-        };
+        "squirrel-house".pskRaw = "ext:w1_psk";
       };
     };
     firewall = {
@@ -182,5 +192,5 @@
   #   '';
   # };
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "24.05";
 }
