@@ -69,11 +69,18 @@
   };
 
   # Use the systemd-boot EFI boot loader.
-  boot.supportedFilesystems = ["zfs"];
-  boot.zfs.forceImportRoot = false;
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = ["zfs"];
+    zfs = {
+      # https://wiki.nixos.org/wiki/ZFS#Importing_on_boot
+      # extraPools = ["zpool_name"];
+      forceImportRoot = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [

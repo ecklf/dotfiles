@@ -32,18 +32,22 @@ in {
           description = "Install minimal software";
         };
         developer = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install developer software";
         };
         personal = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install personal software";
         };
         work = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install work software";
         };
         hipster = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install hipster software";
         };
