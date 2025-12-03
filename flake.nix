@@ -93,7 +93,7 @@
         profile = "nas";
         extraModules = [];
         extraHomeModules = [];
-        homeStateVersion = "24.05";
+        homeStateVersion = "25.11";
       };
     };
     darwinConfigurations = {
