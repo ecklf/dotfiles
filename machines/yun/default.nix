@@ -47,16 +47,16 @@
       keyFile = "/home/nixos/.config/sops/age/keys.txt";
       generateKey = true;
     };
-    secrets.wireless_env = {};
+    secrets.wireless = {};
   };
 
   networking = {
     hostName = hostname;
     wireless = {
       enable = true;
-      secretsFile = config.sops.secrets.wireless_env.path;
+      secretsFile = config.sops.secrets.wireless.path;
       networks = {
-        "squirrel-house".pskRaw = "ext:w1_psk";
+        "squirrel-house".pskRaw = "ext:sh_psk";
       };
     };
     firewall = {
