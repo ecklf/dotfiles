@@ -82,6 +82,14 @@
         extraModules = [];
         extraHomeModules = [];
       };
+      yun = mkNixOS "yun" {
+        inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
+        system = "x86_64-linux";
+        username = "nixos";
+        profile = "nas";
+        extraModules = [];
+        extraHomeModules = [];
+      };
     };
     darwinConfigurations = {
       omega = mkDarwin "omega" {
