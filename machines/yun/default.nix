@@ -97,11 +97,17 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # fileSystems."/share" = {
-  #   device = "storage/set1";
-  #   fsType = "zfs";
-  #   options = ["defaults"];
-  # };
+  fileSystems."/share" = {
+    neededForBoot = false;
+    device = "storage";
+    fsType = "zfs";
+    mountPoint = "/mnt/share";
+    options = [
+      "defaults"
+      "nofail"
+      "zfsutil"
+    ];
+  };
 
   # Make shares visible for windows 10 clients
   # services.samba-wsdd.enable = true;
