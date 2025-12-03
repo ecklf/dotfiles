@@ -78,7 +78,8 @@
     supportedFilesystems = ["zfs"];
     zfs = {
       # https://wiki.nixos.org/wiki/ZFS#Importing_on_boot
-      # extraPools = ["zpool_name"];
+      # Runs `sudo zpool import storage` on boot
+      extraPools = ["storage"];
       forceImportRoot = false;
     };
   };
@@ -96,23 +97,10 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Mount encrypted drive
   # fileSystems."/share" = {
-  #   neededForBoot = false;
-  #   device = "/dev/mapper/media_crypt";
-  #   mountPoint = "/mnt/share";
-  #   options = [
-  #     "defaults"
-  #     "nofail"
-  #   ];
-  #   fsType = "ext4";
-  # };
-  #
-  # environment.etc.crypttab = {
-  #   enable = true;
-  #   text = ''
-  #     media_crypt /dev/disk/by-uuid/65e8c3f1-0d46-4625-8406-03d0a654645d /root/keyfile luks,nofail,timeout=10
-  #   '';
+  #   device = "storage/set1";
+  #   fsType = "zfs";
+  #   options = ["defaults"];
   # };
 
   # Make shares visible for windows 10 clients
