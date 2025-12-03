@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  homeStateVersion,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -62,7 +63,7 @@ in {
 
   config = {
     home = {
-      stateVersion = "24.05";
+      stateVersion = homeStateVersion;
       sessionVariables =
         {
           PAGER = "less";
