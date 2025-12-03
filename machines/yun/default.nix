@@ -73,12 +73,6 @@
     vim
   ];
 
-  home-manager.users."${username}" = {
-    programs.home-manager.enable = true;
-    programs.zsh.enable = true;
-    home.stateVersion = "25.11";
-  };
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
