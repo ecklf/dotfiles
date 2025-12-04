@@ -3,6 +3,7 @@
   lib,
   config,
   pkgs,
+  homeStateVersion,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -32,18 +33,22 @@ in {
           description = "Install minimal software";
         };
         developer = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install developer software";
         };
         personal = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install personal software";
         };
         work = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install work software";
         };
         hipster = lib.mkOption {
+          default = false;
           type = lib.types.bool;
           description = "Install hipster software";
         };
@@ -58,7 +63,7 @@ in {
 
   config = {
     home = {
-      stateVersion = "24.05";
+      stateVersion = homeStateVersion;
       sessionVariables =
         {
           PAGER = "less";

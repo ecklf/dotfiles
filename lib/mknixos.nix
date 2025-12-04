@@ -13,6 +13,7 @@ hostname: {
   extraHomeModules ? [],
   efiSysMountPoint ? "/boot",
   timezone ? "Europe/Berlin",
+  homeStateVersion,
 }: let
   systemSpecificOverlays = [
     (final: prev: {
@@ -30,7 +31,7 @@ hostname: {
 in
   lib.nixosSystem {
     inherit system;
-    specialArgs = {inherit system username profile hostname timezone;};
+    specialArgs = {inherit system username profile hostname timezone homeStateVersion;};
     modules =
       [
         {
@@ -52,7 +53,7 @@ in
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit inputs username profile hostname timezone system;
+              inherit inputs username profile hostname timezone system homeStateVersion;
             };
             sharedModules = [
               ../modules/home

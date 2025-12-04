@@ -2,7 +2,7 @@
   description = "NixOS and Darwin flakes";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # Nix user repository
     nur.url = "github:nix-community/NUR";
@@ -53,6 +53,7 @@
           disko.nixosModules.disko
         ];
         extraHomeModules = [];
+        homeStateVersion = "24.05";
       };
       skia = mkNixOS "skia" {
         inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
@@ -64,6 +65,7 @@
           disko.nixosModules.disko
         ];
         extraHomeModules = [];
+        homeStateVersion = "24.05";
       };
       kairos = mkNixOS "kairos" {
         inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
@@ -73,6 +75,7 @@
         timezone = "America/New_York";
         extraModules = [];
         extraHomeModules = [];
+        homeStateVersion = "24.05";
       };
       snowflake = mkNixOS "snowflake" {
         inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
@@ -81,6 +84,7 @@
         profile = "minimal";
         extraModules = [];
         extraHomeModules = [];
+        homeStateVersion = "24.05";
       };
       yun = mkNixOS "yun" {
         inherit inputs nixpkgs nixpkgs-unstable nixpkgs-master nur sops-nix overlays;
@@ -89,6 +93,7 @@
         profile = "nas";
         extraModules = [];
         extraHomeModules = [];
+        homeStateVersion = "25.11";
       };
     };
     darwinConfigurations = {
@@ -98,12 +103,14 @@
         username = "ecklf";
         profile = "personal";
         patchBld = true;
+        homeStateVersion = "24.05";
       };
       vercel = mkDarwin "vercel" {
         inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         profile = "work";
+        homeStateVersion = "24.05";
       };
     };
   };

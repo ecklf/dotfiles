@@ -9,6 +9,7 @@ hostname: {
   profile,
   overlays,
   darwin,
+  homeStateVersion,
   extraModules ? [],
   patchBld ? false,
 }: let
@@ -29,7 +30,7 @@ hostname: {
 in
   darwin.lib.darwinSystem {
     inherit system;
-    specialArgs = {inherit inputs system username profile hostname;};
+    specialArgs = {inherit inputs system username profile hostname homeStateVersion;};
     modules =
       [
         ({
@@ -73,7 +74,7 @@ in
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit system username profile hostname;
+              inherit system username profile hostname homeStateVersion;
             };
             sharedModules = [
               ../modules/home

@@ -37,6 +37,13 @@
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
   # END HARDWARE CONFIGURATION
 
+  hardware.graphics = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # For Intel hardware acceleration support
+    ];
+  };
+
   time.timeZone = timezone;
 
   sops = {
@@ -51,9 +58,10 @@
   };
 
   networking = {
+    hostId = "a0aefbe2"; # first 8 characters from /etc/machine-id
     hostName = hostname;
     wireless = {
-      enable = true;
+      enable = false;
       secretsFile = config.sops.secrets.wireless.path;
       networks = {
         "squirrel-house".pskRaw = "ext:sh_psk";
@@ -61,16 +69,26 @@
     };
     firewall = {
       enable = true;
-      # Samba ports
-      allowedTCPPorts = [445 139];
-      allowedUDPPorts = [137 138];
+      # Samba + Immich
+      allowedTCPPorts = [445 139 2283];
+      allowedUDPPorts = [137 138 2283];
     };
   };
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader = {
-    systemd-boot.enable = true;
-    efi.canTouchEfiVariables = true;
+
+  boot = {
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+    supportedFilesystems = ["zfs"];
+    zfs = {
+      # https://wiki.nixos.org/wiki/ZFS#Importing_on_boot
+      # Runs `sudo zpool import storage` on boot
+      extraPools = ["storage"];
+      forceImportRoot = false;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -86,88 +104,115 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Mount encrypted drive
-  # fileSystems."/share" = {
-  #   neededForBoot = false;
-  #   device = "/dev/mapper/media_crypt";
-  #   mountPoint = "/mnt/share";
-  #   options = [
-  #     "defaults"
-  #     "nofail"
-  #   ];
-  #   fsType = "ext4";
-  # };
-  #
-  # environment.etc.crypttab = {
-  #   enable = true;
-  #   text = ''
-  #     media_crypt /dev/disk/by-uuid/65e8c3f1-0d46-4625-8406-03d0a654645d /root/keyfile luks,nofail,timeout=10
-  #   '';
-  # };
+  fileSystems."/share" = {
+    neededForBoot = false;
+    device = "storage/set1";
+    fsType = "zfs";
+    mountPoint = "/mnt/share";
+    options = [
+      "defaults"
+      "nofail"
+      "zfsutil"
+    ];
+  };
 
   # Make shares visible for windows 10 clients
-  # services.samba-wsdd.enable = true;
-  # services.samba = {
-  #   enable = true;
-  #   openFirewall = true;
-  #   # Post install: run this setup
-  #   # sudo pdbedit -L -v
-  #   # sudo smbpasswd -a nix
-  #   settings = {
-  #     global = {
-  #       "fruit:appl" = "yes";
-  #       "fruit:model" = "Xserve";
-  #       "workgroup" = "WORKGROUP";
-  #       "server string" = "%h server (Samba, NixOS)";
-  #       # "server string" = "nixos";
-  #       "netbios name" = "${hostname}";
-  #       "security" = "user";
-  #       # "use sendfile" = "yes";
-  #       "min protocol" = "SMB2";
-  #       "max protocol" = "SMB3";
-  #       # Note: localhost is the ipv6 localhost ::1
-  #       # "hosts allow" = "192.168.0. 127.0.0.1 localhost";
-  #       # "hosts deny" = "0.0.0.0/0";
-  #       "guest account" = "nobody";
-  #       "map to guest" = "bad user";
-  #       "server role" = "standalone server";
-  #       "obey pam restrictions" = "yes";
-  #       # This boolean parameter controls whether Samba attempts to sync the Unix
-  #       # password with the SMB password when the encrypted SMB password in the
-  #       # passdb is changed.
-  #       "unix password sync" = "yes";
-  #       "min receivefile size" = "16384";
-  #       "getwd cache" = "true";
-  #     };
-  #     homes = {
-  #       browseable = "no";
-  #       "read only" = "no";
-  #       "guest ok" = "no";
-  #       # File creation mask is set to 0700 for security reasons. If you want to
-  #       # create files with group=rw permissions, set next parameter to 0775.
-  #       "create mask" = "0700";
-  #       # Directory creation mask is set to 0700 for security reasons. If you want to
-  #       # create dirs. with group=rw permissions, set next parameter to 0775.
-  #       "directory mask" = "0700";
-  #       # By default, \\server\username shares can be connected to by anyone
-  #       # with access to the samba server.
-  #       # Un-comment the following parameter to make sure that only "username"
-  #       # can connect to \\server\username
-  #       # This might need tweaking when using external authentication schemes
-  #       "valid users" = "%S";
-  #     };
-  #     public = {
-  #       path = "/mnt/share";
-  #       browseable = "yes";
-  #       "read only" = "no";
-  #       "guest ok" = "no";
-  #       "create mask" = "0755";
-  #       "directory mask" = "0755";
-  #       "force user" = "${username}";
-  #       "force group" = "wheel";
-  #     };
-  #   };
-  # };
+  services.samba-wsdd.enable = true;
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    # Post install: run this setup
+    # sudo pdbedit -L -v
+    # sudo smbpasswd -a nix
+    settings = {
+      global = {
+        "fruit:appl" = "yes";
+        "fruit:model" = "Xserve";
+        "workgroup" = "WORKGROUP";
+        "server string" = "%h server (Samba, NixOS)";
+        # "server string" = "nixos";
+        "netbios name" = "${hostname}";
+        "security" = "user";
+        # Enables sendfile syscall for better performance
+        "use sendfile" = "yes";
+        "min protocol" = "SMB2";
+        "max protocol" = "SMB3";
+        # Note: localhost is the ipv6 localhost ::1
+        # "hosts allow" = "192.168.0. 127.0.0.1 localhost";
+        # "hosts deny" = "0.0.0.0/0";
+        "guest account" = "nobody";
+        "map to guest" = "bad user";
+        "server role" = "standalone server";
+        "obey pam restrictions" = "yes";
+        # This boolean parameter controls whether Samba attempts to sync the Unix
+        # password with the SMB password when the encrypted SMB password in the
+        # passdb is changed.
+        "unix password sync" = "yes";
+        "write cache size" = "2097152";
+        "min receivefile size" = "16384";
+        "getwd cache" = "true";
+        # Closes idle connections after 60 minutes to save resources
+        "deadtime" = "60";
+        # Improves write performance by disabling strict sync
+        "strict sync" = "no";
+        # Improves performance by not syncing after every write
+        "sync always" = "no";
+        # Optimizes TCP connections for better performance
+        "socket options" = "TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072";
+      };
+      homes = {
+        browseable = "no";
+        "read only" = "no";
+        "guest ok" = "no";
+        # File creation mask is set to 0700 for security reasons. If you want to
+        # create files with group=rw permissions, set next parameter to 0775.
+        "create mask" = "0700";
+        # Directory creation mask is set to 0700 for security reasons. If you want to
+        # create dirs. with group=rw permissions, set next parameter to 0775.
+        "directory mask" = "0700";
+        # By default, \\server\username shares can be connected to by anyone
+        # with access to the samba server.
+        # Un-comment the following parameter to make sure that only "username"
+        # can connect to \\server\username
+        # This might need tweaking when using external authentication schemes
+        "valid users" = "%S";
+      };
+      public = {
+        path = "/mnt/share/public";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0755";
+        "directory mask" = "0755";
+        "force user" = "${username}";
+        "force group" = "wheel";
+      };
+      camera = {
+        path = "/mnt/share/camera";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0755";
+        "directory mask" = "0755";
+        "force user" = "${username}";
+        "force group" = "wheel";
+      };
+    };
+  };
+
+  users.users.immich.extraGroups = ["video" "render"];
+  services.immich = {
+    enable = true;
+    port = 2283;
+    host = "0.0.0.0"; # Makes it accessible on your network
+    openFirewall = true; # Auto-opens the port
+    accelerationDevices = null;
+    mediaLocation = "/storage/set1/immich";
+    environment = {
+      IMMICH_VERSION = "2.3.1";
+      IMMICH_TELEMETRY_EXCLUDE = "host,api,io,repo,job";
+    };
+  };
 
   # systemd.services.kbdrate-setup = {
   #   description = "Set keyboard repeat rate and delay";
@@ -192,5 +237,5 @@
   #   '';
   # };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.11";
 }
