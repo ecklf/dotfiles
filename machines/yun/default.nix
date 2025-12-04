@@ -178,7 +178,8 @@
         # Improves performance by not syncing after every write
         "sync always" = "no";
         # Optimizes TCP connections for better performance
-        "socket options" = "TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072";
+        #"socket options" = "TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072";
+        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=2048000 SO_SNDBUF=2048000";
         # Enable SMB3 multi-channel support for better throughput
         "server multi channel support" = "yes";
         # Reduce logging overhead
