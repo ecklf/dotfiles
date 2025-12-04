@@ -134,6 +134,8 @@
 
         # macOS: this prevents ._ AppleDouble files from causing slowdowns
         "vfs objects" = "catia fruit streams_xattr";
+        # Try this fix
+        "fruit:advertise_fullsync" = "true";
         # Fruit module optimizations for macOS clients
         "fruit:appl" = "yes";
         "fruit:model" = "MacSamba";
@@ -161,7 +163,7 @@
         # password with the SMB password when the encrypted SMB password in the
         # passdb is changed.
         "unix password sync" = "yes";
-        
+
         # Performance optimizations
         "use sendfile" = "yes"; # Enables sendfile syscall for better performance
         "min receivefile size" = "16384";
