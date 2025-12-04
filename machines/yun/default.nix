@@ -170,6 +170,9 @@
         "read raw" = "yes";
         "write raw" = "yes";
         "getwd cache" = "yes";
+        "strict sync" = "no"; # Don't wait for writes to hit disk (rely on OS cache)
+        "sync always" = "no"; # Improve write performance
+        "strict locking" = "no"; # Reduce locking overhead
         "deadtime" = "60"; # Closes idle connections after 60 minutes to save resources
         # Optimizes TCP connections for better performance
         "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072";
