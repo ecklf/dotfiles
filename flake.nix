@@ -2,7 +2,7 @@
   description = "NixOS and Darwin flakes";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # Nix user repository
     nur.url = "github:nix-community/NUR";
