@@ -205,6 +205,9 @@
         "directory mask" = "0755";
         "force user" = "${username}";
         "force group" = "wheel";
+        # Share-specific performance optimizations
+        "strict allocate" = "yes";
+        "allocation roundup size" = "4096";
       };
       camera = {
         path = "/mnt/share/camera";
@@ -215,6 +218,9 @@
         "directory mask" = "0755";
         "force user" = "${username}";
         "force group" = "wheel";
+        # Share-specific performance optimizations
+        "strict allocate" = "yes";
+        "allocation roundup size" = "4096";
       };
     };
   };
