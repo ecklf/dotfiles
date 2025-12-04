@@ -161,16 +161,18 @@
         # password with the SMB password when the encrypted SMB password in the
         # passdb is changed.
         "unix password sync" = "yes";
-        # "write cache size" = "2097152";
-        # "use sendfile" = "yes"; # Enables sendfile syscall for better performance
-        # "min receivefile size" = "16384";
-        # "aio read size" = "16384"; # Enables async I/O for reads larger than 16KB
-        # "aio write size" = "16384"; # Enables async I/O for writes larger than 16KB
-        # "read size" = "65536"; # Increases read buffer size for better sequential read throughput
-        # "getwd cache" = "true";
+        
+        # Performance optimizations
+        "use sendfile" = "yes"; # Enables sendfile syscall for better performance
+        "min receivefile size" = "16384";
+        "aio read size" = "16384"; # Enables async I/O for reads larger than 16KB
+        "aio write size" = "16384"; # Enables async I/O for writes larger than 16KB
+        "read raw" = "yes";
+        "write raw" = "yes";
+        "getwd cache" = "yes";
         "deadtime" = "60"; # Closes idle connections after 60 minutes to save resources
         # Optimizes TCP connections for better performance
-        # "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=2048000 SO_SNDBUF=2048000";
+        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072";
         "server multi channel support" = "yes"; # Enable SMB3 multi-channel support for better throughput
         # Reduce logging overhead
         "log level" = "0";
