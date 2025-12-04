@@ -61,7 +61,7 @@
     hostId = "a0aefbe2"; # first 8 characters from /etc/machine-id
     hostName = hostname;
     wireless = {
-      enable = true;
+      enable = false;
       secretsFile = config.sops.secrets.wireless.path;
       networks = {
         "squirrel-house".pskRaw = "ext:sh_psk";
@@ -179,6 +179,16 @@
       };
       public = {
         path = "/mnt/share/public";
+        browseable = "yes";
+        "read only" = "no";
+        "guest ok" = "no";
+        "create mask" = "0755";
+        "directory mask" = "0755";
+        "force user" = "${username}";
+        "force group" = "wheel";
+      };
+      camera = {
+        path = "/mnt/share/camera";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
