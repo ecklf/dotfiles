@@ -126,8 +126,18 @@
     # sudo smbpasswd -a nix
     settings = {
       global = {
+        # macOS Compatibility - VFS modules for efficient metadata handling
+        # This prevents ._ AppleDouble files from causing slowdowns
+        "vfs objects" = "catia fruit streams_xattr";
+        # Fruit module optimizations for macOS clients
         "fruit:appl" = "yes";
         "fruit:model" = "Xserve";
+        "fruit:metadata" = "stream";
+        "fruit:resource" = "stream";
+        "fruit:locking" = "netatalk";
+        "fruit:encoding" = "native";
+        "fruit:time machine" = "no";
+
         "workgroup" = "WORKGROUP";
         "server string" = "%h server (Samba, NixOS)";
         # "server string" = "nixos";
@@ -202,6 +212,8 @@
         "strict allocate" = "yes";
         # Aligns file allocations to 1MB boundaries for optimal ZFS performance
         "allocation roundup size" = "1048576";
+        # Inherit VFS modules for macOS compatibility
+        "vfs objects" = "catia fruit streams_xattr";
       };
       camera = {
         path = "/mnt/share/camera";
@@ -216,6 +228,8 @@
         "strict allocate" = "yes";
         # Aligns file allocations to 1MB boundaries for optimal ZFS performance
         "allocation roundup size" = "1048576";
+        # Phase 1: Inherit VFS modules for macOS compatibility
+        "vfs objects" = "catia fruit streams_xattr";
       };
     };
   };
