@@ -133,7 +133,8 @@
         # "server string" = "nixos";
         "netbios name" = "${hostname}";
         "security" = "user";
-        # "use sendfile" = "yes";
+        # Enables sendfile syscall for better performance
+        "use sendfile" = "yes";
         "min protocol" = "SMB2";
         "max protocol" = "SMB3";
         # Note: localhost is the ipv6 localhost ::1
@@ -147,8 +148,15 @@
         # password with the SMB password when the encrypted SMB password in the
         # passdb is changed.
         "unix password sync" = "yes";
+        "write cache size" = "2097152";
         "min receivefile size" = "16384";
         "getwd cache" = "true";
+        # Closes idle connections after 60 minutes to save resources
+        "deadtime" = "60";
+        # Improves write performance by disabling strict sync
+        "strict sync" = "no";
+        # Improves performance by not syncing after every write
+        "sync always" = "no";
       };
       homes = {
         browseable = "no";
