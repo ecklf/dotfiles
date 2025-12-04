@@ -150,8 +150,12 @@
         "unix password sync" = "yes";
         "write cache size" = "2097152";
         "min receivefile size" = "16384";
+        # Enables async I/O for reads larger than 16KB
         "aio read size" = "16384";
+        # Enables async I/O for writes larger than 16KB
         "aio write size" = "16384";
+        # Increases read buffer size for better sequential read throughput
+        "read size" = "65536";
         "getwd cache" = "true";
         # Closes idle connections after 60 minutes to save resources
         "deadtime" = "60";
@@ -161,6 +165,12 @@
         "sync always" = "no";
         # Optimizes TCP connections for better performance
         "socket options" = "TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072";
+        # Enable SMB3 multi-channel support for better throughput
+        "server multi channel support" = "yes";
+        # Reduce logging overhead
+        "log level" = "0";
+        # Better oplock handling for improved caching
+        "kernel oplocks" = "yes";
       };
       homes = {
         browseable = "no";
@@ -188,6 +198,10 @@
         "directory mask" = "0755";
         "force user" = "${username}";
         "force group" = "wheel";
+        # Pre-allocates disk space for better large file write performance
+        "strict allocate" = "yes";
+        # Aligns file allocations to 1MB boundaries for optimal ZFS performance
+        "allocation roundup size" = "1048576";
       };
       camera = {
         path = "/mnt/share/camera";
@@ -198,6 +212,10 @@
         "directory mask" = "0755";
         "force user" = "${username}";
         "force group" = "wheel";
+        # Pre-allocates disk space for better large file write performance
+        "strict allocate" = "yes";
+        # Aligns file allocations to 1MB boundaries for optimal ZFS performance
+        "allocation roundup size" = "1048576";
       };
     };
   };
