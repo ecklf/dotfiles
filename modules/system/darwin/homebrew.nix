@@ -168,8 +168,8 @@
         config.homebrewModules.extraCasks
         ++ lib.optional config.homebrewModules.minimal [
           "appcleaner"
-          "bloom"
           "cleanshot"
+          "forklift"
           "ghostty"
           "iina"
           "iterm2"
