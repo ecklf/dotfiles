@@ -70,8 +70,8 @@
     firewall = {
       enable = true;
       # Samba + Immich
-      allowedTCPPorts = [445 139 2283];
-      allowedUDPPorts = [137 138 2283];
+      allowedTCPPorts = [445 139 2283 5201];
+      allowedUDPPorts = [137 138 2283 5201];
     };
   };
 
