@@ -150,6 +150,8 @@
         "unix password sync" = "yes";
         "write cache size" = "2097152";
         "min receivefile size" = "16384";
+        "aio read size" = "16384";
+        "aio write size" = "16384";
         "getwd cache" = "true";
         # Closes idle connections after 60 minutes to save resources
         "deadtime" = "60";
