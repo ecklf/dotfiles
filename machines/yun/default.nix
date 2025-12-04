@@ -126,31 +126,30 @@
     # sudo smbpasswd -a nix
     settings = {
       global = {
-        # Phase 1: macOS Compatibility - VFS modules for efficient metadata handling
-        # This prevents ._ AppleDouble files from causing slowdowns
+        "min protocol" = "SMB2";
+        "workgroup" = "WORKGROUP";
+        "server string" = "%h server (Samba, NixOS)";
+        "netbios name" = "${hostname}";
+        # "server string" = "nixos";
+
+        # macOS: this prevents ._ AppleDouble files from causing slowdowns
         "vfs objects" = "catia fruit streams_xattr";
         # Fruit module optimizations for macOS clients
         "fruit:appl" = "yes";
-        "fruit:model" = "Xserve";
+        "fruit:model" = "MacSamba";
         "fruit:metadata" = "stream";
-        "fruit:resource" = "stream";
-        "fruit:locking" = "netatalk";
-        "fruit:encoding" = "native";
+        "fruit:veto_appledouble" = "no";
+        "fruit:nfs_aces" = "no";
+        "fruit:wipe_intentionally_left_blank_rfork" = "yes ";
+        "fruit:delete_empty_adfiles" = "yes";
+        "fruit:posix_rename" = "yes";
         "fruit:time machine" = "no";
+        # Enable server-side copy support
+        # https://wiki.samba.org/index.php/Server-Side_Copy#Introduction
+        "fruit:copyfile" = "yes";
 
-        # Phase 2: Disable SMB signing for home network (reduces CPU/protocol overhead)
-        "server signing" = "disabled";
-        "client signing" = "disabled";
-
-        "workgroup" = "WORKGROUP";
-        "server string" = "%h server (Samba, NixOS)";
-        # "server string" = "nixos";
-        "netbios name" = "${hostname}";
+        # Security
         "security" = "user";
-        # Enables sendfile syscall for better performance
-        "use sendfile" = "yes";
-        "min protocol" = "SMB2";
-        "max protocol" = "SMB3";
         # Note: localhost is the ipv6 localhost ::1
         # "hosts allow" = "192.168.0. 127.0.0.1 localhost";
         # "hosts deny" = "0.0.0.0/0";
@@ -162,26 +161,17 @@
         # password with the SMB password when the encrypted SMB password in the
         # passdb is changed.
         "unix password sync" = "yes";
-        "write cache size" = "2097152";
-        "min receivefile size" = "16384";
-        # Enables async I/O for reads larger than 16KB
-        "aio read size" = "16384";
-        # Enables async I/O for writes larger than 16KB
-        "aio write size" = "16384";
-        # Increases read buffer size for better sequential read throughput
-        "read size" = "65536";
-        "getwd cache" = "true";
-        # Closes idle connections after 60 minutes to save resources
-        "deadtime" = "60";
-        # Improves write performance by disabling strict sync
-        "strict sync" = "no";
-        # Improves performance by not syncing after every write
-        "sync always" = "no";
+        # "write cache size" = "2097152";
+        # "use sendfile" = "yes"; # Enables sendfile syscall for better performance
+        # "min receivefile size" = "16384";
+        # "aio read size" = "16384"; # Enables async I/O for reads larger than 16KB
+        # "aio write size" = "16384"; # Enables async I/O for writes larger than 16KB
+        # "read size" = "65536"; # Increases read buffer size for better sequential read throughput
+        # "getwd cache" = "true";
+        "deadtime" = "60"; # Closes idle connections after 60 minutes to save resources
         # Optimizes TCP connections for better performance
-        #"socket options" = "TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072";
-        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=2048000 SO_SNDBUF=2048000";
-        # Enable SMB3 multi-channel support for better throughput
-        "server multi channel support" = "yes";
+        # "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=2048000 SO_SNDBUF=2048000";
+        "server multi channel support" = "yes"; # Enable SMB3 multi-channel support for better throughput
         # Reduce logging overhead
         "log level" = "0";
         # Better oplock handling for improved caching
@@ -213,17 +203,6 @@
         "directory mask" = "0755";
         "force user" = "${username}";
         "force group" = "wheel";
-        # Pre-allocates disk space for better large file write performance
-        "strict allocate" = "yes";
-        # Aligns file allocations to 1MB boundaries for optimal ZFS performance
-        "allocation roundup size" = "1048576";
-        # Phase 1: Inherit VFS modules for macOS compatibility
-        "vfs objects" = "catia fruit streams_xattr";
-        # Phase 3: Optimize for large sequential writes
-        "oplocks" = "no";
-        "level2 oplocks" = "no";
-        "read raw" = "yes";
-        "write raw" = "yes";
       };
       camera = {
         path = "/mnt/share/camera";
@@ -234,17 +213,6 @@
         "directory mask" = "0755";
         "force user" = "${username}";
         "force group" = "wheel";
-        # Pre-allocates disk space for better large file write performance
-        "strict allocate" = "yes";
-        # Aligns file allocations to 1MB boundaries for optimal ZFS performance
-        "allocation roundup size" = "1048576";
-        # Phase 1: Inherit VFS modules for macOS compatibility
-        "vfs objects" = "catia fruit streams_xattr";
-        # Phase 3: Optimize for large sequential writes (camera files)
-        "oplocks" = "no";
-        "level2 oplocks" = "no";
-        "read raw" = "yes";
-        "write raw" = "yes";
       };
     };
   };
