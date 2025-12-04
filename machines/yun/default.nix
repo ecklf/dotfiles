@@ -157,6 +157,8 @@
         "strict sync" = "no";
         # Improves performance by not syncing after every write
         "sync always" = "no";
+        # Optimizes TCP connections for better performance
+        "socket options" = "TCP_NODELAY IPTOS_THROUGHPUT SO_RCVBUF=131072 SO_SNDBUF=131072";
       };
       homes = {
         browseable = "no";
