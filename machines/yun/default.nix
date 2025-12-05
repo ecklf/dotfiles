@@ -178,13 +178,19 @@
         "sync always" = "no"; # Improve write performance
         "strict locking" = "no"; # Reduce locking overhead
         "deadtime" = "60"; # Closes idle connections after 60 minutes to save resources
-        # Optimizes TCP connections for better performance
-        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=131072 SO_SNDBUF=131072";
+        # Optimizes TCP connections for better performance - increased buffer sizes
+        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=524288 SO_SNDBUF=524288";
         "server multi channel support" = "yes"; # Enable SMB3 multi-channel support for better throughput
         # Reduce logging overhead
         "log level" = "0";
         # Better oplock handling for improved caching
         "kernel oplocks" = "yes";
+        # Additional performance tuning
+        "write cache size" = "2097152"; # 2MB write cache
+        "max xmit" = "131072"; # Max packet size (128KB)
+        "large readwrite" = "yes";
+        "server signing" = "disabled"; # Disable SMB signing for better performance (reduces security)
+        "smb encrypt" = "disabled"; # Disable encryption for better performance (reduces security)
       };
       homes = {
         browseable = "no";
