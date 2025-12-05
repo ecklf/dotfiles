@@ -91,14 +91,16 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    apfs-fuse
-    cryptsetup
-    git
-    wget
-    curl
-    neovim
-    vim
+  environment.systemPackages = [
+    pkgs.apfs-fuse
+    pkgs.cryptsetup
+    pkgs.git
+    pkgs.wget
+    pkgs.curl
+    pkgs.neovim
+    pkgs.vim
+    pkgs.master.immich
+    pkgs.master.immich-cli
   ];
 
   # Enable the OpenSSH daemon.
@@ -251,8 +253,10 @@
     openFirewall = true; # Auto-opens the port
     accelerationDevices = null;
     mediaLocation = "/storage/set1/immich";
+    settings = {
+      newVersionCheck.enabled = true;
+    };
     environment = {
-      IMMICH_VERSION = "2.3.1";
       IMMICH_TELEMETRY_EXCLUDE = "host,api,io,repo,job";
     };
   };
