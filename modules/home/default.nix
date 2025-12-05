@@ -119,7 +119,7 @@ in {
           pkgs.git # Distributed version control system
           pkgs.git-lfs # Git extension for versioning large files
           pkgs.git-trim # Automatically trims your branches whose tracking remote refs are merged or gone
-          pkgs.gitui # Blazing fast terminal-ui for Git written in Rust
+          # pkgs.master.gitui # Blazing fast terminal-ui for Git written in Rust
           pkgs.master.go-task # A task runner / simpler Make alternative written in Go
           pkgs.htop # An interactive process viewer for Linux, with vim-style keybindings
           pkgs.jq # A lightweight and flexible command-line JSON processor
@@ -233,7 +233,7 @@ in {
           # Cloud
           pkgs.awscli2 # Unified tool to manage your AWS services
           pkgs.google-cloud-sdk # Tools for the google cloud platform
-          pkgs.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
+          # pkgs.master.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
           pkgs.terraform # OpenTofu, Terraform, Terragrunt and Atmos version manager written in Go
           # Media
           pkgs.cairo # A 2D graphics library with support for multiple output devices

@@ -63,7 +63,7 @@ in
       ]
       ++ extraModules
       ++ [
-        nur.nixosModules.nur
+        # nur.modules.nixos.default
         ({...}: {
           home-manager.sharedModules = [];
         })

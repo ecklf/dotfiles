@@ -80,7 +80,7 @@ in {
       pkgs.shellcheck
       pkgs.shfmt
       pkgs.stylua
-      pkgs.sumneko-lua-language-server
+      pkgs.lua-language-server
       pkgs.terraform-ls
       pkgs.vale
       pkgs.yaml-language-server
