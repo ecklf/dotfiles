@@ -164,33 +164,24 @@
         # This boolean parameter controls whether Samba attempts to sync the Unix
         # password with the SMB password when the encrypted SMB password in the
         # passdb is changed.
-        "unix password sync" = "yes";
+        # "unix password sync" = "yes";
 
         # Performance optimizations
-        "use sendfile" = "yes"; # Enables sendfile syscall for better performance
-        "min receivefile size" = "16384";
-        "aio read size" = "16384"; # Enables async I/O for reads larger than 16KB
-        "aio write size" = "16384"; # Enables async I/O for writes larger than 16KB
-        "read raw" = "yes";
-        "write raw" = "yes";
-        "getwd cache" = "yes";
-        "strict sync" = "no"; # Don't wait for writes to hit disk (rely on OS cache)
-        "sync always" = "no"; # Improve write performance
-        "strict locking" = "no"; # Reduce locking overhead
+        # "use sendfile" = "yes"; # Enables sendfile syscall for better performance
+        # "min receivefile size" = "16384";
+        # "aio read size" = "16384"; # Enables async I/O for reads larger than 16KB
+        # "aio write size" = "16384"; # Enables async I/O for writes larger than 16KB
+        # "getwd cache" = "yes";
+        # "strict sync" = "no"; # Don't wait for writes to hit disk (rely on OS cache)
+        # "sync always" = "no"; # Improve write performance
+        # "strict locking" = "no"; # Reduce locking overhead
         "deadtime" = "60"; # Closes idle connections after 60 minutes to save resources
         # Optimizes TCP connections for better performance - increased buffer sizes
-        "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=524288 SO_SNDBUF=524288";
+        # "socket options" = "TCP_NODELAY IPTOS_LOWDELAY SO_RCVBUF=524288 SO_SNDBUF=524288";
         "server multi channel support" = "yes"; # Enable SMB3 multi-channel support for better throughput
         # Reduce logging overhead
         "log level" = "0";
-        # Better oplock handling for improved caching
-        "kernel oplocks" = "yes";
-        # Additional performance tuning
-        "write cache size" = "2097152"; # 2MB write cache
-        "max xmit" = "131072"; # Max packet size (128KB)
-        "large readwrite" = "yes";
-        "server signing" = "disabled"; # Disable SMB signing for better performance (reduces security)
-        "smb encrypt" = "disabled"; # Disable encryption for better performance (reduces security)
+        # "kernel oplocks" = "yes"; # Better oplock handling for improved caching
       };
       homes = {
         browseable = "no";
