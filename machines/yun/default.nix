@@ -252,7 +252,6 @@
     accelerationDevices = null;
     mediaLocation = "/storage/set1/immich";
     environment = {
-      IMMICH_VERSION = "2.3.1";
       IMMICH_TELEMETRY_EXCLUDE = "host,api,io,repo,job";
     };
   };
