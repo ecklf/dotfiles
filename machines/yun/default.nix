@@ -83,11 +83,13 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = ["zfs"];
-    zfs = {
+zfs = {
       # https://wiki.nixos.org/wiki/ZFS#Importing_on_boot
-      # Runs `sudo zpool import storage` on boot
+      # Runs `sudo zpool import storage` on
       extraPools = ["storage"];
       forceImportRoot = false;
+      # Import pools with -f flag to handle busy datasets
+      extraArgs = ["-f"];
     };
   };
 
@@ -115,6 +117,8 @@
       "defaults"
       "nofail"
       "zfsutil"
+      "xattr=sa"
+      "noatime"
     ];
   };
 
