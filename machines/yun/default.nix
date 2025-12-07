@@ -83,30 +83,17 @@
       efi.canTouchEfiVariables = true;
     };
     supportedFilesystems = ["zfs"];
-zfs = {
+    zfs = {
       # https://wiki.nixos.org/wiki/ZFS#Importing_on_boot
       # Runs `sudo zpool import storage` on
       extraPools = ["storage"];
       forceImportRoot = false;
-      # Import pools with -f flag to handle busy datasets
-      extraArgs = ["-f"];
     };
   };
 
-  environment.systemPackages = [
-    pkgs.apfs-fuse
-    pkgs.cryptsetup
-    pkgs.git
-    pkgs.wget
-    pkgs.curl
-    pkgs.neovim
-    pkgs.vim
-    pkgs.master.immich
-    pkgs.master.immich-cli
-  ];
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  services.zfs.autoScrub.enable = true;
 
   fileSystems."/share" = {
     neededForBoot = false;
@@ -121,6 +108,18 @@ zfs = {
       "noatime"
     ];
   };
+
+  environment.systemPackages = [
+    pkgs.apfs-fuse
+    pkgs.cryptsetup
+    pkgs.git
+    pkgs.wget
+    pkgs.curl
+    pkgs.neovim
+    pkgs.vim
+    pkgs.master.immich
+    pkgs.master.immich-cli
+  ];
 
   # Make shares visible for windows 10 clients
   services.samba-wsdd.enable = true;
