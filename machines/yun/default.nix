@@ -268,6 +268,13 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
 
+    virtualHosts."${hostname}" = {
+      default = true;
+      locations."/" = {
+        return = "404";
+      };
+    };
+
     virtualHosts."immich.${hostname}" = {
       locations."/" = {
         proxyPass = "http://127.0.0.1:2283";
