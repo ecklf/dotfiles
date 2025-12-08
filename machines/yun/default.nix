@@ -69,9 +69,9 @@
     };
     firewall = {
       enable = true;
-      # Samba + Immich
-      allowedTCPPorts = [445 139 2283 5201];
-      allowedUDPPorts = [137 138 2283 5201];
+      # Samba + Immich + Nginx
+      allowedTCPPorts = [80 443 445 139 5201];
+      allowedUDPPorts = [137 138 5201];
     };
   };
 
@@ -234,7 +234,7 @@
 
   users.users."${username}" = {
     isNormalUser = true;
-    extraGroups = ["wheel" "libvirtd" "docker"];
+    extraGroups = ["wheel" "libvirtd" "docker" "nginx"];
     openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com''
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
@@ -245,12 +245,12 @@
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
   ];
 
-  users.users.immich.extraGroups = ["video" "render"];
+  users.users.immich.extraGroups = ["video" "render" "nginx"];
   services.immich = {
     enable = true;
     port = 2283;
-    host = "0.0.0.0"; # Makes it accessible on your network
-    openFirewall = true; # Auto-opens the port
+    host = "127.0.0.1"; # Changed to localhost since nginx will proxy
+    openFirewall = false; # No need to open port directly
     accelerationDevices = null;
     mediaLocation = "/storage/set1/immich";
     settings = {
@@ -258,6 +258,26 @@
     };
     environment = {
       IMMICH_TELEMETRY_EXCLUDE = "host,api,io,repo,job";
+    };
+  };
+
+  services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+    recommendedTlsSettings = true;
+    recommendedOptimisation = true;
+    recommendedGzipSettings = true;
+
+    virtualHosts."immich.${hostname}" = {
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:2283";
+        proxyWebsockets = true;
+        extraConfig = ''
+          client_max_body_size 50000M;
+          proxy_read_timeout 600s;
+          proxy_send_timeout 600s;
+        '';
+      };
     };
   };
 
