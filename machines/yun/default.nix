@@ -71,7 +71,6 @@
     };
   };
 
-  # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -85,10 +84,8 @@
       forceImportRoot = false;
     };
   };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
   services.zfs.autoScrub.enable = true;
+  services.openssh.enable = true;
 
   environment.systemPackages = [
     pkgs.apfs-fuse
@@ -99,6 +96,7 @@
     pkgs.vim
     pkgs.sops
   ];
+
   users.users."${username}" = {
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "nginx"];

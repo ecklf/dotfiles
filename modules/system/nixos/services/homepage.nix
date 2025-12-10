@@ -4,6 +4,7 @@
   config,
   username,
   hostname,
+  timezone,
   ...
 }: {
   options.homelab.homepage = {
@@ -147,7 +148,7 @@
               label = "Munich";
               latitude = 48.1351;
               longitude = 11.5820;
-              timezone = "Europe/Berlin";
+              timezone = timezone;
               units = "metric";
               cache = 5;
               maximumFractionDigits = 1;
