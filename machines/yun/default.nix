@@ -286,6 +286,10 @@
     enable = true;
     openFirewall = false; # Only accessible locally
     port = 61208;
+    extraArgs = [
+      "--webserver"
+      "--time" "5"
+    ];
   };
 
   services.homepage-dashboard = {
@@ -367,7 +371,8 @@
       {
         glances = {
           url = "http://127.0.0.1:61208";
-          version = 3;
+          version = 4;
+          metric = "cpu";
         };
       }
     ];
