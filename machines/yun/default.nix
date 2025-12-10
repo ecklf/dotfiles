@@ -459,12 +459,35 @@
     };
   };
 
-  # users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
-  # services.jellyfin = {
-  #   enable = true;
-  #   openFirewall = false; # nginx will handle the proxy
-  #   dataDir = "/storage/set1/jellyfin/data";
-  #   cacheDir = "/storage/set1/jellyfin/cache";
+  users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
+
+  # Ensure Jellyfin directories exist with correct permissions
+  systemd.tmpfiles.rules = [
+    "d /storage/set1/jellyfin 0755 jellyfin jellyfin -"
+    "d /storage/set1/jellyfin/data 0755 jellyfin jellyfin -"
+    "d /storage/set1/jellyfin/data/config 0755 jellyfin jellyfin -"
+    "d /storage/set1/jellyfin/data/log 0755 jellyfin jellyfin -"
+    "d /storage/set1/jellyfin/cache 0755 jellyfin jellyfin -"
+  ];
+
+  services.jellyfin = {
+    enable = true;
+    openFirewall = false; # nginx will handle the proxy
+    dataDir = "/storage/set1/jellyfin/data";
+    cacheDir = "/storage/set1/jellyfin/cache";
+    # logDir is relative to dataDir by default, so it becomes /storage/set1/jellyfin/data/log
+  };
+
+  # Override systemd service to prevent rapid restarts and add debugging
+  # systemd.services.jellyfin = {
+  #   serviceConfig = {
+  #     # Prevent rapid restart loops
+  #     RestartSec = "10s";
+  #     # Add core dump handling
+  #     LimitCORE = "infinity";
+  #     # Ensure proper permissions
+  #     UMask = "0022";
+  #   };
   # };
 
   services.paperless = {
