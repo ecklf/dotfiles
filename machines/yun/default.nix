@@ -57,7 +57,6 @@
     secrets.wireless = {};
     secrets.acme_yun = {};
     secrets.homepage_dashboard = {};
-    secrets.paperless = {};
     secrets.paperless_admin_password = {
       owner = "paperless";
       mode = "0400";
@@ -472,6 +471,8 @@
     address = "127.0.0.1";
     port = 28981;
     dataDir = "/storage/set1/paperless";
+    # These directories might be failing to create on first run
+    # Check `journalctl -xe` for paperless logs
     mediaDir = "/storage/set1/paperless/media";
     consumptionDir = "/storage/set1/paperless/consume";
     passwordFile = config.sops.secrets."paperless_admin_password".path;
