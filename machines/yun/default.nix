@@ -14,6 +14,7 @@
 
   homelab.enable = true;
   homelab.baseDomain = "ecklf.duckdns.org";
+  homelab.samba.enable = true;
 
   hardware.graphics = {
     enable = true;
