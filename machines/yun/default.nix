@@ -95,19 +95,19 @@
   services.openssh.enable = true;
   services.zfs.autoScrub.enable = true;
 
-  fileSystems."/share" = {
-    neededForBoot = false;
-    device = "storage/set1";
-    fsType = "zfs";
-    mountPoint = "/mnt/share";
-    options = [
-      "defaults"
-      "nofail"
-      "zfsutil"
-      "xattr=sa"
-      "noatime"
-    ];
-  };
+  # fileSystems."/share" = {
+  #   neededForBoot = false;
+  #   device = "storage/set1";
+  #   fsType = "zfs";
+  #   mountPoint = "/storage/set1";
+  #   options = [
+  #     "defaults"
+  #     "nofail"
+  #     "zfsutil"
+  #     "xattr=sa"
+  #     "noatime"
+  #   ];
+  # };
 
   environment.systemPackages = [
     pkgs.apfs-fuse
@@ -204,7 +204,7 @@
         "valid users" = "%S";
       };
       public = {
-        path = "/mnt/share/public";
+        path = "/storage/set1/public";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
@@ -216,8 +216,21 @@
         "strict allocate" = "yes";
         "allocation roundup size" = "4096";
       };
+      # hdd = {
+      #   path = "/storage/set1/hdd";
+      #   browseable = "yes";
+      #   "read only" = "no";
+      #   "guest ok" = "no";
+      #   "create mask" = "0755";
+      #   "directory mask" = "0755";
+      #   "force user" = "${username}";
+      #   "force group" = "wheel";
+      #   # Share-specific performance optimizations
+      #   "strict allocate" = "yes";
+      #   "allocation roundup size" = "4096";
+      # };
       camera = {
-        path = "/mnt/share/camera";
+        path = "/storage/set1/camera";
         browseable = "yes";
         "read only" = "no";
         "guest ok" = "no";
