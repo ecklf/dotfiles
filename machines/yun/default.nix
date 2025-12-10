@@ -264,12 +264,17 @@
     acceptTerms = true;
     defaults = {
       email = "ecklf@icloud.com";
+      dnsPropagationCheck = true;
     };
     certs = {
       "ecklf.duckdns.org" = {
         extraDomainNames = ["*.ecklf.duckdns.org"];
         dnsProvider = "duckdns";
         environmentFile = config.sops.secrets."acme_yun".path;
+        dnsPropagationCheck = true;
+        # Wait 120 seconds for DNS propagation (DuckDNS can be slow)
+        # Adjust this value based on your experience
+        extraLegoFlags = ["--dns.propagation-timeout" "120"];
       };
     };
   };
