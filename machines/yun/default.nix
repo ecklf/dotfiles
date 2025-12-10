@@ -300,7 +300,9 @@
     settings = {
       title = "云端控制台";
       favicon = "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/heimdall.png";
-      headerStyle = "boxed";
+      headerStyle = "boxedWidgets";
+      theme = "dark";
+      color = "zinc";
       layout = [
         {
           Services = {
@@ -338,10 +340,17 @@
     ];
     widgets = [
       {
-        resources = {
+        glances = {
+          url = "https://glances.ecklf.duckdns.org";
+          version = 4;
           cpu = true;
-          memory = true;
-          disk = "/";
+          mem = true;
+          cputemp = true; # disabled by default
+          uptime = true; # disabled by default
+          expanded = false; # show the expanded view
+          disk = "/storage"; # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
+          diskUnits = "bytes"; # optional, bytes (default) or bbytes. Only applies to disk
+          # label = "MyMachine"; # optional
         };
       }
       {
@@ -355,26 +364,13 @@
       }
       {
         openmeteo = {
-          label = "Home";
+          label = "Munich";
           latitude = 48.1351;
           longitude = 11.5820;
-          timezone = "Europe/Munich";
+          timezone = "Europe/Berlin";
           units = "metric";
           cache = 5;
-        };
-      }
-      {
-        glances = {
-          url = "https://glances.ecklf.duckdns.org";
-          version = 4;
-          cpu = true;
-          mem = true;
-          cputemp = true; # disabled by default
-          uptime = true; # disabled by default
-          expanded = false; # show the expanded view
-          # disk = "/"; # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-          # diskUnits = "bytes"; # optional, bytes (default) or bbytes. Only applies to disk
-          # label = "MyMachine"; # optional
+          maximumFractionDigits = 1;
         };
       }
     ];
