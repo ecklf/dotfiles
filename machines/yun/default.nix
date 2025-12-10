@@ -12,19 +12,20 @@
     ../../modules/system/nixos/services
   ];
 
-  homelab.enable = true;
-  homelab.baseDomain = "ecklf.duckdns.org";
-  homelab.samba.enable = true;
-  homelab.immich.enable = true;
-  homelab.immich.mediaLocation = "/storage/set1/service_data/immich";
-  homelab.glances.enable = true;
-  homelab.glances.port = 61208;
-  homelab.jellyfin.enable = true;
-  homelab.jellyfin.mediaLocation = "/storage/set1/service_data/jellyfin";
-
-  homelab.paperless.enable = true;
-  homelab.paperless.port = 28981;
-  homelab.paperless.mediaLocation = "/storage/set1/service_data/paperless";
+  homelab = {
+    enable = true;
+    baseDomain = "ecklf.duckdns.org";
+    samba.enable = true;
+    immich.enable = true;
+    immich.mediaLocation = "/storage/set1/service_data/immich";
+    glances.enable = true;
+    glances.port = 61208;
+    jellyfin.enable = true;
+    jellyfin.mediaLocation = "/storage/set1/service_data/jellyfin";
+    paperless.enable = true;
+    paperless.port = 28981;
+    paperless.mediaLocation = "/storage/set1/service_data/paperless";
+  };
 
   hardware.graphics = {
     enable = true;
