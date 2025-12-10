@@ -56,6 +56,7 @@
     };
     secrets.wireless = {};
     secrets.acme_yun = {};
+    secrets.homepage_dashboard = {};
   };
 
   networking = {
@@ -283,6 +284,7 @@
   services.homepage-dashboard = {
     enable = true;
     listenPort = 8082;
+    environmentFile = config.sops.secrets."homepage_dashboard".path;
     settings = {
       title = "云端控制台";
       favicon = "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/heimdall.png";
@@ -311,6 +313,8 @@
               href = "https://immich.ecklf.duckdns.org";
               description = "Photo Management";
               widget = {
+                # Immich server major version
+                version = 2;
                 type = "immich";
                 url = "http://127.0.0.1:2283";
                 key = "{{HOMEPAGE_VAR_IMMICH_API_KEY}}";
