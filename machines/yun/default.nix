@@ -58,7 +58,6 @@
     secrets.acme_yun = {};
     secrets.homepage_dashboard = {};
     secrets.paperless_admin_password = {
-      owner = "paperless";
       mode = "0400";
     };
   };
@@ -442,6 +441,7 @@
     ];
   };
 
+  # Only enable when immich service is enabled
   users.users.immich.extraGroups = ["video" "render" "nginx"];
   services.immich = {
     enable = true;
@@ -449,7 +449,7 @@
     host = "127.0.0.1"; # Changed to localhost since nginx will proxy
     openFirewall = false; # No need to open port directly
     accelerationDevices = null;
-    mediaLocation = "/storage/set1/immich";
+    mediaLocation = "/storage/set1/service_data/immich";
     settings = {
       newVersionCheck.enabled = true;
     };
@@ -458,17 +458,17 @@
     };
   };
 
-  users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
-
   # Ensure Jellyfin directories exist with correct permissions
   systemd.tmpfiles.rules = [
-    "d /storage/set1/jellyfin 0755 jellyfin jellyfin -"
-    "d /storage/set1/jellyfin/data 0755 jellyfin jellyfin -"
-    "d /storage/set1/jellyfin/data/config 0755 jellyfin jellyfin -"
-    "d /storage/set1/jellyfin/data/log 0755 jellyfin jellyfin -"
-    "d /storage/set1/jellyfin/cache 0755 jellyfin jellyfin -"
+    "d /storage/set1/service_data/jellyfin 0755 jellyfin jellyfin -"
+    "d /storage/set1/service_data/jellyfin/data 0755 jellyfin jellyfin -"
+    "d /storage/set1/service_data/jellyfin/data/config 0755 jellyfin jellyfin -"
+    "d /storage/set1/service_data/jellyfin/data/log 0755 jellyfin jellyfin -"
+    "d /storage/set1/service_data/jellyfin/cache 0755 jellyfin jellyfin -"
   ];
 
+  # Only add these two if jellyfin is enabled service
+  users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
   # Create a service to fix permissions before Jellyfin starts
   systemd.services.jellyfin-setup = {
     description = "Setup Jellyfin directories with correct permissions";
@@ -479,29 +479,29 @@
       RemainAfterExit = true;
     };
     script = ''
-      mkdir -p /storage/set1/jellyfin/{data,cache,data/config,data/log}
-      chown -R jellyfin:jellyfin /storage/set1/jellyfin
-      chmod -R 755 /storage/set1/jellyfin
+      mkdir -p /storage/set1/service_data/jellyfin/{data,cache,data/config,data/log}
+      chown -R jellyfin:jellyfin /storage/set1/service_data/jellyfin
+      chmod -R 755 /storage/set1/service_data/jellyfin
     '';
   };
 
   services.jellyfin = {
     enable = true;
     openFirewall = false; # nginx will handle the proxy
-    dataDir = "/storage/set1/jellyfin/data";
-    cacheDir = "/storage/set1/jellyfin/cache";
-    # logDir is relative to dataDir by default, so it becomes /storage/set1/jellyfin/data/log
+    dataDir = "/storage/set1/service_data/jellyfin/data";
+    cacheDir = "/storage/set1/service_data/jellyfin/cache";
+    # logDir is relative to dataDir by default, so it becomes /storage/set1/service_data/jellyfin/data/log
   };
 
   services.paperless = {
     enable = true;
     address = "127.0.0.1";
     port = 28981;
-    dataDir = "/storage/set1/paperless";
+    dataDir = "/storage/set1/service_data/paperless";
     # These directories might be failing to create on first run
     # Check `journalctl -xe` for paperless logs
-    mediaDir = "/storage/set1/paperless/media";
-    consumptionDir = "/storage/set1/paperless/consume";
+    mediaDir = "/storage/set1/service_data/paperless/media";
+    consumptionDir = "/storage/set1/service_data/paperless/consume";
     passwordFile = config.sops.secrets."paperless_admin_password".path;
     # consumptionDirIsPublic = true;
     settings = {
