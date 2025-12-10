@@ -469,6 +469,22 @@
     "d /storage/set1/jellyfin/cache 0755 jellyfin jellyfin -"
   ];
 
+  # Create a service to fix permissions before Jellyfin starts
+  systemd.services.jellyfin-setup = {
+    description = "Setup Jellyfin directories with correct permissions";
+    wantedBy = ["jellyfin.service"];
+    before = ["jellyfin.service"];
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = true;
+    };
+    script = ''
+      mkdir -p /storage/set1/jellyfin/{data,cache,data/config,data/log}
+      chown -R jellyfin:jellyfin /storage/set1/jellyfin
+      chmod -R 755 /storage/set1/jellyfin
+    '';
+  };
+
   services.jellyfin = {
     enable = true;
     openFirewall = false; # nginx will handle the proxy
@@ -476,18 +492,6 @@
     cacheDir = "/storage/set1/jellyfin/cache";
     # logDir is relative to dataDir by default, so it becomes /storage/set1/jellyfin/data/log
   };
-
-  # Override systemd service to prevent rapid restarts and add debugging
-  # systemd.services.jellyfin = {
-  #   serviceConfig = {
-  #     # Prevent rapid restart loops
-  #     RestartSec = "10s";
-  #     # Add core dump handling
-  #     LimitCORE = "infinity";
-  #     # Ensure proper permissions
-  #     UMask = "0022";
-  #   };
-  # };
 
   services.paperless = {
     enable = true;
