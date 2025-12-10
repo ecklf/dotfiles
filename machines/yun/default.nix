@@ -280,6 +280,77 @@
     };
   };
 
+  services.homepage-dashboard = {
+    enable = true;
+    listenPort = 8082;
+    settings = {
+      title = "云端控制台";
+      favicon = "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/heimdall.png";
+      headerStyle = "boxed";
+      layout = [
+        {
+          Services = {
+            style = "row";
+            columns = 3;
+          };
+        }
+        {
+          Storage = {
+            style = "row";
+            columns = 2;
+          };
+        }
+      ];
+    };
+    services = [
+      {
+        Services = [
+          {
+            Immich = {
+              icon = "immich.png";
+              href = "https://immich.ecklf.duckdns.org";
+              description = "Photo Management";
+              widget = {
+                type = "immich";
+                url = "http://127.0.0.1:2283";
+                key = "{{HOMEPAGE_VAR_IMMICH_API_KEY}}";
+              };
+            };
+          }
+        ];
+      }
+    ];
+    widgets = [
+      {
+        resources = {
+          cpu = true;
+          memory = true;
+          disk = "/";
+        };
+      }
+      {
+        search = {
+          provider = "duckduckgo";
+          target = "_blank";
+        };
+      }
+    ];
+    bookmarks = [
+      {
+        Developer = [
+          {
+            Github = [
+              {
+                abbr = "GH";
+                href = "https://github.com/";
+              }
+            ];
+          }
+        ];
+      }
+    ];
+  };
+
   users.users.immich.extraGroups = ["video" "render" "nginx"];
   services.immich = {
     enable = true;
@@ -309,7 +380,8 @@
       forceSSL = true;
       useACMEHost = "ecklf.duckdns.org";
       locations."/" = {
-        return = "404";
+        proxyPass = "http://127.0.0.1:8082";
+        proxyWebsockets = true;
       };
     };
 
