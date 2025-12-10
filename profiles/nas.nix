@@ -7,6 +7,10 @@
       pkgs.docker-compose # Multi-container orchestration for Docker
       pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
       pkgs.iperf3 # Iperf3 client and server wrapper for dynamic server ports
+      pkgs.rustup # The Rust toolchain installer
+      pkgs.gcc # GNU Compiler Collection
+      pkgs.pkg-config # Tool that allows packages to find out information about other packages
+      pkgs.openssl # Cryptographic library that implements the SSL and TLS protocols
       pkgs.master.immich
       pkgs.master.immich-cli
       pkgs.master.yt-dlp
