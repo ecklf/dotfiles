@@ -55,6 +55,7 @@
       generateKey = true;
     };
     secrets.wireless = {};
+    secrets.acme_yun = {};
   };
 
   networking = {
@@ -258,6 +259,16 @@
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
   ];
 
+  # ACME / Let's Encrypt configuration
+  security.acme = {
+    acceptTerms = true;
+    defaults = {
+      email = "ecklf@icloud.com";
+      dnsProvider = "duckdns";
+      environmentFile = config.sops.secrets."acme_yun".path;
+    };
+  };
+
   users.users.immich.extraGroups = ["video" "render" "nginx"];
   services.immich = {
     enable = true;
@@ -283,12 +294,16 @@
 
     virtualHosts."${hostname}" = {
       default = true;
+      forceSSL = true;
+      enableACME = true;
       locations."/" = {
         return = "404";
       };
     };
 
     virtualHosts."immich.${hostname}" = {
+      forceSSL = true;
+      enableACME = true;
       locations."/" = {
         proxyPass = "http://127.0.0.1:2283";
         proxyWebsockets = true;

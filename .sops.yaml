@@ -13,7 +13,7 @@ creation_rules:
           - *admin_snowflake
           - *server_snowflake
           - *admin_yun
-  - path_regex: machines/**/secrets\.(yaml|yml)$
+  - path_regex: machines/yun/secrets/[^/]+\.(yaml|yml)$
     key_groups:
       - age:
           - *admin_snowflake
