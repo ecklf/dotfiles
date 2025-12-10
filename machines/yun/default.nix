@@ -9,6 +9,7 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./graphics.nix
     ../../modules/system/nixos/services
   ];
 
@@ -33,18 +34,6 @@
     homepage.enable = true;
     homepage.port = 8082;
   };
-
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # For Intel hardware acceleration support
-      # libva-vdpau-driver
-      intel-compute-runtime
-      intel-ocl
-      vpl-gpu-rt # QSV on 11th gen or newer
-    ];
-  };
-  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
   time.timeZone = timezone;
 
@@ -83,7 +72,6 @@
   };
 
   # Use the systemd-boot EFI boot loader.
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -102,20 +90,6 @@
   services.openssh.enable = true;
   services.zfs.autoScrub.enable = true;
 
-  # fileSystems."/share" = {
-  #   neededForBoot = false;
-  #   device = "storage/set1";
-  #   fsType = "zfs";
-  #   mountPoint = "/storage/set1";
-  #   options = [
-  #     "defaults"
-  #     "nofail"
-  #     "zfsutil"
-  #     "xattr=sa"
-  #     "noatime"
-  #   ];
-  # };
-
   environment.systemPackages = [
     pkgs.apfs-fuse
     pkgs.cryptsetup
@@ -125,7 +99,6 @@
     pkgs.vim
     pkgs.sops
   ];
-
   users.users."${username}" = {
     isNormalUser = true;
     extraGroups = ["wheel" "libvirtd" "docker" "nginx"];
@@ -138,29 +111,5 @@
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com''
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
   ];
-
-  # systemd.services.kbdrate-setup = {
-  #   description = "Set keyboard repeat rate and delay";
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "local-fs.target" ];
-  #   serviceConfig = with pkgs; {
-  #     Type = "oneshot";
-  #     ExecStart = "${kbd}/bin/kbdrate -r 500 -d 0";
-  #   };
-  # };
-
-  # services.interception-tools = {
-  #   enable = true;
-  #   plugins = with pkgs; [
-  #     interception-tools-plugins.caps2esc
-  #   ];
-  #   udevmonConfig = ''
-  #     - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-  #       DEVICE:
-  #         EVENTS:
-  #           EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-  #   '';
-  # };
-
   system.stateVersion = "25.11";
 }
