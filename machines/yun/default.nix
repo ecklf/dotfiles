@@ -31,8 +31,8 @@
     paperless.enable = true;
     paperless.port = 28981;
     paperless.mediaLocation = "/storage/set1/service_data/paperless";
-    homepage.enable = true;
-    homepage.port = 8082;
+    dashboard.enable = true;
+    dashboard.port = 5678;
   };
 
   time.timeZone = timezone;
@@ -47,7 +47,7 @@
     };
     secrets.wireless = {};
     secrets.acme_yun = {};
-    secrets.homepage_dashboard = {};
+    secrets.dashboard = {};
     secrets.paperless_admin_password = {
       mode = "0400";
     };

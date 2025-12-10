@@ -12,7 +12,7 @@
     ./glances.nix
     ./jellyfin.nix
     ./paperless.nix
-    ./homepage.nix
+    ./dashboard.nix
   ];
   options.homelab = {
     enable = lib.mkEnableOption "The homelab services and configuration variables";
@@ -66,13 +66,13 @@
       recommendedGzipSettings = true;
 
       virtualHosts."${config.homelab.baseDomain}" =
-        lib.mkIf config.homelab.homepage.enable
+        lib.mkIf config.homelab.dashboard.enable
         {
           default = true;
           forceSSL = true;
           useACMEHost = "${config.homelab.baseDomain}";
           locations."/" = {
-            proxyPass = "http://127.0.0.1:${toString config.homelab.homepage.port}";
+            proxyPass = "http://127.0.0.1:${toString config.homelab.dashboard.port}";
             proxyWebsockets = true;
           };
         };
