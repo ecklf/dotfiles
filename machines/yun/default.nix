@@ -57,6 +57,9 @@
     secrets.wireless = {};
     secrets.acme_yun = {};
     secrets.homepage_dashboard = {};
+    secrets.paperless_admin_password = {
+      owner = "paperless";
+    };
   };
 
   networking = {
@@ -469,7 +472,7 @@
     dataDir = "/storage/set1/paperless";
     mediaDir = "/storage/set1/paperless/media";
     consumptionDir = "/storage/set1/paperless/consume";
-    passwordFile = "/etc/paperless-admin-password"; # You'll need to create this file
+    passwordFile = config.sops.secrets.paperless_admin_password.path;
     settings = {
       PAPERLESS_OCR_LANGUAGE = "eng+deu"; # English and German OCR support
       PAPERLESS_OCR_USER_ARGS = {
