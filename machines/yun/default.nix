@@ -273,8 +273,9 @@
         environmentFile = config.sops.secrets."acme_yun".path;
         dnsPropagationCheck = true;
         # Wait 120 seconds for DNS propagation (DuckDNS can be slow)
-        # Adjust this value based on your experience
-        extraLegoFlags = ["--dns.propagation-timeout" "120"];
+        # See other options on https://go-acme.github.io/lego/usage/cli/options/
+        # Verify with `journalctl -u 'acme-*' -f`
+        extraLegoFlags = ["--cert.timeout" "300"];
       };
     };
   };
