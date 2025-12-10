@@ -8,6 +8,10 @@
 }: {
   imports = [
     ./samba.nix
+    ./immich.nix
+    ./glances.nix
+    ./jellyfin.nix
+    ./paperless.nix
   ];
   options.homelab = {
     enable = lib.mkEnableOption "The homelab services and configuration variables";
