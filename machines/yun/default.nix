@@ -15,6 +15,10 @@
   homelab = {
     enable = true;
     baseDomain = "ecklf.duckdns.org";
+    acme = {
+      email = "ecklf@icloud.com";
+      dnsProvider = "duckdns";
+    };
     samba.enable = true;
     immich.enable = true;
     immich.mediaLocation = "/storage/set1/service_data/immich";
@@ -134,99 +138,6 @@
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com''
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
   ];
-
-  # ACME / Let's Encrypt configuration
-  security.acme = {
-    acceptTerms = true;
-    defaults = {
-      email = "ecklf@icloud.com";
-      dnsPropagationCheck = true;
-    };
-    certs = {
-      "ecklf.duckdns.org" = {
-        extraDomainNames = ["*.ecklf.duckdns.org"];
-        dnsProvider = "duckdns";
-        environmentFile = config.sops.secrets."acme_yun".path;
-        dnsPropagationCheck = true;
-        # Wait 120 seconds for DNS propagation (DuckDNS can be slow)
-        # See other options on https://go-acme.github.io/lego/usage/cli/options/
-        # Verify with `journalctl -u 'acme-*' -f`
-        extraLegoFlags = ["--cert.timeout" "300"];
-      };
-    };
-  };
-
-  users.users.nginx.extraGroups = ["acme"];
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-
-    virtualHosts."ecklf.duckdns.org" = {
-      default = true;
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8082";
-        proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."immich.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:2283";
-        proxyWebsockets = true;
-        extraConfig = ''
-          client_max_body_size 50000M;
-          proxy_read_timeout 600s;
-          proxy_send_timeout 600s;
-        '';
-      };
-    };
-
-    virtualHosts."glances.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:61208";
-        proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."jellyfin.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8096";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_buffering off;
-        '';
-      };
-      locations."/socket" = {
-        proxyPass = "http://127.0.0.1:8096";
-        proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."paperless.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:28981";
-        proxyWebsockets = true;
-        extraConfig = ''
-          client_max_body_size 100M;
-          proxy_read_timeout 300s;
-          proxy_send_timeout 300s;
-        '';
-      };
-    };
-  };
 
   # systemd.services.kbdrate-setup = {
   #   description = "Set keyboard repeat rate and delay";
