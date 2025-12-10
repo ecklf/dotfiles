@@ -359,6 +359,30 @@
               };
             };
           }
+          {
+            Jellyfin = {
+              icon = "jellyfin.png";
+              href = "https://jellyfin.ecklf.duckdns.org";
+              description = "Media Server";
+              widget = {
+                type = "jellyfin";
+                url = "http://127.0.0.1:8096";
+                key = "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}";
+              };
+            };
+          }
+          {
+            Paperless-ngx = {
+              icon = "paperless.png";
+              href = "https://paperless.ecklf.duckdns.org";
+              description = "Document Management";
+              widget = {
+                type = "paperlessngx";
+                url = "http://127.0.0.1:28981";
+                key = "{{HOMEPAGE_VAR_PAPERLESS_API_KEY}}";
+              };
+            };
+          }
         ];
       }
     ];
@@ -430,6 +454,33 @@
     };
   };
 
+  users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
+  services.jellyfin = {
+    enable = true;
+    openFirewall = false; # nginx will handle the proxy
+    dataDir = "/storage/set1/jellyfin/data";
+    cacheDir = "/storage/set1/jellyfin/cache";
+  };
+
+  services.paperless = {
+    enable = true;
+    address = "127.0.0.1";
+    port = 28981;
+    dataDir = "/storage/set1/paperless";
+    mediaDir = "/storage/set1/paperless/media";
+    consumptionDir = "/storage/set1/paperless/consume";
+    passwordFile = "/etc/paperless-admin-password"; # You'll need to create this file
+    settings = {
+      PAPERLESS_OCR_LANGUAGE = "eng+deu"; # English and German OCR support
+      PAPERLESS_OCR_USER_ARGS = {
+        optimize = 1;
+        pdfa_image_compression = "lossless";
+      };
+      PAPERLESS_CONSUMER_RECURSIVE = true;
+      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
+    };
+  };
+
   users.users.nginx.extraGroups = ["acme"];
   services.nginx = {
     enable = true;
@@ -468,6 +519,36 @@
       locations."/" = {
         proxyPass = "http://127.0.0.1:61208";
         proxyWebsockets = true;
+      };
+    };
+
+    virtualHosts."jellyfin.ecklf.duckdns.org" = {
+      forceSSL = true;
+      useACMEHost = "ecklf.duckdns.org";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:8096";
+        proxyWebsockets = true;
+        extraConfig = ''
+          proxy_buffering off;
+        '';
+      };
+      locations."/socket" = {
+        proxyPass = "http://127.0.0.1:8096";
+        proxyWebsockets = true;
+      };
+    };
+
+    virtualHosts."paperless.ecklf.duckdns.org" = {
+      forceSSL = true;
+      useACMEHost = "ecklf.duckdns.org";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:28981";
+        proxyWebsockets = true;
+        extraConfig = ''
+          client_max_body_size 100M;
+          proxy_read_timeout 300s;
+          proxy_send_timeout 300s;
+        '';
       };
     };
   };
