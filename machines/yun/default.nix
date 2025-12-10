@@ -57,8 +57,10 @@
     secrets.wireless = {};
     secrets.acme_yun = {};
     secrets.homepage_dashboard = {};
+    secrets.paperless = {};
     secrets.paperless_admin_password = {
       owner = "paperless";
+      mode = "0400";
     };
   };
 
@@ -457,13 +459,13 @@
     };
   };
 
-  users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
-  services.jellyfin = {
-    enable = true;
-    openFirewall = false; # nginx will handle the proxy
-    dataDir = "/storage/set1/jellyfin/data";
-    cacheDir = "/storage/set1/jellyfin/cache";
-  };
+  # users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
+  # services.jellyfin = {
+  #   enable = true;
+  #   openFirewall = false; # nginx will handle the proxy
+  #   dataDir = "/storage/set1/jellyfin/data";
+  #   cacheDir = "/storage/set1/jellyfin/cache";
+  # };
 
   services.paperless = {
     enable = true;
@@ -472,8 +474,13 @@
     dataDir = "/storage/set1/paperless";
     mediaDir = "/storage/set1/paperless/media";
     consumptionDir = "/storage/set1/paperless/consume";
-    passwordFile = config.sops.secrets.paperless_admin_password.path;
+    passwordFile = config.sops.secrets."paperless_admin_password".path;
+    # consumptionDirIsPublic = true;
     settings = {
+      PAPERLESS_CONSUMER_IGNORE_PATTERN = [
+        ".DS_STORE/*"
+        "desktop.ini"
+      ];
       PAPERLESS_OCR_LANGUAGE = "eng+deu"; # English and German OCR support
       PAPERLESS_OCR_USER_ARGS = {
         optimize = 1;
@@ -481,6 +488,7 @@
       };
       PAPERLESS_CONSUMER_RECURSIVE = true;
       PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
+      PAPERLESS_URL = "https://paperless.ecklf.duckdns.org";
     };
   };
 
