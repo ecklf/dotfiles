@@ -89,6 +89,17 @@ in {
       # Core
       plenary-nvim # useful lua functions used ny lots of plugins - required by Telescope
       impatient-nvim # improves loading times
+      # AI
+      # {
+      #   plugin = opencode-nvim;
+      #   type = "lua";
+      #   config = builtins.readFile ./plugins/opencode.lua;
+      # }
+      {
+        plugin = copilot-vim;
+        type = "lua";
+        config = builtins.readFile ./plugins/copilot.lua;
+      }
       # Colorschemes
       iceberg-vim
       ayu-vim
@@ -391,12 +402,6 @@ in {
         type = "lua";
         config = builtins.readFile ./plugins/fidget.lua;
       }
-      {
-        # nvim-lsp progress
-        plugin = copilot-vim;
-        type = "lua";
-        config = builtins.readFile ./plugins/copilot.lua;
-      }
       # Git
       {
         plugin = gitsigns-nvim;
@@ -414,7 +419,6 @@ in {
       vim-fugitive # Git commands in nvim
       vim-rhubarb # Fugitive-companion to interact with GitHub
       git-blame-nvim
-
       # -- Debug Adapter Protocol
       # --   use { "mfussenegger/nvim-dap" }
       # --   use { "rcarriga/nvim-dap-ui" }
