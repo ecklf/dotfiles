@@ -6,18 +6,16 @@
   hostname,
   ...
 }: {
-  options.homelab = lib.mkOption {
-    type = lib.types.submodule {
-      options = {
-        enable = lib.mkOption {
-          default = false;
-          type = lib.types.bool;
-          description = "Enable homelab services";
-        };
-        publicUrl = lib.mkOption {
-          type = lib.types.str;
-        };
-      };
+  options.homelab = {
+    enable = lib.mkEnableOption "The homelab services and configuration variables";
+    timeZone = lib.mkOption {
+      default = "Europe/Berlin";
+      type = lib.types.str;
+      description = "Timezone used for homelab services";
+    };
+    baseDomain = lib.mkOption {
+      type = lib.types.str;
+      description = "Base domain to access homelab services via reverse proxy";
     };
   };
 

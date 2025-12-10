@@ -13,7 +13,7 @@
   ];
 
   homelab.enable = true;
-  homelab.publicUrl = "ecklf.duckdns.org";
+  homelab.baseDomain = "ecklf.duckdns.org";
 
   hardware.graphics = {
     enable = true;
