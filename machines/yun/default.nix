@@ -288,7 +288,8 @@
     port = 61208;
     extraArgs = [
       "--webserver"
-      "--time" "5"
+      "--time"
+      "5"
     ];
   };
 
@@ -344,14 +345,8 @@
         };
       }
       {
-        search = {
-          provider = "duckduckgo";
-          target = "_blank";
-        };
-      }
-      {
         datetime = {
-          text_size = "xl";
+          text_size = "md";
           format = {
             dateStyle = "short";
             timeStyle = "short";
@@ -370,9 +365,16 @@
       }
       {
         glances = {
-          url = "http://127.0.0.1:61208";
+          url = "https://glances.ecklf.duckdns.org";
           version = 4;
-          metric = "cpu";
+          cpu = true;
+          mem = true;
+          cputemp = true; # disabled by default
+          uptime = true; # disabled by default
+          expanded = false; # show the expanded view
+          # disk = "/"; # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
+          # diskUnits = "bytes"; # optional, bytes (default) or bbytes. Only applies to disk
+          # label = "MyMachine"; # optional
         };
       }
     ];
@@ -437,6 +439,15 @@
           proxy_read_timeout 600s;
           proxy_send_timeout 600s;
         '';
+      };
+    };
+
+    virtualHosts."glances.ecklf.duckdns.org" = {
+      forceSSL = true;
+      useACMEHost = "ecklf.duckdns.org";
+      locations."/" = {
+        proxyPass = "http://127.0.0.1:61208";
+        proxyWebsockets = true;
       };
     };
   };
