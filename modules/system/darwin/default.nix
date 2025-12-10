@@ -203,6 +203,10 @@
             location = config.darwinModules.screenshot.path;
             type = config.darwinModules.screenshot.format;
           };
+          "com.apple.controlcenter" = {
+            # Disable recent items
+            NumberOfRecents = 0;
+          };
           # "com.apple.Safari" = {
           #   # Privacy: don’t send search queries to Apple
           #   UniversalSearchEnabled = false;
