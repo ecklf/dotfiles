@@ -334,6 +334,31 @@
           target = "_blank";
         };
       }
+      {
+        datetime = {
+          text_size = "xl";
+          format = {
+            dateStyle = "short";
+            timeStyle = "short";
+          };
+        };
+      }
+      {
+        openmeteo = {
+          label = "Home";
+          latitude = 48.1351;
+          longitude = 11.5820;
+          timezone = "Europe/Munich";
+          units = "metric";
+          cache = 5;
+        };
+      }
+      {
+        glances = {
+          url = "http://127.0.0.1:61208";
+          version = 3;
+        };
+      }
     ];
     bookmarks = [
       {
