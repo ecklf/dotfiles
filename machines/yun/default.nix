@@ -264,8 +264,13 @@
     acceptTerms = true;
     defaults = {
       email = "ecklf@icloud.com";
-      dnsProvider = "duckdns";
-      environmentFile = config.sops.secrets."acme_yun".path;
+    };
+    certs = {
+      "ecklf.duckdns.org" = {
+        extraDomainNames = ["*.ecklf.duckdns.org"];
+        dnsProvider = "duckdns";
+        environmentFile = config.sops.secrets."acme_yun".path;
+      };
     };
   };
 
@@ -292,18 +297,18 @@
     recommendedOptimisation = true;
     recommendedGzipSettings = true;
 
-    virtualHosts."${hostname}" = {
+    virtualHosts."ecklf.duckdns.org" = {
       default = true;
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = "ecklf.duckdns.org";
       locations."/" = {
         return = "404";
       };
     };
 
-    virtualHosts."immich.${hostname}" = {
+    virtualHosts."immich.ecklf.duckdns.org" = {
       forceSSL = true;
-      enableACME = true;
+      useACMEHost = "ecklf.duckdns.org";
       locations."/" = {
         proxyPass = "http://127.0.0.1:2283";
         proxyWebsockets = true;
