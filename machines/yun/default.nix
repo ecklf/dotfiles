@@ -120,10 +120,8 @@
     pkgs.git
     pkgs.wget
     pkgs.curl
-    pkgs.neovim
     pkgs.vim
-    pkgs.master.immich
-    pkgs.master.immich-cli
+    pkgs.sops
   ];
 
   # Make shares visible for windows 10 clients

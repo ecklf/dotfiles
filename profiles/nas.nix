@@ -7,6 +7,10 @@
       pkgs.docker-compose # Multi-container orchestration for Docker
       pkgs.lazydocker # A simple terminal UI for both docker and docker-compose
       pkgs.iperf3 # Iperf3 client and server wrapper for dynamic server ports
+      pkgs.master.immich
+      pkgs.master.immich-cli
+      pkgs.master.yt-dlp
+      pkgs.master.ffmpeg
     ];
   };
 })
