@@ -18,6 +18,7 @@
     samba.enable = true;
     immich.enable = true;
     immich.mediaLocation = "/storage/set1/service_data/immich";
+    immich.port = 2283;
     glances.enable = true;
     glances.port = 61208;
     jellyfin.enable = true;
@@ -25,6 +26,8 @@
     paperless.enable = true;
     paperless.port = 28981;
     paperless.mediaLocation = "/storage/set1/service_data/paperless";
+    homepage.enable = true;
+    homepage.port = 8082;
   };
 
   hardware.graphics = {
@@ -152,160 +155,6 @@
       };
     };
   };
-
-  services.homepage-dashboard = {
-    enable = true;
-    listenPort = 8082;
-    environmentFile = config.sops.secrets."homepage_dashboard".path;
-    settings = {
-      title = "云端控制台";
-      favicon = "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/heimdall.png";
-      headerStyle = "boxedWidgets";
-      theme = "dark";
-      color = "zinc";
-      customCSS = ''
-        body, html {
-          font-family: SF Pro Display, Helvetica, Arial, sans-serif !important;
-        }
-        .font-medium {
-          font-weight: 700 !important;
-        }
-        .font-light {
-          font-weight: 500 !important;
-        }
-        .font-thin {
-          font-weight: 400 !important;
-        }
-        #information-widgets {
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-        }
-        div#footer {
-          display: none;
-        }
-        .services-group.basis-full.flex-1.px-1.-my-1 {
-          padding-bottom: 3rem;
-        };
-      '';
-      layout = [
-        {
-          Services = {
-            style = "row";
-            columns = 3;
-          };
-        }
-        {
-          Storage = {
-            style = "row";
-            columns = 2;
-          };
-        }
-      ];
-    };
-    services = [
-      {
-        Services = [
-          {
-            Immich = {
-              icon = "immich.png";
-              href = "https://immich.ecklf.duckdns.org";
-              description = "Photo Management";
-              widget = {
-                # Immich server major version
-                version = 2;
-                type = "immich";
-                url = "http://127.0.0.1:2283";
-                key = "{{HOMEPAGE_VAR_IMMICH_API_KEY}}";
-              };
-            };
-          }
-          {
-            Jellyfin = {
-              icon = "jellyfin.png";
-              href = "https://jellyfin.ecklf.duckdns.org";
-              description = "Media Server";
-              widget = {
-                type = "jellyfin";
-                url = "http://127.0.0.1:8096";
-                key = "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}";
-              };
-            };
-          }
-          {
-            Paperless-ngx = {
-              icon = "paperless.png";
-              href = "https://paperless.ecklf.duckdns.org";
-              description = "Document Management";
-              widget = {
-                type = "paperlessngx";
-                url = "http://127.0.0.1:28981";
-                key = "{{HOMEPAGE_VAR_PAPERLESS_API_KEY}}";
-              };
-            };
-          }
-        ];
-      }
-    ];
-    widgets = [
-      {
-        glances = {
-          url = "https://glances.ecklf.duckdns.org";
-          version = 4;
-          cpu = true;
-          mem = true;
-          cputemp = true; # disabled by default
-          uptime = true; # disabled by default
-          expanded = false; # show the expanded view
-          disk = "/storage"; # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-          diskUnits = "bytes"; # optional, bytes (default) or bbytes. Only applies to disk
-          # label = "MyMachine"; # optional
-        };
-      }
-      {
-        datetime = {
-          text_size = "md";
-          format = {
-            dateStyle = "short";
-            timeStyle = "short";
-          };
-        };
-      }
-      {
-        openmeteo = {
-          label = "Munich";
-          latitude = 48.1351;
-          longitude = 11.5820;
-          timezone = "Europe/Berlin";
-          units = "metric";
-          cache = 5;
-          maximumFractionDigits = 1;
-        };
-      }
-    ];
-    bookmarks = [
-      {
-        Developer = [
-          {
-            Github = [
-              {
-                abbr = "GH";
-                href = "https://github.com/";
-              }
-            ];
-          }
-        ];
-      }
-    ];
-  };
-
-  # Ensure Jellyfin directories exist with correct permissions
-  systemd.tmpfiles.rules = [
-    "d /storage/set1/service_data/jellyfin 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/data 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/data/config 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/data/log 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/cache 0755 jellyfin jellyfin -"
-  ];
 
   users.users.nginx.extraGroups = ["acme"];
   services.nginx = {
