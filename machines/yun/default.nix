@@ -281,6 +281,13 @@
     };
   };
 
+  # Enable Glances system monitoring
+  services.glances = {
+    enable = true;
+    openFirewall = false; # Only accessible locally
+    port = 61208;
+  };
+
   services.homepage-dashboard = {
     enable = true;
     listenPort = 8082;
