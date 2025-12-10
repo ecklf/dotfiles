@@ -41,8 +41,13 @@
     enable = true;
     extraPackages = with pkgs; [
       intel-media-driver # For Intel hardware acceleration support
+      # libva-vdpau-driver
+      intel-compute-runtime
+      intel-ocl
+      vpl-gpu-rt # QSV on 11th gen or newer
     ];
   };
+  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
   time.timeZone = timezone;
 
