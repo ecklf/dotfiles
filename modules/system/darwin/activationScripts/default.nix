@@ -43,6 +43,7 @@ in {
     default = {};
   };
   config = lib.mkIf config.activationScriptModules.enable {
+    # This might be broken right now
     system.activationScripts.preActivation = {
       enable = true;
       text = lib.mkIf (lib.length config.activationScriptModules.extraPreActivationScripts > 0) ''
