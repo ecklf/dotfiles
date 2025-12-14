@@ -44,17 +44,17 @@
                     sites = [
                       {
                         title = "Immich";
-                        url = "http://127.0.0.1:${toString config.homelab.immich.port}";
+                        url = "immich.${config.homelab.baseDomain}";
                         icon = "si:immich";
                       }
                       {
                         title = "Jellyfin";
-                        url = "http://127.0.0.1:8096";
+                        url = "jellyfin.${config.homelab.baseDomain}";
                         icon = "si:jellyfin";
                       }
                       {
                         title = "Paperless";
-                        url = "http://127.0.0.1:${toString config.homelab.paperless.port}";
+                        url = "paperless.${config.homelab.baseDomain}";
                         icon = "si:paperlessngx";
                       }
                       # {
