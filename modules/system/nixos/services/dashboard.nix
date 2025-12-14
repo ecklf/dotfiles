@@ -22,6 +22,11 @@
       enable = true;
       settings = {
         server.port = config.homelab.dashboard.port;
+        branding = {
+          hide-desktop-navigation = true;
+          show-mobile-header = true;
+          hide-footer = true;
+        };
         pages = [
           {
             name = "Home";
@@ -30,54 +35,22 @@
             hide-footer = true;
             head-widgets = [
               {
-                type = "split-column";
-                widgets = [
+                type = "server-stats";
+                hide-header = true;
+                servers = [
                   {
-                    type = "server-stats";
-                    hide-header = true;
-                    servers = [
-                      {
-                        type = "local";
-                        name = "云端控制台";
-                        hide-mountpoints-by-default = true;
-                        mountpoints = {
-                          "/" = {
-                            hide = false;
-                          };
-                          "/storage/set1" = {
-                            hide = false;
-                          };
-                        };
-                      }
-                    ];
+                    type = "local";
+                    name = "云端控制台";
+                    hide-mountpoints-by-default = true;
+                    mountpoints = {
+                      "/" = {
+                        hide = false;
+                      };
+                      "/storage/set1" = {
+                        hide = false;
+                      };
+                    };
                   }
-                  # {
-                  #   type = "server-stats";
-                  #   hide-header = true;
-                  #   servers = [
-                  #     {
-                  #       type = "remote";
-                  #       name = "Raspberry Pi 5";
-                  #       url = "\${GLANCE_RPI_URL}";
-                  #       token = "\${GLANCE_RPI_TOKEN}";
-                  #       hide-mountpoints-by-default = true;
-                  #       mountpoints = {
-                  #         "/" = {
-                  #           hide = false;
-                  #         };
-                  #         "/etc/resolv.conf" = {
-                  #           hide = true;
-                  #         };
-                  #         "/etc/hostname" = {
-                  #           hide = true;
-                  #         };
-                  #         "/etc/hosts" = {
-                  #           hide = true;
-                  #         };
-                  #       };
-                  #     }
-                  #   ];
-                  # }
                 ];
               }
             ];
@@ -195,6 +168,18 @@
                   }
                   {
                     type = "to-do";
+                  }
+                  {
+                    type = "releases";
+                    show-source-icon = true;
+                    repositories = [
+                      "immich-app/immich"
+                      "jellyfin/jellyfin"
+                      "paperless-ngx/paperless-ngx"
+                      "Stirling-Tools/Stirling-PDF"
+                      # "glanceapp/glance"
+                      # "go-gitea/gitea"
+                    ];
                   }
                 ];
               }
@@ -377,44 +362,21 @@
                 size = "small";
                 widgets = [
                   {
-                    type = "split-column";
-                    sizes = [7 3];
-                    widgets = [
-                      {
-                        type = "server-stats";
-                        hide-header = true;
-                        servers = [
-                          {
-                            type = "local";
-                            name = "云端控制台";
-                            hide-mountpoints-by-default = true;
-                            mountpoints = {
-                              "/" = {
-                                hide = false;
-                              };
-                              "/storage/set1" = {
-                                hide = false;
-                              };
-                            };
-                          }
-                        ];
-                      }
-                      {
-                        type = "clock";
-                        hide-header = true;
-                        time-format = "24h";
-                        date-format = "d MMMM yyyy";
-                        show-seconds = true;
-                        show-timezone = true;
-                        timezone = timezone;
-                      }
-                    ];
+                    type = "clock";
+                    hide-header = true;
+                    time-format = "24h";
+                    date-format = "d MMMM yyyy";
+                    show-seconds = true;
+                    show-timezone = true;
+                    timezone = timezone;
                   }
                   {
                     type = "weather";
                     location = "Munich, Germany";
                     units = "metric";
                     hour-format = "24h";
+                    hide-location = true;
+                    show-area-name = false;
                   }
                   {
                     type = "calendar";
