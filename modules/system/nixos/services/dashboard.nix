@@ -22,7 +22,6 @@
       enable = true;
       settings = {
         server.port = config.homelab.dashboard.port;
-
         pages = [
           {
             name = "Home";
@@ -39,7 +38,7 @@
                     servers = [
                       {
                         type = "local";
-                        name = "Yun";
+                        name = "云端控制台";
                         hide-mountpoints-by-default = true;
                         mountpoints = {
                           "/" = {
@@ -52,33 +51,33 @@
                       }
                     ];
                   }
-                  {
-                    type = "server-stats";
-                    hide-header = true;
-                    servers = [
-                      # {
-                      #   type = "remote";
-                      #   name = "Raspberry Pi 5";
-                      #   url = "\${GLANCE_RPI_URL}";
-                      #   token = "\${GLANCE_RPI_TOKEN}";
-                      #   hide-mountpoints-by-default = true;
-                      #   mountpoints = {
-                      #     "/" = {
-                      #       hide = false;
-                      #     };
-                      #     "/etc/resolv.conf" = {
-                      #       hide = true;
-                      #     };
-                      #     "/etc/hostname" = {
-                      #       hide = true;
-                      #     };
-                      #     "/etc/hosts" = {
-                      #       hide = true;
-                      #     };
-                      #   };
-                      # }
-                    ];
-                  }
+                  # {
+                  #   type = "server-stats";
+                  #   hide-header = true;
+                  #   servers = [
+                  #     {
+                  #       type = "remote";
+                  #       name = "Raspberry Pi 5";
+                  #       url = "\${GLANCE_RPI_URL}";
+                  #       token = "\${GLANCE_RPI_TOKEN}";
+                  #       hide-mountpoints-by-default = true;
+                  #       mountpoints = {
+                  #         "/" = {
+                  #           hide = false;
+                  #         };
+                  #         "/etc/resolv.conf" = {
+                  #           hide = true;
+                  #         };
+                  #         "/etc/hostname" = {
+                  #           hide = true;
+                  #         };
+                  #         "/etc/hosts" = {
+                  #           hide = true;
+                  #         };
+                  #       };
+                  #     }
+                  #   ];
+                  # }
                 ];
               }
             ];
@@ -190,188 +189,188 @@
                   #   '';
                   # }
                   {
-                    type = "group";
-                    widgets = [
-                      {
-                        type = "reddit";
-                        subreddit = "selfhosted";
-                        collapse-after = 6;
-                      }
-                      {
-                        type = "reddit";
-                        subreddit = "thinkpad";
-                        collapse-after = 6;
-                      }
-                    ];
+                    type = "search";
+                    search-engine = "google";
+                    target = "_self";
+                  }
+                  {
+                    type = "to-do";
                   }
                 ];
               }
               {
                 size = "full";
                 widgets = [
-                  {
-                    type = "monitor";
-                    cache = "1m";
-                    title = "Networking & Internet";
-                    sites = [
-                      # {
-                      #   title = "AdGuard Home";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://adguard.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:adguard-home.png";
-                      # }
-                      # {
-                      #   title = "Nginx Proxy Manager";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://nginx.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:nginx-proxy-manager.png";
-                      # }
-                      # {
-                      #   title = "Speedtest Tracker";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://speedtest.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:speedtest-tracker.png";
-                      # }
-                      # {
-                      #   title = "Zero Trust Dashboard";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://one.dash.cloudflare.com/\${ZERO_TRUST_USER_ID}/home/quick-start";
-                      #   icon = "di:cloudflare-zero-trust.png";
-                      # }
-                    ];
-                  }
+                  # {
+                  #   type = "monitor";
+                  #   cache = "1m";
+                  #   title = "Networking & Internet";
+                  #   sites = [
+                  #      {
+                  #        title = "AdGuard Home";
+                  #        same-tab = true;
+                  #        timeout = "5s";
+                  #        url = "https://adguard.\${YOUR_BASE_DOMAIN}/";
+                  #        icon = "di:adguard-home.png";
+                  #      }
+                  #      {
+                  #        title = "Nginx Proxy Manager";
+                  #        same-tab = true;
+                  #        timeout = "5s";
+                  #        url = "https://nginx.\${YOUR_BASE_DOMAIN}/";
+                  #        icon = "di:nginx-proxy-manager.png";
+                  #      }
+                  #      {
+                  #        title = "Speedtest Tracker";
+                  #        same-tab = true;
+                  #        timeout = "5s";
+                  #        url = "https://speedtest.\${YOUR_BASE_DOMAIN}/";
+                  #        icon = "di:speedtest-tracker.png";
+                  #      }
+                  #      {
+                  #        title = "Zero Trust Dashboard";
+                  #        same-tab = true;
+                  #        timeout = "5s";
+                  #        url = "https://one.dash.cloudflare.com/\${ZERO_TRUST_USER_ID}/home/quick-start";
+                  #        icon = "di:cloudflare-zero-trust.png";
+                  #      }
+                  #   ];
+                  # }
                   {
                     type = "monitor";
                     cache = "1m";
                     title = "Productivity & Files";
-                    sites = [
-                      {
-                        title = "Immich";
-                        url = "immich.${config.homelab.baseDomain}";
-                        icon = "si:immich";
-                      }
-                      {
-                        title = "Jellyfin";
-                        url = "jellyfin.${config.homelab.baseDomain}";
-                        icon = "si:jellyfin";
-                      }
-                      {
-                        title = "Paperless";
-                        url = "paperless.${config.homelab.baseDomain}";
-                        icon = "si:paperlessngx";
-                      }
-                    ];
+                    sites = lib.flatten (
+                      []
+                      ++ lib.optional config.homelab.immich.enable [
+                        {
+                          title = "Immich";
+                          url = "https://immich.${config.homelab.baseDomain}";
+                          icon = "si:immich";
+                        }
+                      ]
+                      ++ lib.optional config.homelab.jellyfin.enable [
+                        {
+                          title = "Jellyfin";
+                          url = "https://jellyfin.${config.homelab.baseDomain}";
+                          icon = "si:jellyfin";
+                        }
+                      ]
+                      ++ lib.optional config.homelab.paperless.enable [
+                        {
+                          title = "Paperless";
+                          url = "https://paperless.${config.homelab.baseDomain}";
+                          icon = "si:paperlessngx";
+                        }
+                      ]
+                      ++ lib.optional config.homelab.stirling.enable [
+                        {
+                          title = "Stirling PDF";
+                          url = "https://stirling.${config.homelab.baseDomain}";
+                          icon = "si:googledocs";
+                        }
+                      ]
+                    );
                   }
-                  {
-                    type = "monitor";
-                    cache = "1m";
-                    title = "Development & Management";
-                    sites = [
-                      # {
-                      #   title = "Cockpit";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://cockpit.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:cockpit.png";
-                      # }
-                      # {
-                      #   title = "Code Server";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://vscode.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:vscode.png";
-                      # }
-                      # {
-                      #   title = "Gitea";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://gitea.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:gitea.png";
-                      # }
-                      # {
-                      #   title = "Mazanoke";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://mazanoke.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:mazanoke.png";
-                      # }
-                      # {
-                      #   title = "Portainer";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://portainer.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:portainer.png";
-                      # }
-                      # {
-                      #   title = "Termix";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://termix.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/termix.png";
-                      # }
-                      # {
-                      #   title = "Warracker";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://warracker.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:warracker.png";
-                      # }
+                  # {
+                  #   type = "monitor";
+                  #   cache = "1m";
+                  #   title = "Development & Management";
+                  #   sites = [
+                  #     {
+                  #       title = "Cockpit";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://cockpit.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:cockpit.png";
+                  #     }
+                  #     {
+                  #       title = "Code Server";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://vscode.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:vscode.png";
+                  #     }
+                  #     {
+                  #       title = "Gitea";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://gitea.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:gitea.png";
+                  #     }
+                  #     {
+                  #       title = "Mazanoke";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://mazanoke.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:mazanoke.png";
+                  #     }
+                  #     {
+                  #       title = "Portainer";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://portainer.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:portainer.png";
+                  #     }
+                  #     {
+                  #       title = "Termix";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://termix.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "https://cdn.jsdelivr.net/gh/selfhst/icons/png/termix.png";
+                  #     }
+                  #     {
+                  #       title = "Warracker";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://warracker.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:warracker.png";
+                  #     }
+                  #   ];
+                  # }
+                  # {
+                  #   type = "monitor";
+                  #   cache = "1m";
+                  #   title = "Monitoring & Utilities";
+                  #   sites = [
+                  #     {
+                  #       title = "Uptime Kuma";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://kuma.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:uptime-kuma.png";
+                  #     }
+                  #     {
+                  #       title = "What's up Docker?";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://wud.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:whats-up-docker.png";
+                  #     }
+                  #     {
+                  #       title = "Your Spotify";
+                  #       same-tab = true;
+                  #       timeout = "5s";
+                  #       url = "https://yourspotify.\${YOUR_BASE_DOMAIN}/";
+                  #       icon = "di:your-spotify.png";
+                  #     }
+                  #   ];
+                  # }
+
+                  (let
+                    sharedRedditProps = {
+                      type = "reddit";
+                      show-thumbnails = false;
+                      collapse-after = 5;
+                    };
+                  in {
+                    type = "group";
+                    widgets = [
+                      (sharedRedditProps // {subreddit = "apple";})
+                      (sharedRedditProps // {subreddit = "selfhosted";})
+                      (sharedRedditProps // {subreddit = "homelab";})
                     ];
-                  }
-                  {
-                    type = "monitor";
-                    cache = "1m";
-                    title = "Monitoring & Utilities";
-                    sites = [
-                      # {
-                      #   title = "Uptime Kuma";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://kuma.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:uptime-kuma.png";
-                      # }
-                      # {
-                      #   title = "What's up Docker?";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://wud.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:whats-up-docker.png";
-                      # }
-                      # {
-                      #   title = "Your Spotify";
-                      #   same-tab = true;
-                      #   timeout = "5s";
-                      #   url = "https://yourspotify.\${YOUR_BASE_DOMAIN}/";
-                      #   icon = "di:your-spotify.png";
-                      # }
-                    ];
-                  }
-                  {
-                    type = "rss";
-                    title = "Self-Host Weekly";
-                    style = "horizontal-cards";
-                    feeds = [
-                      {
-                        url = "https://selfh.st/rss/";
-                        title = "Self-Host Weekly";
-                      }
-                    ];
-                  }
-                  {
-                    type = "rss";
-                    title = "noted.lol";
-                    style = "horizontal-cards";
-                    feeds = [
-                      {
-                        url = "https://noted.lol/rss";
-                        title = "noted.lol";
-                      }
-                    ];
-                  }
+                  })
                 ];
               }
               {
@@ -383,7 +382,7 @@
                     date-format = "d MMMM yyyy";
                     show-seconds = true;
                     show-timezone = true;
-                    timezone = "Europe/Berlin";
+                    timezone = timezone;
                   }
                   {
                     type = "weather";
@@ -392,74 +391,8 @@
                     hour-format = "24h";
                   }
                   {
-                    type = "search";
-                    search-engine = "google";
-                    target = "_self";
-                  }
-                  {
                     type = "calendar";
                     first-day-of-week = "monday";
-                  }
-                  {
-                    type = "bookmarks";
-                    groups = [
-                      {
-                        title = "Dev";
-                        links = [
-                          {
-                            title = "DevDocs";
-                            same-tab = true;
-                            url = "https://devdocs.io/";
-                          }
-                          {
-                            title = "Landingfolio";
-                            same-tab = true;
-                            url = "https://www.landingfolio.com/";
-                          }
-                          {
-                            title = "Free for Developers";
-                            same-tab = true;
-                            url = "https://www.free-for.dev/";
-                          }
-                          {
-                            title = "Self-hosting Guide";
-                            same-tab = true;
-                            url = "https://guide.hypernovat.com/s/0d3bca9e-c7b4-4a87-91b0-59dc78345c6d/";
-                          }
-                          {
-                            title = "awesome-selfhosted";
-                            same-tab = true;
-                            url = "https://awesome-selfhosted.net/";
-                          }
-                        ];
-                      }
-                      {
-                        title = "Torrents";
-                        color = "10 70 50";
-                        links = [
-                          {
-                            title = "TorrentHR";
-                            same-tab = true;
-                            url = "https://www.torrenthr.org/login.php";
-                          }
-                          {
-                            title = "CrnaBerza";
-                            same-tab = true;
-                            url = "https://www.crnaberza.com/login.php?returnto=%2F";
-                          }
-                          {
-                            title = "YuBraca.net";
-                            same-tab = true;
-                            url = "http://yubraca.net/login.php";
-                          }
-                          {
-                            title = "Infire.si";
-                            same-tab = true;
-                            url = "https://infire.si/login.php";
-                          }
-                        ];
-                      }
-                    ];
                   }
                 ];
               }
