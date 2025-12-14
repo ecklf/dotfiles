@@ -30,7 +30,7 @@
         RemainAfterExit = true;
       };
       script = ''
-        mkdir -p ${config.homelab.paperless.mediaLocation}{media,consume,index,log}
+        mkdir -p ${config.homelab.paperless.mediaLocation}/{media,consume,index,log}
         chown -R paperless:paperless ${config.homelab.paperless.mediaLocation}
         chmod -R 755 ${config.homelab.paperless.mediaLocation}
       '';

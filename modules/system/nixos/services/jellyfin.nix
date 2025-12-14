@@ -28,7 +28,7 @@
         RemainAfterExit = true;
       };
       script = ''
-        mkdir -p ${config.homelab.jellyfin.mediaLocation}{data,cache,data/config,data/log}
+        mkdir -p ${config.homelab.jellyfin.mediaLocation}/{data,cache,data/config,data/log}
         chown -R jellyfin:jellyfin ${config.homelab.jellyfin.mediaLocation}
         chmod -R 755 ${config.homelab.jellyfin.mediaLocation}
       '';
