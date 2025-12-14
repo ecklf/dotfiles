@@ -377,12 +377,38 @@
                 size = "small";
                 widgets = [
                   {
-                    type = "clock";
-                    time-format = "24h";
-                    date-format = "d MMMM yyyy";
-                    show-seconds = true;
-                    show-timezone = true;
-                    timezone = timezone;
+                    type = "split-column";
+                    sizes = [7 3];
+                    widgets = [
+                      {
+                        type = "server-stats";
+                        hide-header = true;
+                        servers = [
+                          {
+                            type = "local";
+                            name = "云端控制台";
+                            hide-mountpoints-by-default = true;
+                            mountpoints = {
+                              "/" = {
+                                hide = false;
+                              };
+                              "/storage/set1" = {
+                                hide = false;
+                              };
+                            };
+                          }
+                        ];
+                      }
+                      {
+                        type = "clock";
+                        hide-header = true;
+                        time-format = "24h";
+                        date-format = "d MMMM yyyy";
+                        show-seconds = true;
+                        show-timezone = true;
+                        timezone = timezone;
+                      }
+                    ];
                   }
                   {
                     type = "weather";
