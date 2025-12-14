@@ -26,6 +26,11 @@
           hide-desktop-navigation = true;
           show-mobile-header = true;
           hide-footer = true;
+          logo-text = "云";
+          app-name = "${username}@${hostname}";
+          # favicon-url = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/home-assistant.png";
+          # app-icon-url = "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/png/dashboard.png";
+          app-background-color = "#0A0A0A";
         };
         pages = [
           {
