@@ -167,6 +167,41 @@
                   #   '';
                   # }
                   {
+                    type = "html";
+                    title = "Service Versions";
+                    content = let
+                      services = lib.flatten (
+                        []
+                        ++ lib.optional config.homelab.immich.enable {
+                          name = "Immich";
+                          version = config.services.immich.package.version;
+                        }
+                        ++ lib.optional config.homelab.jellyfin.enable {
+                          name = "Jellyfin";
+                          version = config.services.jellyfin.package.version;
+                        }
+                        ++ lib.optional config.homelab.paperless.enable {
+                          name = "Paperless";
+                          version = config.services.paperless.package.version;
+                        }
+                        ++ lib.optional config.homelab.stirling.enable {
+                          name = "Stirling PDF";
+                          version = config.services.stirling-pdf.package.version;
+                        }
+                      );
+                      serviceRows = lib.concatMapStringsSep "\n" (service: ''
+                        <div class="flex justify-between">
+                          <div class="size-h6">${service.name}</div>
+                          <div class="color-highlight">v${service.version}</div>
+                        </div>
+                      '') services;
+                    in ''
+                      <div class="flex flex-col gap-2">
+                        ${serviceRows}
+                      </div>
+                    '';
+                  }
+                  {
                     type = "search";
                     search-engine = "google";
                     target = "_self";
