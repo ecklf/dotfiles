@@ -13,6 +13,7 @@
     ./jellyfin.nix
     ./paperless.nix
     ./dashboard.nix
+    ./stirling.nix
   ];
   options.homelab = {
     enable = lib.mkEnableOption "The homelab services and configuration variables";
@@ -129,6 +130,22 @@
           useACMEHost = "${config.homelab.baseDomain}";
           locations."/" = {
             proxyPass = "http://127.0.0.1:${toString config.homelab.paperless.port}";
+            proxyWebsockets = true;
+            extraConfig = ''
+              client_max_body_size 100M;
+              proxy_read_timeout 300s;
+              proxy_send_timeout 300s;
+            '';
+          };
+        };
+
+      virtualHosts."stirling.${config.homelab.baseDomain}" =
+        lib.mkIf config.homelab.stirling.enable
+        {
+          forceSSL = true;
+          useACMEHost = "${config.homelab.baseDomain}";
+          locations."/" = {
+            proxyPass = "http://127.0.0.1:${toString config.homelab.stirling.port}";
             proxyWebsockets = true;
             extraConfig = ''
               client_max_body_size 100M;
