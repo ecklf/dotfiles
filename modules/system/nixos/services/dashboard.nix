@@ -45,7 +45,7 @@
                 servers = [
                   {
                     type = "local";
-                    name = "云端控制台";
+                    name = hostname;
                     hide-mountpoints-by-default = true;
                     mountpoints = {
                       "/" = {
@@ -167,8 +167,16 @@
                   #   '';
                   # }
                   {
+                    type = "search";
+                    hide-header = true;
+                    search-engine = "google";
+                    target = "_self";
+                  }
+                  {
+                    type = "to-do";
+                  }
+                  {
                     type = "html";
-                    title = "Service Versions";
                     source = let
                       services = lib.flatten (
                         []
@@ -181,7 +189,7 @@
                           version = config.services.jellyfin.package.version;
                         }
                         ++ lib.optional config.homelab.paperless.enable {
-                          name = "Paperless";
+                          name = "Paperless NGX";
                           version = config.services.paperless.package.version;
                         }
                         ++ lib.optional config.homelab.stirling.enable {
@@ -191,25 +199,26 @@
                       );
                       serviceRows =
                         lib.concatMapStringsSep "\n" (service: ''
-                          <div class="size-h6">${service.name} @ ${service.version}</div>
+                          <div class="size-h4"><span class="color-primary">${service.name}</span> v${service.version}</div>
                         '')
                         services;
                     in ''
-                      <div class="list list-gap-10">
-                        ${serviceRows}
+                      <div class="widget">
+                        <div class="widget-header">
+                          <h2 class="uppercase">Service Versions</h2>
+                        </div>
+                        <div class="widget-content">
+                          <div class="list list-gap-5">
+                            ${serviceRows}
+                          </div>
+                        </div>
                       </div>
                     '';
                   }
                   {
-                    type = "search";
-                    search-engine = "google";
-                    target = "_self";
-                  }
-                  {
-                    type = "to-do";
-                  }
-                  {
                     type = "releases";
+                    title = "Service Releases";
+                    hide-header = false;
                     show-source-icon = true;
                     repositories = [
                       "immich-app/immich"
@@ -263,7 +272,8 @@
                   {
                     type = "monitor";
                     cache = "1m";
-                    title = "Productivity & Files";
+                    title = "Services";
+                    hide-header = true;
                     sites = lib.flatten (
                       []
                       ++ lib.optional config.homelab.immich.enable [
@@ -282,7 +292,7 @@
                       ]
                       ++ lib.optional config.homelab.paperless.enable [
                         {
-                          title = "Paperless";
+                          title = "Paperless NGX";
                           url = "https://paperless.${config.homelab.baseDomain}";
                           icon = "si:paperlessngx";
                         }
@@ -411,14 +421,16 @@
                   }
                   {
                     type = "weather";
+                    hide-header = true;
                     location = "Munich, Germany";
                     units = "metric";
                     hour-format = "24h";
-                    hide-location = true;
+                    hide-location = false;
                     show-area-name = false;
                   }
                   {
                     type = "calendar";
+                    hide-header = true;
                     first-day-of-week = "monday";
                   }
                 ];
