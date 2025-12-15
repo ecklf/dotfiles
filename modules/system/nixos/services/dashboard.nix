@@ -169,7 +169,7 @@
                   {
                     type = "html";
                     title = "Service Versions";
-                    content = let
+                    source = let
                       services = lib.flatten (
                         []
                         ++ lib.optional config.homelab.immich.enable {
@@ -189,12 +189,14 @@
                           version = config.services.stirling-pdf.package.version;
                         }
                       );
-                      serviceRows = lib.concatMapStringsSep "\n" (service: ''
-                        <div class="flex justify-between">
-                          <div class="size-h6">${service.name}</div>
-                          <div class="color-highlight">v${service.version}</div>
-                        </div>
-                      '') services;
+                      serviceRows =
+                        lib.concatMapStringsSep "\n" (service: ''
+                          <div class="flex justify-between">
+                            <div class="size-h6">${service.name}</div>
+                            <div class="color-highlight">v${service.version}</div>
+                          </div>
+                        '')
+                        services;
                     in ''
                       <div class="flex flex-col gap-2">
                         ${serviceRows}
