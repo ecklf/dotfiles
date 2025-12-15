@@ -191,14 +191,11 @@
                       );
                       serviceRows =
                         lib.concatMapStringsSep "\n" (service: ''
-                          <div class="flex justify-between">
-                            <div class="size-h6">${service.name}</div>
-                            <div class="color-highlight">v${service.version}</div>
-                          </div>
+                          <div class="size-h6">${service.name} @ ${service.version}</div>
                         '')
                         services;
                     in ''
-                      <div class="flex flex-col gap-2">
+                      <div class="list list-gap-10">
                         ${serviceRows}
                       </div>
                     '';
