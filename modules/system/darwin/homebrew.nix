@@ -231,9 +231,7 @@
           "monitorcontrol"
           "notchnook"
         ]
-        ++ lib.optional config.homebrewModules.personal [
-          "arduino-ide"
-        ]
+        ++ lib.optional config.homebrewModules.personal []
         ++ lib.optional config.homebrewModules.work [
           "linear-linear"
           "notion"

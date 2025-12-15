@@ -43,12 +43,16 @@ in {
         #   historySubstringSearch.searchUpKey = true;
         # };
       };
-      sessionVariables = {
-        NEXT_TELEMETRY_DISABLED = 1;
-        MEILI_NO_ANALYTICS = true;
-        PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
-        PUPPETEER_EXECUTABLE_PATH = "which chromium";
-      };
+      sessionVariables =
+        {
+          NEXT_TELEMETRY_DISABLED = 1;
+          MEILI_NO_ANALYTICS = true;
+          PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
+          PUPPETEER_EXECUTABLE_PATH = "which chromium";
+        }
+        // lib.optionalAttrs (!isDarwin) {
+          PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+        };
       profileExtra = lib.mkIf isDarwin (
         if system == "aarch64-darwin"
         then ''

@@ -9,24 +9,33 @@
 }: {
   imports = [
     ./hardware-configuration.nix
+    ./graphics.nix
     ../../modules/system/nixos/services
   ];
 
-  homelab.enable = true;
-  homelab.baseDomain = "ecklf.duckdns.org";
-  homelab.samba.enable = true;
-
-  hardware.graphics = {
+  homelab = {
     enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver # For Intel hardware acceleration support
-      # libva-vdpau-driver
-      intel-compute-runtime
-      intel-ocl
-      vpl-gpu-rt # QSV on 11th gen or newer
-    ];
+    baseDomain = "ecklf.duckdns.org";
+    acme = {
+      email = "ecklf@icloud.com";
+      dnsProvider = "duckdns";
+    };
+    samba.enable = true;
+    immich.enable = true;
+    immich.mediaLocation = "/storage/set1/service_data/immich";
+    immich.port = 2283;
+    glances.enable = true;
+    glances.port = 61208;
+    jellyfin.enable = true;
+    jellyfin.mediaLocation = "/storage/set1/service_data/jellyfin";
+    paperless.enable = true;
+    paperless.port = 28981;
+    paperless.mediaLocation = "/storage/set1/service_data/paperless";
+    dashboard.enable = true;
+    dashboard.port = 5678;
+    stirling.enable = true;
+    stirling.port = 7890;
   };
-  environment.sessionVariables.LIBVA_DRIVER_NAME = "iHD";
 
   time.timeZone = timezone;
 
@@ -40,7 +49,7 @@
     };
     secrets.wireless = {};
     secrets.acme_yun = {};
-    secrets.homepage_dashboard = {};
+    secrets.dashboard = {};
     secrets.paperless_admin_password = {
       mode = "0400";
     };
@@ -64,8 +73,6 @@
     };
   };
 
-  # Use the systemd-boot EFI boot loader.
-
   boot = {
     loader = {
       systemd-boot.enable = true;
@@ -79,24 +86,8 @@
       forceImportRoot = false;
     };
   };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
   services.zfs.autoScrub.enable = true;
-
-  # fileSystems."/share" = {
-  #   neededForBoot = false;
-  #   device = "storage/set1";
-  #   fsType = "zfs";
-  #   mountPoint = "/storage/set1";
-  #   options = [
-  #     "defaults"
-  #     "nofail"
-  #     "zfsutil"
-  #     "xattr=sa"
-  #     "noatime"
-  #   ];
-  # };
+  services.openssh.enable = true;
 
   environment.systemPackages = [
     pkgs.apfs-fuse
@@ -120,358 +111,5 @@
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com''
     ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
   ];
-
-  # ACME / Let's Encrypt configuration
-  security.acme = {
-    acceptTerms = true;
-    defaults = {
-      email = "ecklf@icloud.com";
-      dnsPropagationCheck = true;
-    };
-    certs = {
-      "ecklf.duckdns.org" = {
-        extraDomainNames = ["*.ecklf.duckdns.org"];
-        dnsProvider = "duckdns";
-        environmentFile = config.sops.secrets."acme_yun".path;
-        dnsPropagationCheck = true;
-        # Wait 120 seconds for DNS propagation (DuckDNS can be slow)
-        # See other options on https://go-acme.github.io/lego/usage/cli/options/
-        # Verify with `journalctl -u 'acme-*' -f`
-        extraLegoFlags = ["--cert.timeout" "300"];
-      };
-    };
-  };
-
-  # Enable Glances system monitoring
-  services.glances = {
-    enable = true;
-    openFirewall = false; # Only accessible locally
-    port = 61208;
-    extraArgs = [
-      "--webserver"
-      "--time"
-      "5"
-    ];
-  };
-
-  services.homepage-dashboard = {
-    enable = true;
-    listenPort = 8082;
-    environmentFile = config.sops.secrets."homepage_dashboard".path;
-    settings = {
-      title = "云端控制台";
-      favicon = "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/png/heimdall.png";
-      headerStyle = "boxedWidgets";
-      theme = "dark";
-      color = "zinc";
-      customCSS = ''
-        body, html {
-          font-family: SF Pro Display, Helvetica, Arial, sans-serif !important;
-        }
-        .font-medium {
-          font-weight: 700 !important;
-        }
-        .font-light {
-          font-weight: 500 !important;
-        }
-        .font-thin {
-          font-weight: 400 !important;
-        }
-        #information-widgets {
-          padding-left: 1.5rem;
-          padding-right: 1.5rem;
-        }
-        div#footer {
-          display: none;
-        }
-        .services-group.basis-full.flex-1.px-1.-my-1 {
-          padding-bottom: 3rem;
-        };
-      '';
-      layout = [
-        {
-          Services = {
-            style = "row";
-            columns = 3;
-          };
-        }
-        {
-          Storage = {
-            style = "row";
-            columns = 2;
-          };
-        }
-      ];
-    };
-    services = [
-      {
-        Services = [
-          {
-            Immich = {
-              icon = "immich.png";
-              href = "https://immich.ecklf.duckdns.org";
-              description = "Photo Management";
-              widget = {
-                # Immich server major version
-                version = 2;
-                type = "immich";
-                url = "http://127.0.0.1:2283";
-                key = "{{HOMEPAGE_VAR_IMMICH_API_KEY}}";
-              };
-            };
-          }
-          {
-            Jellyfin = {
-              icon = "jellyfin.png";
-              href = "https://jellyfin.ecklf.duckdns.org";
-              description = "Media Server";
-              widget = {
-                type = "jellyfin";
-                url = "http://127.0.0.1:8096";
-                key = "{{HOMEPAGE_VAR_JELLYFIN_API_KEY}}";
-              };
-            };
-          }
-          {
-            Paperless-ngx = {
-              icon = "paperless.png";
-              href = "https://paperless.ecklf.duckdns.org";
-              description = "Document Management";
-              widget = {
-                type = "paperlessngx";
-                url = "http://127.0.0.1:28981";
-                key = "{{HOMEPAGE_VAR_PAPERLESS_API_KEY}}";
-              };
-            };
-          }
-        ];
-      }
-    ];
-    widgets = [
-      {
-        glances = {
-          url = "https://glances.ecklf.duckdns.org";
-          version = 4;
-          cpu = true;
-          mem = true;
-          cputemp = true; # disabled by default
-          uptime = true; # disabled by default
-          expanded = false; # show the expanded view
-          disk = "/storage"; # disabled by default, use mount point of disk(s) in glances. Can also be a list (see below)
-          diskUnits = "bytes"; # optional, bytes (default) or bbytes. Only applies to disk
-          # label = "MyMachine"; # optional
-        };
-      }
-      {
-        datetime = {
-          text_size = "md";
-          format = {
-            dateStyle = "short";
-            timeStyle = "short";
-          };
-        };
-      }
-      {
-        openmeteo = {
-          label = "Munich";
-          latitude = 48.1351;
-          longitude = 11.5820;
-          timezone = "Europe/Berlin";
-          units = "metric";
-          cache = 5;
-          maximumFractionDigits = 1;
-        };
-      }
-    ];
-    bookmarks = [
-      {
-        Developer = [
-          {
-            Github = [
-              {
-                abbr = "GH";
-                href = "https://github.com/";
-              }
-            ];
-          }
-        ];
-      }
-    ];
-  };
-
-  # Only enable when immich service is enabled
-  users.users.immich.extraGroups = ["video" "render" "nginx"];
-  services.immich = {
-    enable = true;
-    port = 2283;
-    host = "127.0.0.1"; # Changed to localhost since nginx will proxy
-    openFirewall = false; # No need to open port directly
-    accelerationDevices = null;
-    mediaLocation = "/storage/set1/service_data/immich";
-    settings = {
-      newVersionCheck.enabled = true;
-    };
-    environment = {
-      IMMICH_TELEMETRY_EXCLUDE = "host,api,io,repo,job";
-    };
-  };
-
-  # Ensure Jellyfin directories exist with correct permissions
-  systemd.tmpfiles.rules = [
-    "d /storage/set1/service_data/jellyfin 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/data 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/data/config 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/data/log 0755 jellyfin jellyfin -"
-    "d /storage/set1/service_data/jellyfin/cache 0755 jellyfin jellyfin -"
-  ];
-
-  # Only add these two if jellyfin is enabled service
-  users.users.jellyfin.extraGroups = ["video" "render" "nginx"];
-  # Create a service to fix permissions before Jellyfin starts
-  systemd.services.jellyfin-setup = {
-    description = "Setup Jellyfin directories with correct permissions";
-    wantedBy = ["jellyfin.service"];
-    before = ["jellyfin.service"];
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-    script = ''
-      mkdir -p /storage/set1/service_data/jellyfin/{data,cache,data/config,data/log}
-      chown -R jellyfin:jellyfin /storage/set1/service_data/jellyfin
-      chmod -R 755 /storage/set1/service_data/jellyfin
-    '';
-  };
-
-  services.jellyfin = {
-    enable = true;
-    openFirewall = false; # nginx will handle the proxy
-    dataDir = "/storage/set1/service_data/jellyfin/data";
-    cacheDir = "/storage/set1/service_data/jellyfin/cache";
-    # logDir is relative to dataDir by default, so it becomes /storage/set1/service_data/jellyfin/data/log
-  };
-
-  services.paperless = {
-    enable = true;
-    address = "127.0.0.1";
-    port = 28981;
-    dataDir = "/storage/set1/service_data/paperless";
-    # These directories might be failing to create on first run
-    # Check `journalctl -xe` for paperless logs
-    mediaDir = "/storage/set1/service_data/paperless/media";
-    consumptionDir = "/storage/set1/service_data/paperless/consume";
-    passwordFile = config.sops.secrets."paperless_admin_password".path;
-    # consumptionDirIsPublic = true;
-    settings = {
-      PAPERLESS_CONSUMER_IGNORE_PATTERN = [
-        ".DS_STORE/*"
-        "desktop.ini"
-      ];
-      PAPERLESS_OCR_LANGUAGE = "eng+deu"; # English and German OCR support
-      PAPERLESS_OCR_USER_ARGS = {
-        optimize = 1;
-        pdfa_image_compression = "lossless";
-      };
-      PAPERLESS_CONSUMER_RECURSIVE = true;
-      PAPERLESS_CONSUMER_SUBDIRS_AS_TAGS = true;
-      PAPERLESS_URL = "https://paperless.ecklf.duckdns.org";
-    };
-  };
-
-  users.users.nginx.extraGroups = ["acme"];
-  services.nginx = {
-    enable = true;
-    recommendedProxySettings = true;
-    recommendedTlsSettings = true;
-    recommendedOptimisation = true;
-    recommendedGzipSettings = true;
-
-    virtualHosts."ecklf.duckdns.org" = {
-      default = true;
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8082";
-        proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."immich.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:2283";
-        proxyWebsockets = true;
-        extraConfig = ''
-          client_max_body_size 50000M;
-          proxy_read_timeout 600s;
-          proxy_send_timeout 600s;
-        '';
-      };
-    };
-
-    virtualHosts."glances.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:61208";
-        proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."jellyfin.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:8096";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_buffering off;
-        '';
-      };
-      locations."/socket" = {
-        proxyPass = "http://127.0.0.1:8096";
-        proxyWebsockets = true;
-      };
-    };
-
-    virtualHosts."paperless.ecklf.duckdns.org" = {
-      forceSSL = true;
-      useACMEHost = "ecklf.duckdns.org";
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:28981";
-        proxyWebsockets = true;
-        extraConfig = ''
-          client_max_body_size 100M;
-          proxy_read_timeout 300s;
-          proxy_send_timeout 300s;
-        '';
-      };
-    };
-  };
-
-  # systemd.services.kbdrate-setup = {
-  #   description = "Set keyboard repeat rate and delay";
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "local-fs.target" ];
-  #   serviceConfig = with pkgs; {
-  #     Type = "oneshot";
-  #     ExecStart = "${kbd}/bin/kbdrate -r 500 -d 0";
-  #   };
-  # };
-
-  # services.interception-tools = {
-  #   enable = true;
-  #   plugins = with pkgs; [
-  #     interception-tools-plugins.caps2esc
-  #   ];
-  #   udevmonConfig = ''
-  #     - JOB: "${pkgs.interception-tools}/bin/intercept -g $DEVNODE | ${pkgs.interception-tools-plugins.caps2esc}/bin/caps2esc -m 1 | ${pkgs.interception-tools}/bin/uinput -d $DEVNODE"
-  #       DEVICE:
-  #         EVENTS:
-  #           EV_KEY: [KEY_CAPSLOCK, KEY_ESC]
-  #   '';
-  # };
-
   system.stateVersion = "25.11";
 }
