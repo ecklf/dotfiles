@@ -30,7 +30,7 @@ let
     src = builtins.fetchGit {
       url = "ssh://git@github.com/webhooked/kanso.nvim.git";
       ref = "main";
-      rev = "7205d3902adf14c11b6aee658d6dcddd37b7ba95";
+      rev = "2aaecdc66e03f85b73ccad47cf2d837312d5bf6a";
     };
   };
 
