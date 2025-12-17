@@ -18,6 +18,7 @@ in {
     language = true;
     wine = false;
     game = true;
+    extraBrews = ["bintrim"];
   };
 
   activationScriptModules.extraPreActivationScripts = [];

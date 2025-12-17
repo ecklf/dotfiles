@@ -151,7 +151,7 @@
           "Logic Pro" = 634148309;
         }
       );
-      # taps = [];
+      taps = ["ecklf/bintrim"];
       # Ideally leave this empty and only use nix to manage this
       brews = let
         brewList = lib.flatten ([]
@@ -160,6 +160,7 @@
             "libimobiledevice"
             "ideviceinstaller"
             "czkawka"
+            "bintrim"
           ]);
       in
         lib.mkIf (lib.length brewList > 0) brewList;
