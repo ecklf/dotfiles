@@ -107,6 +107,7 @@ in {
           pkgs.fclones # Efficient Duplicate File Finder and Remover
         ]
         ++ lib.optional config.homeManagerModules.minimal [
+          # pkgs.master.gitui # Blazing fast terminal-ui for Git written in Rust
           # pkgs.nixpkgs-fmt # Nix code formatter for nixpkgs
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
           pkgs.alejandra # Nix code formatter
@@ -119,17 +120,17 @@ in {
           pkgs.git # Distributed version control system
           pkgs.git-lfs # Git extension for versioning large files
           pkgs.git-trim # Automatically trims your branches whose tracking remote refs are merged or gone
-          # pkgs.master.gitui # Blazing fast terminal-ui for Git written in Rust
-          pkgs.master.go-task # A task runner / simpler Make alternative written in Go
           pkgs.htop # An interactive process viewer for Linux, with vim-style keybindings
           pkgs.jq # A lightweight and flexible command-line JSON processor
           pkgs.lazygit # Simple terminal UI for git commands
           pkgs.less # A more advanced file pager than 'more'
+          pkgs.master.go-task # A task runner / simpler Make alternative written in Go
           pkgs.most # A pager with syntax highlighting for man pages
           pkgs.neofetch # A fast, highly customizable system info script
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
           pkgs.pv # Tool for monitoring the progress of data through a pipeline
+          pkgs.rclone # Command line program to sync files and directories to and from major cloud storage
           pkgs.repgrep # Interactive replacer for ripgrep that makes it easy to find and replace across files on the command line
           pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
           pkgs.rsync # Fast incremental file transfer utility
@@ -148,6 +149,10 @@ in {
           pkgs.claude-code
           pkgs.crush
           pkgs.master.opencode
+          # Utilities
+          pkgs.ncdu # Disk usage analyzer with an ncurses interface
+          pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
+          pkgs.ntfy # Utility for sending notifications, on demand and when commands finish
           # Development
           pkgs.cargo-nextest # Next-generation test runner for Rust projects
           pkgs.cargo-watch # A Cargo subcommand for watching over Cargo project's source
@@ -221,7 +226,6 @@ in {
           pkgs.inetutils # Collection of common network programs
           pkgs.ipcalc # Simple IP network calculator
           pkgs.master.plow # A high-performance HTTP benchmarking tool that includes a real-time web UI and terminal display
-          pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.ngrok # A Python wrapper for ngrok
           pkgs.nmap # A free and open source utility for network discovery and security auditing
           # pkgs.master.s-tui # Stress-Terminal UI monitoring tool - disabled because marked as broken
