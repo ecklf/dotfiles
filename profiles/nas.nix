@@ -15,6 +15,7 @@
       pkgs.master.immich-cli
       pkgs.master.yt-dlp
       pkgs.master.ffmpeg
+      pkgs.master.streamlink
     ];
   };
 })
