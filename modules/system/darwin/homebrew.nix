@@ -86,6 +86,10 @@
           type = lib.types.bool;
           description = "Install gaming-related software";
         };
+        modelling = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install 3d modelling software";
+        };
         extraApps = lib.mkOption {
           type = lib.types.attrsOf lib.types.int;
           description = "Extra App Store software to install";
@@ -275,6 +279,10 @@
           "gog-galaxy"
           "mgba-app"
           "steam"
+        ]
+        ++ lib.optional config.homebrewModules.game [
+          "blender"
+          "bambu-studio"
         ]
       );
     };
