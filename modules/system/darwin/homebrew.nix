@@ -283,6 +283,7 @@
         ++ lib.optional config.homebrewModules.game [
           "blender"
           "bambu-studio"
+          "freecad"
         ]
       );
     };
