@@ -175,6 +175,7 @@
           "appcleaner"
           "cleanshot"
           "forklift"
+          "bloom"
           "ghostty"
           "iina"
           "iterm2"
