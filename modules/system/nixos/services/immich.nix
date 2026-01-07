@@ -4,6 +4,7 @@
   config,
   username,
   hostname,
+  pkgs,
   ...
 }: {
   options.homelab.immich = {
@@ -23,6 +24,7 @@
   config = lib.mkIf config.homelab.immich.enable {
     users.users.immich.extraGroups = ["video" "render" "nginx"];
     services.immich = {
+      package = pkgs.unstable.immich;
       enable = true;
       port = config.homelab.immich.port;
       host = "127.0.0.1"; # Changed to localhost since nginx will proxy
