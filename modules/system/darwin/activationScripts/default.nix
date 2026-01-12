@@ -76,8 +76,12 @@ in {
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .mp4 all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .mov all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .webm all
+          sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .flv all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .avi all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .mkv all
+          sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .m4v all
+          sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .wmv all
+          sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.colliderli.iina .wav all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.apple.TextEdit .txt all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.microsoft.VSCode .md all
           sudo -u ${username} ${pkgs.master.duti}/bin/duti -s com.microsoft.VSCode .go all
