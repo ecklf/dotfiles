@@ -241,7 +241,6 @@
         ++ lib.optional config.homebrewModules.work [
           "linear-linear"
           "notion"
-          "session-manager-plugin"
           "slack"
           # "zoom"
         ]

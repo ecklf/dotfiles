@@ -265,6 +265,7 @@ in {
           pkgs.master.mitmproxy # Man-in-the-middle proxy
         ]
         ++ lib.optional config.homeManagerModules.work [
+          pkgs.ssm-session-manager-plugin # AWS Systems Manager Session Manager plugin for the AWS CLI
           pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication
           pkgs.goreleaser # Deliver Go binaries as fast and easily as possible
           pkgs.lua51Packages.busted # Elegant Lua unit testing
