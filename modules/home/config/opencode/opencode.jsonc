@@ -1,0 +1,12 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  // Auth with `opencode mcp auth name`
+  "mcp": {
+    "linear": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.linear.app/sse",
+      "oauth": {},
+    },
+  },
+}

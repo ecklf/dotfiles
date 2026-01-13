@@ -83,6 +83,7 @@ in {
         {
           ".config/ghostty/config".source = ./config/ghostty/config;
           ".config/ghostty/themes".source = ./config/ghostty/themes;
+          ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/iterm2/com.googlecode.iterm2.plist".source = ./config/iterm2/com.googlecode.iterm2.plist;
           ".config/iterm2/nordic_light.itermcolors".source = ./config/iterm2/nordic_light.itermcolors;
           ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
