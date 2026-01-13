@@ -1,5 +1,12 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "theme": "catppuccin-mocha",
+  "share": "disabled",
+  "permission": {
+    "read": "allow",
+    "edit": "allow",
+    "bash": "ask",
+  },
   // Auth with `opencode mcp auth name`
   "mcp": {
     "linear": {
@@ -7,6 +14,31 @@
       "type": "remote",
       "url": "https://mcp.linear.app/sse",
       "oauth": {},
+    },
+    "github": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "oauth": {},
+    },
+    "filesystem": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/tmp",
+      ],
+    },
+    "memory": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
     },
   },
 }
