@@ -2,10 +2,14 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "catppuccin-mocha",
   "share": "disabled",
+  "server": {
+    "port": 4096,
+  },
   "permission": {
     "read": "allow",
     "edit": "allow",
     "bash": "ask",
+    "grep": "allow",
   },
   // Auth with `opencode mcp auth name`
   "mcp": {
