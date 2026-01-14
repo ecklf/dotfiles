@@ -15,12 +15,6 @@
       "url": "https://mcp.linear.app/sse",
       "oauth": {},
     },
-    "github": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://api.githubcopilot.com/mcp/",
-      "oauth": {},
-    },
     "filesystem": {
       "enabled": true,
       "type": "local",
