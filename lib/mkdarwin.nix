@@ -6,7 +6,6 @@ hostname: {
   home-manager,
   system,
   username,
-  profile,
   overlays,
   darwin,
   homeStateVersion,
@@ -30,7 +29,7 @@ hostname: {
 in
   darwin.lib.darwinSystem {
     inherit system;
-    specialArgs = {inherit inputs system username profile hostname homeStateVersion;};
+    specialArgs = {inherit inputs system username hostname homeStateVersion;};
     modules =
       [
         ({
@@ -59,7 +58,7 @@ in
         })
 
         ../modules/system/darwin
-        ../machines/${hostname}
+        ../hosts/${hostname}
       ]
       ++ extraModules
       ++ [
@@ -74,13 +73,13 @@ in
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit system username profile hostname homeStateVersion;
+              inherit system username hostname homeStateVersion;
             };
             sharedModules = [
               ../modules/home
             ];
             users."${username}".imports = [
-              ../profiles/${profile}.nix
+              ../hosts/${hostname}/home.nix
             ];
           };
         }

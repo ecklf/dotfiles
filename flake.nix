@@ -58,7 +58,6 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "soma";
-        profile = "k8s";
         timezone = "Germany/Berlin";
         extraModules = [
           disko.nixosModules.disko
@@ -73,7 +72,6 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "skia";
-        profile = "k8s";
         timezone = "Germany/Berlin";
         extraModules = [
           disko.nixosModules.disko
@@ -88,7 +86,6 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "kairos";
-        profile = "vps";
         timezone = "America/New_York";
         extraModules = [];
         extraHomeModules = [];
@@ -101,7 +98,6 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "ecklf";
-        profile = "minimal";
         extraModules = [];
         extraHomeModules = [];
         homeStateVersion = "24.05";
@@ -113,7 +109,6 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "nixos";
-        profile = "nas";
         extraModules = [];
         extraHomeModules = [];
         homeStateVersion = "25.11";
@@ -124,7 +119,6 @@
         inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
-        profile = "personal";
         patchBld = true;
         homeStateVersion = "24.05";
       };
@@ -132,7 +126,6 @@
         inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
-        profile = "work";
         homeStateVersion = "24.05";
       };
     };
