@@ -167,6 +167,7 @@
             "libimobiledevice"
             "ideviceinstaller"
             "czkawka"
+            "steipete/tap/codexbar"
             "bintrim"
           ]);
       in
@@ -216,7 +217,6 @@
           "yaak"
           "yubico-authenticator"
           "zed"
-          "steipete/tap/codexbar"
         ]
         ++ lib.optional config.homebrewModules.affinity [
           "affinity-designer"
