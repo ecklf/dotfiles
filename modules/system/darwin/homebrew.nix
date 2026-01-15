@@ -185,7 +185,7 @@
           "iterm2"
           "jordanbaird-ice"
           "keka"
-          "ledger-live"
+          "ledger-wallet"
           "obsidian"
           "raycast"
           "vivaldi"
