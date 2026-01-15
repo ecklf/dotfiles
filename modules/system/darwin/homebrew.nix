@@ -167,7 +167,6 @@
             "libimobiledevice"
             "ideviceinstaller"
             "czkawka"
-            "steipete/tap/codexbar"
             "bintrim"
           ]);
       in
@@ -240,7 +239,9 @@
           "monitorcontrol"
           "notchnook"
         ]
-        ++ lib.optional config.homebrewModules.personal []
+        ++ lib.optional config.homebrewModules.personal [
+          "codexbar"
+        ]
         ++ lib.optional config.homebrewModules.work [
           "linear-linear"
           "notion"
