@@ -155,7 +155,10 @@
           "Logic Pro" = 634148309;
         }
       );
-      taps = ["ecklf/bintrim"];
+      taps = [
+        "ecklf/bintrim"
+        "steipete/tap"
+      ];
       # Ideally leave this empty and only use nix to manage this
       brews = let
         brewList = lib.flatten ([]
@@ -213,6 +216,7 @@
           "yaak"
           "yubico-authenticator"
           "zed"
+          "steipete/tap/codexbar"
         ]
         ++ lib.optional config.homebrewModules.affinity [
           "affinity-designer"
