@@ -19,6 +19,14 @@
       "url": "https://mcp.linear.app/sse",
       "oauth": {},
     },
+    "blender": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "uvx",
+        "blender-mcp"
+      ],
+    },
     "filesystem": {
       "enabled": true,
       "type": "local",
