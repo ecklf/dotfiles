@@ -90,11 +90,16 @@ in {
       plenary-nvim # useful lua functions used ny lots of plugins - required by Telescope
       impatient-nvim # improves loading times
       # AI
-      # {
-      #   plugin = opencode-nvim;
-      #   type = "lua";
-      #   config = builtins.readFile ./plugins/opencode.lua;
-      # }
+      {
+        plugin = snacks-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/snacks.lua;
+      }
+      {
+        plugin = opencode-nvim;
+        type = "lua";
+        config = builtins.readFile ./plugins/opencode.lua;
+      }
       {
         plugin = copilot-vim;
         type = "lua";
