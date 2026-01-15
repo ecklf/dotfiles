@@ -280,7 +280,7 @@
           "mgba-app"
           "steam"
         ]
-        ++ lib.optional config.homebrewModules.game [
+        ++ lib.optional config.homebrewModules.modelling [
           "blender"
           "bambu-studio"
           "freecad"

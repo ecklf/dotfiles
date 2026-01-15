@@ -4,5 +4,6 @@
     personal = false;
     work = true;
     hipster = false;
+    modelling = true;
   };
 })

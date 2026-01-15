@@ -52,6 +52,11 @@ in {
           type = lib.types.bool;
           description = "Install hipster software";
         };
+        modelling = lib.mkOption {
+          default = false;
+          type = lib.types.bool;
+          description = "Install software for 3D modelling";
+        };
         extraPackages = lib.mkOption {
           type = lib.types.listOf lib.types.package;
           default = [];
@@ -298,6 +303,9 @@ in {
           # pkgs.bitwarden-cli # A secure and free password manager for all of your devices
           # pkgs.vector # A high-performance observability data pipeline
           # pkgs.watchman # Watches files and takes action when they change
+        ]
+        ++ lib.optional config.homeManagerModules.modelling [
+          pkgs.uv # Python package installer
         ]
       );
     };
