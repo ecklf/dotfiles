@@ -8,7 +8,7 @@
   "permission": {
     "read": "allow",
     "edit": "allow",
-    "bash": "ask",
+    "bash": "allow",
     "grep": "allow",
   },
   // Auth with `opencode mcp auth name`
