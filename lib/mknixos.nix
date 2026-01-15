@@ -7,7 +7,6 @@ hostname: {
   sops-nix,
   system,
   username,
-  profile,
   overlays,
   extraModules ? [],
   extraHomeModules ? [],
@@ -31,7 +30,7 @@ hostname: {
 in
   lib.nixosSystem {
     inherit system;
-    specialArgs = {inherit system username profile hostname timezone homeStateVersion;};
+    specialArgs = {inherit system username hostname timezone homeStateVersion;};
     modules =
       [
         {
@@ -46,20 +45,20 @@ in
       ]
       ++ extraModules
       ++ [
-        ../machines/${hostname}
+        ../hosts/${hostname}/system.nix
         inputs.home-manager.nixosModules.home-manager
         {
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
             extraSpecialArgs = {
-              inherit inputs username profile hostname timezone system homeStateVersion;
+              inherit inputs username hostname timezone system homeStateVersion;
             };
             sharedModules = [
               ../modules/home
             ];
             users."${username}".imports = [
-              ../profiles/${profile}.nix
+              ../hosts/${hostname}/home.nix
             ];
           };
         }
