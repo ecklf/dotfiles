@@ -45,7 +45,7 @@ in
       ]
       ++ extraModules
       ++ [
-        ../hosts/${hostname}
+        ../hosts/${hostname}/system.nix
         inputs.home-manager.nixosModules.home-manager
         {
           home-manager = {

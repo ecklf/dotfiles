@@ -58,7 +58,7 @@ in
         })
 
         ../modules/system/darwin
-        ../hosts/${hostname}
+        ../hosts/${hostname}/system.nix
       ]
       ++ extraModules
       ++ [
