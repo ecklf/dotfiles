@@ -20,4 +20,4 @@
       pkgs.corepack
     ];
   };
-})
+}
