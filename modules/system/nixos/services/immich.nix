@@ -1,9 +1,6 @@
-({
-  system,
+{
   lib,
   config,
-  username,
-  hostname,
   pkgs,
   ...
 }: {
@@ -39,4 +36,4 @@
       };
     };
   };
-})
+}

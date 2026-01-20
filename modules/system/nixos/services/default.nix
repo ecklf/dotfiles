@@ -1,9 +1,6 @@
-({
-  system,
+{
   lib,
   config,
-  username,
-  hostname,
   ...
 }: {
   imports = [
@@ -156,4 +153,4 @@
         };
     };
   };
-})
+}

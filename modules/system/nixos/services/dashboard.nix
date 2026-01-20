@@ -1,5 +1,4 @@
-({
-  system,
+{
   lib,
   config,
   username,
@@ -443,4 +442,4 @@
     # Environment file for secrets
     # systemd.services.glance.serviceConfig.EnvironmentFile = config.sops.secrets."dashboard".path;
   };
-})
+}

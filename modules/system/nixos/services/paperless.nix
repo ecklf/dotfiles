@@ -1,9 +1,6 @@
-({
-  system,
+{
   lib,
   config,
-  username,
-  hostname,
   ...
 }: {
   options.homelab.paperless = {
@@ -63,4 +60,4 @@
       };
     };
   };
-})
+}

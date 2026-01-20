@@ -1,9 +1,6 @@
-({
-  system,
+{
   lib,
   config,
-  username,
-  hostname,
   ...
 }: {
   options.homelab.stirling = {
@@ -25,4 +22,4 @@
       };
     };
   };
-})
+}

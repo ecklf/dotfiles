@@ -1,9 +1,6 @@
-({
-  system,
+{
   lib,
   config,
-  username,
-  hostname,
   ...
 }: {
   options.homelab.jellyfin = {
@@ -43,4 +40,4 @@
       # logDir is relative to dataDir by default, so it becomes /storage/set1/service_data/jellyfin/data/log
     };
   };
-})
+}

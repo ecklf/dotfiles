@@ -1,5 +1,4 @@
-({
-  system,
+{
   lib,
   config,
   username,
@@ -137,4 +136,4 @@
       };
     };
   };
-})
+}
