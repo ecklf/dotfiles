@@ -46,11 +46,5 @@
         "@modelcontextprotocol/server-memory"
       ],
     },
-    "github": {
-      "enabled": true,
-      "type": "remote",
-      "url": "https://api.githubcopilot.com/mcp/",
-      "oauth": {},
-    },
   },
 }
