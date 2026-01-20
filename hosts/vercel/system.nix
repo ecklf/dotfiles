@@ -1,4 +1,4 @@
-(_: let
+{...}: let
   isWorkMachine = true;
 in {
   homebrewModules = {
@@ -25,4 +25,4 @@ in {
   activationScriptModules.extraPreActivationScripts = [];
 
   services = {};
-})
+}

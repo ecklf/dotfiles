@@ -1,5 +1,5 @@
-({pkgs, ...}: {
-  homeManagerModules = {
+{pkgs, ...}: {
+  home.modules = {
     extraPackages = [
       pkgs.zfs # ZFS Filesystem Linux Userspace Tools
       pkgs.dive # A tool for exploring each layer in a docker image

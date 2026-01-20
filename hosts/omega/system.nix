@@ -1,4 +1,4 @@
-({...}: let
+{...}: let
   isWorkMachine = false;
 in {
   homebrewModules = {
@@ -21,4 +21,4 @@ in {
     modelling = true;
     extraCasks = ["chromium"];
   };
-})
+}

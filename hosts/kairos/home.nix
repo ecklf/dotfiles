@@ -1,5 +1,5 @@
-({pkgs, ...}: {
-  homeManagerModules = {
+{pkgs, ...}: {
+  home.modules = {
     developer = false;
     personal = false;
     work = false;

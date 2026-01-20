@@ -1,4 +1,4 @@
-({
+{
   system,
   lib,
   config,
@@ -24,7 +24,7 @@ in {
     ./zsh
   ];
 
-  options.homeManagerModules = lib.mkOption {
+  options.home.modules = lib.mkOption {
     type = lib.types.submodule {
       options = {
         minimal = lib.mkOption {
@@ -97,7 +97,7 @@ in {
         };
 
       packages = lib.flatten (
-        config.homeManagerModules.extraPackages
+        config.home.modules.extraPackages
         ++ lib.optional isDarwin [
           pkgs.mas # Mac App Store command line interface
           pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
@@ -108,11 +108,11 @@ in {
           # pkgs.mitmproxy # Man-in-the-middle proxy
           # pkgs.darwin.libiconv # required for -liconv mitmproxy compilation
         ]
-        ++ lib.optional (config.homeManagerModules.minimal && system == "aarch64-darwin") [
+        ++ lib.optional (config.home.modules.minimal && system == "aarch64-darwin") [
           # Fails to compile on x86_64
           pkgs.fclones # Efficient Duplicate File Finder and Remover
         ]
-        ++ lib.optional config.homeManagerModules.minimal [
+        ++ lib.optional config.home.modules.minimal [
           # pkgs.master.gitui # Blazing fast terminal-ui for Git written in Rust
           # pkgs.nixpkgs-fmt # Nix code formatter for nixpkgs
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
@@ -150,7 +150,7 @@ in {
           pkgs.zoxide # A fast cd command that learns your habits
           pkgs.zsh # The Z shell
         ]
-        ++ lib.optional config.homeManagerModules.developer [
+        ++ lib.optional config.home.modules.developer [
           # Embedded
           pkgs.master.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers
           pkgs.master.probe-rs-tools # CLI tool for on-chip debugging and flashing of ARM chips
@@ -266,14 +266,14 @@ in {
           # pkgs.yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
           # pkgs.yubikey-personalization # A library and command line tool to personalize YubiKeys
         ]
-        ++ lib.optional config.homeManagerModules.personal [
+        ++ lib.optional config.home.modules.personal [
           pkgs.master.stripe-cli # A command-line tool for Stripe
           pkgs.meilisearch # Powerful, fast, and an easy to use search engine
           pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
           pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
           pkgs.master.mitmproxy # Man-in-the-middle proxy
         ]
-        ++ lib.optional config.homeManagerModules.work [
+        ++ lib.optional config.home.modules.work [
           pkgs.ssm-session-manager-plugin # AWS Systems Manager Session Manager plugin for the AWS CLI
           pkgs.aws-iam-authenticator # AWS IAM credentials for Kubernetes authentication
           pkgs.goreleaser # Deliver Go binaries as fast and easily as possible
@@ -286,7 +286,7 @@ in {
           pkgs.python312Packages.setuptoolsBuildHook
           pkgs.python312Packages.distutils
         ]
-        ++ lib.optional config.homeManagerModules.hipster [
+        ++ lib.optional config.home.modules.hipster [
           # Hipster editors
           pkgs.emacs # The extensible, customizable GNU text editor
           pkgs.helix # A post-modern modal text editor
@@ -307,10 +307,10 @@ in {
           # pkgs.vector # A high-performance observability data pipeline
           # pkgs.watchman # Watches files and takes action when they change
         ]
-        ++ lib.optional config.homeManagerModules.modelling [
+        ++ lib.optional config.home.modules.modelling [
           pkgs.uv # Python package installer
         ]
       );
     };
   };
-})
+}
