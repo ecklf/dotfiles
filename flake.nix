@@ -58,7 +58,7 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "soma";
-        timezone = "Germany/Berlin";
+        timezone = "Europe/Berlin";
         extraModules = [
           disko.nixosModules.disko
         ];
@@ -72,7 +72,7 @@
         nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "skia";
-        timezone = "Germany/Berlin";
+        timezone = "Europe/Berlin";
         extraModules = [
           disko.nixosModules.disko
         ];
