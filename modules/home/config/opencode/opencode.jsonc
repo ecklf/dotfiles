@@ -1,6 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "catppuccin-mocha",
+  "keybinds": {
+    "messages_next": "<leader>j",
+    "messages_previous": "<leader>k",
+    "messages_copy": "<leader>y",
+  },
   "share": "disabled",
   "server": {
     "port": 4096,
