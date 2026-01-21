@@ -153,6 +153,9 @@ in {
           c = "clear";
           m = "make";
           n = "nvim";
+          o = "open";
+          oc = "opencode";
+          ocp = "opencode --port";
           # General
           fman = "compgen -c | fzf | xargs man";
           tree1 = "exa --tree --level=1 --icons .";
