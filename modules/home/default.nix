@@ -91,6 +91,7 @@ in {
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/opencode/plugins".source = ./config/opencode/plugins;
           ".config/opencode/skills".source = ./config/opencode/skills;
+          ".config/opencode/commands".source = ./config/opencode/commands;
           ".config/iterm2/com.googlecode.iterm2.plist".source = ./config/iterm2/com.googlecode.iterm2.plist;
           ".config/iterm2/nordic_light.itermcolors".source = ./config/iterm2/nordic_light.itermcolors;
           ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
