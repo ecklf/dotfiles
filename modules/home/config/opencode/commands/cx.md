@@ -1,6 +1,5 @@
 ---
-description: Generate context summary for new session
-subtask: true
+description: Generate context summary of this session for a new session
 ---
 
 Generate a concise context summary of this session that can be used to bootstrap a new session. The summary should:
