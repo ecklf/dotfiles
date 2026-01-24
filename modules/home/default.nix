@@ -157,7 +157,7 @@ in {
           # Embedded
           pkgs.master.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers
           pkgs.master.probe-rs-tools # CLI tool for on-chip debugging and flashing of ARM chips
-          pkgs.gdb # The GNU Project debugger
+          # pkgs.gdb # The GNU Project debugger
           pkgs.openocd # On-Chip Debugging, In-System Programming and Boundary-Scan Testing for Embedded Target Devices
           # AI agents
           pkgs.claude-code
