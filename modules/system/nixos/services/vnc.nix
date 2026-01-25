@@ -46,11 +46,12 @@
     # Set background color
     ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
 
-    # Create LXQt config to use openbox (always overwrite to ensure correct path)
+    # Create LXQt config to use openbox
     mkdir -p "$HOME/.config/lxqt"
     cat > "$HOME/.config/lxqt/session.conf" << EOF
 [General]
 __userfile__=true
+window_manager=${pkgs.openbox}/bin/openbox
 
 [Environment]
 
@@ -61,8 +62,19 @@ cursor_size=24
 window_manager=${pkgs.openbox}/bin/openbox
 EOF
 
-    # Start LXQt session
-    exec ${pkgs.lxqt.lxqt-session}/bin/lxqt-session
+    # Start openbox first, then LXQt components manually
+    ${pkgs.openbox}/bin/openbox &
+    sleep 0.5
+    
+    # Start LXQt panel and other components directly
+    ${pkgs.lxqt.lxqt-panel}/bin/lxqt-panel &
+    ${pkgs.lxqt.lxqt-runner}/bin/lxqt-runner &
+    ${pkgs.lxqt.lxqt-notificationd}/bin/lxqt-notificationd &
+    ${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent &
+    ${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt --desktop &
+
+    # Keep the script running (wait for openbox)
+    wait
   '';
 
   # Create a wrapper script that starts Xvnc directly (bypassing vncserver wrapper)
