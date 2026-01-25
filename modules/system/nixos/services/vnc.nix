@@ -22,6 +22,7 @@
     openbox
     xorg.xrdb
     xorg.xsetroot
+    xorg.xinit
   ]);
 
   # xstartup script with full paths baked in
