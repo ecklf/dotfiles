@@ -49,6 +49,7 @@ in {
           MEILI_NO_ANALYTICS = true;
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
           PUPPETEER_EXECUTABLE_PATH = "which chromium";
+          SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
         }
         // lib.optionalAttrs (!isDarwin) {
           PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
