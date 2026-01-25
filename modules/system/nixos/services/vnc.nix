@@ -20,6 +20,7 @@
     export DISPLAY=:${toString cfg.display}
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export PATH="/run/current-system/sw/bin:$PATH"
 
     # Create VNC directory
     mkdir -p "$HOME/.vnc"
@@ -59,7 +60,7 @@
     export DBUS_SESSION_BUS_ADDRESS
 
     # Start LXQt session (uses the NixOS-configured session)
-    exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
+    exec startlxqt
   '';
 in {
   options.homelab.vnc = {
