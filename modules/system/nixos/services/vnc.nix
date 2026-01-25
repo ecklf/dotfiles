@@ -46,22 +46,20 @@
     # Set background color
     ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
 
-    # Create LXQt config to use openbox
+    # Create LXQt config to use openbox (always overwrite to ensure correct path)
     mkdir -p "$HOME/.config/lxqt"
-    if [ ! -f "$HOME/.config/lxqt/session.conf" ]; then
-      cat > "$HOME/.config/lxqt/session.conf" << EOF
-    [General]
-    __userfile__=true
+    cat > "$HOME/.config/lxqt/session.conf" << EOF
+[General]
+__userfile__=true
 
-    [Environment]
+[Environment]
 
-    [Mouse]
-    cursor_size=24
+[Mouse]
+cursor_size=24
 
-    [Session]
-    window_manager=${pkgs.openbox}/bin/openbox
-    EOF
-    fi
+[Session]
+window_manager=${pkgs.openbox}/bin/openbox
+EOF
 
     # Start LXQt session
     exec ${pkgs.lxqt.lxqt-session}/bin/lxqt-session
