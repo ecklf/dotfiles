@@ -35,6 +35,9 @@
     dashboard.port = 5678;
     stirling.enable = true;
     stirling.port = 7890;
+    # VM support for clawdbot
+    libvirt.enable = true;
+    libvirt.vncPort = 5900;
   };
 
   time.timeZone = timezone;
@@ -67,8 +70,8 @@
     };
     firewall = {
       enable = true;
-      # Samba + Immich + Nginx
-      allowedTCPPorts = [80 443 445 139 5201];
+      # Samba + Immich + Nginx + VNC (5900-5902 for VMs)
+      allowedTCPPorts = [80 443 445 139 5201 5900 5901 5902];
       allowedUDPPorts = [137 138 5201];
     };
   };

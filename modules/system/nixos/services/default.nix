@@ -11,6 +11,7 @@
     ./paperless.nix
     ./dashboard.nix
     ./stirling.nix
+    ./libvirt.nix
   ];
   options.homelab = {
     enable = lib.mkEnableOption "The homelab services and configuration variables";
