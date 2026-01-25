@@ -4,7 +4,71 @@
   pkgs,
   username,
   ...
-}: {
+}: let
+  cfg = config.homelab.vnc;
+
+  # Define the PATH for all LXQt and X dependencies
+  desktopPath = lib.makeBinPath (with pkgs; [
+    coreutils
+    dbus
+    lxqt.lxqt-session
+    lxqt.lxqt-panel
+    lxqt.lxqt-runner
+    lxqt.lxqt-config
+    lxqt.lxqt-notificationd
+    lxqt.lxqt-policykit
+    lxqt.pcmanfm-qt
+    lxqt.qterminal
+    openbox
+    xorg.xrdb
+    xorg.xsetroot
+  ]);
+
+  # xstartup script with full paths baked in
+  xstartupScript = pkgs.writeShellScript "xstartup" ''
+    #!/bin/sh
+    export PATH="${desktopPath}:$PATH"
+    export XDG_SESSION_TYPE=x11
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+
+    unset SESSION_MANAGER
+    unset DBUS_SESSION_BUS_ADDRESS
+
+    # Start dbus session
+    eval $(${pkgs.dbus}/bin/dbus-launch --sh-syntax)
+    export DBUS_SESSION_BUS_ADDRESS
+
+    # Set background color
+    ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
+
+    # Start LXQt session
+    exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
+  '';
+
+  # Create a wrapper script that starts Xvnc
+  vncStartScript = pkgs.writeShellScript "vnc-start" ''
+    export HOME="/home/${username}"
+    export PATH="${desktopPath}:$PATH"
+
+    # Create VNC directory
+    mkdir -p "$HOME/.vnc"
+
+    # Create VNC password if it doesn't exist
+    if [ ! -f "$HOME/.vnc/passwd" ]; then
+      echo "clawdbot" | ${pkgs.tigervnc}/bin/vncpasswd -f > "$HOME/.vnc/passwd"
+      chmod 600 "$HOME/.vnc/passwd"
+    fi
+
+    # Start VNC server with our xstartup
+    exec ${pkgs.tigervnc}/bin/vncserver :${toString cfg.display} \
+      -geometry ${cfg.resolution} \
+      -depth 24 \
+      -rfbport ${toString cfg.port} \
+      -localhost no \
+      -fg \
+      -xstartup ${xstartupScript}
+  '';
+in {
   options.homelab.vnc = {
     enable = lib.mkEnableOption "Lightweight LXQt desktop with VNC access";
     port = lib.mkOption {
@@ -14,8 +78,8 @@
     };
     display = lib.mkOption {
       type = lib.types.int;
-      default = 0;
-      description = "VNC display number";
+      default = 1;
+      description = "VNC display number (default :1 to avoid conflicts)";
     };
     resolution = lib.mkOption {
       type = lib.types.str;
@@ -24,73 +88,21 @@
     };
   };
 
-  config = lib.mkIf config.homelab.vnc.enable {
-    # TigerVNC server - creates a virtual X display accessible via VNC
-    # Xvnc is a standalone X server, so we don't need services.xserver
-    systemd.services.tigervnc = {
-      description = "TigerVNC Server - LXQt Desktop";
-      after = ["network.target"];
+  config = lib.mkIf cfg.enable {
+    # Single systemd service that runs VNC + desktop
+    systemd.services.vnc-desktop = {
+      description = "VNC Desktop (LXQt)";
+      after = ["network.target" "dbus.service"];
+      wants = ["dbus.service"];
       wantedBy = ["multi-user.target"];
 
       serviceConfig = {
         Type = "simple";
         User = username;
+        Group = "users";
         WorkingDirectory = "/home/${username}";
-
-        # Create .vnc directory and password file before starting
-        ExecStartPre = let
-          setupScript = pkgs.writeShellScript "vnc-setup" ''
-            mkdir -p /home/${username}/.vnc
-            # Create password file if it doesn't exist
-            # Default password: clawdbot (change with vncpasswd after first login!)
-            if [ ! -f /home/${username}/.vnc/passwd ]; then
-              echo "clawdbot" | ${pkgs.tigervnc}/bin/vncpasswd -f > /home/${username}/.vnc/passwd
-              chmod 600 /home/${username}/.vnc/passwd
-            fi
-          '';
-        in "${setupScript}";
-
-        ExecStart = let
-          xstartup = pkgs.writeShellScript "xstartup" ''
-            #!/bin/sh
-            unset SESSION_MANAGER
-            unset DBUS_SESSION_BUS_ADDRESS
-            export XDG_SESSION_TYPE=x11
-            exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
-          '';
-        in ''
-          ${pkgs.tigervnc}/bin/Xvnc :${toString config.homelab.vnc.display} \
-            -geometry ${config.homelab.vnc.resolution} \
-            -depth 24 \
-            -rfbport ${toString config.homelab.vnc.port} \
-            -rfbauth /home/${username}/.vnc/passwd \
-            -desktop "yun-lxqt" \
-            -alwaysshared \
-            -dpi 96
-        '';
-
-        Restart = "on-failure";
-        RestartSec = 5;
-      };
-    };
-
-    # Start LXQt session when VNC server is ready
-    systemd.services.lxqt-session = {
-      description = "LXQt Desktop Session";
-      after = ["tigervnc.service"];
-      requires = ["tigervnc.service"];
-      wantedBy = ["multi-user.target"];
-
-      environment = {
-        DISPLAY = ":${toString config.homelab.vnc.display}";
-        XDG_SESSION_TYPE = "x11";
-      };
-
-      serviceConfig = {
-        Type = "simple";
-        User = username;
-        WorkingDirectory = "/home/${username}";
-        ExecStart = "${pkgs.lxqt.lxqt-session}/bin/startlxqt";
+        ExecStart = "${vncStartScript}";
+        ExecStop = "${pkgs.tigervnc}/bin/vncserver -kill :${toString cfg.display}";
         Restart = "on-failure";
         RestartSec = 5;
       };
@@ -108,8 +120,17 @@
       lxqt.lxqt-config
       lxqt.lxqt-notificationd
       lxqt.lxqt-policykit
+      lxqt.lxqt-qtplugin
       lxqt.pcmanfm-qt
       lxqt.qterminal
+
+      # Window manager (LXQt uses openbox by default)
+      openbox
+
+      # X utilities
+      xorg.xrdb
+      xorg.xsetroot
+      xorg.xinit
 
       # Basic desktop apps for clawdbot computer-use
       firefox
@@ -125,9 +146,7 @@
     ];
 
     # Firewall - open VNC port
-    networking.firewall.allowedTCPPorts = [
-      config.homelab.vnc.port
-    ];
+    networking.firewall.allowedTCPPorts = [cfg.port];
 
     # Enable dbus for desktop apps
     services.dbus.enable = true;

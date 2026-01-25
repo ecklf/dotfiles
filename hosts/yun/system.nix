@@ -35,6 +35,7 @@
     dashboard.port = 5678;
     stirling.enable = true;
     stirling.port = 7890;
+    # Lightweight LXQt desktop with VNC for clawdbot computer-use
     vnc.enable = true;
     vnc.port = 5900;
   };
