@@ -32,9 +32,7 @@
     };
 
     # No display manager needed for headless VNC
-    services.displayManager = {
-      enable = false;
-    };
+    services.displayManager.enable = lib.mkForce false;
 
     # TigerVNC server - creates a virtual X display accessible via VNC
     # This is ideal for headless servers
