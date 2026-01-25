@@ -72,6 +72,7 @@
       systemPackages = [
         pkgs.coreutils
         pkgs.master.duti
+        pkgs.sops
       ];
       pathsToLink = ["/Applications"];
       shells = [pkgs.bash pkgs.zsh];
