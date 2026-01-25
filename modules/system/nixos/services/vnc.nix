@@ -9,9 +9,6 @@
 
   # Create a wrapper script that starts Xvnc directly
   #
-  # NOTE: On first login, LXQt will prompt to select a window manager.
-  # Select: /run/current-system/sw/bin/openbox
-  #
   # Default VNC password is "clawdbot". Change it after first login with:
   #   vncpasswd
   #
@@ -61,15 +58,12 @@
     eval $(${pkgs.dbus}/bin/dbus-launch --sh-syntax)
     export DBUS_SESSION_BUS_ADDRESS
 
-    # Set background color
-    ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
-
-    # Start LXQt session (it will start openbox via NixOS config)
-    exec lxqt-session
+    # Start XFCE session
+    exec startxfce4
   '';
 in {
   options.homelab.vnc = {
-    enable = lib.mkEnableOption "Lightweight LXQt desktop with VNC access";
+    enable = lib.mkEnableOption "Lightweight XFCE desktop with VNC access";
     port = lib.mkOption {
       type = lib.types.int;
       default = 5900;
@@ -88,16 +82,15 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # Use NixOS's built-in LXQt + Openbox support
+    # Use NixOS's built-in XFCE support
     services.xserver = {
       enable = true;
-      desktopManager.lxqt.enable = true;
-      windowManager.openbox.enable = true;
+      desktopManager.xfce.enable = true;
     };
 
     # systemd service for VNC
     systemd.services.vnc-desktop = {
-      description = "VNC Desktop (LXQt)";
+      description = "VNC Desktop (XFCE)";
       after = ["network.target" "dbus.service"];
       wants = ["dbus.service"];
       wantedBy = ["multi-user.target"];
@@ -117,8 +110,6 @@ in {
     # Additional packages for clawdbot computer-use
     environment.systemPackages = with pkgs; [
       tigervnc
-      lxqt.lxqt-qtplugin
-      lxqt.obconf-qt # Openbox configuration tool
 
       # Basic desktop apps for clawdbot computer-use
       firefox
