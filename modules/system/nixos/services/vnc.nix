@@ -23,6 +23,8 @@
     xorg.xrdb
     xorg.xsetroot
     xorg.xinit
+    hicolor-icon-theme
+    adwaita-icon-theme
   ]);
 
   # xstartup script with full paths baked in
@@ -31,8 +33,8 @@
     export PATH="${desktopPath}:$PATH"
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-    export XDG_CONFIG_DIRS="${pkgs.lxqt.lxqt-session}/share:${pkgs.openbox}/etc/xdg:$XDG_CONFIG_DIRS"
-    export XDG_DATA_DIRS="${pkgs.lxqt.lxqt-session}/share:${pkgs.openbox}/share:$XDG_DATA_DIRS"
+    export XDG_CONFIG_DIRS="/etc/xdg:${pkgs.lxqt.lxqt-session}/etc/xdg:${pkgs.openbox}/etc/xdg"
+    export XDG_DATA_DIRS="${pkgs.lxqt.lxqt-session}/share:${pkgs.lxqt.lxqt-panel}/share:${pkgs.lxqt.lxqt-runner}/share:${pkgs.lxqt.lxqt-config}/share:${pkgs.lxqt.pcmanfm-qt}/share:${pkgs.openbox}/share:${pkgs.hicolor-icon-theme}/share:${pkgs.adwaita-icon-theme}/share:/run/current-system/sw/share"
 
     unset SESSION_MANAGER
     unset DBUS_SESSION_BUS_ADDRESS
@@ -44,8 +46,22 @@
     # Set background color
     ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
 
-    # Start openbox window manager in background
-    ${pkgs.openbox}/bin/openbox &
+    # Create LXQt config to use openbox
+    mkdir -p "$HOME/.config/lxqt"
+    if [ ! -f "$HOME/.config/lxqt/session.conf" ]; then
+      cat > "$HOME/.config/lxqt/session.conf" << EOF
+    [General]
+    __userfile__=true
+
+    [Environment]
+
+    [Mouse]
+    cursor_size=24
+
+    [Session]
+    window_manager=${pkgs.openbox}/bin/openbox
+    EOF
+    fi
 
     # Start LXQt session
     exec ${pkgs.lxqt.lxqt-session}/bin/lxqt-session
