@@ -35,9 +35,8 @@
     dashboard.port = 5678;
     stirling.enable = true;
     stirling.port = 7890;
-    # VM support for clawdbot
-    libvirt.enable = true;
-    libvirt.vncPort = 5900;
+    vnc.enable = true;
+    vnc.port = 5900;
   };
 
   time.timeZone = timezone;
@@ -70,8 +69,8 @@
     };
     firewall = {
       enable = true;
-      # Samba + Immich + Nginx + VNC (5900-5902 for VMs)
-      allowedTCPPorts = [80 443 445 139 5201 5900 5901 5902];
+      # Samba + Immich + Nginx + VNC
+      allowedTCPPorts = [80 443 445 139 5201 5900];
       allowedUDPPorts = [137 138 5201];
     };
   };
@@ -104,7 +103,7 @@
 
   users.users."${username}" = {
     isNormalUser = true;
-    extraGroups = ["wheel" "libvirtd" "docker" "nginx"];
+    extraGroups = ["wheel" "docker" "nginx"];
     openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com''
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
