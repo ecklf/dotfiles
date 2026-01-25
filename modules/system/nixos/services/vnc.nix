@@ -7,81 +7,19 @@
 }: let
   cfg = config.homelab.vnc;
 
-  # Define the PATH for all LXQt and X dependencies
-  desktopPath = lib.makeBinPath (with pkgs; [
-    coreutils
-    dbus
-    lxqt.lxqt-session
-    lxqt.lxqt-panel
-    lxqt.lxqt-runner
-    lxqt.lxqt-config
-    lxqt.lxqt-notificationd
-    lxqt.lxqt-policykit
-    lxqt.pcmanfm-qt
-    lxqt.qterminal
-    openbox
-    xorg.xrdb
-    xorg.xsetroot
-    xorg.xinit
-    hicolor-icon-theme
-    adwaita-icon-theme
-  ]);
-
-  # xstartup script with full paths baked in
-  xstartupScript = pkgs.writeShellScript "xstartup" ''
-    #!/bin/sh
-    export PATH="${desktopPath}:$PATH"
-    export XDG_SESSION_TYPE=x11
-    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
-    export XDG_CONFIG_DIRS="/etc/xdg:${pkgs.lxqt.lxqt-session}/etc/xdg:${pkgs.openbox}/etc/xdg"
-    export XDG_DATA_DIRS="${pkgs.lxqt.lxqt-session}/share:${pkgs.lxqt.lxqt-panel}/share:${pkgs.lxqt.lxqt-runner}/share:${pkgs.lxqt.lxqt-config}/share:${pkgs.lxqt.pcmanfm-qt}/share:${pkgs.openbox}/share:${pkgs.hicolor-icon-theme}/share:${pkgs.adwaita-icon-theme}/share:/run/current-system/sw/share"
-
-    unset SESSION_MANAGER
-    unset DBUS_SESSION_BUS_ADDRESS
-
-    # Start dbus session
-    eval $(${pkgs.dbus}/bin/dbus-launch --sh-syntax)
-    export DBUS_SESSION_BUS_ADDRESS
-
-    # Set background color
-    ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
-
-    # Create LXQt config to use openbox
-    mkdir -p "$HOME/.config/lxqt"
-    cat > "$HOME/.config/lxqt/session.conf" << EOF
-[General]
-__userfile__=true
-window_manager=${pkgs.openbox}/bin/openbox
-
-[Environment]
-
-[Mouse]
-cursor_size=24
-
-[Session]
-window_manager=${pkgs.openbox}/bin/openbox
-EOF
-
-    # Start openbox first, then LXQt components manually
-    ${pkgs.openbox}/bin/openbox &
-    sleep 0.5
-    
-    # Start LXQt panel and other components directly
-    ${pkgs.lxqt.lxqt-panel}/bin/lxqt-panel &
-    ${pkgs.lxqt.lxqt-runner}/bin/lxqt-runner &
-    ${pkgs.lxqt.lxqt-notificationd}/bin/lxqt-notificationd &
-    ${pkgs.lxqt.lxqt-policykit}/bin/lxqt-policykit-agent &
-    ${pkgs.lxqt.pcmanfm-qt}/bin/pcmanfm-qt --desktop &
-
-    # Keep the script running (wait for openbox)
-    wait
-  '';
-
-  # Create a wrapper script that starts Xvnc directly (bypassing vncserver wrapper)
+  # Create a wrapper script that starts Xvnc directly
+  #
+  # NOTE: On first login, LXQt will prompt to select a window manager.
+  # Select: /run/current-system/sw/bin/openbox
+  #
+  # Default VNC password is "clawdbot". Change it after first login with:
+  #   vncpasswd
+  #
   vncStartScript = pkgs.writeShellScript "vnc-start" ''
     export HOME="/home/${username}"
-    export PATH="${desktopPath}:$PATH"
     export DISPLAY=:${toString cfg.display}
+    export XDG_SESSION_TYPE=x11
+    export XDG_RUNTIME_DIR="/run/user/$(id -u)"
 
     # Create VNC directory
     mkdir -p "$HOME/.vnc"
@@ -116,11 +54,12 @@ EOF
       sleep 0.1
     done
 
-    # Run the xstartup script
-    ${xstartupScript}
+    # Start dbus session
+    eval $(${pkgs.dbus}/bin/dbus-launch --sh-syntax)
+    export DBUS_SESSION_BUS_ADDRESS
 
-    # If xstartup exits, kill Xvnc
-    kill $XVNC_PID 2>/dev/null
+    # Start LXQt session (uses the NixOS-configured session)
+    exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
   '';
 in {
   options.homelab.vnc = {
@@ -128,7 +67,7 @@ in {
     port = lib.mkOption {
       type = lib.types.int;
       default = 5900;
-      description = "VNC server port (display :0 = 5900, :1 = 5901, etc)";
+      description = "VNC server port";
     };
     display = lib.mkOption {
       type = lib.types.int;
@@ -143,7 +82,14 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    # Single systemd service that runs VNC + desktop
+    # Use NixOS's built-in LXQt + Openbox support
+    services.xserver = {
+      enable = true;
+      desktopManager.lxqt.enable = true;
+      windowManager.openbox.enable = true;
+    };
+
+    # systemd service for VNC
     systemd.services.vnc-desktop = {
       description = "VNC Desktop (LXQt)";
       after = ["network.target" "dbus.service"];
@@ -162,41 +108,18 @@ in {
       };
     };
 
-    # Packages for desktop use
+    # Additional packages for clawdbot computer-use
     environment.systemPackages = with pkgs; [
-      # VNC tools
       tigervnc
-
-      # LXQt desktop and dependencies
-      lxqt.lxqt-session
-      lxqt.lxqt-panel
-      lxqt.lxqt-runner
-      lxqt.lxqt-config
-      lxqt.lxqt-notificationd
-      lxqt.lxqt-policykit
       lxqt.lxqt-qtplugin
-      lxqt.pcmanfm-qt
-      lxqt.qterminal
-
-      # Window manager (LXQt uses openbox by default)
-      openbox
-
-      # X utilities
-      xorg.xrdb
-      xorg.xsetroot
-      xorg.xinit
+      obconf-qt # Openbox configuration tool
 
       # Basic desktop apps for clawdbot computer-use
       firefox
       xterm
-      xclip # Clipboard support
-      scrot # Screenshots
-      xdotool # Mouse/keyboard automation
-
-      # Fonts
-      dejavu_fonts
-      noto-fonts
-      liberation_ttf
+      xclip
+      scrot
+      xdotool
     ];
 
     # Firewall - open VNC port
@@ -205,7 +128,7 @@ in {
     # Enable dbus for desktop apps
     services.dbus.enable = true;
 
-    # PipeWire for audio (optional, for clawdbot voice features)
+    # PipeWire for audio
     services.pipewire = {
       enable = true;
       pulse.enable = true;
@@ -215,7 +138,7 @@ in {
     # Polkit for desktop privilege escalation
     security.polkit.enable = true;
 
-    # Fonts configuration
+    # Fonts
     fonts.packages = with pkgs; [
       dejavu_fonts
       noto-fonts
