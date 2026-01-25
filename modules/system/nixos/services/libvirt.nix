@@ -16,23 +16,18 @@
 
   config = lib.mkIf config.homelab.libvirt.enable {
     # Enable virtualization
+    # https://wiki.nixos.org/wiki/Libvirt
     virtualisation.libvirtd = {
       enable = true;
       qemu = {
         package = pkgs.qemu_kvm;
         runAsRoot = true;
         swtpm.enable = true; # TPM emulation (useful for Windows 11, optional for Ubuntu)
-        ovmf = {
-          enable = true; # UEFI support
-          packages = [
-            (pkgs.OVMF.override {
-              secureBoot = true;
-              tpmSupport = true;
-            }).fd
-          ];
-        };
       };
     };
+
+    # Enable USB redirection (optional, useful for passing USB devices to VMs)
+    virtualisation.spiceUSBRedirection.enable = true;
 
     # Add user to libvirtd group
     users.users."${username}".extraGroups = ["libvirtd" "kvm"];
@@ -43,7 +38,7 @@
       virt-viewer # For SPICE/VNC connections
       libvirt # virsh CLI
       qemu_kvm
-      OVMF # UEFI firmware
+      dnsmasq # Required for default NAT network
       swtpm # TPM emulation
     ];
 
@@ -52,14 +47,15 @@
       options kvm_intel nested=1
     '';
 
+    # Trust the libvirt bridge interface
+    networking.firewall.trustedInterfaces = ["virbr0"];
+
     # Firewall rules for VNC access
-    networking.firewall = {
-      allowedTCPPorts = [
-        config.homelab.libvirt.vncPort # VNC :0
-        (config.homelab.libvirt.vncPort + 1) # VNC :1 (in case of multiple VMs)
-        (config.homelab.libvirt.vncPort + 2) # VNC :2
-      ];
-    };
+    networking.firewall.allowedTCPPorts = [
+      config.homelab.libvirt.vncPort # VNC :0
+      (config.homelab.libvirt.vncPort + 1) # VNC :1 (in case of multiple VMs)
+      (config.homelab.libvirt.vncPort + 2) # VNC :2
+    ];
 
     # Enable default network (NAT)
     # The VM will have internet access and can be accessed from host
