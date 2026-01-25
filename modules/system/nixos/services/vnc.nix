@@ -31,6 +31,8 @@
     export PATH="${desktopPath}:$PATH"
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
+    export XDG_CONFIG_DIRS="${pkgs.lxqt.lxqt-session}/share:${pkgs.openbox}/etc/xdg:$XDG_CONFIG_DIRS"
+    export XDG_DATA_DIRS="${pkgs.lxqt.lxqt-session}/share:${pkgs.openbox}/share:$XDG_DATA_DIRS"
 
     unset SESSION_MANAGER
     unset DBUS_SESSION_BUS_ADDRESS
@@ -42,8 +44,11 @@
     # Set background color
     ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
 
+    # Start openbox window manager in background
+    ${pkgs.openbox}/bin/openbox &
+
     # Start LXQt session
-    exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
+    exec ${pkgs.lxqt.lxqt-session}/bin/lxqt-session
   '';
 
   # Create a wrapper script that starts Xvnc directly (bypassing vncserver wrapper)
