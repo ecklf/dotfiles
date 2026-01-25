@@ -25,17 +25,8 @@
   };
 
   config = lib.mkIf config.homelab.vnc.enable {
-    # LXQt desktop environment - very lightweight (~200-300MB RAM)
-    services.xserver = {
-      enable = true;
-      desktopManager.lxqt.enable = true;
-    };
-
-    # No display manager needed for headless VNC
-    services.displayManager.enable = lib.mkForce false;
-
     # TigerVNC server - creates a virtual X display accessible via VNC
-    # This is ideal for headless servers
+    # Xvnc is a standalone X server, so we don't need services.xserver
     systemd.services.tigervnc = {
       description = "TigerVNC Server - LXQt Desktop";
       after = ["network.target"];
@@ -65,7 +56,7 @@
             unset SESSION_MANAGER
             unset DBUS_SESSION_BUS_ADDRESS
             export XDG_SESSION_TYPE=x11
-            exec startlxqt
+            exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
           '';
         in ''
           ${pkgs.tigervnc}/bin/Xvnc :${toString config.homelab.vnc.display} \
@@ -110,15 +101,22 @@
       # VNC tools
       tigervnc
 
+      # LXQt desktop and dependencies
+      lxqt.lxqt-session
+      lxqt.lxqt-panel
+      lxqt.lxqt-runner
+      lxqt.lxqt-config
+      lxqt.lxqt-notificationd
+      lxqt.lxqt-policykit
+      lxqt.pcmanfm-qt
+      lxqt.qterminal
+
       # Basic desktop apps for clawdbot computer-use
       firefox
       xterm
       xclip # Clipboard support
       scrot # Screenshots
       xdotool # Mouse/keyboard automation
-
-      # File manager (comes with LXQt but explicit)
-      lxqt.pcmanfm-qt
 
       # Fonts
       dejavu_fonts
@@ -143,5 +141,12 @@
 
     # Polkit for desktop privilege escalation
     security.polkit.enable = true;
+
+    # Fonts configuration
+    fonts.packages = with pkgs; [
+      dejavu_fonts
+      noto-fonts
+      liberation_ttf
+    ];
   };
 }
