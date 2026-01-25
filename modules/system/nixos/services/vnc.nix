@@ -21,6 +21,8 @@
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export PATH="/run/current-system/sw/bin:$PATH"
+    export XDG_DATA_DIRS="/run/current-system/sw/share:$HOME/.local/share:/usr/local/share:/usr/share"
+    export XDG_CONFIG_DIRS="/run/current-system/sw/etc/xdg:/etc/xdg"
 
     # Create VNC directory
     mkdir -p "$HOME/.vnc"
@@ -59,8 +61,11 @@
     eval $(${pkgs.dbus}/bin/dbus-launch --sh-syntax)
     export DBUS_SESSION_BUS_ADDRESS
 
-    # Start LXQt session (uses the NixOS-configured session)
-    exec startlxqt
+    # Set background color
+    ${pkgs.xorg.xsetroot}/bin/xsetroot -solid "#2e3440"
+
+    # Start LXQt session (it will start openbox via NixOS config)
+    exec lxqt-session
   '';
 in {
   options.homelab.vnc = {
