@@ -46,10 +46,11 @@
     exec ${pkgs.lxqt.lxqt-session}/bin/startlxqt
   '';
 
-  # Create a wrapper script that starts Xvnc
+  # Create a wrapper script that starts Xvnc directly (bypassing vncserver wrapper)
   vncStartScript = pkgs.writeShellScript "vnc-start" ''
     export HOME="/home/${username}"
     export PATH="${desktopPath}:$PATH"
+    export DISPLAY=:${toString cfg.display}
 
     # Create VNC directory
     mkdir -p "$HOME/.vnc"
@@ -60,14 +61,35 @@
       chmod 600 "$HOME/.vnc/passwd"
     fi
 
-    # Start VNC server with our xstartup
-    exec ${pkgs.tigervnc}/bin/vncserver :${toString cfg.display} \
+    # Clean up any stale lock files
+    rm -f /tmp/.X${toString cfg.display}-lock
+    rm -f /tmp/.X11-unix/X${toString cfg.display}
+
+    # Start Xvnc directly in background
+    ${pkgs.tigervnc}/bin/Xvnc :${toString cfg.display} \
       -geometry ${cfg.resolution} \
       -depth 24 \
       -rfbport ${toString cfg.port} \
-      -localhost no \
-      -fg \
-      -xstartup ${xstartupScript}
+      -rfbauth "$HOME/.vnc/passwd" \
+      -pn \
+      -localhost=0 \
+      -SecurityTypes VncAuth &
+
+    XVNC_PID=$!
+
+    # Wait for X server to be ready
+    for i in $(seq 1 30); do
+      if [ -e /tmp/.X11-unix/X${toString cfg.display} ]; then
+        break
+      fi
+      sleep 0.1
+    done
+
+    # Run the xstartup script
+    ${xstartupScript}
+
+    # If xstartup exits, kill Xvnc
+    kill $XVNC_PID 2>/dev/null
   '';
 in {
   options.homelab.vnc = {
@@ -103,7 +125,7 @@ in {
         Group = "users";
         WorkingDirectory = "/home/${username}";
         ExecStart = "${vncStartScript}";
-        ExecStop = "${pkgs.tigervnc}/bin/vncserver -kill :${toString cfg.display}";
+        ExecStop = "${pkgs.coreutils}/bin/kill -TERM $MAINPID";
         Restart = "on-failure";
         RestartSec = 5;
       };
