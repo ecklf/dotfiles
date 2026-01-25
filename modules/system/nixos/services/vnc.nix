@@ -112,7 +112,7 @@ in {
     environment.systemPackages = with pkgs; [
       tigervnc
       lxqt.lxqt-qtplugin
-      obconf-qt # Openbox configuration tool
+      lxqt.obconf-qt # Openbox configuration tool
 
       # Basic desktop apps for clawdbot computer-use
       firefox
