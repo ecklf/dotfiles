@@ -16,7 +16,9 @@
   boot.tmp.cleanOnBoot = true;
 
   # Disable mdadm RAID monitoring (not using software RAID)
-  boot.swraid.enable = false;
+  boot.swraid.mdadmConf = ''
+    MAILADDR=nobody@nowhere
+  '';
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
