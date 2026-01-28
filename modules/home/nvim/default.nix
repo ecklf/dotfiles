@@ -28,7 +28,7 @@ let
     pname = "kanso";
     version = "HEAD";
     src = builtins.fetchGit {
-      url = "ssh://git@github.com/webhooked/kanso.nvim.git";
+      url = "git@github.com:webhooked/kanso.nvim.git";
       ref = "main";
       rev = "26f5c9686b17a27541c98551cf0cd2587627e387";
     };
