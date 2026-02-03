@@ -64,6 +64,9 @@
       # Create new window in current path
       bind c new-window -c "#{pane_current_path}"
 
+      # Zoom pane toggle
+      bind z resize-pane -Z
+
       # Kanso theme colors
       # bg: #090E13 (zen) / #14171d (ink)
       # fg: #c5c9c7
@@ -81,11 +84,17 @@
       # Left: session name with icon
       set -g status-left '#[fg=#8ba4b0,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
 
-      # Right: date and time
-      set -g status-right '#[fg=#a4a7a4]󰃰 %Y-%m-%d #[fg=#8ea4a2]󰥔 %H:%M '
+      # Right: indicators + git branch + host
+      # Prefix indicator: shows 󰌌 when prefix is active
+      # Zoom indicator: shows 󰍉 when pane is zoomed
+      # Git branch: current branch in pane's directory
+      # Host: shows hostname
+      set -g status-right '#{?client_prefix,#[fg=#c4b28a]󰌌 ,}#{?window_zoomed_flag,#[fg=#87a987]󰍉 ,}#[fg=#a292a3]#(cd "#{pane_current_path}" && git branch --show-current 2>/dev/null | sed "s/^/ /") #[fg=#a4a7a4]│ #[fg=#8ba4b0]󰒋 #H '
+      # With date/time:
+      # set -g status-right '#{?client_prefix,#[fg=#c4b28a]󰌌 ,}#{?window_zoomed_flag,#[fg=#87a987]󰍉 ,}#[fg=#a292a3]#(cd "#{pane_current_path}" && git branch --show-current 2>/dev/null | sed "s/^/ /") #[fg=#a4a7a4]│ #[fg=#8ba4b0]󰒋 #H #[fg=#a4a7a4]│ #[fg=#a4a7a4]󰃰 %Y-%m-%d #[fg=#8ea4a2]󰥔 %H:%M '
 
       # Window styling
-      set -g window-status-separator ""
+      set -g window-status-separator "
       setw -g window-status-format '#[fg=#a4a7a4,bg=#14171d] #I #W '
       setw -g window-status-current-format '#[fg=#c5c9c7,bg=#24262D,bold] #I #W #[fg=#24262D,bg=#14171d]'
 
