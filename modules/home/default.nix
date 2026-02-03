@@ -10,6 +10,7 @@
 in {
   imports = [
     ./bat
+    ./btop
     ./eza
     ./fzf
     ./git
@@ -229,7 +230,7 @@ in {
           pkgs.serie # Rich git commit graph in your terminal, like magic
           # Networking / Monitoring / Benchmarking
           pkgs.atac # Simple API client (postman like) in your terminal
-          pkgs.btop # A monitor of resources
+          # pkgs.btop # Managed by programs.btop
           pkgs.frp # A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet
           pkgs.glances # Cross-platform curses-based monitoring tool
           pkgs.httpstat # curl statistics made simple
