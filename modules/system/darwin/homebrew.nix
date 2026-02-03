@@ -288,6 +288,7 @@
           "blender"
           "bambu-studio"
           "freecad"
+          "plasticity"
         ]
       );
     };
