@@ -13,9 +13,12 @@ in {
     ./btop
     ./eza
     ./fzf
+    ./gh
     ./git
+    ./jq
     ./nnn
     ./nvim
+    ./ripgrep
     ./ssh
     ./starship
     ./tmux
@@ -130,7 +133,7 @@ in {
           pkgs.git-lfs # Git extension for versioning large files
           pkgs.git-trim # Automatically trims your branches whose tracking remote refs are merged or gone
           pkgs.htop # An interactive process viewer for Linux, with vim-style keybindings
-          pkgs.jq # A lightweight and flexible command-line JSON processor
+          # pkgs.jq # Managed by programs.jq
           pkgs.lazygit # Simple terminal UI for git commands
           pkgs.less # A more advanced file pager than 'more'
           pkgs.master.go-task # A task runner / simpler Make alternative written in Go
@@ -141,7 +144,7 @@ in {
           pkgs.pv # Tool for monitoring the progress of data through a pipeline
           pkgs.rclone # Command line program to sync files and directories to and from major cloud storage
           pkgs.repgrep # Interactive replacer for ripgrep that makes it easy to find and replace across files on the command line
-          pkgs.ripgrep # A utility that combines the usability of The Silver Searcher with the raw speed of grep
+          # pkgs.ripgrep # Managed by programs.ripgrep
           pkgs.rsync # Fast incremental file transfer utility
           pkgs.stow # A tool for managing the installation of multiple software packages in the same run-time directory tree
           pkgs.subversion # A version control system intended to be a compelling replacement for CVS in the open source community
@@ -226,7 +229,7 @@ in {
           pkgs.sea-orm-cli #  Command line utility for SeaORM
           # GitHub
           pkgs.act # Run your GitHub Actions locally
-          pkgs.gh # GitHub CLI tool
+          # pkgs.gh # Managed by programs.gh
           pkgs.serie # Rich git commit graph in your terminal, like magic
           # Networking / Monitoring / Benchmarking
           pkgs.atac # Simple API client (postman like) in your terminal
