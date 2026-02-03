@@ -6,6 +6,9 @@
 }: let
   inherit (pkgs.stdenv) isDarwin;
 in {
+  home.sessionPath = [
+    "$PNPM_HOME"
+  ];
   programs = {
     zsh = {
       enable = true;
@@ -45,11 +48,13 @@ in {
       };
       sessionVariables =
         {
-          NEXT_TELEMETRY_DISABLED = 1;
-          MEILI_NO_ANALYTICS = true;
+          GOPATH = "$HOME/go";
+          PNPM_HOME = "$HOME/Library/pnpm";
+          SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
           PUPPETEER_SKIP_CHROMIUM_DOWNLOAD = true;
           PUPPETEER_EXECUTABLE_PATH = "which chromium";
-          SOPS_AGE_KEY_FILE = "$HOME/.config/sops/age/keys.txt";
+          NEXT_TELEMETRY_DISABLED = 1;
+          MEILI_NO_ANALYTICS = true;
         }
         // lib.optionalAttrs (!isDarwin) {
           PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
@@ -96,14 +101,6 @@ in {
         '')
         # Config
         ''
-          # pnpm
-          export PNPM_HOME="/Users/$(whoami)/Library/pnpm"
-          export PATH="$PNPM_HOME:$PATH"
-          export PATH="$HOME/development/flutter/bin:$PATH"
-
-          # Go
-          export GOPATH="/Users/$(whoami)/go"
-
           eval "$(direnv hook zsh)"
 
           # Adding color support for ls etc.
@@ -154,7 +151,6 @@ in {
           c = "clear";
           m = "make";
           n = "nvim";
-          o = "open";
           oc = "opencode";
           ocp = "opencode --port";
           # General
@@ -201,13 +197,9 @@ in {
           # Node
           p = "pnpm";
           nls = "npm list -g --depth 0";
-          yat = "yarn add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio";
-          # reshim = "asdf reshim nodejs";
-          init_cz = "commitizen init cz-conventional-changelog --yarn --dev --exact";
+          pat = "pnpm add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio";
           vscode_ls = "code --list-extensions | xargs -L 1 echo code --install-extension";
-          # React
-          rna = "npx react-native run-android";
-          # React Native
+          rna = "npx react-native run-android"; # run on android
           adbr = "adb reverse tcp:8081 tcp:8081"; # reconnect metro bundler
           # Terraform
           tf = "tf $1";
@@ -227,25 +219,10 @@ in {
         };
       prezto = {
         enable = true;
-        pmodules = lib.flatten ([
-            "git"
-          ]
-          ++ lib.optional isDarwin [
-            "osx"
-            "homebrew"
-          ]);
+        pmodules = ["git"] ++ lib.optionals isDarwin ["osx" "homebrew"];
       };
       # Can be fetched /w nix-prefetch-github zsh-users zsh-autosuggestions
       plugins = [
-        {
-          name = "zsh-autosuggestions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-autosuggestions";
-            rev = "0e810e5afa27acbd074398eefbe28d13005dbc15";
-            hash = "sha256-85aw9OM2pQPsWklXjuNOzp9El1MsNb+cIiZQVHUzBnk=";
-          };
-        }
         {
           name = "zsh-completions";
           src = pkgs.fetchFromGitHub {
