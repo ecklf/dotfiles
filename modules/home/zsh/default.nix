@@ -155,12 +155,7 @@ in {
           ocp = "opencode --port";
           # General
           fman = "compgen -c | fzf | xargs man";
-          tree1 = "exa --tree --level=1 --icons .";
-          tree2 = "exa --tree --level=2 --icons .";
-          tree3 = "exa --tree --level=3 --icons .";
-          tree1 = "eza --tree --level=1 --icons .";
-          tree2 = "eza --tree --level=2 --icons .";
-          tree3 = "eza --tree --level=3 --icons .";
+          tree = "eza --tree --icons";
           diskusage = "sudo smartctl --all /dev/disk0";
           # Common
           dots = "vim ~/dotfiles";
@@ -223,17 +218,7 @@ in {
         enable = true;
         pmodules = ["git"] ++ lib.optionals isDarwin ["osx" "homebrew"];
       };
-      # Can be fetched /w nix-prefetch-github zsh-users zsh-autosuggestions
       plugins = [
-        {
-          name = "zsh-completions";
-          src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-completions";
-            rev = "85e041be36a33d8f6ca71746654406425d3a910f";
-            sha256 = "sha256-jamYAmvanI/upc1PsRA/6VLiER8qJ3kOCgXsPT9WkYU";
-          };
-        }
         {
           name = "aws";
           file = "aws.plugin.zsh";
@@ -242,8 +227,8 @@ in {
             {
               owner = "ohmyzsh";
               repo = "ohmyzsh";
-              rev = "33d4db7feeacaf82c8e277555010cd6f5d9f1c7c";
-              hash = "sha256-uTyUXEqPblKTyy08OQj2EuzadQMqzY7rjWg3sbT+EHs=";
+              rev = "9df4ea095fe27ccd0ee95f2d34bab884c4a75585";
+              hash = "sha256-SR0Lopccq8oSKHOl5p/YMXNzds5pAqUgeXsy2mLbtS0=";
             }
             + "/plugins/aws";
         }
