@@ -11,10 +11,12 @@ in {
   imports = [
     ./bat
     ./btop
+    ./direnv
     ./eza
     ./fzf
     ./gh
     ./git
+    ./gpg
     ./jq
     ./nnn
     ./nvim
@@ -106,7 +108,7 @@ in {
         config.home.modules.extraPackages
         ++ lib.optional isDarwin [
           pkgs.mas # Mac App Store command line interface
-          pkgs.gnupg # Modern release of the GNU Privacy Guard, a GPL OpenPGP implementation
+          # pkgs.gnupg # Managed by programs.gpg
           pkgs.gnused # GNU sed, a batch stream editor
           pkgs.gnutls # The GNU Transport Layer Security Library
           pkgs.gawk # GNU implementation of the Awk programming language
@@ -124,7 +126,7 @@ in {
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
           pkgs.alejandra # Nix code formatter
           pkgs.curl # A command line tool for transferring files with URL syntax
-          pkgs.direnv # A shell extension that manages your environment
+          # pkgs.direnv # Managed by programs.direnv
           pkgs.eza # A modern, maintained replacement for ls
           pkgs.fd # Suite of speech signal processing tools
           pkgs.fnm # Fast and simple Node.js version manager
@@ -212,7 +214,7 @@ in {
           pkgs.age # Modern encryption tool with small explicit keys
           pkgs.ast-grep # A tool to search for AST nodes in source code
           pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
-          pkgs.direnv # A shell extension that manages your environment
+          # pkgs.direnv # Managed by programs.direnv
           pkgs.fx # Terminal JSON viewer
           pkgs.glow # Render markdown on the CLI, with pizzazz!
           pkgs.gomplate # A flexible commandline tool for template rendering

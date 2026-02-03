@@ -101,8 +101,6 @@ in {
         '')
         # Config
         ''
-          eval "$(direnv hook zsh)"
-
           # Adding color support for ls etc.
           precmd () {print -Pn "\e]0;%~\a"}
 

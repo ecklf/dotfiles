@@ -35,6 +35,21 @@
       push = {
         autoSetupRemote = true;
       };
+      rerere = {
+        enabled = true; # Remember conflict resolutions
+      };
+      fetch = {
+        prune = true; # Auto-remove deleted remote branches
+      };
+      diff = {
+        algorithm = "histogram"; # Better diff algorithm
+      };
+      merge = {
+        conflictStyle = "zdiff3"; # Better conflict markers
+      };
+      rebase = {
+        autoStash = true; # Auto-stash before rebase
+      };
       # branch = {
       #   "main".pushRemote = "no_push";
       #   "master".pushRemote = "no_push";
