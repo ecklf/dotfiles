@@ -89,12 +89,10 @@
       # Zoom indicator: shows 󰍉 when pane is zoomed
       # Git branch: current branch in pane's directory
       # Host: shows hostname
-      set -g status-right '#{?client_prefix,#[fg=#c4b28a]󰌌 ,}#{?window_zoomed_flag,#[fg=#87a987]󰍉 ,}#[fg=#a292a3]#(cd "#{pane_current_path}" && git branch --show-current 2>/dev/null | sed "s/^/ /") #[fg=#a4a7a4]│ #[fg=#8ba4b0]󰒋 #H '
-      # With date/time:
-      # set -g status-right '#{?client_prefix,#[fg=#c4b28a]󰌌 ,}#{?window_zoomed_flag,#[fg=#87a987]󰍉 ,}#[fg=#a292a3]#(cd "#{pane_current_path}" && git branch --show-current 2>/dev/null | sed "s/^/ /") #[fg=#a4a7a4]│ #[fg=#8ba4b0]󰒋 #H #[fg=#a4a7a4]│ #[fg=#a4a7a4]󰃰 %Y-%m-%d #[fg=#8ea4a2]󰥔 %H:%M '
+      set -g status-right '#{?client_prefix,#[fg=#c4b28a]󰌌 ,}#{?window_zoomed_flag,#[fg=#87a987]󰍉 ,}#[fg=#a292a3]#(cd "#{pane_current_path}" && git branch --show-current 2>/dev/null | sed "s/^/ /") #[fg=#a4a7a4]│ #[fg=#8ba4b0]󰒋 #H #[fg=#a4a7a4]│ #[fg=#a4a7a4]󰃰 %Y-%m-%d #[fg=#8ea4a2]󰥔 %H:%M '
 
       # Window styling
-      set -g window-status-separator "
+      set -g window-status-separator ""
       setw -g window-status-format '#[fg=#a4a7a4,bg=#14171d] #I #W '
       setw -g window-status-current-format '#[fg=#c5c9c7,bg=#24262D,bold] #I #W #[fg=#24262D,bg=#14171d]'
 
