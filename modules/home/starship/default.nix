@@ -1,5 +1,6 @@
-{...}: {
+{pkgs, ...}: {
   programs.starship = {
+    package = pkgs.master.starship;
     enable = true;
     enableZshIntegration = true;
     settings = {

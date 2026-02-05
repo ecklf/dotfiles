@@ -65,7 +65,7 @@ in {
       # pkgs.nodePackages_latest."graphql"
       pkgs.nodePackages_latest.bash-language-server
       pkgs.dockerfile-language-server
-      pkgs.master.nodePackages_latest.eslint
+      pkgs.nodePackages_latest.eslint
       pkgs.nodePackages_latest.prettier # webdev
       pkgs.nodePackages_latest.stylelint
       pkgs.nodePackages_latest.typescript-language-server
