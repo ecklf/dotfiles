@@ -280,7 +280,7 @@ in {
           pkgs.meilisearch # Powerful, fast, and an easy to use search engine
           pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
           pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
-          pkgs.mitmproxy # Man-in-the-middle proxy
+          pkgs.master.mitmproxy # Man-in-the-middle proxy
         ]
         ++ lib.optional config.home.modules.work [
           pkgs.ssm-session-manager-plugin # AWS Systems Manager Session Manager plugin for the AWS CLI
