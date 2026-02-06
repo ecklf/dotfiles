@@ -72,6 +72,9 @@ in {
       initContent = lib.mkMerge [
         # Before CompInit
         (lib.mkBefore ''
+          # Ensure PNPM_HOME is in PATH (home.sessionPath guard may skip it in subshells)
+          [[ ":$PATH:" != *":$PNPM_HOME:"* ]] && export PATH="$PNPM_HOME:$PATH"
+
           # Disable macOS Dock bouncing (xterm bellIsUrgent)
           printf "\e[?1042l"
           # Emacs keybindings
