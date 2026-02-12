@@ -40,6 +40,10 @@
       # Start panes at 1
       setw -g pane-base-index 1
 
+      # Auto-rename windows based on current directory
+      set -g automatic-rename on
+      set -g automatic-rename-format '#{b:pane_current_path}'
+
       # Split panes with | and -
       # bind | split-window -h -c "#{pane_current_path}"
       # bind - split-window -v -c "#{pane_current_path}"
@@ -89,7 +93,7 @@
       # Zoom indicator: shows [ZOOM] when pane is zoomed
       # Git branch: current branch in pane's directory
       # Host: shows hostname in badge
-      set -g status-right '#{?client_prefix,#[fg=#14171d]#[bg=#a292a3]#[bold] CMD #[bg=default]#[fg=default]#[nobold] ,}#{?window_zoomed_flag,#[fg=#14171d]#[bg=#8a9a7b]#[bold] ZOOM #[bg=default]#[fg=default]#[nobold] ,}#[fg=#a292a3]#(cd "#{pane_current_path}" && git branch --show-current 2>/dev/null | sed "s/^/ /") #[fg=#c5c9c7]#[bg=#24262D]#[bold] #H #[bg=default]#[nobold] #[fg=#a4a7a4]%Y-%m-%d #[fg=#8ea4a2]%H:%M '
+      set -g status-right '#{?client_prefix,#[fg=#14171d]#[bg=#a292a3]#[bold] CMD ,}#{?window_zoomed_flag,#[fg=#14171d]#[bg=#8a9a7b]#[bold] ZOOM ,}#[fg=#c5c9c7]#[bg=#24262D]#[bold] #H #[bg=default]#[nobold] #[fg=#a4a7a4]%Y-%m-%d #[fg=#8ea4a2]%H:%M '
 
       # Window styling
       set -g window-status-separator ""
