@@ -68,6 +68,15 @@
       # Create new window in current path
       bind c new-window -c "#{pane_current_path}"
 
+      # Development layout: nvim (60% width, 85% height) | opencode (40% width, 85% height) / terminal (15% height, 100% width)
+      bind D new-window -c "#{pane_current_path}" \; \
+        split-window -v -p 15 -c "#{pane_current_path}" \; \
+        select-pane -t 1 \; \
+        split-window -h -p 40 -c "#{pane_current_path}" \; \
+        send-keys -t 1 'nvim' Enter \; \
+        send-keys -t 2 'opencode --port' Enter \; \
+        select-pane -t 1
+
       # Zoom pane toggle
       bind z resize-pane -Z
 
