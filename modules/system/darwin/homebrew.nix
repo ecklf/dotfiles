@@ -135,7 +135,7 @@
           "Velja" = 1607635845;
         }
         // lib.optionalAttrs config.homebrewModules.developer {
-          "Couverture" = 1552415914;
+          # "Couverture" = 1552415914; looks like it sunset
           "System Color Picker" = 1545870783;
           "Gifski" = 1351639930;
           "Xcode" = 497799835;
