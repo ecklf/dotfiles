@@ -106,7 +106,7 @@
       set -g status-right-length 100
 
       # Left: session name with icon
-      set -g status-left '#[fg=#bf7fff,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
+      set -g status-left '#[fg=#ffffff,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
 
       # Right: indicators + git branch + host + time
       # Prefix indicator: shows [CMD] when prefix is active
@@ -118,11 +118,11 @@
       # Window styling
       set -g window-status-separator ""
       setw -g window-status-format '#[fg=#a4a7a4,bg=#14171d] #I #W '
-      setw -g window-status-current-format '#[fg=#c5c9c7,bg=#24262D,bold] #I #W #[fg=#24262D,bg=#14171d]'
+      setw -g window-status-current-format '#[fg=#14171d,bg=#bf7fff,bold] #I #W #[fg=#bf7fff,bg=#14171d]'
 
       # Pane borders - using kanso colors
       set -g pane-border-style 'fg=#24262D'
-      set -g pane-active-border-style 'fg=#bf7fff'
+      set -g pane-active-border-style 'fg=#5c5c5c'
 
       # Message styling
       set -g message-style 'fg=#c5c9c7 bg=#24262D bold'
