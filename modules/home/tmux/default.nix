@@ -106,14 +106,14 @@
       set -g status-right-length 100
 
       # Left: session name with icon
-      set -g status-left '#[fg=#a292a3,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
+      set -g status-left '#[fg=#bf7fff,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
 
       # Right: indicators + git branch + host + time
       # Prefix indicator: shows [CMD] when prefix is active
       # Zoom indicator: shows [ZOOM] when pane is zoomed
       # Git branch: current branch in pane's directory
       # Host: shows hostname in badge
-      set -g status-right '#{?client_prefix,#[fg=#14171d]#[bg=#a292a3]#[bold] CMD ,}#{?window_zoomed_flag,#[fg=#14171d]#[bg=#8a9a7b]#[bold] ZOOM ,}#[fg=#c5c9c7]#[bg=#24262D]#[bold] #H #[bg=default]#[nobold] #[fg=#a0a0a0]%Y-%m-%d #[fg=#a0a0a0]%H:%M '
+      set -g status-right '#{?client_prefix,#[fg=#14171d]#[bg=#bf7fff]#[bold] CMD ,}#{?window_zoomed_flag,#[fg=#14171d]#[bg=#8a9a7b]#[bold] ZOOM ,}#[fg=#c5c9c7]#[bg=#24262D]#[bold] #H #[bg=default]#[nobold] #[fg=#a0a0a0]%Y-%m-%d #[fg=#a0a0a0]%H:%M '
 
       # Window styling
       set -g window-status-separator ""
@@ -122,7 +122,7 @@
 
       # Pane borders - using kanso colors
       set -g pane-border-style 'fg=#24262D'
-      set -g pane-active-border-style 'fg=#8ba4b0'
+      set -g pane-active-border-style 'fg=#bf7fff'
 
       # Message styling
       set -g message-style 'fg=#c5c9c7 bg=#24262D bold'
