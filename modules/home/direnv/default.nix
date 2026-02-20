@@ -15,6 +15,9 @@
           "~/projects"
           "~/work"
         ];
+        exact = [
+          "~/.envrc"
+        ];
       };
     };
   };

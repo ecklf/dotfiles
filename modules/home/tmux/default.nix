@@ -44,11 +44,9 @@
       set -g automatic-rename on
       set -g automatic-rename-format '#{b:pane_current_path}'
 
-      # Split panes with | and -
-      # bind | split-window -h -c "#{pane_current_path}"
-      # bind - split-window -v -c "#{pane_current_path}"
-      # unbind '"'
-      # unbind %
+      # Split panes in current pane's directory
+      bind '"' split-window -v -c "#{pane_current_path}"
+      bind % split-window -h -c "#{pane_current_path}"
 
       # Reload config
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
