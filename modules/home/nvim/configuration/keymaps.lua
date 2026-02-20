@@ -64,11 +64,11 @@ keymap("n", "<A-k>", "mz:m-2<cr>`z", opts)
 keymap("v", "<A-j>", ":m'>+<cr>`<my`>mzgv`yo`z", opts)
 keymap("v", "<A-k>", ":m'<-2<cr>`>my`<mzgv`yo`z", opts)
 
--- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- Better window navigation (handled by vim-tmux-navigator plugin)
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-k>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
 keymap("n", "<A-Up>", ":resize -2<cr>", opts)

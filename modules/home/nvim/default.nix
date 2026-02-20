@@ -195,6 +195,9 @@ in {
       }
       # Detect tabstop and shiftwidth automatically
       vim-sleuth
+      # Seamless navigation between tmux panes and vim splits
+      # Uses Ctrl+hjkl by default
+      vim-tmux-navigator
       # -- Highlight, list and search todo comments in your projects
       # -- use {
       # -- "folke/todo-comments.nvim",

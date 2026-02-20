@@ -59,11 +59,24 @@
       bind -r K resize-pane -U 5
       bind -r L resize-pane -R 5
 
-      # Quick pane switching
+      # Quick pane switching (prefix + hjkl)
       bind -r h select-pane -L
       bind -r j select-pane -D
       bind -r k select-pane -U
       bind -r l select-pane -R
+
+      # Pane navigation with Ctrl+hjkl is handled by vim-tmux-navigator plugin
+      # which detects vim/nvim and passes keys through when needed
+
+      # Window navigation with Alt+[ and Alt+]
+      bind -n M-[ previous-window
+      bind -n M-] next-window
+
+      # Pane resizing with Ctrl+Shift+HJKL (no prefix needed)
+      bind -n C-S-h resize-pane -L 5
+      bind -n C-S-j resize-pane -D 5
+      bind -n C-S-k resize-pane -U 5
+      bind -n C-S-l resize-pane -R 5
 
       # Create new window in current path
       bind c new-window -c "#{pane_current_path}"
@@ -95,14 +108,14 @@
       set -g status-right-length 100
 
       # Left: session name with icon
-      set -g status-left '#[fg=#8ba4b0,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
+      set -g status-left '#[fg=#a292a3,bg=#14171d,bold]  #S #[fg=#14171d,bg=default]'
 
       # Right: indicators + git branch + host + time
       # Prefix indicator: shows [CMD] when prefix is active
       # Zoom indicator: shows [ZOOM] when pane is zoomed
       # Git branch: current branch in pane's directory
       # Host: shows hostname in badge
-      set -g status-right '#{?client_prefix,#[fg=#14171d]#[bg=#a292a3]#[bold] CMD ,}#{?window_zoomed_flag,#[fg=#14171d]#[bg=#8a9a7b]#[bold] ZOOM ,}#[fg=#c5c9c7]#[bg=#24262D]#[bold] #H #[bg=default]#[nobold] #[fg=#a4a7a4]%Y-%m-%d #[fg=#8ea4a2]%H:%M '
+      set -g status-right '#{?client_prefix,#[fg=#14171d]#[bg=#a292a3]#[bold] CMD ,}#{?window_zoomed_flag,#[fg=#14171d]#[bg=#8a9a7b]#[bold] ZOOM ,}#[fg=#c5c9c7]#[bg=#24262D]#[bold] #H #[bg=default]#[nobold] #[fg=#a0a0a0]%Y-%m-%d #[fg=#a0a0a0]%H:%M '
 
       # Window styling
       set -g window-status-separator ""
@@ -121,7 +134,7 @@
       setw -g mode-style 'fg=#c5c9c7 bg=#24262D bold'
 
       # Clock mode
-      setw -g clock-mode-colour '#8ba4b0'
+      setw -g clock-mode-colour '#ffffff'
 
       # Activity monitoring
       setw -g monitor-activity on
