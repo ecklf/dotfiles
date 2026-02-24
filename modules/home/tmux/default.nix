@@ -46,7 +46,8 @@
 
       # Split panes in current pane's directory
       bind '"' split-window -v -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
+      unbind %
+      bind | split-window -h -c "#{pane_current_path}"
 
       # Reload config
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
@@ -118,7 +119,7 @@
       # Window styling
       set -g window-status-separator ""
       setw -g window-status-format '#[fg=#a4a7a4,bg=#14171d] #I #W '
-      setw -g window-status-current-format '#[fg=#14171d,bg=#bf7fff,bold] #I #W #[fg=#bf7fff,bg=#14171d]'
+      setw -g window-status-current-format '#[fg=#14171d,bg=#c5c9c7,bold] #I #W #[fg=#c5c9c7,bg=#14171d]'
 
       # Pane borders - using kanso colors
       set -g pane-border-style 'fg=#24262D'
