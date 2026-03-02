@@ -67,9 +67,11 @@
       # Pane navigation with Ctrl+hjkl is handled by vim-tmux-navigator plugin
       # which detects vim/nvim and passes keys through when needed
 
-      # Window navigation with Alt+[ and Alt+]
+      # Window navigation with Alt+[ and Alt+] or F5/F6
       bind -n M-[ previous-window
       bind -n M-] next-window
+      bind -n F5 previous-window
+      bind -n F6 next-window
 
       # Pane resizing with Ctrl+Shift+HJKL (no prefix needed)
       bind -n C-S-h resize-pane -L 5
@@ -136,7 +138,7 @@
       setw -g clock-mode-colour '#ffffff'
 
       # Activity monitoring
-      setw -g monitor-activity on
+      setw -g monitor-activity off
       set -g visual-activity off
     '';
   };
