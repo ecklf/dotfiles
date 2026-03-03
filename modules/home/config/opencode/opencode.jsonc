@@ -25,7 +25,7 @@
       "oauth": {},
     },
     "blender": {
-      "enabled": true,
+      "enabled": false,
       "type": "local",
       "command": [
         "uvx",
@@ -33,7 +33,7 @@
       ],
     },
     "playwright": {
-      "enabled": true,
+      "enabled": false,
       "type": "local",
       "command": [
         "npx",
