@@ -28,6 +28,7 @@
         '';
       }
       vim-tmux-navigator
+      tmux-fzf
     ];
     extraConfig = ''
       # True color support
@@ -51,6 +52,11 @@
 
       # Reload config
       bind r source-file ~/.config/tmux/tmux.conf \; display "Config reloaded!"
+
+      # Session management
+      bind s choose-tree -sZ
+      bind S command-prompt -p "New session:" "new-session -s '%%'"
+      bind X confirm-before -p "Kill session #S? (y/n)" kill-session
 
       # Resize panes with vim keys
       bind -r H resize-pane -L 5
@@ -93,6 +99,16 @@
 
       # Zoom pane toggle
       bind z resize-pane -Z
+
+      # Vim + terminal layout: nvim (60%) | terminal (40%)
+      bind T new-window -c "#{pane_current_path}" \; \
+        split-window -h -p 40 -c "#{pane_current_path}" \; \
+        send-keys -t 1 'nvim' Enter \; \
+        select-pane -t 1
+
+      # Popup terminals
+      bind t display-popup -E -w 80% -h 80%
+      bind g display-popup -E -w 80% -h 80% "lazygit"
 
       # Kanso theme colors
       # bg: #090E13 (zen) / #14171d (ink)
