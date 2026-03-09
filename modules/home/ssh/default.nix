@@ -8,6 +8,9 @@
     ];
     matchBlocks = {
       "*" = {
+        extraOptions = {
+          IgnoreUnknown = "AddKeysToAgent,UseKeychain";
+        };
         forwardAgent = false; # Don't forward SSH agent to remote hosts by default
         compression = true; # Enable compression for slower connections
         serverAliveInterval = 60; # Send keep-alive every 60 seconds to prevent timeouts
@@ -24,7 +27,6 @@
       };
       "github.com" = {
         extraOptions = {
-          IgnoreUnknown = "AddKeysToAgent,UseKeychain";
           AddKeysToAgent = "yes";
           UseKeychain = "yes";
         };
