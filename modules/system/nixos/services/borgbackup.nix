@@ -29,6 +29,11 @@ in {
       type = lib.types.path;
       description = "Path to file containing SSH port for the remote borg repository";
     };
+    sshKeyPath = lib.mkOption {
+      type = lib.types.str;
+      default = "/etc/ssh/ssh_host_ed25519_key";
+      description = "Path to SSH private key for borg remote access";
+    };
     immich = {
       enable = lib.mkEnableOption "Enable borgbackup for immich";
     };
@@ -42,7 +47,7 @@ in {
       startAt = "daily";
       path = [pkgs.borgbackup pkgs.openssh];
       environment = {
-        BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key -o StrictHostKeyChecking=accept-new";
+        BORG_RSH = "ssh -i ${cfg.sshKeyPath} -o StrictHostKeyChecking=accept-new";
       };
       serviceConfig = {
         Type = "oneshot";

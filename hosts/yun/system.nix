@@ -28,6 +28,7 @@
     borgbackup.sshHostFile = config.sops.secrets.borg_ssh_host.path;
     borgbackup.sshUserFile = config.sops.secrets.borg_ssh_user.path;
     borgbackup.sshPortFile = config.sops.secrets.borg_ssh_port.path;
+    borgbackup.sshKeyPath = "/home/${username}/.ssh/id_ed25519";
     borgbackup.immich.enable = true;
     glances.enable = true;
     glances.port = 61208;
