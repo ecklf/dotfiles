@@ -40,7 +40,7 @@ in {
     systemd.services.borgbackup-job-immich = lib.mkIf cfg.immich.enable {
       description = "BorgBackup job for immich";
       startAt = "daily";
-      path = [pkgs.borgbackup pkgs.openssh pkgs.sudo pkgs.postgresql];
+      path = [pkgs.borgbackup pkgs.openssh];
       environment = {
         BORG_RSH = "ssh -i /etc/ssh/ssh_host_ed25519_key -o StrictHostKeyChecking=accept-new";
       };
@@ -56,8 +56,14 @@ in {
         export BORG_REPO="ssh://$BORG_USER@$BORG_HOST:$BORG_PORT/./backups/immich"
         export BORG_PASSCOMMAND="cat ${config.sops.secrets.borg_pass.path}"
 
-        # Pre-hook: Dump immich postgres database before backup
-        sudo -u postgres pg_dump immich > /var/lib/immich/database-backup.sql
+        # Immich creates automatic database backups in mediaLocation/backups
+        # with format: immich-db-backup-YYYYMMDDTHHMMSS-vX.X.X-pgXX.X.sql.gz
+        #
+        # We backup:
+        # - library, upload, profile: original assets
+        # - backups: automatic database dumps from Immich
+        #
+        # We exclude thumbs and encoded-video as they can be regenerated
 
         # Create backup
         borg create \
@@ -65,14 +71,10 @@ in {
           --exclude '${config.homelab.immich.mediaLocation}/thumbs' \
           --exclude '${config.homelab.immich.mediaLocation}/encoded-video' \
           "::immich-{now}" \
-          ${config.homelab.immich.mediaLocation} \
-          /var/lib/immich
+          ${config.homelab.immich.mediaLocation}
 
         # Prune old backups (keep within 1 day)
         borg prune --keep-within 1d
-
-        # Post-hook: Clean up database dump after backup
-        rm -f /var/lib/immich/database-backup.sql
       '';
     };
   };
