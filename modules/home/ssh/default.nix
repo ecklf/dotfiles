@@ -2,15 +2,15 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
+    extraConfig = ''
+      IgnoreUnknown AddKeysToAgent,UseKeychain
+    '';
     includes = [
       "~/.orbstack/ssh/config"
       "~/.colima/ssh_config"
     ];
     matchBlocks = {
       "*" = {
-        extraOptions = {
-          IgnoreUnknown = "AddKeysToAgent,UseKeychain";
-        };
         forwardAgent = false; # Don't forward SSH agent to remote hosts by default
         compression = true; # Enable compression for slower connections
         serverAliveInterval = 60; # Send keep-alive every 60 seconds to prevent timeouts
