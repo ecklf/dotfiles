@@ -12,6 +12,7 @@
     ./dashboard.nix
     ./stirling.nix
     ./vnc.nix
+    ./borgbackup.nix
   ];
   options.homelab = {
     enable = lib.mkEnableOption "The homelab services and configuration variables";

@@ -24,6 +24,11 @@
     immich.enable = true;
     immich.mediaLocation = "/storage/set1/service_data/immich";
     immich.port = 2283;
+    borgbackup.enable = true;
+    borgbackup.sshHostFile = config.sops.secrets.borg_ssh_host.path;
+    borgbackup.sshUserFile = config.sops.secrets.borg_ssh_user.path;
+    borgbackup.sshPortFile = config.sops.secrets.borg_ssh_port.path;
+    borgbackup.immich.enable = true;
     glances.enable = true;
     glances.port = 61208;
     jellyfin.enable = true;
@@ -47,7 +52,7 @@
     age = {
       sshKeyPaths = ["/etc/ssh/ssh_host_ed25519_key"];
       # keyFile = "/root/age-keys.txt";
-      keyFile = "/home/nixos/.config/sops/age/keys.txt";
+      keyFile = "/home/${username}/.config/sops/age/keys.txt";
       generateKey = true;
     };
     secrets.wireless = {};
@@ -55,6 +60,19 @@
     secrets.dashboard = {};
     secrets.paperless_admin_password = {
       mode = "0400";
+    };
+    secrets.borg_pass = {
+      sopsFile = ./secrets/general.yaml;
+      mode = "0400";
+    };
+    secrets.borg_ssh_host = {
+      sopsFile = ./secrets/general.yaml;
+    };
+    secrets.borg_ssh_user = {
+      sopsFile = ./secrets/general.yaml;
+    };
+    secrets.borg_ssh_port = {
+      sopsFile = ./secrets/general.yaml;
     };
   };
 
