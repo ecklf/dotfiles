@@ -31,6 +31,9 @@
       tmux-fzf
     ];
     extraConfig = ''
+      # Extended keys (CSI u) for proper Shift+Enter, Ctrl+key detection
+      set -s extended-keys always
+
       # True color support
       set -ag terminal-overrides ",xterm-256color:RGB"
       set -as terminal-features ",xterm-256color:RGB"
