@@ -246,6 +246,7 @@
           "linear-linear"
           "notion"
           "slack"
+          "granola"
           # "zoom"
         ]
         ++ lib.optional config.homebrewModules.photography [
