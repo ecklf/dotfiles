@@ -44,6 +44,17 @@ local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+-- Custom branch function for reftable compatibility
+local branch = function()
+	local handle = io.popen("git branch --show-current 2>/dev/null")
+	if handle then
+		local result = handle:read("*a")
+		handle:close()
+		return result:gsub("%s+", "")
+	end
+	return ""
+end
+
 lualine.setup({
 	options = {
 		globalstatus = true,
@@ -59,7 +70,7 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch" },
+		lualine_b = { { branch, icon = "" } },
 		lualine_c = { diagnostics },
 		lualine_x = { diff, spaces, "encoding", filetype },
 		lualine_y = { location },
