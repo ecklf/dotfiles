@@ -29,7 +29,15 @@
     borgbackup.sshUserFile = config.sops.secrets.borg_ssh_user.path;
     borgbackup.sshPortFile = config.sops.secrets.borg_ssh_port.path;
     borgbackup.sshKeyPath = "/home/${username}/.ssh/id_ed25519";
-    borgbackup.immich.enable = true;
+    borgbackup.passFile = config.sops.secrets.borg_pass.path;
+    borgbackup.encryptedFolders.immich = {
+      source = config.homelab.immich.mediaLocation;
+      target = "immich";
+      exclude = [
+        "${config.homelab.immich.mediaLocation}/thumbs"
+        "${config.homelab.immich.mediaLocation}/encoded-video"
+      ];
+    };
     borgbackup.unencryptedFolders.camera = {
       source = "/storage/set1/camera";
       target = "camera";
