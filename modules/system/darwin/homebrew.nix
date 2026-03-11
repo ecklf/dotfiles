@@ -197,6 +197,7 @@
         ++ lib.optional config.homebrewModules.developer [
           "coconutbattery"
           "cursor"
+          "daisydisk"
           "dbeaver-community"
           "deskpad"
           "diffmerge"
