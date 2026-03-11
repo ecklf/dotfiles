@@ -5,15 +5,6 @@
   ...
 }: let
   cfg = config.homelab.borgbackup;
-  # Build the repo URL dynamically using a script
-  borgWrapper = pkgs.writeShellScript "borg-wrapper" ''
-    BORG_HOST=$(cat ${cfg.sshHostFile})
-    BORG_USER=$(cat ${cfg.sshUserFile})
-    BORG_PORT=$(cat ${cfg.sshPortFile})
-    export BORG_REPO="ssh://$BORG_USER@$BORG_HOST:$BORG_PORT/./backups/$1"
-    shift
-    exec ${pkgs.borgbackup}/bin/borg "$@"
-  '';
 in {
   options.homelab.borgbackup = {
     enable = lib.mkEnableOption "Enable borgbackup for homelab services";
@@ -36,6 +27,27 @@ in {
     };
     immich = {
       enable = lib.mkEnableOption "Enable borgbackup for immich";
+    };
+    unencryptedFolders = lib.mkOption {
+      type = lib.types.attrsOf (lib.types.submodule {
+        options = {
+          source = lib.mkOption {
+            type = lib.types.str;
+            description = "Source folder path to backup";
+          };
+          target = lib.mkOption {
+            type = lib.types.str;
+            description = "Target folder name in remote backups directory";
+          };
+          retention = lib.mkOption {
+            type = lib.types.str;
+            default = "--keep-within 1d";
+            description = "Borg prune retention flags (e.g. '--keep-last 1', '--keep-daily 7 --keep-weekly 4')";
+          };
+        };
+      });
+      default = {};
+      description = "Attrset of unencrypted folder backups";
     };
   };
 
@@ -82,5 +94,41 @@ in {
         borg prune --keep-within 1d
       '';
     };
+
+    # Generic unencrypted folder backup services
+    systemd.services = lib.mapAttrs' (name: folderCfg:
+      lib.nameValuePair "borgbackup-job-${name}" {
+        description = "BorgBackup job for ${name}";
+        startAt = "daily";
+        path = [pkgs.borgbackup pkgs.openssh];
+        environment = {
+          BORG_RSH = "ssh -i ${cfg.sshKeyPath} -o StrictHostKeyChecking=accept-new";
+          BORG_UNKNOWN_UNENCRYPTED_REPO_ACCESS_IS_OK = "yes";
+        };
+        serviceConfig = {
+          Type = "oneshot";
+          PrivateTmp = true;
+        };
+        script = ''
+          # Read secrets
+          BORG_HOST=$(cat ${cfg.sshHostFile})
+          BORG_USER=$(cat ${cfg.sshUserFile})
+          BORG_PORT=$(cat ${cfg.sshPortFile})
+          export BORG_REPO="ssh://$BORG_USER@$BORG_HOST:$BORG_PORT/./backups/${folderCfg.target}"
+
+          # Initialize repo if it doesn't exist (unencrypted)
+          borg info :: 2>/dev/null || borg init --encryption=none
+
+          # Create backup with compression
+          borg create \
+            --compression auto,zstd \
+            "::${name}-{now}" \
+            ${folderCfg.source}
+
+          # Prune old backups
+          borg prune ${folderCfg.retention}
+        '';
+      }
+    ) cfg.unencryptedFolders;
   };
 }

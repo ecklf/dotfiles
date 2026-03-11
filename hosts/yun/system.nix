@@ -30,6 +30,10 @@
     borgbackup.sshPortFile = config.sops.secrets.borg_ssh_port.path;
     borgbackup.sshKeyPath = "/home/${username}/.ssh/id_ed25519";
     borgbackup.immich.enable = true;
+    borgbackup.unencryptedFolders.camera = {
+      source = "/storage/set1/camera";
+      target = "camera";
+    };
     glances.enable = true;
     glances.port = 61208;
     jellyfin.enable = true;
