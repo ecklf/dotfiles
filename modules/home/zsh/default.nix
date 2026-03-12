@@ -24,7 +24,7 @@ in {
         # Save timestamp into the history file
         extended = true;
         # If a new command line being added to the history list duplicates an older one, the older command is removed from the list (even if it is not the previous event)
-        ignoreAllDups = true;
+        ignoreAllDups = false;
         # Do not enter command lines into the history list if they are duplicates of the previous event
         ignoreDups = true;
         # Do not enter command lines into the history list if they match any one of the given shell patterns
@@ -36,7 +36,7 @@ in {
         # Number of history lines to save
         save = 50000;
         # Number of history lines to keep
-        size = 10000;
+        size = 50000;
         # Share command history between zsh sessions
         share = true;
         # historySubstringSearch = {
