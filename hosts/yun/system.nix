@@ -38,6 +38,19 @@
         "${config.homelab.immich.mediaLocation}/encoded-video"
       ];
     };
+    # After restoring, regenerate excluded dirs with:
+    # sudo -u paperless paperless-manage document_thumbnails
+    # sudo -u paperless paperless-manage document_index reindex
+    borgbackup.encryptedFolders.paperless = {
+      source = config.homelab.paperless.mediaLocation;
+      target = "paperless";
+      exclude = [
+        "${config.homelab.paperless.mediaLocation}/consume"
+        "${config.homelab.paperless.mediaLocation}/index"
+        "${config.homelab.paperless.mediaLocation}/log"
+        "${config.homelab.paperless.mediaLocation}/media/thumbnail"
+      ];
+    };
     borgbackup.unencryptedFolders.camera = {
       source = "/storage/set1/camera";
       target = "camera";
