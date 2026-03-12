@@ -128,7 +128,7 @@
       set -g status-right-length 100
 
       # Left: session name with icon in gray pill /  / 󰨡
-      set -g status-left '#[fg=#c5c9c7,bg=#24262D,bold]  #S #[bg=default] '
+      set -g status-left '#[fg=#c5c9c7,bg=#24262D,bold] 󱂬 #S #[bg=default] '
 
       # Right: indicators + git branch + host + time
       # Prefix indicator: shows [CMD] when prefix is active
