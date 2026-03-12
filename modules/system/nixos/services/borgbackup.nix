@@ -104,6 +104,9 @@ in {
             export BORG_REPO="ssh://$BORG_USER@$BORG_HOST:$BORG_PORT/./backups/${folderCfg.target}"
             export BORG_PASSCOMMAND="cat ${cfg.passFile}"
 
+            # Initialize repo if it doesn't exist (encrypted with repokey)
+            borg info :: 2>/dev/null || borg init --encryption=repokey
+
             # Create backup with compression
             borg create \
               --compression auto,zstd \
