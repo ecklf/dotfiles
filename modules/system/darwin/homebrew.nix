@@ -112,7 +112,6 @@
   config = lib.mkIf config.homebrewModules.enable {
     homebrew = {
       enable = true;
-      caskArgs.no_quarantine = true;
       # Automatically remove packages not contained in list
       onActivation.cleanup = "zap";
       global.brewfile = true;
@@ -180,6 +179,7 @@
           "forklift"
           "bloom"
           "ghostty"
+          "cmux"
           "iina"
           "iterm2"
           "jordanbaird-ice"
