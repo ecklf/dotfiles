@@ -134,7 +134,19 @@
     };
   };
   services.zfs.autoScrub.enable = true;
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    settings = {
+      Macs = [
+        # Default obtained from nix eval .#nixosConfigurations.yun.config.services.openssh.settings.Macs
+        "hmac-sha2-512-etm@openssh.com"
+        "hmac-sha2-256-etm@openssh.com"
+        "umac-128-etm@openssh.com"
+        # Required for echo https://replay.software/help/echo/troubleshooting
+        "hmac-sha2-512"
+      ];
+    };
+  };
 
   environment.systemPackages = [
     pkgs.apfs-fuse
