@@ -6,7 +6,7 @@
     settings = {
       add_newline = false;
       command_timeout = 1500;
-      scan_timeout = 10;
+      scan_timeout = 30;
 
       character = {
         success_symbol = "▲";

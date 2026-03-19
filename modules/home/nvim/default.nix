@@ -46,7 +46,7 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraLuaConfig = ''
+    initLua = ''
       ${builtins.readFile ./configuration/colorscheme.lua}
       ${builtins.readFile ./configuration/options.lua}
       ${builtins.readFile ./configuration/keymaps.lua}
@@ -296,7 +296,6 @@ in {
           p.jsdoc
           p.json
           p.json5
-          p.jsonc
           p.jsonnet
           p.kcl
           p.kconfig

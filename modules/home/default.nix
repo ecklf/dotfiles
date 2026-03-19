@@ -140,7 +140,7 @@ in {
           pkgs.less # A more advanced file pager than 'more'
           pkgs.go-task # A task runner / simpler Make alternative written in Go
           pkgs.most # A pager with syntax highlighting for man pages
-          pkgs.neofetch # A fast, highly customizable system info script
+          pkgs.fastfetch # A fast, highly customizable system info script
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
           pkgs.pv # Tool for monitoring the progress of data through a pipeline
