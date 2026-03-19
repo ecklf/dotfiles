@@ -1,7 +1,6 @@
 ---@type opencode.Opts
 vim.g.opencode_opts = {
 	port = 4096,
-	provider = { enabled = false },
 	integrations = {
 		snacks = true,
 	},
