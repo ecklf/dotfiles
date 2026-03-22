@@ -181,7 +181,6 @@
           "ghostty"
           "cmux"
           "iina"
-          "iterm2"
           "jordanbaird-ice"
           "keka"
           "ledger-wallet"
