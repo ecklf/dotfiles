@@ -97,9 +97,6 @@ in {
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/opencode/plugins".source = ./config/opencode/plugins;
           ".config/opencode/commands".source = ./config/opencode/commands;
-          ".config/iterm2/com.googlecode.iterm2.plist".source = ./config/iterm2/com.googlecode.iterm2.plist;
-          ".config/iterm2/nordic_light.itermcolors".source = ./config/iterm2/nordic_light.itermcolors;
-          ".config/iterm2/nordic_dark.itermcolors".source = ./config/iterm2/nordic_dark.itermcolors;
           ".wezterm.lua".source = ./config/wezterm/config.lua;
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
         };
@@ -140,7 +137,7 @@ in {
           pkgs.less # A more advanced file pager than 'more'
           pkgs.go-task # A task runner / simpler Make alternative written in Go
           pkgs.most # A pager with syntax highlighting for man pages
-          pkgs.fastfetch # A fast, highly customizable system info script
+          pkgs.neofetch # A fast, highly customizable system info script
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
           pkgs.pv # Tool for monitoring the progress of data through a pipeline
