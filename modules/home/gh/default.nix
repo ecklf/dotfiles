@@ -5,7 +5,7 @@
       git_protocol = "ssh";
       prompt = "enabled";
       editor = "nvim";
-      pager = "less";
+      pager = "delta --dark --side-by-side --paging=never";
       aliases = {
         co = "pr checkout";
         pv = "pr view";

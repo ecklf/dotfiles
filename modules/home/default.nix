@@ -18,6 +18,7 @@ in {
     ./git
     ./gpg
     ./jq
+    ./lazygit
     ./nnn
     ./nvim
     ./ripgrep
@@ -77,8 +78,8 @@ in {
       stateVersion = homeStateVersion;
       sessionVariables =
         {
-          PAGER = "less";
-          MANPAGER = "less";
+          PAGER = "delta --dark --side-by-side --paging=never";
+          MANPAGER = "delta --dark --side-by-side --paging=never";
           CLICLOLOR = 1;
           EDITOR = "nvim";
           VISUAL = "nvim";
@@ -133,7 +134,7 @@ in {
           pkgs.git-trim # Automatically trims your branches whose tracking remote refs are merged or gone
           pkgs.htop # An interactive process viewer for Linux, with vim-style keybindings
           # pkgs.jq # Managed by programs.jq
-          pkgs.lazygit # Simple terminal UI for git commands
+          # pkgs.lazygit # Managed by programs.lazygit
           pkgs.less # A more advanced file pager than 'more'
           pkgs.go-task # A task runner / simpler Make alternative written in Go
           pkgs.most # A pager with syntax highlighting for man pages
