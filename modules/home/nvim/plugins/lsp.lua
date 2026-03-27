@@ -84,7 +84,7 @@ local on_attach = function(client, bufnr)
 		pcall(vim.lsp.inlay_hint.enable, true, { bufnr = bufnr })
 	end
 
-	if client.name == "typescript-tools" then
+	if client.name == "tsgo" then
 		client.server_capabilities.document_formatting = false
 	end
 
@@ -122,7 +122,7 @@ local servers = {
 	"stylelint_lsp",
 	"tailwindcss",
 	"terraformls",
-	-- "vtsls",
+	"tsgo",
 	"yamlls",
 	--[[ "cssls", ]]
 	--[[ "jsonls", ]]
@@ -266,30 +266,27 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	end
 
+	if server == "tsgo" then
+		local tsgo_opts = {
+			settings = {
+				typescript = {
+					inlayHints = {
+						includeInlayParameterNameHints = "all",
+						includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+						includeInlayFunctionParameterTypeHints = true,
+						includeInlayVariableTypeHints = true,
+						includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+						includeInlayPropertyDeclarationTypeHints = true,
+						includeInlayFunctionLikeReturnTypeHints = true,
+						includeInlayEnumMemberValueHints = true,
+					},
+				},
+			},
+		}
+
+		opts = vim.tbl_deep_extend("force", tsgo_opts, opts)
+	end
+
 	vim.lsp.config[server] = opts
 	vim.lsp.enable(server)
-end
-
--- TypeScript Tools setup
-local typescript_tools_status_ok, typescript_tools = pcall(require, "typescript-tools")
-if typescript_tools_status_ok then
-	typescript_tools.setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-		settings = {
-			tsserver_max_memory = 8192,
-			complete_function_calls = true,
-			include_completions_with_insert_text = true,
-			tsserver_file_preferences = {
-				includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
-				includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-				includeInlayFunctionParameterTypeHints = true,
-				includeInlayVariableTypeHints = true,
-				includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-				includeInlayPropertyDeclarationTypeHints = true,
-				includeInlayFunctionLikeReturnTypeHints = true,
-				includeInlayEnumMemberValueHints = true,
-			},
-		},
-	})
 end

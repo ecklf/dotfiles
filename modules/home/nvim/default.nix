@@ -68,7 +68,7 @@ in {
       pkgs.nodePackages_latest.eslint
       pkgs.nodePackages_latest.prettier # webdev
       pkgs.nodePackages_latest.stylelint
-      pkgs.nodePackages_latest.typescript-language-server
+      pkgs.typescript-go # tsgo - Go-based TypeScript language server
       pkgs.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
@@ -236,7 +236,6 @@ in {
       # })
 
       # LSP
-      typescript-tools-nvim
       {
         plugin = nvim-lspconfig;
         type = "lua";
