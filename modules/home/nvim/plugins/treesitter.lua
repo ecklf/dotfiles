@@ -4,7 +4,7 @@ if not status_ok or vim.g.vscode then
 end
 
 configs.setup({
-	-- Do not use this for nix
+	-- Parsers are managed by Nix, not nvim-treesitter
 	-- ensure_installed = "all", -- One of "all" or a list of languages
 	-- ensure_installed = { 'lua', 'typescript', 'rust', 'go', 'python' },
 	-- ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
