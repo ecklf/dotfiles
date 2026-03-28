@@ -184,6 +184,7 @@ in {
           pkgs.pandoc # Conversion between documentation formats
           pkgs.rustup # The Rust toolchain installer
           pkgs.stylua # An opinionated Lua code formatter
+          pkgs.tree-sitter # Command Line Tool for tree-sitter
           pkgs.typeshare # Command Line Tool for generating language files with typeshare
           pkgs.upx # The Ultimate Packer for eXecutables
           pkgs.zig # General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software

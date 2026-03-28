@@ -48,7 +48,29 @@
   }: let
     mkDarwin = import ./lib/mkdarwin.nix;
     mkNixOS = import ./lib/mknixos.nix;
-    overlays = [];
+    overlays = [
+      (final: prev: {
+        # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
+        tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
+          version = "0.26.1";
+          src = prev.fetchFromGitHub {
+            owner = "tree-sitter";
+            repo = "tree-sitter";
+            rev = "v${version}";
+            hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
+          };
+          cargoDeps = prev.rustPlatform.fetchCargoVendor {
+            inherit src;
+            hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
+          };
+          patches = [];
+        });
+        # Pin neovim to use tree-sitter 0.25 library
+        neovim-unwrapped = prev.neovim-unwrapped.override {
+          tree-sitter = prev.tree-sitter;
+        };
+      })
+    ];
   in {
     nixosConfigurations = {
       soma = mkNixOS "soma" {
