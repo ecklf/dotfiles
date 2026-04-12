@@ -143,6 +143,7 @@
         "hmac-sha2-256-etm@openssh.com"
         "umac-128-etm@openssh.com"
         # Required for echo https://replay.software/help/echo/troubleshooting
+        "hmac-sha2-256"
         "hmac-sha2-512"
       ];
     };
