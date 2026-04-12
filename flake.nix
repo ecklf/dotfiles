@@ -66,9 +66,10 @@
           patches = [];
           # tree-sitter 0.26+ uses rquickjs-sys which requires libclang for bindgen
           nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
-            prev.llvmPackages.libclang
+            prev.libclang
           ];
-          LIBCLANG_PATH = "${prev.llvmPackages.libclang.lib}/lib";
+          LIBCLANG_PATH = "${prev.libclang.lib}/lib";
+          BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${prev.stdenv.cc.libc.dev}/include";
         });
         # Pin neovim to use tree-sitter 0.25 library
         neovim-unwrapped = prev.neovim-unwrapped.override {
