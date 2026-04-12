@@ -64,6 +64,11 @@
             hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
           };
           patches = [];
+          # tree-sitter 0.26+ uses rquickjs-sys which requires libclang for bindgen
+          nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
+            prev.llvmPackages.libclang
+          ];
+          LIBCLANG_PATH = "${prev.llvmPackages.libclang.lib}/lib";
         });
         # Pin neovim to use tree-sitter 0.25 library
         neovim-unwrapped = prev.neovim-unwrapped.override {
