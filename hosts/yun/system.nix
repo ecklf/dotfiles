@@ -156,7 +156,12 @@
     pkgs.curl
     pkgs.vim
     pkgs.sops
+    pkgs.clang
+    pkgs.llvmPackages.libclang
   ];
+
+  # Required for Rust crates that use bindgen
+  environment.variables.LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
 
   users.users."${username}" = {
     isNormalUser = true;
