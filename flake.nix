@@ -14,7 +14,7 @@
     # Atomic secret provisioning for NixOS based on sops
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-nixos";
     };
     # Nix modules for darwin aka macOS
     darwin = {
