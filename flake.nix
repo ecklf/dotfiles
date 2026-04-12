@@ -48,7 +48,17 @@
   }: let
     mkDarwin = import ./lib/mkdarwin.nix;
     mkNixOS = import ./lib/mknixos.nix;
+    # Shared overlays for both Darwin and NixOS
     overlays = [
+      (final: prev: {
+        # Pin neovim to use tree-sitter 0.25 library
+        neovim-unwrapped = prev.neovim-unwrapped.override {
+          tree-sitter = prev.tree-sitter;
+        };
+      })
+    ];
+    # NixOS-only overlays (tree-sitter 0.26.1 requires bindgen/libclang)
+    nixosOverlays = overlays ++ [
       (final: prev: {
         # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
         tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
@@ -71,16 +81,13 @@
           LIBCLANG_PATH = "${prev.libclang.lib}/lib";
           BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${prev.stdenv.cc.libc.dev}/include";
         });
-        # Pin neovim to use tree-sitter 0.25 library
-        neovim-unwrapped = prev.neovim-unwrapped.override {
-          tree-sitter = prev.tree-sitter;
-        };
       })
     ];
   in {
     nixosConfigurations = {
       soma = mkNixOS "soma" {
-        inherit inputs nur sops-nix overlays;
+        inherit inputs nur sops-nix;
+        overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
         nixpkgs-master = nixpkgs-master;
@@ -94,7 +101,8 @@
         homeStateVersion = "24.05";
       };
       skia = mkNixOS "skia" {
-        inherit inputs nur sops-nix overlays;
+        inherit inputs nur sops-nix;
+        overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
         nixpkgs-master = nixpkgs-master;
@@ -108,7 +116,8 @@
         homeStateVersion = "24.05";
       };
       kairos = mkNixOS "kairos" {
-        inherit inputs nur sops-nix overlays;
+        inherit inputs nur sops-nix;
+        overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
         nixpkgs-master = nixpkgs-master;
@@ -120,7 +129,8 @@
         homeStateVersion = "24.05";
       };
       snowflake = mkNixOS "snowflake" {
-        inherit inputs nur sops-nix overlays;
+        inherit inputs nur sops-nix;
+        overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
         nixpkgs-master = nixpkgs-master;
@@ -131,7 +141,8 @@
         homeStateVersion = "24.05";
       };
       yun = mkNixOS "yun" {
-        inherit inputs nur sops-nix overlays;
+        inherit inputs nur sops-nix;
+        overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
         nixpkgs-master = nixpkgs-master;
