@@ -61,15 +61,15 @@ in {
       pkgs.gopls
       pkgs.nixd # nix lsp
       pkgs.alejandra # nix formatter
-      pkgs.nodePackages_latest."@tailwindcss/language-server"
+      pkgs.tailwindcss-language-server
       # pkgs.nodePackages_latest."graphql"
-      pkgs.nodePackages_latest.bash-language-server
+      pkgs.bash-language-server
       pkgs.dockerfile-language-server
-      pkgs.nodePackages_latest.eslint
-      pkgs.nodePackages_latest.prettier # webdev
-      pkgs.nodePackages_latest.stylelint
+      pkgs.eslint
+      pkgs.prettier # webdev
+      pkgs.stylelint
       pkgs.typescript-go # tsgo - Go-based TypeScript language server
-      pkgs.nodePackages_latest.vscode-langservers-extracted # html, css, json, eslint
+      pkgs.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
       pkgs.python312Packages.black # python
