@@ -51,15 +51,6 @@
     # Shared overlays for both Darwin and NixOS
     overlays = [
       (final: prev: {
-        # Pin neovim to use tree-sitter 0.25 library
-        neovim-unwrapped = prev.neovim-unwrapped.override {
-          tree-sitter = prev.tree-sitter;
-        };
-      })
-    ];
-    # NixOS-only overlays (tree-sitter 0.26.1 requires bindgen/libclang)
-    nixosOverlays = overlays ++ [
-      (final: prev: {
         # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
         tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
           version = "0.26.1";
@@ -74,15 +65,43 @@
             hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
           };
           patches = [];
-          # tree-sitter 0.26+ uses rquickjs-sys which requires libclang for bindgen
-          nativeBuildInputs = (old.nativeBuildInputs or []) ++ [
-            prev.libclang
-          ];
-          LIBCLANG_PATH = "${prev.libclang.lib}/lib";
-          BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${prev.stdenv.cc.libc.dev}/include";
         });
+        # Pin neovim to use tree-sitter 0.25 library
+        neovim-unwrapped = prev.neovim-unwrapped.override {
+          tree-sitter = prev.tree-sitter;
+        };
       })
     ];
+    # NixOS-only overlays (tree-sitter 0.26.1 + requires bindgen/libclang)
+    nixosOverlays =
+      overlays
+      ++ [
+        (final: prev: {
+          # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
+          tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
+            version = "0.26.1";
+            src = prev.fetchFromGitHub {
+              owner = "tree-sitter";
+              repo = "tree-sitter";
+              rev = "v${version}";
+              hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
+            };
+            cargoDeps = prev.rustPlatform.fetchCargoVendor {
+              inherit src;
+              hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
+            };
+            patches = [];
+            # tree-sitter 0.26+ uses rquickjs-sys which requires libclang for bindgen
+            nativeBuildInputs =
+              (old.nativeBuildInputs or [])
+              ++ [
+                prev.libclang
+              ];
+            LIBCLANG_PATH = "${prev.libclang.lib}/lib";
+            BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${prev.stdenv.cc.libc.dev}/include";
+          });
+        })
+      ];
   in {
     nixosConfigurations = {
       soma = mkNixOS "soma" {
