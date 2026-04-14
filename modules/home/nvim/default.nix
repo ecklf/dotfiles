@@ -46,6 +46,8 @@ in {
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    withRuby = false;
+    withPython3 = false;
     initLua = ''
       ${builtins.readFile ./configuration/colorscheme.lua}
       ${builtins.readFile ./configuration/options.lua}

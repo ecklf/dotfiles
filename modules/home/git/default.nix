@@ -11,6 +11,10 @@
   programs.git = {
     enable = true;
 
+    signing = {
+      format = "ssh";
+    };
+
     settings = {
       user.name = "Florentin Eckl";
       user.email = "ecklf@icloud.com";

@@ -51,6 +51,10 @@
     # Shared overlays for both Darwin and NixOS
     overlays = [
       (final: prev: {
+        # Disable nushell tests - SHLVL tests fail in Nix sandbox
+        nushell = prev.nushell.overrideAttrs (old: {
+          doCheck = false;
+        });
         # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
         tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
           version = "0.26.1";
@@ -77,6 +81,10 @@
       overlays
       ++ [
         (final: prev: {
+          # Disable nushell tests - SHLVL tests fail in Nix sandbox
+          nushell = prev.nushell.overrideAttrs (old: {
+            doCheck = false;
+          });
           # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
           tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
             version = "0.26.1";

@@ -261,6 +261,17 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
 	end
 
+	if server == "tailwindcss" then
+		local tailwindcss_opts = {
+			settings = {
+				tailwindCSS = {
+					colorDecorators = false,
+				},
+			},
+		}
+		opts = vim.tbl_deep_extend("force", tailwindcss_opts, opts)
+	end
+
 	if server == "tsgo" then
 		local tsgo_opts = {
 			settings = {
@@ -276,6 +287,30 @@ for _, server in pairs(servers) do
 						includeInlayEnumMemberValueHints = true,
 					},
 				},
+			},
+			-- Filter out invalid glob patterns (bundled:// URIs) from tsgo
+			handlers = {
+				["workspace/didChangeWatchedFiles"] = function(err, result, ctx, config)
+					-- Silently ignore - tsgo sends bundled:// URIs that Neovim can't handle
+					return vim.NIL
+				end,
+				["client/registerCapability"] = function(err, result, ctx)
+					local client = vim.lsp.get_client_by_id(ctx.client_id)
+					if not client then
+						return vim.NIL
+					end
+					-- Filter out watchers with bundled:// glob patterns
+					for _, reg in ipairs(result.registrations or {}) do
+						if reg.method == "workspace/didChangeWatchedFiles" and reg.registerOptions then
+							local watchers = reg.registerOptions.watchers or {}
+							reg.registerOptions.watchers = vim.tbl_filter(function(w)
+								return not (w.globPattern and type(w.globPattern) == "string" and w.globPattern:match("^bundled:"))
+							end, watchers)
+						end
+					end
+					-- Call default handler with filtered registrations
+					return vim.lsp.handlers["client/registerCapability"](err, result, ctx)
+				end,
 			},
 		}
 
