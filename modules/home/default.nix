@@ -164,7 +164,7 @@ in {
           pkgs.openocd # On-Chip Debugging, In-System Programming and Boundary-Scan Testing for Embedded Target Devices
           # AI agents
           pkgs.claude-code
-          pkgs.crush
+          pkgs.unstable.crush
           pkgs.master.opencode
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
