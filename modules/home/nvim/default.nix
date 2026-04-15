@@ -53,6 +53,7 @@ in {
       ${builtins.readFile ./configuration/options.lua}
       ${builtins.readFile ./configuration/keymaps.lua}
       ${builtins.readFile ./configuration/autocommands.lua}
+      ${builtins.readFile ./plugins/treesitter.lua}
     '';
     # https://search.nixos.org/packages
     extraPackages = [
@@ -244,110 +245,105 @@ in {
         config = builtins.readFile ./plugins/lsp.lua;
       }
 
-      # Treesitter
-      {
-        plugin = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-          p.asm
-          p.astro
-          p.awk
-          p.bash
-          p.bibtex
-          p.c
-          p.c_sharp
-          p.cmake
-          p.comment
-          p.commonlisp
-          p.cpp
-          p.css
-          p.csv
-          p.dart
-          p.diff
-          p.disassembly
-          p.dockerfile
-          p.elixir
-          p.gdshader
-          p.git_config
-          p.git_rebase
-          p.gitattributes
-          p.gitcommit
-          p.gitignore
-          p.glsl
-          p.gnuplot
-          p.go
-          p.goctl
-          p.gdscript
-          p.gomod
-          p.gosum
-          p.gotmpl
-          p.gowork
-          p.gpg
-          p.graphql
-          p.haskell
-          p.haskell_persistent
-          p.hcl
-          p.helm
-          p.hjson
-          p.hlsl
-          p.html
-          p.http
-          p.java
-          p.javadoc
-          p.javascript
-          p.jq
-          p.jsdoc
-          p.json
-          p.json5
-          p.jsonnet
-          p.kcl
-          p.kconfig
-          p.latex
-          p.ledger
-          p.llvm
-          p.lua
-          p.luadoc
-          p.lua
-          p.luau
-          p.make
-          p.markdown
-          p.markdown_inline
-          p.matlab
-          p.mermaid
-          p.nginx
-          p.nix
-          p.nu
-          p.python
-          p.ql
-          p.tree-sitter-query
-          p.r
-          p.regex
-          p.tree-sitter-requirements
-          p.ruby
-          p.rust
-          p.scss
-          p.sql
-          p.ssh_config
-          p.svelte
-          p.swift
-          p.terraform
-          p.tmux
-          p.toml
-          p.tsv
-          p.tsx
-          p.typescript
-          p.typespec
-          p.vim
-          p.vimdoc
-          p.vue
-          p.wgsl
-          p.wgsl_bevy
-          p.xml
-          p.xresources
-          p.yaml
-          p.zig
-        ]);
-        type = "lua";
-        config = builtins.readFile ./plugins/treesitter.lua;
-      }
+      # Treesitter grammars (native highlighting in Neovim 0.12+)
+      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+        p.asm
+        p.astro
+        p.awk
+        p.bash
+        p.bibtex
+        p.c
+        p.c_sharp
+        p.cmake
+        p.comment
+        p.commonlisp
+        p.cpp
+        p.css
+        p.csv
+        p.dart
+        p.diff
+        p.disassembly
+        p.dockerfile
+        p.elixir
+        p.gdshader
+        p.git_config
+        p.git_rebase
+        p.gitattributes
+        p.gitcommit
+        p.gitignore
+        p.glsl
+        p.gnuplot
+        p.go
+        p.goctl
+        p.gdscript
+        p.gomod
+        p.gosum
+        p.gotmpl
+        p.gowork
+        p.gpg
+        p.graphql
+        p.haskell
+        p.haskell_persistent
+        p.hcl
+        p.helm
+        p.hjson
+        p.hlsl
+        p.html
+        p.http
+        p.java
+        p.javadoc
+        p.javascript
+        p.jq
+        p.jsdoc
+        p.json
+        p.json5
+        p.jsonnet
+        p.kcl
+        p.kconfig
+        p.latex
+        p.ledger
+        p.llvm
+        p.lua
+        p.luadoc
+        p.luau
+        p.make
+        p.markdown
+        p.markdown_inline
+        p.matlab
+        p.mermaid
+        p.nginx
+        p.nix
+        p.nu
+        p.python
+        p.ql
+        p.tree-sitter-query
+        p.r
+        p.regex
+        p.tree-sitter-requirements
+        p.ruby
+        p.rust
+        p.scss
+        p.sql
+        p.ssh_config
+        p.svelte
+        p.swift
+        p.terraform
+        p.tmux
+        p.toml
+        p.tsv
+        p.tsx
+        p.typescript
+        p.typespec
+        p.vim
+        p.vimdoc
+        p.vue
+        p.wgsl
+        p.wgsl_bevy
+        p.xml
+        p.xresources
+        p.yaml
+        p.zig
+      ]))
       {
         plugin = nvim-treesitter-context; # Show code context
         type = "lua";
@@ -359,7 +355,7 @@ in {
             require("treesitter-context").setup({})
           '';
       }
-      nvim-treesitter-textobjects # Additional textobjects for treesitter
+
       {
         plugin = nvim-ts-context-commentstring;
         type = "lua";

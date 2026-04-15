@@ -1,22 +1,16 @@
-local status_ok, configs = pcall(require, "nvim-treesitter.configs")
-if not status_ok or vim.g.vscode then
+if vim.g.vscode then
 	return
 end
 
-configs.setup({
-	-- Parsers are managed by Nix, not nvim-treesitter
-	-- ensure_installed = "all", -- One of "all" or a list of languages
-	-- ensure_installed = { 'lua', 'typescript', 'rust', 'go', 'python' },
-	-- ignore_install = { "phpdoc" }, -- List of parsers to ignore installing
-	highlight = {
-		enable = true, -- False will disable the whole extension
-		disable = { "css" }, -- List of language that will be disabled
-	},
-	autotag = {
-		enable = true,
-	},
-	autopairs = {
-		enable = true,
-	},
-	indent = { enable = true, disable = { "python", "css" } },
+-- Native treesitter highlighting (Neovim 0.12+)
+-- Parsers are managed by Nix
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function(args)
+		local ft = vim.bo[args.buf].filetype
+		-- Disable for specific filetypes
+		if ft == "css" then
+			return
+		end
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })

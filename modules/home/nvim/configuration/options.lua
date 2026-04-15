@@ -1,7 +1,3 @@
--- Fix nvim-treesitter health check: add data/site/ WITH trailing slash
--- (nvim-treesitter compares paths with trailing slash, vim.opt normalizes it away)
-vim.o.rtp = vim.fn.stdpath("data") .. "/site/," .. vim.o.rtp
-
 -- Turn backup off, since most stuff is in SVN, git et.c anyway...
 vim.opt.backup = false -- Creates a backup file
 vim.opt.writebackup = false -- If a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
