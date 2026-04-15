@@ -70,10 +70,6 @@
           };
           patches = [];
         });
-        # Pin neovim to use tree-sitter 0.25 library
-        neovim-unwrapped = prev.neovim-unwrapped.override {
-          tree-sitter = prev.tree-sitter;
-        };
       })
     ];
     # NixOS-only overlays (tree-sitter 0.26.1 + requires bindgen/libclang)

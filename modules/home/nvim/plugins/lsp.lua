@@ -287,6 +287,16 @@ for _, server in pairs(servers) do
 						includeInlayEnumMemberValueHints = true,
 					},
 				},
+				capabilities = {
+					workspace = {
+						didChangeWatchedFiles = {
+							dynamicRegistration = true,
+						},
+					},
+				},
+				init_options = {
+					maxTsServerMemory = 8192,
+				},
 			},
 			-- Filter out invalid glob patterns (bundled:// URIs) from tsgo
 			handlers = {
