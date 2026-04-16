@@ -164,8 +164,9 @@ in {
           pkgs.openocd # On-Chip Debugging, In-System Programming and Boundary-Scan Testing for Embedded Target Devices
           # AI agents
           pkgs.claude-code
+          pkgs.codex
+          pkgs.opencode
           pkgs.unstable.crush
-          pkgs.master.opencode
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
@@ -279,7 +280,7 @@ in {
           pkgs.meilisearch # Powerful, fast, and an easy to use search engine
           pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
           pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
-          pkgs.master.mitmproxy # Man-in-the-middle proxy
+          pkgs.mitmproxy # Man-in-the-middle proxy
         ]
         ++ lib.optional config.home.modules.work [
           pkgs.ssm-session-manager-plugin # AWS Systems Manager Session Manager plugin for the AWS CLI

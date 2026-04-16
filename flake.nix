@@ -4,11 +4,9 @@
     # Darwin/macOS inputs
     nixpkgs.url = "github:nixos/nixpkgs";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-master.url = "github:nixos/nixpkgs/master";
     # NixOS inputs
     nixpkgs-nixos.url = "github:nixos/nixpkgs";
     nixpkgs-nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-nixos-master.url = "github:nixos/nixpkgs/master";
     # Nix user repository
     nur.url = "github:nix-community/NUR";
     # Atomic secret provisioning for NixOS based on sops
@@ -36,10 +34,8 @@
     self,
     nixpkgs,
     nixpkgs-unstable,
-    nixpkgs-master,
     nixpkgs-nixos,
     nixpkgs-nixos-unstable,
-    nixpkgs-nixos-master,
     nur,
     sops-nix,
     darwin,
@@ -113,7 +109,6 @@
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
-        nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "soma";
         timezone = "Europe/Berlin";
@@ -128,7 +123,6 @@
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
-        nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "skia";
         timezone = "Europe/Berlin";
@@ -143,7 +137,6 @@
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
-        nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "kairos";
         timezone = "America/New_York";
@@ -156,7 +149,6 @@
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
-        nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "ecklf";
         extraModules = [];
@@ -168,7 +160,6 @@
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
         nixpkgs-unstable = nixpkgs-nixos-unstable;
-        nixpkgs-master = nixpkgs-master;
         system = "x86_64-linux";
         username = "nixos";
         extraModules = [];
@@ -178,14 +169,14 @@
     };
     darwinConfigurations = {
       omega = mkDarwin "omega" {
-        inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-unstable nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         patchBld = true;
         homeStateVersion = "24.05";
       };
       vercel = mkDarwin "vercel" {
-        inherit inputs nixpkgs-unstable nixpkgs-master nur darwin home-manager overlays;
+        inherit inputs nixpkgs-unstable nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         homeStateVersion = "24.05";

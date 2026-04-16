@@ -71,7 +71,7 @@
         else ["/usr/local/bin"];
       systemPackages = [
         pkgs.coreutils
-        pkgs.master.duti
+        pkgs.duti
         pkgs.sops
       ];
       pathsToLink = ["/Applications"];

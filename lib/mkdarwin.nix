@@ -1,7 +1,6 @@
 hostname: {
   inputs,
   nixpkgs-unstable,
-  nixpkgs-master,
   nur,
   home-manager,
   system,
@@ -14,13 +13,7 @@ hostname: {
 }: let
   systemSpecificOverlays = [
     (final: prev: {
-      #   zls = zls-master.packages.${system}.default;
-      #   helix = helix-master.packages.${system}.default;
       unstable = import nixpkgs-unstable {
-        system = system;
-        config.allowUnfree = true;
-      };
-      master = import nixpkgs-master {
         system = system;
         config.allowUnfree = true;
       };
