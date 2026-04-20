@@ -71,7 +71,7 @@ in {
       pkgs.eslint
       pkgs.prettier # webdev
       pkgs.stylelint
-      pkgs.typescript-go # tsgo - Go-based TypeScript language server
+      pkgs.unstable.typescript-go # tsgo - Go-based TypeScript language server
       pkgs.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
