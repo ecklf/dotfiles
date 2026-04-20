@@ -1,15 +1,90 @@
-{pkgs, ...}:
-# let
-#   fromGitHub = ref: repo: pkgs.vimUtils.buildVimPlugin {
-#     pname = "${lib.strings.sanitizeDerivationName repo}";
-#     version = ref;
-#     src = builtins.fetchGit {
-#       url = "https://github.com/${repo}.git";
-#       ref = ref;
-#     };
-#   };
-# in
-let
+{pkgs, ...}: let
+  # Bundle tree-sitter grammars for native Neovim treesitter
+  treesitterParsers = pkgs.symlinkJoin {
+    name = "treesitter-parsers";
+    paths = with pkgs.tree-sitter-grammars; [
+      tree-sitter-astro
+      tree-sitter-awk
+      tree-sitter-bash
+      tree-sitter-bibtex
+      tree-sitter-c
+      tree-sitter-c-sharp
+      tree-sitter-cmake
+      tree-sitter-comment
+      tree-sitter-commonlisp
+      tree-sitter-cpp
+      tree-sitter-css
+      tree-sitter-csv
+      tree-sitter-dart
+      tree-sitter-diff
+      tree-sitter-dockerfile
+      tree-sitter-elixir
+      tree-sitter-gdscript
+      tree-sitter-git-config
+      tree-sitter-git-rebase
+      tree-sitter-gitattributes
+      tree-sitter-gitcommit
+      tree-sitter-gitignore
+      tree-sitter-glsl
+      tree-sitter-go
+      tree-sitter-gomod
+      tree-sitter-gotmpl
+      tree-sitter-gowork
+      tree-sitter-graphql
+      tree-sitter-haskell
+      tree-sitter-haskell-persistent
+      tree-sitter-hcl
+      tree-sitter-hjson
+      tree-sitter-html
+      tree-sitter-http
+      tree-sitter-java
+      tree-sitter-javascript
+      tree-sitter-jq
+      tree-sitter-jsdoc
+      tree-sitter-json
+      tree-sitter-json5
+      tree-sitter-jsonnet
+      tree-sitter-latex
+      tree-sitter-ledger
+      tree-sitter-llvm
+      tree-sitter-lua
+      tree-sitter-luau
+      tree-sitter-make
+      tree-sitter-markdown
+      tree-sitter-markdown-inline
+      tree-sitter-matlab
+      tree-sitter-mermaid
+      tree-sitter-nginx
+      tree-sitter-nix
+      tree-sitter-nu
+      tree-sitter-python
+      tree-sitter-ql
+      tree-sitter-query
+      tree-sitter-r
+      tree-sitter-regex
+      tree-sitter-ruby
+      tree-sitter-rust
+      tree-sitter-scss
+      tree-sitter-sql
+      tree-sitter-sshclientconfig
+      tree-sitter-svelte
+      tree-sitter-swift
+      tree-sitter-toml
+      tree-sitter-tsx
+      tree-sitter-typescript
+      tree-sitter-typespec
+      tree-sitter-vim
+      tree-sitter-vue
+      tree-sitter-wgsl
+      tree-sitter-xml
+      tree-sitter-yaml
+      tree-sitter-zig
+      # Not available in tree-sitter-grammars (nvim-treesitter specific):
+      # asm, disassembly, gdshader, gnuplot, goctl, gosum, gpg, helm, hlsl, javadoc,
+      # kcl, kconfig, luadoc, requirements, tmux, tsv, terraform, vimdoc, wgsl_bevy, xresources
+    ];
+  };
+in let
   # configuration = pkgs.vimUtils.buildVimPlugin {
   #   pname = "configuration";
   #   version = "1.0.0";
@@ -49,6 +124,9 @@ in {
     withRuby = false;
     withPython3 = false;
     initLua = ''
+      -- Add tree-sitter parsers to runtimepath
+      vim.opt.runtimepath:prepend("${treesitterParsers}")
+
       ${builtins.readFile ./configuration/colorscheme.lua}
       ${builtins.readFile ./configuration/options.lua}
       ${builtins.readFile ./configuration/keymaps.lua}
@@ -243,117 +321,6 @@ in {
         plugin = nvim-lspconfig;
         type = "lua";
         config = builtins.readFile ./plugins/lsp.lua;
-      }
-
-      # Treesitter grammars (native highlighting in Neovim 0.12+)
-      (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-        p.asm
-        p.astro
-        p.awk
-        p.bash
-        p.bibtex
-        p.c
-        p.c_sharp
-        p.cmake
-        p.comment
-        p.commonlisp
-        p.cpp
-        p.css
-        p.csv
-        p.dart
-        p.diff
-        p.disassembly
-        p.dockerfile
-        p.elixir
-        p.gdshader
-        p.git_config
-        p.git_rebase
-        p.gitattributes
-        p.gitcommit
-        p.gitignore
-        p.glsl
-        p.gnuplot
-        p.go
-        p.goctl
-        p.gdscript
-        p.gomod
-        p.gosum
-        p.gotmpl
-        p.gowork
-        p.gpg
-        p.graphql
-        p.haskell
-        p.haskell_persistent
-        p.hcl
-        p.helm
-        p.hjson
-        p.hlsl
-        p.html
-        p.http
-        p.java
-        p.javadoc
-        p.javascript
-        p.jq
-        p.jsdoc
-        p.json
-        p.json5
-        p.jsonnet
-        p.kcl
-        p.kconfig
-        p.latex
-        p.ledger
-        p.llvm
-        p.lua
-        p.luadoc
-        p.luau
-        p.make
-        p.markdown
-        p.markdown_inline
-        p.matlab
-        p.mermaid
-        p.nginx
-        p.nix
-        p.nu
-        p.python
-        p.ql
-        p.tree-sitter-query
-        p.r
-        p.regex
-        p.tree-sitter-requirements
-        p.ruby
-        p.rust
-        p.scss
-        p.sql
-        p.ssh_config
-        p.svelte
-        p.swift
-        p.terraform
-        p.tmux
-        p.toml
-        p.tsv
-        p.tsx
-        p.typescript
-        p.typespec
-        p.vim
-        p.vimdoc
-        p.vue
-        p.wgsl
-        p.wgsl_bevy
-        p.xml
-        p.xresources
-        p.yaml
-        p.zig
-      ]))
-      {
-        plugin = nvim-treesitter-context; # Show code context
-        type = "lua";
-        config =
-          /*
-          lua
-          */
-          ''
-            require("treesitter-context").setup({})
-          '';
       }
 
       {
