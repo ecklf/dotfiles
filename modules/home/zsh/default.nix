@@ -142,6 +142,55 @@ in {
             eval "$(fnm env --use-on-cd)"
           fi
           eval "$(task --completion zsh)"
+
+          # worktrunk shell integration
+          if command -v wt >/dev/null 2>&1 || [[ -n "''${WORKTRUNK_BIN:-}" ]]; then
+              wt() {
+                  local use_source=false
+                  local -a args
+
+                  for arg in "$@"; do
+                      if [[ "$arg" == "--source" ]]; then use_source=true; else args+=("$arg"); fi
+                  done
+
+                  if [[ -n "''${COMPLETE:-}" ]]; then
+                      command "''${WORKTRUNK_BIN:-wt}" "''${args[@]}"
+                      return
+                  fi
+
+                  local directive_file exit_code=0
+                  directive_file="$(mktemp)"
+
+                  if [[ "$use_source" == true ]]; then
+                      WORKTRUNK_DIRECTIVE_FILE="$directive_file" cargo run --bin wt --quiet -- "''${args[@]}" || exit_code=$?
+                  else
+                      WORKTRUNK_DIRECTIVE_FILE="$directive_file" command "''${WORKTRUNK_BIN:-wt}" "''${args[@]}" || exit_code=$?
+                  fi
+
+                  if [[ -s "$directive_file" ]]; then
+                      source "$directive_file"
+                      if [[ $exit_code -eq 0 ]]; then
+                          exit_code=$?
+                      fi
+                  fi
+
+                  rm -f "$directive_file"
+                  return "$exit_code"
+              }
+
+              _wt_lazy_complete() {
+                  if ! (( $+functions[_clap_dynamic_completer_wt] )); then
+                      eval "$(COMPLETE=zsh command "''${WORKTRUNK_BIN:-wt}" 2>/dev/null | sed "s/_describe 'values'/_describe -V 'values'/")" || return
+                  fi
+                  _clap_dynamic_completer_wt "$@"
+              }
+
+              if (( $+functions[compdef] )); then
+                  compdef _wt_lazy_complete wt
+                  zstyle ':completion:*:wt:*' list-max 1
+                  zstyle ':completion:*:*:wt:*' list-grouped false
+              fi
+          fi
         ''
       ];
 

@@ -167,6 +167,7 @@ in {
           pkgs.codex
           pkgs.opencode
           pkgs.unstable.crush
+          pkgs.worktrunk
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
