@@ -25,7 +25,7 @@
   // Auth with `opencode mcp auth name`
   "mcp": {
     "linear": {
-      "enabled": true,
+      "enabled": false,
       "type": "remote",
       "url": "https://mcp.linear.app/sse",
       "oauth": {},
