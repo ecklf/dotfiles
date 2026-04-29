@@ -32,7 +32,7 @@ quick-terminal-animation-duration = 0
 
 # window-decoration = false
 macos-window-buttons = hidden
-macos-titlebar-style = hidden
+macos-titlebar-style = native
 macos-titlebar-proxy-icon = hidden
 
 macos-option-as-alt = left
