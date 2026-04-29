@@ -71,6 +71,8 @@ in {
         respring = ''
           sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
         '';
+        # Obtain identifier with e.g.
+        # osascript -e 'id of app "Visual Studio Code"'
         patchDefaultApps = ''
           echo "Patching macOS default apps"
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.colliderli.iina .mp4 all

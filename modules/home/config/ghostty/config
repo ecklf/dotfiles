@@ -25,9 +25,14 @@ keybind = super+alt+k=goto_split:top
 keybind = global:cmd+backquote=toggle_quick_terminal
 quick-terminal-animation-duration = 0
 
-window-decoration = false
+# Full liquid glass window 
+# background-opacity = 0.0
+# background-blur = macos-glass-clear
+# macos-titlebar-style = transparent
+
+# window-decoration = false
 macos-window-buttons = hidden
-macos-titlebar-style = native
+macos-titlebar-style = hidden
 macos-titlebar-proxy-icon = hidden
 
 macos-option-as-alt = left
