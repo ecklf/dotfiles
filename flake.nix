@@ -5,8 +5,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs";
     # NixOS inputs
-    nixpkgs-nixos.url = "github:nixos/nixpkgs";
-    nixpkgs-nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-nixos.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-nixos-master.url = "github:nixos/nixpkgs";
     # Nix user repository
     nur.url = "github:nix-community/NUR";
     # Atomic secret provisioning for NixOS based on sops
@@ -35,7 +35,7 @@
     nixpkgs,
     nixpkgs-master,
     nixpkgs-nixos,
-    nixpkgs-nixos-unstable,
+    nixpkgs-nixos-master,
     nur,
     sops-nix,
     darwin,
@@ -112,7 +112,7 @@
         inherit inputs nur sops-nix;
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
-        nixpkgs-unstable = nixpkgs-nixos-unstable;
+        nixpkgs-master = nixpkgs-nixos-master;
         system = "x86_64-linux";
         username = "soma";
         timezone = "Europe/Berlin";
@@ -126,7 +126,7 @@
         inherit inputs nur sops-nix;
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
-        nixpkgs-unstable = nixpkgs-nixos-unstable;
+        nixpkgs-master = nixpkgs-nixos-master;
         system = "x86_64-linux";
         username = "skia";
         timezone = "Europe/Berlin";
@@ -140,7 +140,7 @@
         inherit inputs nur sops-nix;
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
-        nixpkgs-unstable = nixpkgs-nixos-unstable;
+        nixpkgs-master = nixpkgs-nixos-master;
         system = "x86_64-linux";
         username = "kairos";
         timezone = "America/New_York";
@@ -152,7 +152,7 @@
         inherit inputs nur sops-nix;
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
-        nixpkgs-unstable = nixpkgs-nixos-unstable;
+        nixpkgs-master = nixpkgs-nixos-master;
         system = "x86_64-linux";
         username = "ecklf";
         extraModules = [];
@@ -163,7 +163,7 @@
         inherit inputs nur sops-nix;
         overlays = nixosOverlays;
         nixpkgs = nixpkgs-nixos;
-        nixpkgs-unstable = nixpkgs-nixos-unstable;
+        nixpkgs-master = nixpkgs-nixos-master;
         system = "x86_64-linux";
         username = "nixos";
         extraModules = [];
