@@ -138,7 +138,7 @@ in {
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
-      pkgs.unstable.biome
+      pkgs.biome
       pkgs.gopls
       pkgs.nixd # nix lsp
       pkgs.alejandra # nix formatter
@@ -149,7 +149,7 @@ in {
       pkgs.eslint
       pkgs.prettier # webdev
       pkgs.stylelint
-      pkgs.unstable.typescript-go # tsgo - Go-based TypeScript language server
+      pkgs.typescript-go # tsgo - Go-based TypeScript language server
       pkgs.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright

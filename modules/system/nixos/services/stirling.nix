@@ -17,7 +17,7 @@
   config = lib.mkIf config.homelab.stirling.enable {
     services.stirling-pdf = {
       enable = true;
-      package = pkgs.unstable.stirling-pdf;
+      package = pkgs.stirling-pdf;
       environment = {
         SERVER_PORT = config.homelab.stirling.port;
         INSTALL_BOOK_AND_ADVANCED_HTML_OPS = "true";

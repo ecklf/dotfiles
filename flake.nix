@@ -2,8 +2,8 @@
   description = "NixOS and Darwin flakes";
   inputs = {
     # Darwin/macOS inputs
-    nixpkgs.url = "github:nixos/nixpkgs";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-master.url = "github:nixos/nixpkgs";
     # NixOS inputs
     nixpkgs-nixos.url = "github:nixos/nixpkgs";
     nixpkgs-nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -33,7 +33,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
-    nixpkgs-unstable,
+    nixpkgs-master,
     nixpkgs-nixos,
     nixpkgs-nixos-unstable,
     nur,
@@ -173,14 +173,14 @@
     };
     darwinConfigurations = {
       omega = mkDarwin "omega" {
-        inherit inputs nixpkgs-unstable nur darwin home-manager overlays;
+        inherit inputs nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         patchBld = true;
         homeStateVersion = "24.05";
       };
       vercel = mkDarwin "vercel" {
-        inherit inputs nixpkgs-unstable nur darwin home-manager overlays;
+        inherit inputs nixpkgs-master nur darwin home-manager overlays;
         system = "aarch64-darwin";
         username = "ecklf";
         homeStateVersion = "24.05";

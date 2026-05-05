@@ -166,7 +166,7 @@ in {
           pkgs.claude-code
           pkgs.codex
           pkgs.opencode
-          pkgs.unstable.crush
+          pkgs.crush
           pkgs.worktrunk
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
@@ -225,7 +225,7 @@ in {
           pkgs.lnav # The Logfile Navigator
           pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
-          pkgs.unstable.biome # Toolchain of the web
+          pkgs.biome # Toolchain of the web
           # Database
           pkgs.dbmate # Database migration tool
           pkgs.rainfrog # Database management TUI for postgres
