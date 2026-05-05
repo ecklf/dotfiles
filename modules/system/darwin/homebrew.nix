@@ -288,7 +288,7 @@
         ++ lib.optional config.homebrewModules.modelling [
           "blender"
           "bambu-studio"
-          "freecad"
+          "orcaslicer"
           "plasticity"
         ]
       );
