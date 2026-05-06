@@ -64,6 +64,16 @@ in {
           type = lib.types.bool;
           description = "Install software for 3D modelling";
         };
+        ai = lib.mkOption {
+          default = false;
+          type = lib.types.bool;
+          description = "Install AI coding assistants";
+        };
+        embedded = lib.mkOption {
+          default = false;
+          type = lib.types.bool;
+          description = "Install embedded development tools";
+        };
         extraPackages = lib.mkOption {
           type = lib.types.listOf lib.types.package;
           default = [];
@@ -157,17 +167,6 @@ in {
           pkgs.zsh # The Z shell
         ]
         ++ lib.optional config.home.modules.developer [
-          # Embedded
-          pkgs.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers
-          pkgs.probe-rs-tools # CLI tool for on-chip debugging and flashing of ARM chips
-          # pkgs.gdb # The GNU Project debugger
-          pkgs.openocd # On-Chip Debugging, In-System Programming and Boundary-Scan Testing for Embedded Target Devices
-          # AI agents
-          pkgs.claude-code
-          pkgs.codex
-          pkgs.opencode
-          pkgs.crush
-          pkgs.worktrunk
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
@@ -223,7 +222,6 @@ in {
           pkgs.hexyl # A command-line hex viewer
           pkgs.jwt-cli # Super fast CLI tool to decode and encode JWTs
           pkgs.lnav # The Logfile Navigator
-          pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
           pkgs.master.biome # Toolchain of the web
           # Database
@@ -280,7 +278,6 @@ in {
           pkgs.stripe-cli # A command-line tool for Stripe
           pkgs.meilisearch # Powerful, fast, and an easy to use search engine
           pkgs.caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
-          pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
           pkgs.mitmproxy # Man-in-the-middle proxy
         ]
         ++ lib.optional config.home.modules.work [
@@ -317,6 +314,21 @@ in {
           # pkgs.bitwarden-cli # A secure and free password manager for all of your devices
           # pkgs.vector # A high-performance observability data pipeline
           # pkgs.watchman # Watches files and takes action when they change
+        ]
+        ++ lib.optional config.home.modules.ai [
+          pkgs.claude-code # Claude AI coding assistant
+          pkgs.codex # OpenAI Codex CLI
+          pkgs.opencode # Open source AI coding assistant
+          pkgs.crush # AI coding assistant
+          pkgs.worktrunk # AI coding assistant
+        ]
+        ++ lib.optional config.home.modules.embedded [
+          pkgs.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers
+          pkgs.probe-rs-tools # CLI tool for on-chip debugging and flashing of ARM chips
+          pkgs.openocd # On-Chip Debugging, In-System Programming and Boundary-Scan Testing for Embedded Target Devices
+          pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
+          pkgs.gcc-arm-embedded # GNU Arm Embedded Toolchain
+          # pkgs.gdb # The GNU Project debugger
         ]
         ++ lib.optional config.home.modules.modelling [
           pkgs.uv # Python package installer
