@@ -90,6 +90,14 @@
           type = lib.types.bool;
           description = "Install 3d modelling software";
         };
+        ai = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install AI coding assistant software";
+        };
+        embedded = lib.mkOption {
+          type = lib.types.bool;
+          description = "Install embedded development software";
+        };
         extraApps = lib.mkOption {
           type = lib.types.attrsOf lib.types.int;
           description = "Extra App Store software to install";
@@ -290,6 +298,10 @@
           "bambu-studio"
           "orcaslicer"
           "plasticity"
+        ]
+        ++ lib.optional config.homebrewModules.ai []
+        ++ lib.optional config.homebrewModules.embedded [
+          "raspberry-pi-imager"
         ]
       );
     };

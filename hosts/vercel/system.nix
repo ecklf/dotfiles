@@ -19,6 +19,8 @@ in {
     wine = false;
     game = true;
     modelling = true;
+    ai = true;
+    embedded = true;
     extraBrews = ["bintrim"];
   };
 
