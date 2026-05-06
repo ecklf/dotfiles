@@ -318,7 +318,7 @@ in {
         ++ lib.optional config.home.modules.ai [
           pkgs.claude-code # Claude AI coding assistant
           pkgs.codex # OpenAI Codex CLI
-          pkgs.opencode # Open source AI coding assistant
+          pkgs.master.opencode # Open source AI coding assistant
           pkgs.crush # AI coding assistant
           pkgs.worktrunk # AI coding assistant
         ]

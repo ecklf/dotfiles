@@ -44,12 +44,9 @@
   }: let
     mkDarwin = import ./lib/mkdarwin.nix;
     mkNixOS = import ./lib/mknixos.nix;
-    # AI agents overlay (codex, opencode) - latest from GitHub releases
-    aiAgentsOverlay = import ./lib/overlays/ai-agents.nix;
 
     # Shared overlays for both Darwin and NixOS
     overlays = [
-      aiAgentsOverlay
       (final: prev: {
         # Disable nushell tests - SHLVL tests fail in Nix sandbox
         nushell = prev.nushell.overrideAttrs (old: {
