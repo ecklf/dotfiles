@@ -117,6 +117,7 @@ in let
 in {
   programs.neovim = {
     enable = true;
+    # package = pkgs.master.neovim;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
@@ -138,33 +139,33 @@ in {
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
-      pkgs.biome
+      pkgs.master.biome
       pkgs.gopls
-      pkgs.nixd # nix lsp
+      pkgs.master.nixd # nix lsp
       pkgs.alejandra # nix formatter
-      pkgs.tailwindcss-language-server
+      pkgs.master.tailwindcss-language-server
       # pkgs.nodePackages_latest."graphql"
-      pkgs.bash-language-server
-      pkgs.dockerfile-language-server
+      pkgs.master.bash-language-server
+      pkgs.master.dockerfile-language-server
       pkgs.eslint
       pkgs.prettier # webdev
       pkgs.stylelint
-      pkgs.typescript-go # tsgo - Go-based TypeScript language server
+      pkgs.master.typescript-go # tsgo - Go-based TypeScript language server
       pkgs.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
       pkgs.python312Packages.black # python
       pkgs.python312Packages.flake8
       pkgs.ripgrep
-      pkgs.rust-analyzer
+      pkgs.master.rust-analyzer
       pkgs.rustfmt
       pkgs.shellcheck
       pkgs.shfmt
       pkgs.stylua
-      pkgs.lua-language-server
+      pkgs.master.lua-language-server
       pkgs.terraform-ls
       pkgs.vale
-      pkgs.yaml-language-server
+      pkgs.master.yaml-language-server
     ];
     plugins = with pkgs.vimPlugins; [
       # Core

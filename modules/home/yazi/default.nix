@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.yazi = {
     enable = true;
+    package = pkgs.master.yazi;
     enableZshIntegration = true;
     shellWrapperName = "y";
     keymap = {

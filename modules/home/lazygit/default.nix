@@ -1,6 +1,7 @@
 {pkgs, ...}: {
   programs.lazygit = {
     enable = true;
+    package = pkgs.master.lazygit;
     settings = {
       gui = {
         nerdFontsVersion = "3";

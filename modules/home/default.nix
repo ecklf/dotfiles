@@ -191,7 +191,7 @@ in {
           pkgs.upx # The Ultimate Packer for eXecutables
           pkgs.zig # General-purpose programming language and toolchain for maintaining robust, optimal, and reusable software
           # Runtimes
-          pkgs.bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
+          pkgs.master.bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
           pkgs.go # The Go Programming language
           # Containers
           pkgs.devbox # Instant, easy, predictable shells and containers
@@ -225,7 +225,7 @@ in {
           pkgs.lnav # The Logfile Navigator
           pkgs.picotool # Tool for interacting with RP-series device(s) in BOOTSEL mode, or with an RP-series binary
           pkgs.scrcpy # Display and control Android devices over USB or TCP/IP
-          pkgs.biome # Toolchain of the web
+          pkgs.master.biome # Toolchain of the web
           # Database
           pkgs.dbmate # Database migration tool
           pkgs.rainfrog # Database management TUI for postgres
@@ -264,7 +264,7 @@ in {
           pkgs.graphicsmagick # Swiss army knife of image processing
           pkgs.imagemagick # A software suite to create, edit, compose, or convert bitmap images
           pkgs.libavif # C implementation of the AV1 Image File Format
-          pkgs.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
+          pkgs.master.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
           pkgs.psutils # Collection of useful utilities for manipulating PS documents
           # Nix
           pkgs.nixos-anywhere # NixOS installer for any Linux distribution

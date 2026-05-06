@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.gh = {
     enable = true;
+    package = pkgs.master.gh;
     settings = {
       git_protocol = "ssh";
       prompt = "enabled";
