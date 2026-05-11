@@ -85,8 +85,8 @@ in {
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.colliderli.iina .wmv all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.colliderli.iina .wav all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.TextEdit .txt all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.TextEdit public.plain-text all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .md all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .go all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .py all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .js all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .ts all
@@ -98,14 +98,9 @@ in {
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .sh all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .zsh all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .bash all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .fish all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .json all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .xml all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .css all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .scss all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .sass all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .less all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .vue all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .tsx all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .jsx all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .php all
@@ -121,8 +116,8 @@ in {
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .ini all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .conf all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .log all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.iWork.Numbers .csv all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.iWork.Numbers .tsv all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.Numbers .csv all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.Numbers .tsv all
         '';
         scriptFiles = lib.flatten ([]
           ++ lib.optional config.activationScriptModules.patches.screenCaptureApprovals [
