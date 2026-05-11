@@ -102,19 +102,14 @@ in {
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .xml all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .css all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .tsx all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .jsx all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .php all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .rb all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .rs all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .swift all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .kt all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .dart all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .sql all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .yml all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .yaml all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .toml all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .ini all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .conf all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .log all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.Numbers .csv all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.Numbers .tsv all
