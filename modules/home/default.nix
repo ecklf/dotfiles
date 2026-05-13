@@ -108,6 +108,7 @@ in {
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/opencode/plugins".source = ./config/opencode/plugins;
           ".config/opencode/commands".source = ./config/opencode/commands;
+          "Library/Preferences/pnpm/rc".source = ./config/pnpm/rc;
           ".wezterm.lua".source = ./config/wezterm/config.lua;
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
         };
