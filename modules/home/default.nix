@@ -161,7 +161,6 @@ in {
           pkgs.subversion # A version control system intended to be a compelling replacement for CVS in the open source community
           pkgs.tree # Command to produce a depth indented directory listing
           pkgs.wget # Tool for retrieving files using HTTP, HTTPS, and FTP
-          pkgs.yazi # A fast, modern, and minimalistic cli file explorer
           pkgs.yq # Portable command-line YAML processor
           pkgs.zellij # A terminal workspace with batteries included
           pkgs.zoxide # A fast cd command that learns your habits
@@ -317,9 +316,10 @@ in {
           # pkgs.watchman # Watches files and takes action when they change
         ]
         ++ lib.optional config.home.modules.ai [
-          pkgs.claude-code # Claude AI coding assistant
-          pkgs.codex # OpenAI Codex CLI
+          pkgs.master.claude-code # Claude AI coding assistant
+          pkgs.master.codex # OpenAI Codex CLI
           pkgs.master.opencode # Open source AI coding assistant
+          pkgs.master.pi-coding-agent # Minimal terminal coding harness.
           pkgs.crush # AI coding assistant
           pkgs.worktrunk # AI coding assistant
         ]
