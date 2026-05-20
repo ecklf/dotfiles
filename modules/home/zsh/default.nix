@@ -2,6 +2,7 @@
   pkgs,
   lib,
   system,
+  hostname,
   ...
 }: let
   inherit (pkgs.stdenv) isDarwin;
@@ -117,7 +118,7 @@ in {
             command curl "cheat.sh/$1"
           }
 
-          function update_input() {
+          function nfu() {
             input=$(nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf)
             nix flake update "$input"
           }
@@ -197,6 +198,9 @@ in {
       shellAliases =
         {
           nix-shell = "nix-shell --run zsh";
+          nswitch = "darwin-rebuild switch --flake ~/dotfiles#${hostname}";
+          nbuild = "darwin-rebuild build --flake ~/dotfiles#${hostname}";
+          nfua = "nix flake update";
           # Abbreviations
           c = "clear";
           m = "make";
@@ -208,7 +212,8 @@ in {
           tree = "eza --tree --icons";
           diskusage = "sudo smartctl --all /dev/disk0";
           # Common
-          dots = "vim ~/dotfiles";
+          dots = "cd ~/dotfiles";
+          dev = "cd ~/Developer";
           untar = "tar -zxvf";
           backup = ''[ -d '/Volumes/MBP Backup' ] && mkdir /Volumes/MBP\ Backup/''$(date +%F) && rsync -av --exclude='Applications' --exclude='Library' --exclude='Trash' --exclude='node_modules' --exclude='.*' /Users/''${USER}/ /Volumes/MBP\ Backup/''$(date +%F)'';
           # Crypto
@@ -254,6 +259,8 @@ in {
           k = "kubectl";
           t = "task";
           tl = "task --list-all";
+          # Worktrunk
+          wtrm = "wt list --format json | jq -r '.[].branch | select(. != \"main\")' | xargs -I{} wt remove \"{}\" --force";
           # Credentials
           # google_cred="export GOOGLE_APPLICATION_CREDENTIALS='~/service-account.json'";
           # avd="cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29";
