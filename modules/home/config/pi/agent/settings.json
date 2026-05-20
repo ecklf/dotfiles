@@ -1,0 +1,48 @@
+{
+  "defaultProvider": "anthropic",
+  "defaultModel": "claude-opus-4-20250514",
+  "defaultThinkingLevel": "medium",
+  "theme": "dark",
+  "quietStartup": false,
+  "hideThinkingBlock": false,
+  "enableInstallTelemetry": false,
+  "doubleEscapeAction": "tree",
+  "showHardwareCursor": false,
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 16384,
+    "keepRecentTokens": 20000
+  },
+  "branchSummary": {
+    "reserveTokens": 16384,
+    "skipPrompt": false
+  },
+  "retry": {
+    "enabled": true,
+    "maxRetries": 3,
+    "baseDelayMs": 2000,
+    "provider": {
+      "maxRetryDelayMs": 60000
+    }
+  },
+  "steeringMode": "one-at-a-time",
+  "followUpMode": "one-at-a-time",
+  "transport": "sse",
+  "terminal": {
+    "showImages": true,
+    "imageWidthCells": 60,
+    "clearOnShrink": false
+  },
+  "images": {
+    "autoResize": true,
+    "blockImages": false
+  },
+
+  "markdown": {
+    "codeBlockIndent": " "
+  },
+  "enableSkillCommands": true,
+  "warnings": {
+    "anthropicExtraUsage": true
+  }
+}

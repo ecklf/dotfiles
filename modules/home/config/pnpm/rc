@@ -1,3 +1,1 @@
 store-dir=~/Library/pnpm/store
-minimum-release-age=7d
-trust-policy=no-downgrade

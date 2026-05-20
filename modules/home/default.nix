@@ -93,6 +93,7 @@ in {
           CLICLOLOR = 1;
           EDITOR = "nvim";
           VISUAL = "nvim";
+          PI_SKIP_VERSION_CHECK = "1";
         }
         // lib.optionalAttrs (isDarwin && system == "aarch64-darwin")
         {
@@ -108,6 +109,13 @@ in {
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/opencode/plugins".source = ./config/opencode/plugins;
           ".config/opencode/commands".source = ./config/opencode/commands;
+          ".pi/agent/settings.json".source = ./config/pi/agent/settings.json;
+          ".pi/agent/keybindings.json".source = ./config/pi/agent/keybindings.json;
+          ".pi/agent/AGENTS.md".source = ./config/pi/agent/AGENTS.md;
+          ".pi/agent/prompts".source = ./config/pi/agent/prompts;
+          ".pi/agent/skills".source = ./config/pi/agent/skills;
+          ".pi/agent/extensions".source = ./config/pi/agent/extensions;
+          ".pi/agent/themes".source = ./config/pi/agent/themes;
           "Library/Preferences/pnpm/rc".source = ./config/pnpm/rc;
           ".wezterm.lua".source = ./config/wezterm/config.lua;
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
