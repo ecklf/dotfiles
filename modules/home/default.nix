@@ -330,6 +330,7 @@ in {
           pkgs.master.pi-coding-agent # Minimal terminal coding harness.
           pkgs.crush # AI coding assistant
           pkgs.worktrunk # AI coding assistant
+          pkgs.herdr # Terminal multiplexer for AI coding agents
         ]
         ++ lib.optional config.home.modules.embedded [
           pkgs.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers

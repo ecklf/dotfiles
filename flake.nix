@@ -67,6 +67,43 @@
           };
           patches = [];
         });
+        # herdr - terminal multiplexer for AI coding agents
+        herdr = prev.stdenv.mkDerivation rec {
+          pname = "herdr";
+          version = "0.6.0";
+          src =
+            let
+              platform =
+                if prev.stdenv.isDarwin then "macos"
+                else "linux";
+              arch =
+                if prev.stdenv.hostPlatform.isAarch64 then "aarch64"
+                else "x86_64";
+              hashes = {
+                "macos-aarch64" = "sha256-P7zkCbHcizPYWeVdg66NRQK7VoI5mPM46WDwM+XaQZs=";
+                "macos-x86_64" = "sha256-/QDfPlNzcw8e6AtdppEXWuWyKKosYXIt/L8RNYo8oyg=";
+                "linux-aarch64" = "sha256-vxvTw9mLv9nNT+hk9cfPmhCJpK/GvpByDgmgVTaNRJU=";
+                "linux-x86_64" = "sha256-KDvF/UI7MEcC+NVR/OTLxV47VW0MnmZD6jV3q/SWdKE=";
+              };
+            in
+            prev.fetchurl {
+              url = "https://github.com/ogulcancelik/herdr/releases/download/v${version}/herdr-${platform}-${arch}";
+              hash = hashes."${platform}-${arch}";
+            };
+          dontUnpack = true;
+          installPhase = ''
+            mkdir -p $out/bin
+            cp $src $out/bin/herdr
+            chmod +x $out/bin/herdr
+          '';
+          meta = with prev.lib; {
+            description = "Terminal multiplexer for AI coding agents";
+            homepage = "https://herdr.dev";
+            license = licenses.unfree;
+            platforms = platforms.unix;
+            mainProgram = "herdr";
+          };
+        };
       })
     ];
     # NixOS-only overlays (tree-sitter 0.26.1 + requires bindgen/libclang)
