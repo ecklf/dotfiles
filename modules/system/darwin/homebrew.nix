@@ -163,7 +163,7 @@
         }
       );
       taps = [
-        "ecklf/bintrim"
+        "ecklf/tap"
         "steipete/tap"
       ];
       # Ideally leave this empty and only use nix to manage this
