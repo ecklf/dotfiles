@@ -299,7 +299,9 @@
           "orcaslicer"
           "plasticity"
         ]
-        ++ lib.optional config.homebrewModules.ai []
+        ++ lib.optional config.homebrewModules.ai [
+          "comfyui"
+        ]
         ++ lib.optional config.homebrewModules.embedded [
           "raspberry-pi-imager"
         ]
