@@ -161,7 +161,7 @@ in {
           pkgs.nix-prefetch-github # Prefetch sources from github
           pkgs.parallel # Shell tool for executing jobs in parallel
           pkgs.pv # Tool for monitoring the progress of data through a pipeline
-          pkgs.rclone # Command line program to sync files and directories to and from major cloud storage
+          pkgs.master.rclone # Command line program to sync files and directories to and from major cloud storage
           pkgs.repgrep # Interactive replacer for ripgrep that makes it easy to find and replace across files on the command line
           # pkgs.ripgrep # Managed by programs.ripgrep
           pkgs.rsync # Fast incremental file transfer utility
