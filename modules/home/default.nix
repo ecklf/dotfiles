@@ -143,6 +143,7 @@ in {
           pkgs.ack # A grep-like tool tailored to working with large trees of source code
           pkgs.alejandra # Nix code formatter
           pkgs.curl # A command line tool for transferring files with URL syntax
+          pkgs.xh # Fast tool for sending http requests
           # pkgs.direnv # Managed by programs.direnv
           pkgs.eza # A modern, maintained replacement for ls
           pkgs.fd # Suite of speech signal processing tools
