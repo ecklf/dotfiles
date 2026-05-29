@@ -198,8 +198,6 @@ in {
       shellAliases =
         {
           nix-shell = "nix-shell --run zsh";
-          nswitch = "darwin-rebuild switch --flake ~/dotfiles#${hostname}";
-          nbuild = "darwin-rebuild build --flake ~/dotfiles#${hostname}";
           nfua = "nix flake update";
           # Abbreviations
           c = "clear";
@@ -249,7 +247,6 @@ in {
           # Node
           p = "pnpm";
           nls = "npm list -g --depth 0";
-          pat = "pnpm add -D postcss tailwindcss @tailwindcss/forms @tailwindcss/typography @tailwindcss/aspect-ratio";
           vscode_ls = "code --list-extensions | xargs -L 1 echo code --install-extension";
           rna = "npx react-native run-android";
           adbr = "adb reverse tcp:8081 tcp:8081";
@@ -261,12 +258,15 @@ in {
           tl = "task --list-all";
           # Worktrunk
           wtrm = "wt list --format json | jq -r '.[].branch | select(. != \"main\")' | xargs -I{} wt remove \"{}\" --force";
+          st = "gh-stack";
           # Credentials
           # google_cred="export GOOGLE_APPLICATION_CREDENTIALS='~/service-account.json'";
           # avd="cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29";
           # chrome_dbg="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222";
         }
         // lib.optionalAttrs isDarwin {
+          ndswitch = "sudo darwin-rebuild switch --flake ~/dotfiles#${hostname}";
+          ndbuild = "darwin-rebuild build --flake ~/dotfiles#${hostname}";
           rni = "npx react-native run-ios";
           o = "open";
           iosd = "xcrun xctrace list devices"; # shows iOS devices
