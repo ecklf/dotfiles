@@ -27,7 +27,7 @@
     "linear": {
       "enabled": false,
       "type": "remote",
-      "url": "https://mcp.linear.app/sse",
+      "url": "https://mcp.linear.app/mcp",
       "oauth": {},
     },
     "blender": {
