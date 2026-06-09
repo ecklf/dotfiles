@@ -21,7 +21,7 @@ in {
       # programs.hstr.enable = true;
       history = {
         # Expire duplicates first
-        expireDuplicatesFirst = true;
+        expireDuplicatesFirst = false;
         # Save timestamp into the history file
         extended = true;
         # If a new command line being added to the history list duplicates an older one, the older command is removed from the list (even if it is not the previous event)
@@ -91,6 +91,9 @@ in {
 
           # Allow pipe to existing file. Prevent issue with history save in tmux-resurrect.
           setopt CLOBBER
+
+          # Write to history immediately with timestamp (prevents loss from concurrent sessions)
+          setopt INC_APPEND_HISTORY_TIME
 
           # Enable correction
           # setopt CORRECT
