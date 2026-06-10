@@ -16,7 +16,7 @@
       pkgs.yt-dlp
       pkgs.ffmpeg
       pkgs.streamlink
-      pkgs.nodejs_25
+      pkgs.nodejs_26
       pkgs.corepack
     ];
   };

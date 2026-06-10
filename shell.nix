@@ -1,7 +1,7 @@
 {pkgs ? import <nixpkgs> {}}:
 pkgs.mkShell {
   nativeBuildInputs = with pkgs; [
-    nodejs_25
+    nodejs_26
     corepack
     playwright-driver.browsers
   ];

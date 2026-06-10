@@ -107,19 +107,19 @@
           "strict allocate" = "yes";
           "allocation roundup size" = "4096";
         };
-        # hdd = {
-        #   path = "/storage/set1/hdd";
-        #   browseable = "yes";
-        #   "read only" = "no";
-        #   "guest ok" = "no";
-        #   "create mask" = "0755";
-        #   "directory mask" = "0755";
-        #   "force user" = "${username}";
-        #   "force group" = "wheel";
-        #   # Share-specific performance optimizations
-        #   "strict allocate" = "yes";
-        #   "allocation roundup size" = "4096";
-        # };
+        hdd = {
+          path = "/storage/set1/personal";
+          browseable = "yes";
+          "read only" = "no";
+          "guest ok" = "no";
+          "create mask" = "0755";
+          "directory mask" = "0755";
+          "force user" = "${username}";
+          "force group" = "wheel";
+          # Share-specific performance optimizations
+          "strict allocate" = "yes";
+          "allocation roundup size" = "4096";
+        };
         camera = {
           path = "/storage/set1/camera";
           browseable = "yes";
