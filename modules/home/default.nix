@@ -267,6 +267,7 @@ in {
           pkgs.google-cloud-sdk # Tools for the google cloud platform
           # pkgs.nodePackages_latest.aws-cdk # CDK Toolkit, the command line tool for CDK apps
           pkgs.terraform # OpenTofu, Terraform, Terragrunt and Atmos version manager written in Go
+          pkgs.terragrunt # Thin wrapper for Terraform that provides extra tools for working with multiple Terraform modules
           # Media
           pkgs.cairo # A 2D graphics library with support for multiple output devices
           pkgs.ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video (Jellyfin fork)
