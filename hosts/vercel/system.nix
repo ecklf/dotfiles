@@ -21,7 +21,7 @@ in {
     modelling = true;
     ai = true;
     embedded = true;
-    extraBrews = ["bintrim"];
+    extraBrews = ["bintrim" "pup"];
   };
 
   activationScriptModules.extraPreActivationScripts = [];
