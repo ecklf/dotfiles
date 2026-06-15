@@ -22,6 +22,9 @@ in {
     ai = true;
     embedded = true;
     extraBrews = ["bintrim" "pup"];
+    extraApps = {
+      "Okta Verify" = 490179405;
+    };
   };
 
   activationScriptModules.extraPreActivationScripts = [];
