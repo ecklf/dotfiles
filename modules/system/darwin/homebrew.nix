@@ -174,7 +174,6 @@
             "libimobiledevice"
             "ideviceinstaller"
             "czkawka"
-            "bintrim"
           ]);
       in
         lib.mkIf (lib.length brewList > 0) brewList;
