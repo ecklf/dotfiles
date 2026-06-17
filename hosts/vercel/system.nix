@@ -21,6 +21,10 @@ in {
     modelling = true;
     ai = true;
     embedded = true;
+    extraBrews = ["pup"];
+    extraApps = {
+      "Okta Verify" = 490179405;
+    };
   };
 
   activationScriptModules.extraPreActivationScripts = [];

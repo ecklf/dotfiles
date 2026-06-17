@@ -44,7 +44,7 @@
       "command": [
         "npx",
         "-y",
-        "@anthropic/mcp-playwright"
+        "@playwright/mcp@latest"
       ],
     },
     "filesystem": {
@@ -65,6 +65,19 @@
         "-y",
         "@modelcontextprotocol/server-memory"
       ],
+    },
+    "slack": {
+      "enabled": false,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-slack"
+      ],
+      "environment": {
+        "SLACK_BOT_TOKEN": "{env:SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "{env:SLACK_TEAM_ID}",
+      },
     },
   },
 }
