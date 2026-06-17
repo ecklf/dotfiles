@@ -13,7 +13,8 @@
       pkgs.openssl # Cryptographic library that implements the SSL and TLS protocols
       pkgs.immich
       pkgs.immich-cli
-      pkgs.yt-dlp
+      pkgs.master.yt-dlp
+      pkgs.master.gallery-dl
       pkgs.ffmpeg
       pkgs.streamlink
       pkgs.nodejs_26
