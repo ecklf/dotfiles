@@ -149,6 +149,15 @@
     };
   };
 
+  services.cron = {
+    enable = true;
+    # Runs at 04:00 and 16:00 UTC every day.
+    # CRON_TZ pins the schedule to UTC regardless of the system timezone.
+    systemCronJobs = [
+      "CRON_TZ=UTC 0 4,16 * * * root /storage/set1/cronjobs/cron.sh"
+    ];
+  };
+
   environment.systemPackages = [
     pkgs.apfs-fuse
     pkgs.cryptsetup
