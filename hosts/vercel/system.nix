@@ -10,7 +10,7 @@ in {
     work = isWorkMachine;
     disk = false;
     photography = true;
-    movie = false;
+    movie = true;
     music = false;
     latex = false;
     downloader = false;
@@ -24,6 +24,7 @@ in {
     extraBrews = ["pup"];
     extraApps = {
       "Okta Verify" = 490179405;
+      "NordLayer" = 1488888843;
     };
   };
 

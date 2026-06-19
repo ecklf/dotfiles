@@ -165,6 +165,7 @@
       taps = [
         "ecklf/tap"
         "steipete/tap"
+        "datadog-labs/pack"
       ];
       # Ideally leave this empty and only use nix to manage this
       brews = let
@@ -214,6 +215,7 @@
           "nosql-workbench"
           "obs"
           "orbstack"
+          "pup"
           "rapidapi"
           "safari-technology-preview"
           "utm"
