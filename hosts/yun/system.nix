@@ -151,10 +151,9 @@
 
   services.cron = {
     enable = true;
-    # Runs at 04:00 and 16:00 UTC every day.
-    # CRON_TZ pins the schedule to UTC regardless of the system timezone.
+    # Runs at 06:00 and 18:00 local time (system timezone) every day.
     systemCronJobs = [
-      "CRON_TZ=UTC 0 4,16 * * * root /storage/set1/cronjobs/cron.sh"
+      "0 6,18 * * * root /storage/set1/cronjobs/cron.sh"
     ];
   };
 
