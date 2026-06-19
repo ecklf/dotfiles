@@ -299,7 +299,7 @@
           "plasticity"
         ]
         ++ lib.optional config.homebrewModules.ai [
-          "comfyui"
+          "comfy"
         ]
         ++ lib.optional config.homebrewModules.embedded [
           "raspberry-pi-imager"
