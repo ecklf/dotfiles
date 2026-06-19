@@ -9,7 +9,7 @@ in {
     personal = !isWorkMachine;
     work = isWorkMachine;
     disk = false;
-    photography = false;
+    photography = true;
     movie = false;
     music = false;
     latex = false;
