@@ -151,9 +151,8 @@
 
   services.cron = {
     enable = true;
-    # Runs at 06:00 and 18:00 local time (system timezone) every day.
     systemCronJobs = [
-      "0 6,18 * * * root /storage/set1/cronjobs/cron.sh"
+      "0 6,11,18 * * * ${username} /storage/set1/cronjobs/cron.sh >> /storage/set1/cronjobs/cron.log 2>&1"
     ];
   };
 
