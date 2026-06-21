@@ -162,6 +162,7 @@
     pkgs.git
     pkgs.wget
     pkgs.curl
+    pkgs.eza
     pkgs.vim
     pkgs.sops
   ];
