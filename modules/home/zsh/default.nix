@@ -262,6 +262,7 @@ in {
           # Worktrunk
           wtrm = "wt list --format json | jq -r '.[].branch | select(. != \"main\")' | xargs -I{} wt remove \"{}\" --force";
           st = "gh-stack";
+          stapprove = "gh-stack view --json | jq -r '[.. | objects | .number? | numbers] | unique[]' | xargs -I{} gh pr review {} --approve";
           # Credentials
           # google_cred="export GOOGLE_APPLICATION_CREDENTIALS='~/service-account.json'";
           # avd="cd ~/Library/Android/sdk/emulator/ && ./emulator -avd Pixel_3_API_29";

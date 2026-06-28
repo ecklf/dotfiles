@@ -51,15 +51,15 @@
         # herdr - terminal multiplexer for AI coding agents (binary release)
         herdr = prev.stdenv.mkDerivation rec {
           pname = "herdr";
-          version = "0.6.0";
+          version = "0.7.0";
           src = let
             platform = if prev.stdenv.isDarwin then "macos" else "linux";
             arch = if prev.stdenv.hostPlatform.isAarch64 then "aarch64" else "x86_64";
             hashes = {
-              "macos-aarch64" = "sha256-P7zkCbHcizPYWeVdg66NRQK7VoI5mPM46WDwM+XaQZs=";
-              "macos-x86_64" = "sha256-/QDfPlNzcw8e6AtdppEXWuWyKKosYXIt/L8RNYo8oyg=";
-              "linux-aarch64" = "sha256-vxvTw9mLv9nNT+hk9cfPmhCJpK/GvpByDgmgVTaNRJU=";
-              "linux-x86_64" = "sha256-KDvF/UI7MEcC+NVR/OTLxV47VW0MnmZD6jV3q/SWdKE=";
+              "macos-aarch64" = "sha256-CUbBxd45bRQEkGyByEoM70evXhXJqsPAWMOTa4M/4xE=";
+              "macos-x86_64" = "sha256-bGHNtnx5uNBibhCbnY2GNcZqgL/tIayf5u/fHdjSfA8=";
+              "linux-aarch64" = "sha256-d0B5WcUUwlyHC7zG0qLIb+9bVwHtDHw3dF10EuhWPXI=";
+              "linux-x86_64" = "sha256-rSpdSApOBGCandMKGewHhUV432tfDqkpkkaWO69ANjs=";
             };
           in prev.fetchurl {
             url = "https://github.com/ogulcancelik/herdr/releases/download/v${version}/herdr-${platform}-${arch}";
