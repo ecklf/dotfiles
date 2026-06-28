@@ -7,6 +7,7 @@ keys:
   - &admin_yun age1zzlej3s5qzjpaw83u0we5s89tv8w6s9nnzrs77k27smmrlsy358sg7mtt4
   - &admin_omega age1pqf57azvwh2m0ly9hsk03znfyh8jae59jglt2ygfchsc0rdd7uxq8svg6u
   - &admin_snowflake age1qwq9wqq6k8de2e7mjt4k3739t6anus8huxlp2xh8hwzlsky5tpsq0ujnx2
+  - &admin_kairos age1agtux8spt0pegwdqrwtj3q56tqladzpdseyd00msq9r7kkrnxflqyqw2cj
 creation_rules:
   - path_regex: lib/secrets/[^/]+\.(yaml|yml)$
     key_groups:
@@ -15,10 +16,18 @@ creation_rules:
           - *admin_yun
           - *admin_omega
           - *admin_snowflake
+          - *admin_kairos
   - path_regex: hosts/yun/secrets/[^/]+\.(yaml|yml)$
     key_groups:
       - age:
           - *admin_vc
           - *admin_yun
+          - *admin_omega
+          - *admin_snowflake
+  - path_regex: hosts/kairos/secrets/[^/]+\.(yaml|yml)$
+    key_groups:
+      - age:
+          - *admin_vc
+          - *admin_kairos
           - *admin_omega
           - *admin_snowflake
