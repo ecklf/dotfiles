@@ -1,4 +1,4 @@
-{modulesPath, ...}: {
+{modulesPath, username, ...}: {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
   boot.loader.grub.device = "/dev/vda";
@@ -9,5 +9,17 @@
     fsType = "ext4";
   };
   swapDevices = [{device = "/dev/vda3";}];
+
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      features = {
+        buildkit = true;
+      };
+    };
+  };
+
+  users.users."${username}".extraGroups = ["docker"];
+
   system.stateVersion = "24.05";
 }
