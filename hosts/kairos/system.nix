@@ -1,4 +1,10 @@
-{modulesPath, username, timezone, config, ...}: {
+{
+  modulesPath,
+  username,
+  timezone,
+  config,
+  ...
+}: {
   imports = [(modulesPath + "/profiles/qemu-guest.nix")];
 
   boot.loader.grub.device = "/dev/vda";
@@ -28,7 +34,7 @@
       keyFile = "/home/${username}/.config/sops/age/keys.txt";
       generateKey = true;
     };
-    secrets.acme_yun = {};
+    secrets.acme_kairos = {};
   };
 
   networking.firewall = {
@@ -44,7 +50,7 @@
     };
     certs."xiangji.duckdns.org" = {
       dnsProvider = "duckdns";
-      environmentFile = config.sops.secrets.acme_yun.path;
+      environmentFile = config.sops.secrets.acme_kairos.path;
       dnsPropagationCheck = true;
       extraLegoFlags = ["--cert.timeout" "300"];
     };
