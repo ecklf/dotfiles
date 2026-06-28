@@ -152,7 +152,7 @@
   services.cron = {
     enable = true;
     systemCronJobs = [
-      "0 6,11,18 * * * ${username} /storage/set1/cronjobs/cron.sh >> /storage/set1/cronjobs/cron.log 2>&1"
+      "0 6,11,19 * * * ${username} /storage/set1/cronjobs/cron.sh >> /storage/set1/cronjobs/cron.log 2>&1"
     ];
   };
 
@@ -165,6 +165,8 @@
     pkgs.eza
     pkgs.vim
     pkgs.sops
+    pkgs.master.yt-dlp
+    pkgs.master.jq
   ];
 
   users.users."${username}" = {
