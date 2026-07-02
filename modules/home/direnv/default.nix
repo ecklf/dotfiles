@@ -11,9 +11,7 @@
       };
       whitelist = {
         prefix = [
-          "~/code"
-          "~/projects"
-          "~/work"
+          "~/Developer"
         ];
         exact = [
           "~/.envrc"
