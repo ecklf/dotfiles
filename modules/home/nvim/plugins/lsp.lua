@@ -73,13 +73,6 @@ local function lsp_keymaps(bufnr)
 end
 
 local on_attach = function(client, bufnr)
-	--[[ if client.name == "eslint" then ]]
-	--[[ 	vim.api.nvim_create_autocmd("BufWritePre", { ]]
-	--[[ 		buffer = bufnr, ]]
-	--[[ 		command = "EslintFixAll", ]]
-	--[[ 	}) ]]
-	--[[ end ]]
-
 	if client.name == "rust_analyzer" then
 		pcall(vim.lsp.inlay_hint.enable, true, { bufnr = bufnr })
 	end
@@ -105,13 +98,13 @@ local servers = {
 	"bashls",
 	"biome",
 	"dockerls",
-	"eslint",
 	"gopls",
 	"graphql",
 	"html",
 	"jsonls",
 	"lua_ls",
 	"nixd",
+	"oxlint",
 	"pyright",
 	"rust_analyzer",
 	"stylelint_lsp",
@@ -169,17 +162,6 @@ for _, server in pairs(servers) do
 			},
 		}
 		opts = vim.tbl_deep_extend("force", nixd_opts, opts)
-	end
-
-	if server == "eslint" then
-		local eslint_opts = {
-			settings = {
-				settings = {
-					packageManager = "pnpm",
-				},
-			},
-		}
-		opts = vim.tbl_deep_extend("force", eslint_opts, opts)
 	end
 
 	if server == "lua_ls" then

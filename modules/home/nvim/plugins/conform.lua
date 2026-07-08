@@ -3,18 +3,28 @@ if not conform_status_ok then
 	return
 end
 
-local function biome_or_prettier(bufnr)
-	local biome_json = vim.fs.find({ "biome.json", "biome.jsonc" }, {
+local function has_config(bufnr, names)
+	return vim.fs.find(names, {
 		upward = true,
 		stop = vim.loop.os_homedir(),
 		path = vim.fs.dirname(vim.api.nvim_buf_get_name(bufnr)),
-	})[1]
+	})[1] ~= nil
+end
 
-	if biome_json then
+-- biome for projects configured with it, oxfmt otherwise
+local function biome_or_oxfmt(bufnr)
+	if has_config(bufnr, { "biome.json", "biome.jsonc" }) then
 		return { "biome" }
-	else
-		return { "prettier" }
 	end
+	return { "oxfmt" }
+end
+
+-- prettier by default for filetypes oxfmt doesn't handle
+local function biome_or_prettier(bufnr)
+	if has_config(bufnr, { "biome.json", "biome.jsonc" }) then
+		return { "biome" }
+	end
+	return { "prettier" }
 end
 
 local formatters = {
@@ -22,10 +32,10 @@ local formatters = {
 	css = biome_or_prettier,
 	go = { "goimports", "gofmt" },
 	html = { "prettier" },
-	javascript = biome_or_prettier,
-	javascriptreact = biome_or_prettier,
-	json = biome_or_prettier,
-	jsonc = biome_or_prettier,
+	javascript = biome_or_oxfmt,
+	javascriptreact = biome_or_oxfmt,
+	json = biome_or_oxfmt,
+	jsonc = biome_or_oxfmt,
 	lua = { "stylua" },
 	nix = { "alejandra" },
 	python = { "isort", "black" },
@@ -34,8 +44,8 @@ local formatters = {
 	svelte = biome_or_prettier,
 	terraform = { "terraform_fmt" },
 	toml = { "prettier" },
-	typescript = biome_or_prettier,
-	typescriptreact = biome_or_prettier,
+	typescript = biome_or_oxfmt,
+	typescriptreact = biome_or_oxfmt,
 	vue = biome_or_prettier,
 }
 

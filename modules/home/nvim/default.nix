@@ -139,15 +139,17 @@ in {
       # nodePackages_latest.volar # vue
       # stylelint_lsp
       # yamlls
-      pkgs.master.biome
       pkgs.gopls
       pkgs.master.nixd # nix lsp
       pkgs.alejandra # nix formatter
       pkgs.master.tailwindcss-language-server
       # pkgs.nodePackages_latest."graphql"
       pkgs.master.bash-language-server
+      pkgs.master.biome # fallback for biome-configured projects
       pkgs.master.dockerfile-language-server
-      pkgs.eslint
+      pkgs.master.oxlint # js/ts linter + lsp
+      pkgs.master.oxfmt # js/ts/json formatter
+      pkgs.master.tsgolint # type-aware linting for oxlint
       pkgs.prettier # webdev
       pkgs.stylelint
       pkgs.master.typescript-go # tsgo - Go-based TypeScript language server
