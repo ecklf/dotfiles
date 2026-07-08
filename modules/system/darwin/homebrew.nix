@@ -215,7 +215,6 @@
           "nosql-workbench"
           "obs"
           "orbstack"
-          "pup"
           "rapidapi"
           "safari-technology-preview"
           "utm"
