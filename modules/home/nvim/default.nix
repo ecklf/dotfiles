@@ -145,12 +145,11 @@ in {
       pkgs.master.tailwindcss-language-server
       # pkgs.nodePackages_latest."graphql"
       pkgs.master.bash-language-server
-      pkgs.master.biome # fallback for biome-configured projects
+      pkgs.master.biome # biome-configured projects, astro/svelte
       pkgs.master.dockerfile-language-server
       pkgs.master.oxlint # js/ts linter + lsp
-      pkgs.master.oxfmt # js/ts/json formatter
+      pkgs.master.oxfmt # js/ts/json/html/css/vue/toml formatter
       pkgs.master.tsgolint # type-aware linting for oxlint
-      pkgs.prettier # webdev
       pkgs.stylelint
       pkgs.master.typescript-go # tsgo - Go-based TypeScript language server
       pkgs.vscode-langservers-extracted # html, css, json, eslint

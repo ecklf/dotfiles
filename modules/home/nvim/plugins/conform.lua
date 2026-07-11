@@ -19,19 +19,11 @@ local function biome_or_oxfmt(bufnr)
 	return { "oxfmt" }
 end
 
--- prettier by default for filetypes oxfmt doesn't handle
-local function biome_or_prettier(bufnr)
-	if has_config(bufnr, { "biome.json", "biome.jsonc" }) then
-		return { "biome" }
-	end
-	return { "prettier" }
-end
-
 local formatters = {
-	astro = biome_or_prettier,
-	css = biome_or_prettier,
+	astro = { "biome" },
+	css = biome_or_oxfmt,
 	go = { "goimports", "gofmt" },
-	html = { "prettier" },
+	html = biome_or_oxfmt,
 	javascript = biome_or_oxfmt,
 	javascriptreact = biome_or_oxfmt,
 	json = biome_or_oxfmt,
@@ -41,12 +33,12 @@ local formatters = {
 	python = { "isort", "black" },
 	rust = { "rustfmt" },
 	sh = { "shfmt" },
-	svelte = biome_or_prettier,
+	svelte = { "biome" },
 	terraform = { "terraform_fmt" },
-	toml = { "prettier" },
+	toml = { "oxfmt" },
 	typescript = biome_or_oxfmt,
 	typescriptreact = biome_or_oxfmt,
-	vue = biome_or_prettier,
+	vue = biome_or_oxfmt,
 }
 
 conform.setup({
