@@ -184,7 +184,7 @@ in {
           pkgs.ntfy # Utility for sending notifications, on demand and when commands finish
           # Development
           pkgs.cargo-nextest # Next-generation test runner for Rust projects
-          pkgs.cargo-watch # A Cargo subcommand for watching over Cargo project's source
+          # pkgs.master.cargo-watch # A Cargo subcommand for watching over Cargo project's source
           pkgs.cargo-zigbuild # A tool to compile Cargo projects with zig as the linker
           pkgs.cargo-binstall # A Cargo subcommand to install Rust binaries
           pkgs.cargo-binutils # Cargo integration for LLVM's binary utilities
@@ -248,7 +248,7 @@ in {
           # pkgs.btop # Managed by programs.btop
           pkgs.frp # A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet
           pkgs.glances # Cross-platform curses-based monitoring tool
-          pkgs.httpstat # curl statistics made simple
+          # pkgs.master.httpstat # curl statistics made simple
           pkgs.hyperfine # Command-line benchmarking tool
           pkgs.wrk # A HTTP benchmarking tool
           pkgs.inetutils # Collection of common network programs
@@ -332,7 +332,7 @@ in {
           pkgs.codex # OpenAI Codex CLI
           pkgs.master.opencode # Open source AI coding assistant
           pkgs.master.pi-coding-agent # Minimal terminal coding harness.
-          pkgs.crush # AI coding assistant
+          # pkgs.crush # AI coding assistant
           pkgs.worktrunk # AI coding assistant
           pkgs.herdr # Terminal multiplexer for AI coding agents
         ]
