@@ -11,8 +11,8 @@
       pkgs.gcc # GNU Compiler Collection
       pkgs.pkg-config # Tool that allows packages to find out information about other packages
       pkgs.openssl # Cryptographic library that implements the SSL and TLS protocols
-      pkgs.immich
-      pkgs.immich-cli
+      pkgs.master.immich
+      pkgs.master.immich-cli
       pkgs.master.yt-dlp
       pkgs.master.gallery-dl
       pkgs.ffmpeg
