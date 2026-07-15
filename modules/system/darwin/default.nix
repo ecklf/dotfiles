@@ -185,13 +185,39 @@
           };
           "com.apple.symbolichotkeys" = {
             AppleSymbolicHotKeys = {
-              # Disable 'Cmd + Space' for Spotlight Search
-              "64" = {
-                enabled = false;
+              "28" = {
+                enabled = false; # Screenshots: disable 'Shift + Cmd + 3' (save picture of screen as a file)
               };
-              # Disable 'Cmd + Alt + Space' for Finder search window
+              "29" = {
+                enabled = false; # Screenshots: disable 'Ctrl + Shift + Cmd + 3' (copy picture of screen to clipboard)
+              };
+              "30" = {
+                enabled = false; # Screenshots: disable 'Shift + Cmd + 4' (save picture of selected area as a file)
+              };
+              "31" = {
+                enabled = false; # Screenshots: disable 'Ctrl + Shift + Cmd + 4' (copy picture of selected area to clipboard)
+              };
+              "60" = {
+                # Set 'Alt + Space' for 'Select the previous input source'
+                enabled = true;
+                value = {
+                  # parameters: [ ascii-code, key-code, modifier-flags ]
+                  parameters = [
+                    32 # space character
+                    49 # space key
+                    524288 # option
+                  ];
+                  type = "standard";
+                };
+              };
+              "64" = {
+                enabled = false; # Disable 'Cmd + Space' for Spotlight Search
+              };
               "65" = {
-                enabled = false;
+                enabled = false; # Disable 'Cmd + Alt + Space' for Finder search window
+              };
+              "184" = {
+                enabled = false; # Screenshots: disable 'Shift + Cmd + 5' (screenshot and recording options)
               };
             };
           };

@@ -163,9 +163,18 @@
         }
       );
       taps = [
-        "ecklf/tap"
-        "steipete/tap"
-        "datadog-labs/pack"
+        {
+          name = "ecklf/tap";
+          trusted = true;
+        }
+        {
+          name = "steipete/tap";
+          trusted = true;
+        }
+        {
+          name = "datadog-labs/pack";
+          trusted = true;
+        }
       ];
       # Ideally leave this empty and only use nix to manage this
       brews = let
@@ -215,7 +224,6 @@
           "nosql-workbench"
           "obs"
           "orbstack"
-          "pup"
           "rapidapi"
           "safari-technology-preview"
           "utm"
