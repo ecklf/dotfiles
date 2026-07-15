@@ -145,6 +145,7 @@
           # "Couverture" = 1552415914; looks like it sunset
           "System Color Picker" = 1545870783;
           "Gifski" = 1351639930;
+          "TestFlight" = 899247664;
           "Xcode" = 497799835;
         }
         // lib.optionalAttrs config.homebrewModules.messenger {
