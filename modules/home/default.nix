@@ -248,7 +248,13 @@ in {
           # pkgs.btop # Managed by programs.btop
           pkgs.frp # A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet
           pkgs.glances # Cross-platform curses-based monitoring tool
-          # pkgs.master.httpstat # curl statistics made simple
+          (pkgs.master.httpstat.overrideAttrs (old: {
+            postPatch = (old.postPatch or "") + ''
+              substituteInPlace setup.py --replace-fail \
+                'ast.parse(line).body[0].value.s' \
+                'ast.parse(line).body[0].value.value'
+            '';
+          })) # curl statistics made simple
           pkgs.hyperfine # Command-line benchmarking tool
           pkgs.wrk # A HTTP benchmarking tool
           pkgs.inetutils # Collection of common network programs
