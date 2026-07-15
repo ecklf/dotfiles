@@ -1,5 +1,6 @@
-escription: Ask me questions about the implementation.
+---
+description: Ask me questions about the implementation
 agent: plan
 ---
 
-review this branch implementation and decisions. then, use the "question" tool to ask me questions about the implementation, so we can decide whether we did the right thing. make sure the questions are not trivial and the answers aren't either. you are a principal engineer talking to another principal engineer about this feature. you must use the question tool
+Review this branch's implementation and its underlying decisions. Then use the `question` tool to ask me substantive questions about the implementation so we can determine whether we made the right choices. Avoid questions with trivial or obvious answers. Approach the discussion as a principal engineer speaking with another principal engineer about the feature. You must use the `question` tool.
