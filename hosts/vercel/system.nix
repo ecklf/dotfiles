@@ -24,6 +24,7 @@ in {
     extraBrews = [
       "datadog-labs/pack/pup"
     ];
+    extraCasks = ["android-studio"];
     extraApps = {
       "Okta Verify" = 490179405;
       "NordLayer" = 1488888843;
