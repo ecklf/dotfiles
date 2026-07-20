@@ -4,6 +4,12 @@ description: Create or update the pull request for the current branch
 
 Upsert the GitHub pull request for the current branch.
 
+Arguments: $ARGUMENTS
+
+If the arguments contain a PR URL, skip the branch detection steps below. Fetch that PR with `gh pr view`, analyze its commits and complete diff against its base branch, generate a new body using the exact format below, and update only the PR body with `gh pr edit`. Do not change its draft state, title, base, or head branch. Report the PR URL and that it was updated.
+
+Otherwise:
+
 1. Determine the current branch, its GitHub remote, and the base branch. Prefer `main`, then `master`, checking remote branches rather than assuming either exists.
 2. Use the `gh` CLI to check whether a pull request already exists for the current repository and head branch. Check all PR states so an existing PR is not duplicated.
 3. If a PR exists:
@@ -19,16 +25,18 @@ Upsert the GitHub pull request for the current branch.
    - Report the PR URL.
 6. If the remote branch does not exist:
    - Inspect the working tree and commits that have not been pushed.
-   - Ask the user for confirmation before committing, pushing, or creating the PR. State which actions are needed; do not perform any of them before confirmation.
+   - Ask the user for confirmation before committing, pushing, or creating the PR. State which actions are needed and do not perform any of them before confirmation.
    - If confirmed, commit only the intended changes when a commit is needed, push the current branch, and create a draft PR as described above.
 
 Write the PR body to a temporary file and pass it to `gh` with `--body-file` so Markdown formatting is preserved. Remove the temporary file afterward.
+
+Never use semicolons or em-dashes in the PR title or body.
 
 Use this exact PR body format:
 
 ## TLDR
 
-Short and concise summary of the change. As the title implies, this is a "too long; didn't read" summary.
+Short and concise summary of the change. As the title implies, this is a "too long, didn't read" summary.
 
 ## Problem
 
