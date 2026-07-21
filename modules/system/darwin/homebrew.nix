@@ -199,7 +199,7 @@
           "ghostty"
           "cmux"
           "iina"
-          "jordanbaird-ice"
+          "thaw"
           "keka"
           "ledger-wallet"
           "obsidian"
