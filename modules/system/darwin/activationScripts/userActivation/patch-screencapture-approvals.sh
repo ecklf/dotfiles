@@ -3,6 +3,7 @@ screenCaptureApps=(
   "/Applications/CleanShot X.app/Contents/MacOS/CleanShot X"
   "/Applications/zoom.us.app/Contents/MacOS/zoom.us"
   "/Applications/Slack.app/Contents/MacOS/Slack"
+  "/Applications/Thaw.app/Contents/MacOS/Thaw"
 )
 
 for app in "${screenCaptureApps[@]}"; do
