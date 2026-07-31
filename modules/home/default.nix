@@ -111,6 +111,7 @@ in {
         {
           ".config/ghostty/config".source = ./config/ghostty/config;
           ".config/ghostty/themes".source = ./config/ghostty/themes;
+          ".config/opencode/AGENTS.md".source = ./config/opencode/AGENTS.md;
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/opencode/plugins".source = ./config/opencode/plugins;
           ".config/opencode/commands".source = ./config/opencode/commands;
