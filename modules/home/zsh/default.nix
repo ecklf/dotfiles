@@ -122,7 +122,7 @@ in {
           }
 
           npm() {
-            if [[ "$1" == "publish" ]]; then
+            if [[ "$1" == "publish" || "$1" == "login" ]]; then
               command npm "$@" --registry=https://registry.npmjs.org/
             else
               command npm "$@"
