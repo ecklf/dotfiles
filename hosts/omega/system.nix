@@ -21,6 +21,6 @@ in {
     modelling = true;
     ai = true;
     embedded = true;
-    extraCasks = ["chatgpt"];
+    extraCasks = ["chatgpt" "recommand"];
   };
 }
