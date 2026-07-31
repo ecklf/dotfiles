@@ -7,6 +7,17 @@
 }: let
   cfg = config.homelab.vnc;
 
+  vncSchemas = pkgs.runCommand "vnc-gsettings-schemas" {} ''
+    schemaDir="$out/share/glib-2.0/schemas"
+    mkdir -p "$schemaDir"
+    cp ${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}/glib-2.0/schemas/*.xml "$schemaDir"
+    cp ${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}/glib-2.0/schemas/*.xml "$schemaDir"
+    ${pkgs.glib.dev}/bin/glib-compile-schemas "$schemaDir"
+  '';
+
+  schemaDir = "${vncSchemas}/share/glib-2.0/schemas";
+  dataDirs = "/run/current-system/sw/share:/home/${username}/.local/share:/usr/local/share:/usr/share";
+
   # Create a wrapper script that starts Xvnc directly
   #
   # Default VNC password is "clawdbot". Change it after first login with:
@@ -15,11 +26,12 @@
   vncStartScript = pkgs.writeShellScript "vnc-start" ''
     export HOME="/home/${username}"
     export DISPLAY=:${toString cfg.display}
+    export DESKTOP_SESSION=xfce
+    export XDG_CURRENT_DESKTOP=XFCE
+    export XDG_SESSION_DESKTOP=xfce
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export PATH="/run/current-system/sw/bin:$PATH"
-    export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:/run/current-system/sw/share:$HOME/.local/share:/usr/local/share:/usr/share"
-    export XDG_CONFIG_DIRS="/run/current-system/sw/etc/xdg:/etc/xdg"
 
     # Create VNC directory
     mkdir -p "$HOME/.vnc"
@@ -54,9 +66,10 @@
       sleep 0.1
     done
 
-    # Start dbus session
-    eval $(${pkgs.dbus}/bin/dbus-launch --sh-syntax)
+    # Start a session bus and propagate the VNC environment to activated services.
+    eval "$(${pkgs.dbus}/bin/dbus-launch --sh-syntax --exit-with-session)"
     export DBUS_SESSION_BUS_ADDRESS
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --all
 
     # Start XFCE session
     exec startxfce4
@@ -94,6 +107,18 @@ in {
       after = ["network.target" "dbus.service"];
       wants = ["dbus.service"];
       wantedBy = ["multi-user.target"];
+
+      environment = {
+        DESKTOP_SESSION = "xfce";
+        DISPLAY = ":${toString cfg.display}";
+        GSETTINGS_SCHEMA_DIR = schemaDir;
+        HOME = "/home/${username}";
+        XDG_CONFIG_DIRS = "/run/current-system/sw/etc/xdg:/etc/xdg";
+        XDG_CURRENT_DESKTOP = "XFCE";
+        XDG_DATA_DIRS = dataDirs;
+        XDG_SESSION_DESKTOP = "xfce";
+        XDG_SESSION_TYPE = "x11";
+      };
 
       serviceConfig = {
         Type = "simple";
