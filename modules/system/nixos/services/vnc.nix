@@ -18,7 +18,7 @@
     export XDG_SESSION_TYPE=x11
     export XDG_RUNTIME_DIR="/run/user/$(id -u)"
     export PATH="/run/current-system/sw/bin:$PATH"
-    export XDG_DATA_DIRS="/run/current-system/sw/share:$HOME/.local/share:/usr/local/share:/usr/share"
+    export XDG_DATA_DIRS="${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}:${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}:/run/current-system/sw/share:$HOME/.local/share:/usr/local/share:/usr/share"
     export XDG_CONFIG_DIRS="/run/current-system/sw/etc/xdg:/etc/xdg"
 
     # Create VNC directory
