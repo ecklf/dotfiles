@@ -121,6 +121,14 @@ in {
             command curl "cheat.sh/$1"
           }
 
+          npm() {
+            if [[ "$1" == "publish" ]]; then
+              command npm "$@" --registry=https://registry.npmjs.org/
+            else
+              command npm "$@"
+            fi
+          }
+
           function nfu() {
             input=$(nix flake metadata --json | nix run nixpkgs#jq ".locks.nodes.root.inputs[]" | sed "s/\"//g" | nix run nixpkgs#fzf)
             nix flake update "$input"
