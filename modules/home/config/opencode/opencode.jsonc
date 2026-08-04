@@ -24,6 +24,12 @@
   },
   // Auth with `opencode mcp auth name`
   "mcp": {
+    "notion": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://mcp.notion.com/mcp",
+      "oauth": {},
+    },
     "linear": {
       "enabled": false,
       "type": "remote",
@@ -54,7 +60,7 @@
         "npx",
         "-y",
         "@modelcontextprotocol/server-filesystem",
-        "/tmp",
+        "/tmp"
       ],
     },
     "memory": {
