@@ -48,4 +48,6 @@ A concise description of how the changes solve the problem, including important 
 
 ## Testing
 
-How reviewers can verify the change. Clearly state when tests were not run or when no automated tests exist.
+How reviewers can verify the change. E.g. How to deploy this change to Vercel. Which flag do I have to enable / which build `-b` flag do I have to use.
+If your only contribution is adding passing linter checks, then omit this section entirely.
+Clearly state when tests were not run or when no automated tests exist.
