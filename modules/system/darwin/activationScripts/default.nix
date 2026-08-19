@@ -5,7 +5,7 @@
   username,
   ...
 }: let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
   userActivationScriptsPath = ./userActivation;
 in {
   options.activationScriptModules = lib.mkOption {

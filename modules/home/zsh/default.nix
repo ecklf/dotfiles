@@ -5,7 +5,7 @@
   hostname,
   ...
 }: let
-  inherit (pkgs.stdenv) isDarwin;
+  inherit (pkgs.stdenv.hostPlatform) isDarwin;
 in {
   home.sessionPath = [
     "$PNPM_HOME"
