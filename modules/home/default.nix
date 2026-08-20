@@ -272,7 +272,7 @@ in {
           pkgs.graphicsmagick # Swiss army knife of image processing
           pkgs.imagemagick # A software suite to create, edit, compose, or convert bitmap images
           pkgs.libavif # C implementation of the AV1 Image File Format
-          pkgs.master.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
+          pkgs.yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
           pkgs.psutils # Collection of useful utilities for manipulating PS documents
           # Nix
           pkgs.nixos-anywhere # NixOS installer for any Linux distribution
