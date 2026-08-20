@@ -22,6 +22,16 @@
     "bash": "allow",
     "grep": "allow",
   },
+  // V1 syntax; OpenCode 2 migrates this internally to providers.vercel.settings.
+  "provider": {
+    "vercel": {
+      "options": {
+        "gateway": {
+          "caching": "auto",
+        },
+      },
+    },
+  },
   // Auth with `opencode mcp auth name`
   "mcp": {
     "notion": {

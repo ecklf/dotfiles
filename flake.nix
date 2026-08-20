@@ -86,6 +86,58 @@
             mainProgram = "herdr";
           };
         };
+        # OpenCode 2 beta (official native npm release)
+        opencode2 = prev.stdenv.mkDerivation rec {
+          pname = "opencode2";
+          version = "0.0.0-beta-17728";
+          src = let
+            platform =
+              if prev.stdenv.hostPlatform.isDarwin
+              then "darwin"
+              else "linux";
+            arch =
+              if prev.stdenv.hostPlatform.isAarch64
+              then "arm64"
+              else "x64";
+            artifact = "${platform}-${arch}${prev.lib.optionalString prev.stdenv.hostPlatform.isx86_64 "-baseline"}";
+            hashes = {
+              "darwin-arm64" = "sha512-yFu3fqgCnnAqeRX711nCw+Tuaaqo4o2D2zT8h87+Mq1L5Wg9lQm7OvhNg3bfsxlb8iJnOIC88oBEt/8jvOyNnw==";
+              "darwin-x64-baseline" = "sha512-H67AQETaxKmDu5M4Hf4z1Z9f2Y19rhfVZEF2+g6vTg/WzNrm1AkwucsMGA9lX3jrHr2HChyRJm3Y/bSuii5Q0Q==";
+              "linux-arm64" = "sha512-hmvzVlSOwrqQRbuh9s0YRXXuD/a2kmppeFUcw2Pnv79GmC47RIX5Y1h0U3bxlzKWiXjChkNjg2rJeK9H41RDiA==";
+              "linux-x64-baseline" = "sha512-t//PyToyGND5IxIqUUL9W21GztZXdsbJDJ6dD18fQpJyRittN0nyNetIjV+CoG7eHQQ1qlx4Fw28CDt/2A6IgQ==";
+            };
+          in
+            prev.fetchurl {
+              url = "https://registry.npmjs.org/@opencode-ai/cli-${artifact}/-/cli-${artifact}-${version}.tgz";
+              hash = hashes.${artifact};
+            };
+          sourceRoot = "package";
+          nativeBuildInputs = prev.lib.optionals prev.stdenv.hostPlatform.isLinux [
+            prev.autoPatchelfHook
+          ];
+          buildInputs = prev.lib.optionals prev.stdenv.hostPlatform.isLinux [
+            prev.stdenv.cc.cc.lib
+          ];
+          installPhase = ''
+            runHook preInstall
+            install -Dm755 bin/opencode2 $out/bin/opencode2
+            runHook postInstall
+          '';
+          # Preserve the upstream Developer ID signature on macOS.
+          dontStrip = true;
+          meta = with prev.lib; {
+            description = "OpenCode 2.0 preview command line interface";
+            homepage = "https://opencode.ai/v2/docs";
+            license = licenses.mit;
+            platforms = [
+              "aarch64-darwin"
+              "x86_64-darwin"
+              "aarch64-linux"
+              "x86_64-linux"
+            ];
+            mainProgram = "opencode2";
+          };
+        };
       })
       (final: prev: {
         # Disable nushell tests - SHLVL tests fail in Nix sandbox

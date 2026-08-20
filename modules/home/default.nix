@@ -310,6 +310,7 @@ in {
           pkgs.master.claude-code # Claude AI coding assistant
           pkgs.codex # OpenAI Codex CLI
           pkgs.master.opencode # Open source AI coding assistant
+          pkgs.opencode2 # OpenCode 2 beta
           pkgs.master.pi-coding-agent # Minimal terminal coding harness.
           pkgs.worktrunk # AI coding assistant
           pkgs.master.herdr # Terminal multiplexer for AI coding agents
