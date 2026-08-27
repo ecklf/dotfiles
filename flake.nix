@@ -48,48 +48,10 @@
     # Shared overlays for both Darwin and NixOS
     overlays = [
       (final: prev: {
-        # herdr - terminal multiplexer for AI coding agents (binary release)
-        herdr = prev.stdenv.mkDerivation rec {
-          pname = "herdr";
-          version = "0.7.0";
-          src = let
-            platform =
-              if prev.stdenv.hostPlatform.isDarwin
-              then "macos"
-              else "linux";
-            arch =
-              if prev.stdenv.hostPlatform.isAarch64
-              then "aarch64"
-              else "x86_64";
-            hashes = {
-              "macos-aarch64" = "sha256-CUbBxd45bRQEkGyByEoM70evXhXJqsPAWMOTa4M/4xE=";
-              "macos-x86_64" = "sha256-bGHNtnx5uNBibhCbnY2GNcZqgL/tIayf5u/fHdjSfA8=";
-              "linux-aarch64" = "sha256-d0B5WcUUwlyHC7zG0qLIb+9bVwHtDHw3dF10EuhWPXI=";
-              "linux-x86_64" = "sha256-rSpdSApOBGCandMKGewHhUV432tfDqkpkkaWO69ANjs=";
-            };
-          in
-            prev.fetchurl {
-              url = "https://github.com/ogulcancelik/herdr/releases/download/v${version}/herdr-${platform}-${arch}";
-              hash = hashes."${platform}-${arch}";
-            };
-          dontUnpack = true;
-          installPhase = ''
-            mkdir -p $out/bin
-            cp $src $out/bin/herdr
-            chmod +x $out/bin/herdr
-          '';
-          meta = with prev.lib; {
-            description = "Terminal multiplexer for AI coding agents";
-            homepage = "https://herdr.dev";
-            license = licenses.agpl3Only;
-            platforms = platforms.unix;
-            mainProgram = "herdr";
-          };
-        };
         # OpenCode 2 beta (official native npm release)
         opencode2 = prev.stdenv.mkDerivation rec {
           pname = "opencode2";
-          version = "0.0.0-beta-17728";
+          version = "0.0.0-beta-18371";
           src = let
             platform =
               if prev.stdenv.hostPlatform.isDarwin
@@ -101,10 +63,10 @@
               else "x64";
             artifact = "${platform}-${arch}${prev.lib.optionalString prev.stdenv.hostPlatform.isx86_64 "-baseline"}";
             hashes = {
-              "darwin-arm64" = "sha512-yFu3fqgCnnAqeRX711nCw+Tuaaqo4o2D2zT8h87+Mq1L5Wg9lQm7OvhNg3bfsxlb8iJnOIC88oBEt/8jvOyNnw==";
-              "darwin-x64-baseline" = "sha512-H67AQETaxKmDu5M4Hf4z1Z9f2Y19rhfVZEF2+g6vTg/WzNrm1AkwucsMGA9lX3jrHr2HChyRJm3Y/bSuii5Q0Q==";
-              "linux-arm64" = "sha512-hmvzVlSOwrqQRbuh9s0YRXXuD/a2kmppeFUcw2Pnv79GmC47RIX5Y1h0U3bxlzKWiXjChkNjg2rJeK9H41RDiA==";
-              "linux-x64-baseline" = "sha512-t//PyToyGND5IxIqUUL9W21GztZXdsbJDJ6dD18fQpJyRittN0nyNetIjV+CoG7eHQQ1qlx4Fw28CDt/2A6IgQ==";
+              "darwin-arm64" = "sha512-QtBO/43762g4GPo9FLUIdzXE8fVLQRKGcibTtEf4B52ZbOPzewzsfcvR5hxwx4iQwApDZmygODcRzYQzOf+Sfg==";
+              "darwin-x64-baseline" = "sha512-VClxPPVecbowwid2q4iASFQrE5t5CrLNTS7sYCNi41ODMqRLANLix7oXLES6zw+yyC4uGOdh+jFa56bfI2wAUQ==";
+              "linux-arm64" = "sha512-gkF1A+xGBpXmMemYY3zi8Gw6FuNQ0Y9bGlWjvLjrzm28j1PvDof9JrPYayhhY/7o/kLpPPXy2w+49AhcTiJLwA==";
+              "linux-x64-baseline" = "sha512-w9YlaCauY9eSxVrcyhfxfXbL336EgSW/XKyIOcIvl/+nEL+bx07MmInsxJpCFgvPmxaLfo+MXKgNxogunBjvyg==";
             };
           in
             prev.fetchurl {
