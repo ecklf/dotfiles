@@ -253,9 +253,9 @@
           "veracrypt"
         ]
         ++ lib.optional config.homebrewModules.monitor [
-          "logi-options+"
           "monitorcontrol"
           "notchnook"
+          "openlogi"
         ]
         ++ lib.optional config.homebrewModules.personal [
           "codexbar"
@@ -311,6 +311,7 @@
         ]
         ++ lib.optional config.homebrewModules.ai [
           "comfy"
+          "grok-bot"
         ]
         ++ lib.optional config.homebrewModules.embedded [
           "raspberry-pi-imager"
