@@ -1,0 +1,101 @@
+# Keep Herdr's controls and presentation aligned with the tmux configuration.
+onboarding = false
+
+[terminal]
+default_shell = "zsh"
+shell_mode = "auto"
+new_cwd = "follow"
+
+[keys]
+prefix = "ctrl+b"
+
+# Session/workspace management.
+settings = "prefix+comma"
+workspace_picker = "prefix+s"
+goto = "prefix+w"
+new_workspace = "prefix+shift+s"
+close_workspace = "prefix+shift+x"
+reload_config = "prefix+r"
+
+# Tabs correspond to tmux windows.
+new_tab = "prefix+c"
+close_tab = "prefix+shift+c"
+previous_tab = ["alt+[", "f5"]
+next_tab = ["alt+]", "f6"]
+
+# Pane creation and navigation.
+split_horizontal = "prefix+\""
+split_vertical = "prefix+|"
+focus_pane_left = "prefix+h"
+focus_pane_down = "prefix+j"
+focus_pane_up = "prefix+k"
+focus_pane_right = "prefix+l"
+zoom = "prefix+z"
+
+# Match tmux's prefix+HJKL and direct Ctrl+Shift+HJKL resizing.
+resize_mode = "prefix+shift+r"
+resize_pane_left = ["prefix+shift+h", "ctrl+shift+h"]
+resize_pane_down = ["prefix+shift+j", "ctrl+shift+j"]
+resize_pane_up = ["prefix+shift+k", "ctrl+shift+k"]
+resize_pane_right = ["prefix+shift+l", "ctrl+shift+l"]
+swap_pane_left = "prefix+alt+h"
+swap_pane_down = "prefix+alt+j"
+swap_pane_up = "prefix+alt+k"
+swap_pane_right = "prefix+alt+l"
+
+[[keys.command]]
+key = "prefix+t"
+type = "popup"
+command = "exec \"${SHELL:-sh}\""
+description = "open scratch terminal"
+width = "80%"
+height = "80%"
+
+[[keys.command]]
+key = "prefix+g"
+type = "popup"
+command = "lazygit"
+description = "run lazygit"
+width = "80%"
+height = "80%"
+
+[theme]
+name = "kanagawa"
+
+[theme.custom]
+panel_bg = "#14171d"
+sidebar_bg = "#14171d"
+active_row_bg = "#24262d"
+selection_bg = "#24262d"
+surface0 = "#24262d"
+surface1 = "#5c5c5c"
+surface_dim = "#090e13"
+overlay0 = "#a4a7a4"
+overlay1 = "#c5c9c7"
+text = "#c5c9c7"
+subtext0 = "#a4a7a4"
+accent = "#8ba4b0"
+red = "#c4746e"
+green = "#8a9a7b"
+yellow = "#c4b28a"
+blue = "#8ba4b0"
+teal = "#8ea4a2"
+mauve = "#a292a3"
+
+[ui]
+mouse_capture = true
+prompt_new_tab_name = false
+prompt_new_workspace_name = true
+pane_outer_borders = false
+pane_scrollbars = false
+pane_gaps = false
+tab_bar_position = "bottom"
+tab_bar_right = [
+  { type = "zoom" },
+  { type = "hostname" },
+  { type = "datetime", format = "%Y-%m-%d %H:%M" },
+]
+tab_bar_right_separator = " "
+
+[advanced]
+scrollback_limit_bytes = 50000000

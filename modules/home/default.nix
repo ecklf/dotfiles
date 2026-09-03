@@ -105,7 +105,9 @@ in {
           GSETTINGS_SCHEMA_DIR = "/opt/homebrew/share/glib-2.0/schemas";
         };
       file =
-        {}
+        {
+          ".config/herdr/config.toml".source = ./config/herdr/config.toml;
+        }
         // lib.optionalAttrs
         isDarwin
         {
