@@ -1,7 +1,7 @@
-# Keep Herdr's controls and presentation aligned with the tmux configuration.
 onboarding = false
 
 [terminal]
+# Default: use $SHELL, then /bin/sh. Always start zsh instead.
 default_shell = "zsh"
 shell_mode = "auto"
 new_cwd = "follow"
@@ -9,7 +9,8 @@ new_cwd = "follow"
 [keys]
 prefix = "ctrl+b"
 
-# Session/workspace management.
+# Defaults: settings=s, picker=w, goto=g, new=Shift-n, close=Shift-d,
+# reload=Shift-r. These follow the tmux session bindings instead.
 settings = "prefix+comma"
 workspace_picker = "prefix+s"
 goto = "prefix+w"
@@ -18,14 +19,19 @@ close_workspace = "prefix+shift+x"
 reload_config = "prefix+r"
 
 # Tabs correspond to tmux windows.
+# New tab remains the default prefix+c binding.
 new_tab = "prefix+c"
+# Default close is prefix+Shift-x; move it to avoid the workspace-close binding.
 close_tab = "prefix+shift+c"
+# Defaults use prefix+p/n. Match tmux's direct Alt brackets and F5/F6 instead.
 previous_tab = ["alt+[", "f5"]
 next_tab = ["alt+]", "f6"]
 
 # Pane creation and navigation.
+# Defaults split with prefix+minus and prefix+v; tmux uses quote and pipe.
 split_horizontal = "prefix+\""
 split_vertical = "prefix+|"
+# Herdr's default vim navigation and zoom bindings already match tmux.
 focus_pane_left = "prefix+h"
 focus_pane_down = "prefix+j"
 focus_pane_up = "prefix+k"
@@ -33,6 +39,8 @@ focus_pane_right = "prefix+l"
 zoom = "prefix+z"
 
 # Match tmux's prefix+HJKL and direct Ctrl+Shift+HJKL resizing.
+# Directional resize bindings are unset by default. Resize mode normally uses
+# prefix+r, and pane swapping normally occupies prefix+Shift+HJKL.
 resize_mode = "prefix+shift+r"
 resize_pane_left = ["prefix+shift+h", "ctrl+shift+h"]
 resize_pane_down = ["prefix+shift+j", "ctrl+shift+j"]
@@ -43,6 +51,7 @@ swap_pane_down = "prefix+alt+j"
 swap_pane_up = "prefix+alt+k"
 swap_pane_right = "prefix+alt+l"
 
+# Custom commands have no default bindings. These mirror the tmux popups.
 [[keys.command]]
 key = "prefix+t"
 type = "popup"
@@ -59,9 +68,11 @@ description = "run lazygit"
 width = "80%"
 height = "80%"
 
+# Default: catppuccin. Use Kanagawa as the closest built-in Kanso base.
 [theme]
 name = "kanagawa"
 
+# Override the built-in palette with the Kanso Ink colors used by tmux.
 [theme.custom]
 panel_bg = "#14171d"
 sidebar_bg = "#14171d"
@@ -84,11 +95,16 @@ mauve = "#a292a3"
 
 [ui]
 mouse_capture = true
+# Defaults: prompt for tab names, but not workspace names. tmux creates windows
+# immediately and prompts when creating a named session.
 prompt_new_tab_name = false
 prompt_new_workspace_name = true
+# Defaults enable outer borders, scrollbars, and pane gaps. Disable them for
+# tmux-style shared internal dividers.
 pane_outer_borders = false
 pane_scrollbars = false
 pane_gaps = false
+# Default: top tab bar with no right-side status entries.
 tab_bar_position = "bottom"
 tab_bar_right = [
   { type = "zoom" },
@@ -98,4 +114,5 @@ tab_bar_right = [
 tab_bar_right_separator = " "
 
 [advanced]
+# Default: 10 MB. Raise this to approximate tmux's 50,000-line history limit.
 scrollback_limit_bytes = 50000000
