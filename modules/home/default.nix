@@ -113,7 +113,7 @@ in {
           ".config/ghostty/themes".source = ./config/ghostty/themes;
           ".config/opencode/AGENTS.md".source = ./config/opencode/AGENTS.md;
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
-          ".config/opencode/plugins".source = ./config/opencode/plugins;
+          ".config/opencode/plugins/notification.js".source = ./config/opencode/plugins/notification.js;
           ".config/opencode/commands".source = ./config/opencode/commands;
           ".pi/agent/settings.json".source = ./config/pi/agent/settings.json;
           ".pi/agent/keybindings.json".source = ./config/pi/agent/keybindings.json;
