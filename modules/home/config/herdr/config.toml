@@ -32,11 +32,11 @@ next_tab = ["alt+]", "f6"]
 # Defaults split with prefix+minus and prefix+v; tmux uses quote and pipe.
 split_horizontal = "prefix+\""
 split_vertical = "prefix+|"
-# Herdr's default vim navigation and zoom bindings already match tmux.
-focus_pane_left = "prefix+h"
-focus_pane_down = "prefix+j"
-focus_pane_up = "prefix+k"
-focus_pane_right = "prefix+l"
+# Match tmux's prefix navigation and vim-tmux-navigator's direct Ctrl+hjkl.
+focus_pane_left = ["prefix+h", "ctrl+h"]
+focus_pane_down = ["prefix+j", "ctrl+j"]
+focus_pane_up = ["prefix+k", "ctrl+k"]
+focus_pane_right = ["prefix+l", "ctrl+l"]
 zoom = "prefix+z"
 
 # Match tmux's prefix+HJKL and direct Ctrl+Shift+HJKL resizing.
