@@ -128,6 +128,12 @@ in {
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
         };
 
+      activation = lib.optionalAttrs config.home.modules.ai {
+        linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
+          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${pkgs.vimPlugins.smart-splits-nvim}
+        '';
+      };
+
       packages = lib.flatten (
         config.home.modules.extraPackages
         ++ lib.optional isDarwin [

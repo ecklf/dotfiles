@@ -278,9 +278,21 @@ in {
       }
       # Detect tabstop and shiftwidth automatically
       vim-sleuth
-      # Seamless navigation between tmux panes and vim splits
-      # Uses Ctrl+hjkl by default
-      vim-tmux-navigator
+      {
+        # Seamless navigation between Neovim splits and tmux/Herdr panes.
+        plugin = smart-splits-nvim;
+        type = "lua";
+        config = ''
+          local smart_splits = require("smart-splits")
+
+          smart_splits.setup({ at_edge = "stop" })
+
+          vim.keymap.set("n", "<C-h>", smart_splits.move_cursor_left, { desc = "Move to the left split" })
+          vim.keymap.set("n", "<C-j>", smart_splits.move_cursor_down, { desc = "Move to the split below" })
+          vim.keymap.set("n", "<C-k>", smart_splits.move_cursor_up, { desc = "Move to the split above" })
+          vim.keymap.set("n", "<C-l>", smart_splits.move_cursor_right, { desc = "Move to the right split" })
+        '';
+      }
       # -- Highlight, list and search todo comments in your projects
       # -- use {
       # -- "folke/todo-comments.nvim",
