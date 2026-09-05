@@ -130,8 +130,6 @@
           "Cursor Pro" = 1447043133;
           "Dato" = 1470584107;
           "GoodNotes 6: AI Notes & Docs" = 1444383602;
-          "Keystroke Pro" = 1572206224;
-          "Mirror Magnet" = 1563698880;
           "Keynote" = 361285480;
           "Numbers" = 361304891;
           "Pages" = 361309726;
