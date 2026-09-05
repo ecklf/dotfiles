@@ -83,7 +83,7 @@
     settings = {
       model = {
         provider = "openai-codex";
-        default = "gpt-6";
+        default = "gpt-6-astra";
       };
       terminal = {
         backend = "docker";
