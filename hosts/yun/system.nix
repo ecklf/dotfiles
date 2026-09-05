@@ -247,7 +247,7 @@
     pkgs.eza
     pkgs.vim
     pkgs.sops
-    pkgs.signal-cli
+    pkgs.master.signal-cli
     pkgs.master.yt-dlp
     pkgs.master.jq
   ];
