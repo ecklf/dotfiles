@@ -178,6 +178,7 @@
       SIGNAL_HTTP_URL=${config.sops.placeholder.signal_http_url}
       SIGNAL_ACCOUNT=${config.sops.placeholder.signal_account}
       SIGNAL_ALLOWED_USERS=${config.sops.placeholder.signal_allowed_users}
+      SIGNAL_HOME_CHANNEL=${config.sops.placeholder.signal_account}
     '';
     owner = "hermes";
     group = "hermes";
