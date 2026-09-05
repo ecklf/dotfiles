@@ -30,7 +30,7 @@ quick-terminal-animation-duration = 0
 # background-blur = macos-glass-clear
 # macos-titlebar-style = transparent
 
-# window-decoration = false
+window-decoration = false
 macos-window-buttons = hidden
 macos-titlebar-style = native
 macos-titlebar-proxy-icon = hidden
