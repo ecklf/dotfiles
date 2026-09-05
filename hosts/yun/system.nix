@@ -84,7 +84,7 @@
     settings = {
       model = {
         provider = "openai-codex";
-        default = "gpt-5.4";
+        default = "gpt-6";
       };
       platforms.telegram.enabled = true;
       terminal = {
