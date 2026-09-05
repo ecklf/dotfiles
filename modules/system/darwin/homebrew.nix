@@ -242,6 +242,7 @@
           "discord"
           "legcord"
           "spotify"
+          "signal"
           "telegram"
           "halloy"
         ]

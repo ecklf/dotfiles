@@ -79,14 +79,12 @@
     addToSystemPackages = true;
     extraDependencyGroups = ["messaging"];
     extraPackages = [pkgs.docker];
-    environmentFiles = [config.sops.templates."hermes.env".path];
     workingDirectory = "/var/lib/hermes/workspace";
     settings = {
       model = {
         provider = "openai-codex";
         default = "gpt-6";
       };
-      platforms.telegram.enabled = true;
       terminal = {
         backend = "docker";
         cwd = "/workspace";
@@ -125,19 +123,6 @@
     secrets.borg_ssh_port = {
       sopsFile = ./secrets/general.yaml;
     };
-    secrets.telegram_bot_token = {
-      sopsFile = ./secrets/general.yaml;
-      mode = "0400";
-    };
-  };
-
-  sops.templates."hermes.env" = {
-    content = ''
-      TELEGRAM_BOT_TOKEN=${config.sops.placeholder.telegram_bot_token}
-    '';
-    owner = "hermes";
-    group = "hermes";
-    mode = "0400";
   };
 
   networking = {
@@ -203,6 +188,7 @@
     pkgs.eza
     pkgs.vim
     pkgs.sops
+    pkgs.signal-cli
     pkgs.master.yt-dlp
     pkgs.master.jq
   ];
