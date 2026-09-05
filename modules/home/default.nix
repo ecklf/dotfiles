@@ -7,6 +7,25 @@
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  herdrAutoTitle = pkgs.buildGoModule rec {
+    pname = "herdr-auto-title";
+    version = "0.3.3";
+
+    src = pkgs.fetchFromGitHub {
+      owner = "kryptamine";
+      repo = "herdr-auto-title";
+      rev = "v${version}";
+      hash = "sha256-iezd48VN3iaEumHjcEvFJa6Dd1uBqtVTVLfrw3aX7Ng=";
+    };
+
+    vendorHash = "sha256-QxFp1b7pf7bn3Hh0hyaj8ke5Z61N+WwjhHt3pFiapTs=";
+    subPackages = ["cmd/herdr-auto-title"];
+
+    postInstall = ''
+      cp herdr-plugin.toml "$out/herdr-plugin.toml"
+      ln -s "$out/bin/herdr-auto-title" "$out/herdr-auto-title"
+    '';
+  };
 in {
   imports = [
     ./bat
@@ -132,6 +151,15 @@ in {
         linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
           $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${pkgs.vimPlugins.smart-splits-nvim}
         '';
+        linkHerdrAutoTitle = lib.hm.dag.entryAfter ["writeBoundary"] ''
+          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrAutoTitle}
+        '';
+        installHerdrIntegrations = lib.hm.dag.entryAfter ["writeBoundary"] ''
+          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install opencode
+          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install codex
+          $DRY_RUN_CMD mkdir -p "$HOME/.grok"
+          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install grok
+        '';
       };
 
       packages = lib.flatten (
@@ -186,6 +214,7 @@ in {
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
           pkgs.ntfy # Utility for sending notifications, on demand and when commands finish
           # Development
+          pkgs.cargo-deny # Cargo plugin for linting dependency graphs
           pkgs.cargo-nextest # Next-generation test runner for Rust projects
           pkgs.cargo-zigbuild # A tool to compile Cargo projects with zig as the linker
           pkgs.cargo-binstall # A Cargo subcommand to install Rust binaries

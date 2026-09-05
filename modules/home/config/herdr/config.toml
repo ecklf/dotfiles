@@ -123,6 +123,12 @@ mauve = "#a292a3"
 
 [ui]
 mouse_capture = true
+# Distinguish agent states by shape as well as color.
+status_indicators = "symbols"
+# Label detected agents on internal pane borders.
+show_agent_labels_on_pane_borders = true
+# Protect workspaces from accidental closure.
+confirm_close = true
 # Defaults: prompt for tab names, but not workspace names. tmux creates windows
 # immediately and prompts when creating a named session.
 prompt_new_tab_name = false
