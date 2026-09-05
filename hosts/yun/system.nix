@@ -79,12 +79,14 @@
     addToSystemPackages = true;
     extraDependencyGroups = ["messaging"];
     extraPackages = [pkgs.docker];
+    environmentFiles = [config.sops.templates."hermes-signal.env".path];
     workingDirectory = "/var/lib/hermes/workspace";
     settings = {
       model = {
         provider = "openai-codex";
         default = "gpt-6-astra";
       };
+      platforms.signal.enabled = true;
       terminal = {
         backend = "docker";
         cwd = "/workspace";
@@ -92,6 +94,40 @@
         container_persistent = true;
       };
     };
+  };
+
+  systemd.services.signal-cli = {
+    description = "signal-cli HTTP daemon for Hermes Agent";
+    wantedBy = ["multi-user.target"];
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+    path = [pkgs.signal-cli pkgs.jre_headless];
+    serviceConfig = {
+      User = "hermes";
+      Group = "hermes";
+      Environment = "HOME=/var/lib/hermes";
+      WorkingDirectory = "/var/lib/hermes";
+      EnvironmentFile = config.sops.templates."hermes-signal.env".path;
+      ExecStart = pkgs.writeShellScript "signal-cli-daemon" ''
+        signal_http="''${SIGNAL_HTTP_URL#http://}"
+        signal_http="''${signal_http#https://}"
+        exec ${pkgs.signal-cli}/bin/signal-cli \
+          --account "$SIGNAL_ACCOUNT" \
+          daemon --http "$signal_http"
+      '';
+      Restart = "always";
+      RestartSec = 5;
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      ReadWritePaths = ["/var/lib/hermes"];
+    };
+  };
+
+  systemd.services.hermes-agent = {
+    after = ["signal-cli.service"];
+    requires = ["signal-cli.service"];
   };
 
   time.timeZone = timezone;
@@ -123,6 +159,29 @@
     secrets.borg_ssh_port = {
       sopsFile = ./secrets/general.yaml;
     };
+    secrets.signal_account = {
+      sopsFile = ./secrets/general.yaml;
+      mode = "0400";
+    };
+    secrets.signal_http_url = {
+      sopsFile = ./secrets/general.yaml;
+      mode = "0400";
+    };
+    secrets.signal_allowed_users = {
+      sopsFile = ./secrets/general.yaml;
+      mode = "0400";
+    };
+  };
+
+  sops.templates."hermes-signal.env" = {
+    content = ''
+      SIGNAL_HTTP_URL=${config.sops.placeholder.signal_http_url}
+      SIGNAL_ACCOUNT=${config.sops.placeholder.signal_account}
+      SIGNAL_ALLOWED_USERS=${config.sops.placeholder.signal_allowed_users}
+    '';
+    owner = "hermes";
+    group = "hermes";
+    mode = "0400";
   };
 
   networking = {
