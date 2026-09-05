@@ -101,7 +101,7 @@
     wantedBy = ["multi-user.target"];
     after = ["network-online.target"];
     wants = ["network-online.target"];
-    path = [pkgs.signal-cli pkgs.jre_headless];
+    path = [pkgs.master.signal-cli pkgs.jre_headless];
     serviceConfig = {
       User = "hermes";
       Group = "hermes";
@@ -111,7 +111,7 @@
       ExecStart = pkgs.writeShellScript "signal-cli-daemon" ''
         signal_http="''${SIGNAL_HTTP_URL#http://}"
         signal_http="''${signal_http#https://}"
-        exec ${pkgs.signal-cli}/bin/signal-cli \
+        exec ${pkgs.master.signal-cli}/bin/signal-cli \
           --account "$SIGNAL_ACCOUNT" \
           daemon --http "$signal_http"
       '';
