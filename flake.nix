@@ -28,6 +28,10 @@
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+      inputs.nixpkgs.follows = "nixpkgs-nixos";
+    };
   };
 
   outputs = inputs @ {
@@ -41,6 +45,7 @@
     darwin,
     home-manager,
     disko,
+    hermes-agent,
   }: let
     mkDarwin = import ./lib/mkdarwin.nix;
     mkNixOS = import ./lib/mknixos.nix;
@@ -217,7 +222,9 @@
         nixpkgs-master = nixpkgs-nixos-master;
         system = "x86_64-linux";
         username = "nixos";
-        extraModules = [];
+        extraModules = [
+          hermes-agent.nixosModules.default
+        ];
         extraHomeModules = [];
         homeStateVersion = "25.11";
       };

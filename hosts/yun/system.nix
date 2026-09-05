@@ -71,6 +71,31 @@
     vnc.port = 5900;
   };
 
+  virtualisation.docker.enable = true;
+  users.users.hermes.extraGroups = ["docker"];
+
+  services.hermes-agent = {
+    enable = true;
+    addToSystemPackages = true;
+    extraDependencyGroups = ["messaging"];
+    extraPackages = [pkgs.docker];
+    environmentFiles = [config.sops.templates."hermes.env".path];
+    workingDirectory = "/var/lib/hermes/workspace";
+    settings = {
+      model = {
+        provider = "openai-codex";
+        default = "gpt-5.4";
+      };
+      platforms.telegram.enabled = true;
+      terminal = {
+        backend = "docker";
+        cwd = "/workspace";
+        docker_mount_cwd_to_workspace = true;
+        container_persistent = true;
+      };
+    };
+  };
+
   time.timeZone = timezone;
 
   sops = {
@@ -100,6 +125,19 @@
     secrets.borg_ssh_port = {
       sopsFile = ./secrets/general.yaml;
     };
+    secrets.telegram_bot_token = {
+      sopsFile = ./secrets/general.yaml;
+      mode = "0400";
+    };
+  };
+
+  sops.templates."hermes.env" = {
+    content = ''
+      TELEGRAM_BOT_TOKEN=${config.sops.placeholder.telegram_bot_token}
+    '';
+    owner = "hermes";
+    group = "hermes";
+    mode = "0400";
   };
 
   networking = {
@@ -171,7 +209,7 @@
 
   users.users."${username}" = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker" "nginx"];
+    extraGroups = ["wheel" "docker" "nginx" "hermes"];
     openssh.authorizedKeys.keys = [
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC+ZSLLubx/+U947o2n0mc3zm3A2ezAkCsCYKIcg3RQs ecklf@icloud.com''
       ''ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINzp3OPA8XUVrapGPaL4plEuVE9wwhevUkKbtynXrYUZ ecklf@icloud.com''
