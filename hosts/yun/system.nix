@@ -86,6 +86,11 @@
         provider = "openai-codex";
         default = "gpt-6-astra";
       };
+      toolsets = ["hermes-signal" "browser"];
+      browser = {
+        cdp_url = "http://127.0.0.1:9222";
+        headed = true;
+      };
       platforms.signal.enabled = true;
       terminal = {
         backend = "docker";
@@ -93,6 +98,38 @@
         docker_mount_cwd_to_workspace = true;
         container_persistent = true;
       };
+    };
+  };
+
+  systemd.services.hermes-browser = {
+    description = "Dedicated Chromium browser for Hermes Agent";
+    wantedBy = ["multi-user.target"];
+    after = ["vnc-desktop.service"];
+    requires = ["vnc-desktop.service"];
+    environment = {
+      DISPLAY = ":1";
+      HOME = "/home/${username}";
+      XDG_CONFIG_HOME = "/home/${username}/.config";
+      XDG_DATA_HOME = "/home/${username}/.local/share";
+    };
+    serviceConfig = {
+      User = username;
+      Group = "users";
+      WorkingDirectory = "/home/${username}";
+      ExecStart = pkgs.writeShellScript "hermes-browser" ''
+        exec ${pkgs.chromium}/bin/chromium \
+          --user-data-dir=/home/${username}/.local/share/hermes-browser \
+          --profile-directory=Default \
+          --remote-debugging-address=127.0.0.1 \
+          --remote-debugging-port=9222 \
+          --no-first-run \
+          --no-default-browser-check \
+          --disable-session-crashed-bubble \
+          --start-maximized
+      '';
+      Restart = "always";
+      RestartSec = 5;
+      PrivateTmp = true;
     };
   };
 
@@ -126,8 +163,9 @@
   };
 
   systemd.services.hermes-agent = {
-    after = ["signal-cli.service"];
+    after = ["signal-cli.service" "hermes-browser.service"];
     requires = ["signal-cli.service"];
+    wants = ["hermes-browser.service"];
   };
 
   time.timeZone = timezone;
