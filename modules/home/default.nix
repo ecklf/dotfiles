@@ -177,6 +177,7 @@ in {
 
             [hosts.yun]
             target = "nixos@ecklf.duckdns.org"
+            prefix = " 云"
             remote_bin = "/etc/profiles/per-user/nixos/bin/herdr"
           '';
         };
@@ -198,6 +199,11 @@ in {
           '';
         }
         // lib.optionalAttrs isDarwin {
+          linkHerdrGh = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            if [ -f "$HOME/Developer/ecklf/herdr-plugin-gh/herdr-plugin.toml" ]; then
+              $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link "$HOME/Developer/ecklf/herdr-plugin-gh"
+            fi
+          '';
           linkHerdrMirror = lib.hm.dag.entryAfter ["writeBoundary"] ''
             $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrMirror}
           '';
