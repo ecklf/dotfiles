@@ -96,6 +96,56 @@ description = "run lazygit"
 width = "80%"
 height = "80%"
 
+# GitHub actions target the focused agent, except refresh.
+[[keys.command]]
+key = "prefix+alt+g"
+type = "plugin_action"
+command = "gh.menu"
+description = "GitHub - open menu"
+
+[[keys.command]]
+key = "prefix+alt+o"
+type = "plugin_action"
+command = "gh.open"
+description = "GitHub - open or create PR"
+
+[[keys.command]]
+key = "prefix+alt+v"
+type = "plugin_action"
+command = "gh.open-checks"
+description = "GitHub - open checks"
+
+[[keys.command]]
+key = "prefix+alt+a"
+type = "plugin_action"
+command = "gh.refresh"
+description = "GitHub - refresh status"
+
+# Remote workspace mirroring.
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "mirror.start"
+description = "start remote workspace mirrors"
+
+[[keys.command]]
+key = "prefix+alt+m"
+type = "plugin_action"
+command = "mirror.pause"
+description = "pause remote workspace mirrors"
+
+[[keys.command]]
+key = "prefix+shift+b"
+type = "plugin_action"
+command = "mirror.restore"
+description = "restore closed workspace mirrors"
+
+[[keys.command]]
+key = "prefix+alt+n"
+type = "plugin_action"
+command = "mirror.new-workspace-pick"
+description = "create workspace on local or remote host"
+
 # Default: catppuccin. Use Kanagawa as the closest built-in Kanso base.
 [theme]
 name = "kanagawa"
@@ -122,6 +172,11 @@ teal = "#8ea4a2"
 mauve = "#a292a3"
 
 [ui]
+# Give workspace names and GitHub status more room than the 26/36 defaults.
+sidebar_width = 30
+# Clamp narrower widths restored from saved sessions.
+sidebar_min_width = 30
+sidebar_max_width = 56
 mouse_capture = true
 # Distinguish agent states by shape as well as color.
 status_indicators = "symbols"
@@ -146,6 +201,14 @@ tab_bar_right = [
   { type = "datetime", format = "%Y-%m-%d %H:%M" },
 ]
 tab_bar_right_separator = " "
+
+[ui.sidebar.agents]
+rows = [
+  ["state_icon", "workspace", "tab"],
+  ["agent"],
+  ["$gh_pr"],
+  ["$gh_checks"],
+]
 
 [advanced]
 # Default: 10 MB. Raise this to approximate tmux's 50,000-line history limit.

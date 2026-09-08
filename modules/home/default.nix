@@ -26,6 +26,20 @@
       ln -s "$out/bin/herdr-auto-title" "$out/herdr-auto-title"
     '';
   };
+  herdrMirror = pkgs.runCommand "herdr-mirror-0.4.3" {} ''
+    mkdir -p "$out/bin" "$out/target/release"
+    cp ${pkgs.fetchFromGitHub {
+      owner = "nikok6";
+      repo = "herdr-mirror";
+      rev = "v0.4.3";
+      hash = "sha256-dZIu4TcMkVDrRvnvgRMh7+8PpNaWB/i2/UkH/h0ZRW4=";
+    }}/herdr-plugin.toml "$out/herdr-plugin.toml"
+    install -m 755 ${pkgs.fetchurl {
+      url = "https://github.com/nikok6/herdr-mirror/releases/download/v0.4.3/herdr-mirror-darwin-aarch64";
+      hash = "sha256-LJA8rfq6DdJFeSVzo5RltaK7wy6+PjyJxMOB0CgtyRU=";
+    }} "$out/target/release/herdr-mirror"
+    ln -s "$out/target/release/herdr-mirror" "$out/bin/herdr-mirror"
+  '';
   smartSplits = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs {
     version = "2026-09-07";
     src = pkgs.fetchFromGitHub {
@@ -156,22 +170,45 @@ in {
           "Library/Preferences/pnpm/rc".source = ./config/pnpm/rc;
           ".wezterm.lua".source = ./config/wezterm/config.lua;
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
+          ".config/herdr-mirror/hosts.toml".text = ''
+            default_host = "yun"
+            close_remote_on_local_close = false
+            always_control = true
+
+            [hosts.yun]
+            target = "nixos@ecklf.duckdns.org"
+            prefix = " 云"
+            remote_bin = "/etc/profiles/per-user/nixos/bin/herdr"
+          '';
         };
 
-      activation = lib.optionalAttrs config.home.modules.ai {
-        linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
-          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${smartSplits}
-        '';
-        linkHerdrAutoTitle = lib.hm.dag.entryAfter ["writeBoundary"] ''
-          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrAutoTitle}
-        '';
-        installHerdrIntegrations = lib.hm.dag.entryAfter ["writeBoundary"] ''
-          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install opencode
-          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install codex
-          $DRY_RUN_CMD mkdir -p "$HOME/.grok"
-          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install grok
-        '';
-      };
+      activation = lib.optionalAttrs config.home.modules.ai (
+        {
+          linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${smartSplits}
+          '';
+          linkHerdrAutoTitle = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrAutoTitle}
+          '';
+          installHerdrIntegrations = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install opencode
+            $DRY_RUN_CMD mkdir -p "$HOME/.codex"
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install codex
+            $DRY_RUN_CMD mkdir -p "$HOME/.grok"
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install grok
+          '';
+        }
+        // lib.optionalAttrs isDarwin {
+          linkHerdrGh = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            if [ -f "$HOME/Developer/ecklf/herdr-plugin-gh/herdr-plugin.toml" ]; then
+              $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link "$HOME/Developer/ecklf/herdr-plugin-gh"
+            fi
+          '';
+          linkHerdrMirror = lib.hm.dag.entryAfter ["writeBoundary"] ''
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrMirror}
+          '';
+        }
+      );
 
       packages = lib.flatten (
         config.home.modules.extraPackages
@@ -362,6 +399,9 @@ in {
           pkgs.master.pi-coding-agent # Minimal terminal coding harness.
           pkgs.worktrunk # AI coding assistant
           pkgs.master.herdr # Terminal multiplexer for AI coding agents
+        ]
+        ++ lib.optional (config.home.modules.ai && isDarwin) [
+          herdrMirror
         ]
         ++ lib.optional config.home.modules.embedded [
           pkgs.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers
