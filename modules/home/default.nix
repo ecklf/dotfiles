@@ -26,6 +26,15 @@
       ln -s "$out/bin/herdr-auto-title" "$out/herdr-auto-title"
     '';
   };
+  smartSplits = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs {
+    version = "2026-09-07";
+    src = pkgs.fetchFromGitHub {
+      owner = "mrjones2014";
+      repo = "smart-splits.nvim";
+      rev = "ec76708f1617ef9e2ac353357fe52d2c997a0f06";
+      hash = "sha256-wTNNFmVARLSbhYvr7dkPc+9jJBLEeRah0JB3j4W/7uM=";
+    };
+  };
 in {
   imports = [
     ./bat
@@ -108,6 +117,8 @@ in {
   };
 
   config = {
+    _module.args = {inherit smartSplits;};
+
     home = {
       stateVersion = homeStateVersion;
       sessionVariables =
@@ -149,7 +160,7 @@ in {
 
       activation = lib.optionalAttrs config.home.modules.ai {
         linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
-          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${pkgs.vimPlugins.smart-splits-nvim}
+          $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${smartSplits}
         '';
         linkHerdrAutoTitle = lib.hm.dag.entryAfter ["writeBoundary"] ''
           $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrAutoTitle}

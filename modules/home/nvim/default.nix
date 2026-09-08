@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  smartSplits,
+  ...
+}: let
   # Bundle tree-sitter grammars for native Neovim treesitter
   treesitterParsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
@@ -280,7 +284,7 @@ in {
       vim-sleuth
       {
         # Seamless navigation between Neovim splits and tmux/Herdr panes.
-        plugin = smart-splits-nvim;
+        plugin = smartSplits;
         type = "lua";
         config = ''
           local smart_splits = require("smart-splits")
