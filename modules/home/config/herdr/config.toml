@@ -96,6 +96,31 @@ description = "run lazygit"
 width = "80%"
 height = "80%"
 
+# Remote workspace mirroring.
+[[keys.command]]
+key = "prefix+shift+m"
+type = "plugin_action"
+command = "mirror.start"
+description = "start remote workspace mirrors"
+
+[[keys.command]]
+key = "prefix+alt+m"
+type = "plugin_action"
+command = "mirror.pause"
+description = "pause remote workspace mirrors"
+
+[[keys.command]]
+key = "prefix+shift+b"
+type = "plugin_action"
+command = "mirror.restore"
+description = "restore closed workspace mirrors"
+
+[[keys.command]]
+key = "prefix+alt+n"
+type = "plugin_action"
+command = "mirror.new-workspace-pick"
+description = "create workspace on local or remote host"
+
 # Default: catppuccin. Use Kanagawa as the closest built-in Kanso base.
 [theme]
 name = "kanagawa"
