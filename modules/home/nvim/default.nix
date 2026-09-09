@@ -155,7 +155,7 @@ in {
       pkgs.master.oxfmt # js/ts/json/html/css/vue/toml formatter
       pkgs.master.tsgolint # type-aware linting for oxlint
       pkgs.stylelint
-      pkgs.master.typescript-go # tsgo - Go-based TypeScript language server
+      pkgs.master.typescript
       pkgs.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
