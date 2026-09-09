@@ -158,3 +158,48 @@ sudo systemctl status mnt-share.mount
 nix flake update 
 nix flake update <input>
 ```
+
+## Cleanup
+
+These commands apply to both Darwin and NixOS. List system generations first:
+
+```sh
+sudo nix-env --profile /nix/var/nix/profiles/system --list-generations
+```
+
+Keep the five most recent system generations:
+
+```sh
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +5
+```
+
+Alternatively, remove all system generations except the current one:
+
+```sh
+sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations old
+```
+
+> [!WARNING]
+> Deleted generations are no longer available for rollback. The current profile generation is preserved.
+
+Then reclaim store paths that are no longer referenced:
+
+```sh
+sudo nix-collect-garbage
+```
+
+Other GC roots can still retain packages, including build-result links and separate Home Manager profiles. Remove the repository's `result` link if that build is no longer needed:
+
+```sh
+rm -f "$HOME/dotfiles/result"
+```
+
+A standalone Home Manager profile can retain its own current generation even when Home Manager is now managed through nix-darwin or NixOS. Inspect it before removing any obsolete profile roots; do not remove the active `~/.local/state/home-manager/gcroots/current-home` link.
+
+To identify what retains a specific store path:
+
+```sh
+nix-store --query --roots "/nix/store/<store-path>"
+```
+
+Run garbage collection again after removing unwanted roots. Do not manually delete files inside `/nix/store`.
