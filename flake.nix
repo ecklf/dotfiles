@@ -56,7 +56,7 @@
         # OpenCode 2 beta (official native npm release)
         opencode2 = prev.stdenv.mkDerivation rec {
           pname = "opencode2";
-          version = "0.0.0-beta-18371";
+          version = "0.0.0-beta-19271";
           src = let
             platform =
               if prev.stdenv.hostPlatform.isDarwin
@@ -68,10 +68,10 @@
               else "x64";
             artifact = "${platform}-${arch}${prev.lib.optionalString prev.stdenv.hostPlatform.isx86_64 "-baseline"}";
             hashes = {
-              "darwin-arm64" = "sha512-QtBO/43762g4GPo9FLUIdzXE8fVLQRKGcibTtEf4B52ZbOPzewzsfcvR5hxwx4iQwApDZmygODcRzYQzOf+Sfg==";
-              "darwin-x64-baseline" = "sha512-VClxPPVecbowwid2q4iASFQrE5t5CrLNTS7sYCNi41ODMqRLANLix7oXLES6zw+yyC4uGOdh+jFa56bfI2wAUQ==";
-              "linux-arm64" = "sha512-gkF1A+xGBpXmMemYY3zi8Gw6FuNQ0Y9bGlWjvLjrzm28j1PvDof9JrPYayhhY/7o/kLpPPXy2w+49AhcTiJLwA==";
-              "linux-x64-baseline" = "sha512-w9YlaCauY9eSxVrcyhfxfXbL336EgSW/XKyIOcIvl/+nEL+bx07MmInsxJpCFgvPmxaLfo+MXKgNxogunBjvyg==";
+              "darwin-arm64" = "sha512-CHfMY/7pPq4Andvrif34tC/N9mFppSujjscVISVOSMc/twAvkIGGfDUZgU65qHDsifSnt6+IJr3NZ2AbPzWOfA==";
+              "darwin-x64-baseline" = "sha512-lhxjdTMnly2zb88/yOQHJwaDgvKH8kyCrmHIBnOiYexYW394EGwmxHjHkQRWfrgXXRk9vqzKHw8ldx0ust0Msw==";
+              "linux-arm64" = "sha512-0WIzqvdgTUwUaQK5cXibZauGbRW7NZcuXGrA8dMsRWmAyONKDCnI9LbSXigGwc1RkGeRJrLtP/Xwmc8UCeXoJA==";
+              "linux-x64-baseline" = "sha512-o0rfUrWksGpmUw7lsN208wT79jb9oBeiMVVtYPNKqhCRvkPuSYOiDv8aYjX7OPW2xtcxUpz8eS78mjvGDjKw0g==";
             };
           in
             prev.fetchurl {
