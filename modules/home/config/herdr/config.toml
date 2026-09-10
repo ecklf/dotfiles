@@ -93,8 +93,8 @@ key = "prefix+g"
 type = "popup"
 command = "lazygit"
 description = "run lazygit"
-width = "80%"
-height = "80%"
+width = "95%"
+height = "95%"
 
 # GitHub actions target the focused agent, except refresh.
 [[keys.command]]
