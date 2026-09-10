@@ -171,6 +171,8 @@ pane_gaps = false
 # Default: top tab bar with no right-side status entries.
 tab_bar_position = "bottom"
 tab_bar_right = [
+  # Refresh idle Agents even when Herdr's TUI does not emit pane.focused hooks.
+  { type = "command", command = "node '/Users/ecklf/Developer/ecklf/herdr-plugin-gh/src/cli.js' refresh --cached --silent", interval_seconds = 60, timeout_seconds = 120 },
   { type = "zoom" },
   { type = "hostname" },
   { type = "datetime", format = "%Y-%m-%d %H:%M" },
@@ -181,8 +183,8 @@ tab_bar_right_separator = " "
 rows = [
   ["state_icon", "workspace", "tab"],
   ["agent"],
-  ["$gh_pr"],
-  ["$gh_checks"],
+  ["$gh_pr", "$gh_review"],
+  [{ token = "$gh_failed", fg = "#ff6b6b" }, { token = "$gh_pending", fg = "#c4b28a" }, { token = "$gh_passed", fg = "#8a9a7b" }, { token = "$gh_canceled", fg = "#c0c0c0" }, { token = "$gh_skipped", fg = "#c0c0c0" }, { token = "$gh_unknown", fg = "#c0c0c0" }],
 ]
 
 [advanced]

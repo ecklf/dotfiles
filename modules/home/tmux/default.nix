@@ -111,7 +111,7 @@
 
       # Popup terminals
       bind t display-popup -E -w 80% -h 80%
-      bind g display-popup -E -w 80% -h 80% "lazygit"
+      bind g display-popup -E -w 95% -h 95% "lazygit"
 
       # Kanso theme colors
       # bg: #090E13 (zen) / #14171d (ink)
