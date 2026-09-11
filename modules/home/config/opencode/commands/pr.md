@@ -32,11 +32,7 @@ Write the PR body to a temporary file and pass it to `gh` with `--body-file` so 
 
 Never use semicolons or em-dashes in the PR title or body.
 
-Use this exact PR body format:
-
-## TLDR
-
-Short and concise summary of the change. As the title implies, this is a "too long, didn't read" summary.
+Use this exact PR body format with only the Problem and Solution sections:
 
 ## Problem
 
@@ -45,9 +41,3 @@ A concise description of the problem the changes solve.
 ## Solution
 
 A concise description of how the changes solve the problem, including important implementation details.
-
-## Testing
-
-How reviewers can verify the change. E.g. How to deploy this change to Vercel. Which flag do I have to enable / which build `-b` flag do I have to use.
-If your only contribution is adding passing linter checks, then omit this section entirely.
-Clearly state when tests were not run or when no automated tests exist.
