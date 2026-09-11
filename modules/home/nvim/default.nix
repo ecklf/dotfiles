@@ -338,7 +338,11 @@ in {
       {
         plugin = nvim-lspconfig;
         type = "lua";
-        config = builtins.readFile ./plugins/lsp.lua;
+        config =
+          builtins.replaceStrings
+          ["@typescript@"]
+          ["${pkgs.master.typescript}/bin/tsc"]
+          (builtins.readFile ./plugins/lsp.lua);
       }
 
       {

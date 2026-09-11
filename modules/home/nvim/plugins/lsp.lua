@@ -256,6 +256,8 @@ for _, server in pairs(servers) do
 
 	if server == "tsgo" then
 		local tsgo_opts = {
+			-- TypeScript 7 renamed tsgo to tsc; use the Nix binary, not a pre-7 tsc on PATH.
+			cmd = { "@typescript@", "--lsp", "--stdio" },
 			settings = {
 				typescript = {
 					inlayHints = {
