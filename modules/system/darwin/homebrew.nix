@@ -215,7 +215,6 @@
           "daisydisk"
           "dbeaver-community"
           "deskpad"
-          "diffmerge"
           "figma"
           "firefox@developer-edition"
           "google-chrome"
@@ -267,7 +266,6 @@
           # "zoom"
         ]
         ++ lib.optional config.homebrewModules.photography [
-          "darktable"
           "imageoptim"
           "xnviewmp"
         ]
