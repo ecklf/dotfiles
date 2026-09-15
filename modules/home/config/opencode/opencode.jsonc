@@ -21,6 +21,9 @@
     "edit": "allow",
     "bash": "allow",
     "grep": "allow",
+    "external_directory": {
+      "~/.config/opencode/**": "allow",
+    },
   },
   // V1 syntax; OpenCode 2 migrates this internally to providers.vercel.settings.
   "provider": {
