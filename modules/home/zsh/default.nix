@@ -254,8 +254,8 @@ in {
             {
               owner = "ohmyzsh";
               repo = "ohmyzsh";
-              rev = "9df4ea095fe27ccd0ee95f2d34bab884c4a75585";
-              hash = "sha256-SR0Lopccq8oSKHOl5p/YMXNzds5pAqUgeXsy2mLbtS0=";
+              rev = "fcf965912c4adf73ead540e7409bb42ec6e31b45";
+              hash = "sha256-sXXvI1ZQJT9rSh+N2NYlz4GGlckAQusks3NpckFhIrQ=";
             }
             + "/plugins/aws";
         }
