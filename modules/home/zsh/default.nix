@@ -159,6 +159,10 @@ in {
           if command -v wt >/dev/null 2>&1 || [[ -n "''${WORKTRUNK_BIN:-}" ]]; then
             eval "$(command "''${WORKTRUNK_BIN:-wt}" config shell init zsh --cmd wt)"
           fi
+
+          if [[ -f "$HOME/.config/socket-firewall/env.sh" ]]; then
+            source "$HOME/.config/socket-firewall/env.sh"
+          fi
         ''
       ];
 
