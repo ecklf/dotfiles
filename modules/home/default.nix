@@ -228,8 +228,9 @@ in {
           pkgs.zsh # The Z shell
         ]
         ++ lib.optional config.home.modules.developer [
-          # Code
+          # Agent / Code
           pkgs.gh-stack
+          pkgs.agent-browser
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
