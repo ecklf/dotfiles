@@ -70,6 +70,13 @@ in {
         ''
       );
 
+      envExtra = ''
+        # Non-interactive shells inherit fnm's session but do not source .zshrc.
+        if [[ -n "''${FNM_MULTISHELL_PATH:-}" && ":$PATH:" != *":$FNM_MULTISHELL_PATH/bin:"* ]]; then
+          export PATH="$FNM_MULTISHELL_PATH/bin:$PATH"
+        fi
+      '';
+
       initContent = lib.mkMerge [
         # Before CompInit
         (lib.mkBefore ''
