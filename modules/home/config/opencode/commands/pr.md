@@ -32,6 +32,16 @@ Write the PR body to a temporary file and pass it to `gh` with `--body-file` so 
 
 Never use semicolons or em-dashes in the PR title or body.
 
+When PRs reference or depend on each other, include a **Rollout plan** at the end of the Solution section. Use a Markdown bullet list in rollout order, with a PR link or reference and a short description for each entry, including the current PR. Begin the current PR's entry with 👉 immediately after the bullet marker. For example:
+
+```markdown
+**Rollout plan**
+
+- #101: Add the prerequisite changes.
+- 👉 #102: Apply the changes in this PR.
+- #103: Complete the follow-up changes.
+```
+
 Use this exact PR body format with only the Problem and Solution sections:
 
 ## Problem
