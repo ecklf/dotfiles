@@ -6,6 +6,21 @@
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  fnmInit = ''
+    # direnv can restore a PATH captured before this fnm session existed.
+    # Repair it before fnm's cd hook and after direnv's prompt hook.
+    autoload -Uz add-zsh-hook
+    _fnm_restore_path() {
+      if [[ -n "''${FNM_MULTISHELL_PATH:-}" && ":$PATH:" != *":$FNM_MULTISHELL_PATH/bin:"* ]]; then
+        export PATH="$FNM_MULTISHELL_PATH/bin:$PATH"
+      fi
+    }
+    add-zsh-hook -d chpwd _fnm_restore_path
+    add-zsh-hook chpwd _fnm_restore_path
+    add-zsh-hook -d precmd _fnm_restore_path
+    add-zsh-hook precmd _fnm_restore_path
+    eval "$(fnm env --shell zsh --use-on-cd --version-file-strategy recursive${lib.optionalString (system == "aarch64-darwin") " --arch arm64"})"
+  '';
 in {
   home.sessionPath = [
     "$PNPM_HOME"
@@ -71,9 +86,21 @@ in {
       );
 
       envExtra = ''
-        # Non-interactive shells inherit fnm's session but do not source .zshrc.
-        if [[ -n "''${FNM_MULTISHELL_PATH:-}" && ":$PATH:" != *":$FNM_MULTISHELL_PATH/bin:"* ]]; then
+        # Non-interactive shells do not source .zshrc; give them their own session.
+        # Login shells initialize in .zlogin, after the profiles have set PATH.
+        if [[ ! -o interactive && ! -o login ]]; then
+          ${fnmInit}
+        elif [[ -n "''${FNM_MULTISHELL_PATH:-}" && ":$PATH:" != *":$FNM_MULTISHELL_PATH/bin:"* ]]; then
           export PATH="$FNM_MULTISHELL_PATH/bin:$PATH"
+        fi
+      '';
+
+      loginExtra = ''
+        if [[ ! -o interactive ]]; then
+          ${fnmInit}
+        elif [[ -n "''${FNM_MULTISHELL_PATH:-}" ]]; then
+          # Keep fnm ahead of Homebrew setup appended to .zshrc by MDM.
+          path=("$FNM_MULTISHELL_PATH/bin" "''${path[@]}")
         fi
       '';
 
@@ -155,11 +182,7 @@ in {
             fi
           }
 
-          if [[ $(arch) == "arm64" ]]; then
-            eval "$(fnm env --arch arm64 --use-on-cd)"
-          else
-            eval "$(fnm env --use-on-cd)"
-          fi
+          ${fnmInit}
           eval "$(task --completion zsh)"
 
           # worktrunk shell integration
