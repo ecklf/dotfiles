@@ -1,1 +1,2 @@
 store-dir=~/Library/pnpm/store
+minimum-release-age-exclude[]=vercel
