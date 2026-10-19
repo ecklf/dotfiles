@@ -159,7 +159,7 @@ in {
       pkgs.vscode-langservers-extracted # html, css, json, eslint
       pkgs.pylint
       pkgs.pyright
-      pkgs.python312Packages.black # python
+      # pkgs.python312Packages.black # python
       pkgs.python312Packages.flake8
       pkgs.ripgrep
       pkgs.master.rust-analyzer

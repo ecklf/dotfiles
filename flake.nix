@@ -111,24 +111,24 @@
         nushell = prev.nushell.overrideAttrs (old: {
           doCheck = false;
         });
-        # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
+        # tree-sitter CLI 0.27.1
         tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
-          version = "0.26.1";
+          version = "0.27.1";
           src = prev.fetchFromGitHub {
             owner = "tree-sitter";
             repo = "tree-sitter";
             rev = "v${version}";
-            hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
+            hash = "sha256-KbPqA6pfplWRUtwRgbNXUF7aivj/n4shJqWbjNO93nQ=";
           };
           cargoDeps = prev.rustPlatform.fetchCargoVendor {
             inherit src;
-            hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
+            hash = "sha256-GbW/qFq8X0UNi9LIepTIAKSAqCXM/gdy6XV6s5YO8r0=";
           };
           patches = [];
         });
       })
     ];
-    # NixOS-only overlays (tree-sitter 0.26.1 + requires bindgen/libclang)
+    # NixOS-only overlays (tree-sitter 0.27.1 + requires bindgen/libclang)
     nixosOverlays =
       overlays
       ++ [
@@ -137,18 +137,18 @@
           nushell = prev.nushell.overrideAttrs (old: {
             doCheck = false;
           });
-          # tree-sitter CLI 0.26.1 (library stays at 0.25 for neovim compat)
+          # tree-sitter CLI 0.27.1
           tree-sitter = prev.tree-sitter.overrideAttrs (old: rec {
-            version = "0.26.1";
+            version = "0.27.1";
             src = prev.fetchFromGitHub {
               owner = "tree-sitter";
               repo = "tree-sitter";
               rev = "v${version}";
-              hash = "sha256-k8X2qtxUne8C6znYAKeb4zoBf+vffmcJZQHUmBvsilA=";
+              hash = "sha256-KbPqA6pfplWRUtwRgbNXUF7aivj/n4shJqWbjNO93nQ=";
             };
             cargoDeps = prev.rustPlatform.fetchCargoVendor {
               inherit src;
-              hash = "sha256-hnFHYQ8xPNFqic1UYygiLBWu3n82IkTJuQvgcXcMdv0=";
+              hash = "sha256-GbW/qFq8X0UNi9LIepTIAKSAqCXM/gdy6XV6s5YO8r0=";
             };
             patches = [];
             # tree-sitter 0.26+ uses rquickjs-sys which requires libclang for bindgen

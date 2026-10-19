@@ -9,13 +9,13 @@
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
   herdrAutoTitle = pkgs.buildGoModule rec {
     pname = "herdr-auto-title";
-    version = "0.3.3";
+    version = "0.14.0";
 
     src = pkgs.fetchFromGitHub {
       owner = "kryptamine";
       repo = "herdr-auto-title";
       rev = "v${version}";
-      hash = "sha256-iezd48VN3iaEumHjcEvFJa6Dd1uBqtVTVLfrw3aX7Ng=";
+      hash = "sha256-6BK43+a15nI21FaCPGmVjpy+J5ikRdk9J85TS47GvYI=";
     };
 
     vendorHash = "sha256-QxFp1b7pf7bn3Hh0hyaj8ke5Z61N+WwjhHt3pFiapTs=";
@@ -26,13 +26,15 @@
       ln -s "$out/bin/herdr-auto-title" "$out/herdr-auto-title"
     '';
   };
-  smartSplits = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs {
-    version = "2026-09-07";
+  # v3 removed the Herdr backend and manifest; keep the final v2 release.
+  smartSplits = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs rec {
+    version = "2.1.1-final";
+    name = "vimplugin-smart-splits.nvim-${version}";
     src = pkgs.fetchFromGitHub {
-      owner = "mrjones2014";
+      owner = "smart-splits-nvim";
       repo = "smart-splits.nvim";
-      rev = "ec76708f1617ef9e2ac353357fe52d2c997a0f06";
-      hash = "sha256-wTNNFmVARLSbhYvr7dkPc+9jJBLEeRah0JB3j4W/7uM=";
+      rev = "ac11b8ed1efe7cca7bb3eae9c588163c926c6894";
+      hash = "sha256-HyTn+sT70BpPSEVWpPrsB5PRcOD23aAn3JdUDp031Fw=";
     };
   };
 in {

@@ -288,8 +288,8 @@ in {
             {
               owner = "ohmyzsh";
               repo = "ohmyzsh";
-              rev = "fcf965912c4adf73ead540e7409bb42ec6e31b45";
-              hash = "sha256-sXXvI1ZQJT9rSh+N2NYlz4GGlckAQusks3NpckFhIrQ=";
+              rev = "964ddf789b022b6958b27d02d7fa54f552de21e9";
+              hash = "sha256-RG32nAZOP7nLNSy+OFIB2C15tpx/x9KN9QQVqck57Ow=";
             }
             + "/plugins/aws";
         }
@@ -299,8 +299,8 @@ in {
           src = pkgs.fetchFromGitHub {
             owner = "babarot";
             repo = "enhancd";
-            rev = "5afb4eb6ba36c15821de6e39c0a7bb9d6b0ba415";
-            sha256 = "sha256-pKQbwiqE0KdmRDbHQcW18WfxyJSsKfymWt/TboY2iic=";
+            rev = "190d739d597a486a9922363f3c1c4daa792f6cf1";
+            sha256 = "sha256-FRWbi3BLsSSubwRV9NnSPo6P2AR/RWZUC5YxGhiCo1Q=";
           };
         }
       ];
