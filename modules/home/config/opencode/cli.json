@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/v2/cli.json",
+  "theme": {
+    "name": "catppuccin-mocha"
+  },
+  "keybinds": {
+    "session.message.next": "<leader>j",
+    "session.message.previous": "<leader>k",
+    "messages.copy": "<leader>y"
+  },
+  "scroll": {
+    "acceleration": true
+  },
+  "diffs": {
+    "wrap": "word"
+  },
+  "session": {
+    "sidebar": "hide",
+    "scrollbar": false,
+    "thinking": "hide"
+  },
+  "tabs": {
+    "mode": "off"
+  },
+  "animations": true,
+  "plugins": ["./herdr-opencode"]
+}

@@ -146,6 +146,7 @@ in {
           ".config/ghostty/config".source = ./config/ghostty/config;
           ".config/ghostty/themes".source = ./config/ghostty/themes;
           ".config/opencode/AGENTS.md".source = ./config/opencode/AGENTS.md;
+          ".config/opencode/cli.json".source = ./config/opencode/cli.json;
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
           ".config/opencode/commands".source = ./config/opencode/commands;
           ".pi/agent/settings.json".source = ./config/pi/agent/settings.json;
