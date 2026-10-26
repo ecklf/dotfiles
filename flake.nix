@@ -52,7 +52,27 @@
 
     # Shared overlays for both Darwin and NixOS
     overlays = [
-      (final: prev: {
+      (final: prev: let
+        overrideOpencode = pkgs:
+          pkgs.opencode.overrideAttrs (old: rec {
+            version = "2.1.4";
+            src = pkgs.fetchFromGitHub {
+              owner = "anomalyco";
+              repo = "opencode";
+              tag = "v${version}";
+              hash = "sha256-ggL24qwcafvNzn1g0/UYk1PcHy8OJeLARZSicET10Zo=";
+            };
+            node_modules = old.node_modules.overrideAttrs (_: {
+              inherit version src;
+              outputHash = "sha256-qV+/BheK62/tUDbbrOWZKpMyRHjiPL/O7e/ziOi7AAQ=";
+            });
+          });
+      in {
+        # OpenCode from the upstream v2.1.4 release in pkgs.master.
+        master = prev.master.extend (finalMaster: prevMaster: {
+          opencode = overrideOpencode prevMaster;
+        });
+
         # Disable nushell tests - SHLVL tests fail in Nix sandbox
         nushell = prev.nushell.overrideAttrs (old: {
           doCheck = false;
