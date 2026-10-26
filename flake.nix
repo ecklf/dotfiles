@@ -53,60 +53,6 @@
     # Shared overlays for both Darwin and NixOS
     overlays = [
       (final: prev: {
-        # OpenCode 2 beta (official native npm release)
-        opencode2 = prev.stdenv.mkDerivation rec {
-          pname = "opencode2";
-          version = "0.0.0-beta-19271";
-          src = let
-            platform =
-              if prev.stdenv.hostPlatform.isDarwin
-              then "darwin"
-              else "linux";
-            arch =
-              if prev.stdenv.hostPlatform.isAarch64
-              then "arm64"
-              else "x64";
-            artifact = "${platform}-${arch}${prev.lib.optionalString prev.stdenv.hostPlatform.isx86_64 "-baseline"}";
-            hashes = {
-              "darwin-arm64" = "sha512-CHfMY/7pPq4Andvrif34tC/N9mFppSujjscVISVOSMc/twAvkIGGfDUZgU65qHDsifSnt6+IJr3NZ2AbPzWOfA==";
-              "darwin-x64-baseline" = "sha512-lhxjdTMnly2zb88/yOQHJwaDgvKH8kyCrmHIBnOiYexYW394EGwmxHjHkQRWfrgXXRk9vqzKHw8ldx0ust0Msw==";
-              "linux-arm64" = "sha512-0WIzqvdgTUwUaQK5cXibZauGbRW7NZcuXGrA8dMsRWmAyONKDCnI9LbSXigGwc1RkGeRJrLtP/Xwmc8UCeXoJA==";
-              "linux-x64-baseline" = "sha512-o0rfUrWksGpmUw7lsN208wT79jb9oBeiMVVtYPNKqhCRvkPuSYOiDv8aYjX7OPW2xtcxUpz8eS78mjvGDjKw0g==";
-            };
-          in
-            prev.fetchurl {
-              url = "https://registry.npmjs.org/@opencode-ai/cli-${artifact}/-/cli-${artifact}-${version}.tgz";
-              hash = hashes.${artifact};
-            };
-          sourceRoot = "package";
-          nativeBuildInputs = prev.lib.optionals prev.stdenv.hostPlatform.isLinux [
-            prev.autoPatchelfHook
-          ];
-          buildInputs = prev.lib.optionals prev.stdenv.hostPlatform.isLinux [
-            prev.stdenv.cc.cc.lib
-          ];
-          installPhase = ''
-            runHook preInstall
-            install -Dm755 bin/opencode2 $out/bin/opencode2
-            runHook postInstall
-          '';
-          # Preserve the upstream Developer ID signature on macOS.
-          dontStrip = true;
-          meta = with prev.lib; {
-            description = "OpenCode 2.0 preview command line interface";
-            homepage = "https://opencode.ai/v2/docs";
-            license = licenses.mit;
-            platforms = [
-              "aarch64-darwin"
-              "x86_64-darwin"
-              "aarch64-linux"
-              "x86_64-linux"
-            ];
-            mainProgram = "opencode2";
-          };
-        };
-      })
-      (final: prev: {
         # Disable nushell tests - SHLVL tests fail in Nix sandbox
         nushell = prev.nushell.overrideAttrs (old: {
           doCheck = false;

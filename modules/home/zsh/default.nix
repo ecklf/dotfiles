@@ -206,8 +206,6 @@ in {
           n = "nvim";
           oc = "opencode";
           ocp = "opencode --port";
-          oc2 = "opencode2";
-          ocp2 = "opencode2 --port";
           # General
           fman = "compgen -c | fzf | xargs man";
           tree = "eza --tree --icons";
