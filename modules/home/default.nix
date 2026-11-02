@@ -7,6 +7,7 @@
   ...
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
+  vercel-fx = pkgs.callPackage ./packages/vercel-fx.nix {};
   herdrAutoTitle = pkgs.buildGoModule rec {
     pname = "herdr-auto-title";
     version = "0.14.0";
@@ -234,6 +235,7 @@ in {
           # Agent / Code
           pkgs.gh-stack
           pkgs.agent-browser
+          vercel-fx # Vercel Labs coding agent (vercel-fx)
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
@@ -282,7 +284,6 @@ in {
           pkgs.age # Modern encryption tool with small explicit keys
           pkgs.ast-grep # A tool to search for AST nodes in source code
           pkgs.certstrap # Tools to bootstrap CAs, certificate requests, and signed certificates
-          pkgs.fx # Terminal JSON viewer
           pkgs.glow # Render markdown on the CLI, with pizzazz!
           pkgs.gomplate # A flexible commandline tool for template rendering
           pkgs.graphviz # Graph visualization tools

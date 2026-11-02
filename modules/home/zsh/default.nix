@@ -202,6 +202,7 @@ in {
           nfua = "nix flake update";
           # Abbreviations
           c = "clear";
+          f = "vercel-fx";
           m = "make";
           n = "nvim";
           oc = "opencode";
