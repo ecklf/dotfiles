@@ -41,15 +41,6 @@
       "enabled": false,
       "type": "stdio",
       "command": ["npx", "-y", "xcodebuildmcp@latest", "mcp"]
-    },
-    "slack": {
-      "enabled": false,
-      "type": "stdio",
-      "command": ["npx", "-y", "@modelcontextprotocol/server-slack"],
-      "env": {
-        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
-        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
-      }
     }
   }
 }

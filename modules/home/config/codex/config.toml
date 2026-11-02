@@ -48,9 +48,3 @@ args = ["-y", "@modelcontextprotocol/server-memory"]
 enabled = false
 command = "npx"
 args = ["-y", "xcodebuildmcp@latest", "mcp"]
-
-[mcp_servers.slack]
-enabled = false
-command = "npx"
-args = ["-y", "@modelcontextprotocol/server-slack"]
-env_vars = ["SLACK_BOT_TOKEN", "SLACK_TEAM_ID"]

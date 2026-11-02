@@ -1,7 +1,8 @@
 # fx configuration
 
 Enabled on macOS with `home.modules.ai`. The package is installed as `vercel-fx`
-to avoid colliding with the JSON tool named `fx`; the shell alias is `f`.
+to avoid a package-level collision with the JSON tool named `fx`. The shell aliases
+`f` and `fx` launch `vercel-fx`; use `command fx` to run the JSON tool.
 
 Home Manager links the shared `../ai/AGENTS.md` and `commands/` into `~/.fx/`.
 Codex and fx discover the same generated skills in `~/.agents/skills/`:

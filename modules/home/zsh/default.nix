@@ -203,6 +203,7 @@ in {
           # Abbreviations
           c = "clear";
           f = "vercel-fx";
+          fx = "vercel-fx";
           m = "make";
           n = "nvim";
           oc = "opencode";
