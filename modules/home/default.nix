@@ -40,11 +40,13 @@
   };
 in {
   imports = [
+    ./ai
     ./bat
     ./btop
     ./codex
     ./direnv
     ./eza
+    ./fx
     ./fzf
     ./gh
     ./git

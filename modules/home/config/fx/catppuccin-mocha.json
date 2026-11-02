@@ -1,0 +1,41 @@
+{
+  "name": "Catppuccin Mocha",
+  "type": "dark",
+  "colors": {
+    "divider": "#45475a",
+    "hint": "#a6adc8",
+    "statusline": "#a6adc8",
+    "tag": "#cba6f7",
+    "subtitle": "#cdd6f4",
+    "system_notice_label": "#89b4fa",
+    "system_notice_text": "#bac2de",
+    "dim": "#6c7086",
+    "warning": "#f9e2af",
+    "green": "#a6e3a1",
+    "red": "#f38ba8",
+    "diff_added": "#a6e3a1",
+    "diff_removed": "#f38ba8",
+    "diff_added_marker": "#a6e3a1",
+    "diff_removed_marker": "#f38ba8",
+    "approval_button_active": {"fg": "#1e1e2e", "bg": "#cba6f7", "bold": true},
+    "approval_button_inactive": {"fg": "#cdd6f4", "bg": "#313244"},
+    "selected_completion": {"fg": "#cba6f7", "bold": true},
+    "permission_auto": "#a6e3a1",
+    "user_card_marker": "#cba6f7",
+    "user_card_accent": "#bac2de",
+    "inline_code": "#94e2d5",
+    "task_completed": "#a6e3a1",
+    "tool_stdout": "#a6adc8",
+    "tool_stderr": "#f9e2af",
+    "link": "#89b4fa"
+  },
+  "syntax": {
+    "keyword": "#cba6f7",
+    "string": "#a6e3a1",
+    "number": "#fab387",
+    "comment": "#6c7086",
+    "function": "#89b4fa",
+    "variable": "#f5e0dc",
+    "operator": "#89dceb"
+  }
+}

@@ -2,6 +2,7 @@
   lib,
   stdenvNoCC,
   fetchurl,
+  makeWrapper,
 }: let
   releases = {
     aarch64-darwin = {
@@ -36,10 +37,14 @@ in
     dontBuild = true;
     # Preserve upstream's signed macOS binaries and static Linux binaries.
     dontFixup = true;
+    nativeBuildInputs = [makeWrapper];
 
     installPhase = ''
       runHook preInstall
-      install -Dm755 fx "$out/bin/vercel-fx"
+      install -Dm755 fx "$out/libexec/vercel-fx"
+      makeWrapper "$out/libexec/vercel-fx" "$out/bin/vercel-fx" \
+        --set-default FX_AUTO_UPGRADE 0 \
+        --prefix FX_SKILL_SYMLINK_AUTHORITIES : /nix/store
       install -Dm644 LICENSE "$out/share/licenses/vercel-fx/LICENSE"
       install -Dm644 THIRD_PARTY_NOTICES.md "$out/share/licenses/vercel-fx/THIRD_PARTY_NOTICES.md"
       runHook postInstall

@@ -27,10 +27,12 @@ OpenCode commands are exposed as explicit-only Codex skills:
 - `$review-prs owner/repo [PR numbers or URLs] [--no-local-tests]`
 
 Shared instructions and commands live in `../ai/`. Home Manager links the same
-`AGENTS.md` and `commands/` directory into both `~/.config/opencode/` and `~/.codex/`.
-Codex skills are thin metadata wrappers that read those shared command files,
+`AGENTS.md` and `commands/` directory into `~/.config/opencode/`, `~/.codex/`, and
+`~/.fx/`.
+Codex and fx skills are thin metadata wrappers generated in `../../ai/default.nix`
+that read those shared command files through `~/.agents/commands/`,
 interpret command arguments, and preserve review-only behavior. Edit the shared
-Markdown once to update both tools.
+Markdown once to update all three tools.
 Skills live in `~/.agents/skills/`, Codex's supported user skills directory, alongside
 the existing Vercel skills. Custom `/prompts:*` commands are deprecated and aren't
 installed. Other agents using this shared directory may also discover the skills.

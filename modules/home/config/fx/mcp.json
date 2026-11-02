@@ -1,0 +1,55 @@
+{
+  "mcpServers": {
+    "notion": {
+      "enabled": false,
+      "type": "http",
+      "url": "https://mcp.notion.com/mcp",
+      "oauth": {}
+    },
+    "linear": {
+      "enabled": false,
+      "type": "http",
+      "url": "https://mcp.linear.app/mcp",
+      "oauth": {}
+    },
+    "clickstate": {
+      "enabled": false,
+      "type": "http",
+      "url": "https://clickstate-mcp.vercel.sh/mcp"
+    },
+    "blender": {
+      "enabled": false,
+      "type": "stdio",
+      "command": ["uvx", "blender-mcp"]
+    },
+    "playwright": {
+      "enabled": false,
+      "type": "stdio",
+      "command": ["npx", "-y", "@playwright/mcp@latest"]
+    },
+    "filesystem": {
+      "enabled": true,
+      "type": "stdio",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+    },
+    "memory": {
+      "enabled": true,
+      "type": "stdio",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-memory"]
+    },
+    "xcode": {
+      "enabled": false,
+      "type": "stdio",
+      "command": ["npx", "-y", "xcodebuildmcp@latest", "mcp"]
+    },
+    "slack": {
+      "enabled": false,
+      "type": "stdio",
+      "command": ["npx", "-y", "@modelcontextprotocol/server-slack"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}"
+      }
+    }
+  }
+}
