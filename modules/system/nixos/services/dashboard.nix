@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   username,
   hostname,
   timezone,
@@ -19,6 +20,7 @@
   config = lib.mkIf config.homelab.dashboard.enable {
     services.glance = {
       enable = true;
+      package = pkgs.master.glance;
       settings = {
         server.port = config.homelab.dashboard.port;
         branding = {
