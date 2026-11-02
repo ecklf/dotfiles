@@ -7,4 +7,4 @@
 
 ## Pull Requests
 
-- When generating or updating a pull request description, follow the exact PR body format and content requirements in `commands/pr.md`.
+- When generating or updating a pull request description, follow the exact PR body format and content requirements in `commands/pr.md` alongside this global instruction file, not relative to the project directory.

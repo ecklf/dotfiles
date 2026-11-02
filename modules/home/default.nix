@@ -42,6 +42,7 @@ in {
   imports = [
     ./bat
     ./btop
+    ./codex
     ./direnv
     ./eza
     ./fzf
@@ -146,10 +147,10 @@ in {
         {
           ".config/ghostty/config".source = ./config/ghostty/config;
           ".config/ghostty/themes".source = ./config/ghostty/themes;
-          ".config/opencode/AGENTS.md".source = ./config/opencode/AGENTS.md;
+          ".config/opencode/AGENTS.md".source = ./config/ai/AGENTS.md;
           ".config/opencode/cli.json".source = ./config/opencode/cli.json;
           ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
-          ".config/opencode/commands".source = ./config/opencode/commands;
+          ".config/opencode/commands".source = ./config/ai/commands;
           ".pi/agent/settings.json".source = ./config/pi/agent/settings.json;
           ".pi/agent/keybindings.json".source = ./config/pi/agent/keybindings.json;
           ".pi/agent/AGENTS.md".source = ./config/pi/agent/AGENTS.md;

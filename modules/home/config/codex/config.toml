@@ -1,0 +1,56 @@
+# Home Manager copies this template to ~/.codex/config.toml only if missing.
+# Codex owns the writable copy; later template changes are not applied to it.
+# Authentication and session state remain outside this configuration file.
+check_for_update_on_startup = false
+hide_agent_reasoning = true
+
+[features]
+hooks = true
+
+[tui]
+theme = "catppuccin-mocha"
+animations = true
+
+# Remote servers can be authenticated with `codex mcp login <name>`.
+[mcp_servers.notion]
+enabled = false
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.linear]
+enabled = false
+url = "https://mcp.linear.app/mcp"
+
+[mcp_servers.clickstate]
+enabled = false
+url = "https://clickstate-mcp.vercel.sh/mcp"
+
+[mcp_servers.blender]
+enabled = false
+command = "uvx"
+args = ["blender-mcp"]
+
+[mcp_servers.playwright]
+enabled = false
+command = "npx"
+args = ["-y", "@playwright/mcp@latest"]
+
+[mcp_servers.filesystem]
+enabled = true
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-filesystem", "/tmp"]
+
+[mcp_servers.memory]
+enabled = true
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-memory"]
+
+[mcp_servers.xcode]
+enabled = false
+command = "npx"
+args = ["-y", "xcodebuildmcp@latest", "mcp"]
+
+[mcp_servers.slack]
+enabled = false
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-slack"]
+env_vars = ["SLACK_BOT_TOKEN", "SLACK_TEAM_ID"]

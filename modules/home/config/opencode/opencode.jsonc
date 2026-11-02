@@ -51,6 +51,11 @@
       "url": "https://mcp.linear.app/mcp",
       "oauth": {},
     },
+    "clickstate": {
+      "enabled": false,
+      "type": "remote",
+      "url": "https://clickstate-mcp.vercel.sh/mcp",
+    },
     "blender": {
       "enabled": false,
       "type": "local",

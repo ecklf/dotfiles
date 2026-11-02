@@ -1,5 +1,5 @@
 ---
-description: Run the full test suite with coverage report and show any failures. Focus on the failing tests and suggest fixes.
+description: Review the current branch for improvements and correctness issues without editing files.
 agent: plan
 ---
 
