@@ -8,6 +8,17 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
   vercel-fx = pkgs.callPackage ./packages/vercel-fx.nix {};
+  # Temporary workaround for the incorrect OpenCode 2.2.5 dependency hash on Darwin.
+  opencode = pkgs.master.opencode.overrideAttrs (old: {
+    node_modules = old.node_modules.overrideAttrs (deps:
+      lib.optionalAttrs (
+        isDarwin
+        && old.version == "2.2.5"
+        && deps.outputHash == "sha256-xfOVcw1+waLVNhFDwzOtzxrUSQEogvn88YomydOlhwc="
+      ) {
+        outputHash = "sha256-dIveiaiPFGSItwLyeMuPDxTE9gpvvnlTCB/+nG24qCc=";
+      });
+  });
   herdrAutoTitle = pkgs.buildGoModule rec {
     pname = "herdr-auto-title";
     version = "0.14.0";
@@ -375,7 +386,7 @@ in {
         ++ lib.optional config.home.modules.ai [
           pkgs.master.claude-code # Claude AI coding assistant
           pkgs.master.codex # OpenAI Codex CLI
-          pkgs.master.opencode # Open source AI coding assistant
+          opencode # Open source AI coding assistant
           pkgs.master.pi-coding-agent # Minimal terminal coding harness.
           pkgs.worktrunk # AI coding assistant
           pkgs.master.herdr # Terminal multiplexer for AI coding agents
