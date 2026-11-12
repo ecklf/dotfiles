@@ -181,6 +181,11 @@
     };
     secrets.wireless = {};
     secrets.acme_yun = {};
+    secrets.dyn_dns_domain = {
+      sopsFile = ./secrets/acme.yaml;
+      mode = "0400";
+      restartUnits = ["headscale.service"];
+    };
     secrets.dashboard = {};
     secrets.paperless_admin_password = {
       mode = "0400";

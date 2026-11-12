@@ -5,7 +5,6 @@
   ...
 }: let
   cfg = config.homelab.headscale;
-  domain = "headscale.${config.homelab.baseDomain}";
 in {
   options.homelab.headscale = {
     enable = lib.mkEnableOption "Headscale and a Tailscale subnet router";
@@ -20,10 +19,14 @@ in {
   config = lib.mkIf (config.homelab.enable && cfg.enable) {
     services.headscale = {
       enable = true;
-      address = "127.0.0.1";
-      port = 18080;
+      address = "0.0.0.0";
+      port = 8443;
       settings = {
-        server_url = "https://${domain}";
+        # The real hostname is supplied by the required runtime EnvironmentFile.
+        server_url = "https://headscale.invalid";
+        # Native TLS keeps the encrypted hostname out of Nginx/Nix store configs.
+        # UniFi must forward public TCP 443 directly to this TLS listener.
+        tls_letsencrypt_challenge_type = "TLS-ALPN-01";
         metrics_listen_addr = "127.0.0.1:9090";
         grpc_listen_addr = "127.0.0.1:50443";
         dns = {
@@ -49,32 +52,28 @@ in {
       };
     };
 
-    services.nginx.virtualHosts.${domain} = {
-      onlySSL = true;
-      useACMEHost = config.homelab.baseDomain;
-      # Forward public TCP 443 to this dedicated TLS listener, NOT yun:443:
-      # the shared listener also hosts other, potentially unauthenticated apps.
-      listen = [
-        {
-          addr = "0.0.0.0";
-          port = 8443;
-          ssl = true;
-        }
-        {
-          addr = "[::]";
-          port = 8443;
-          ssl = true;
-        }
-      ];
-      locations."/" = {
-        proxyPass = "http://127.0.0.1:${toString config.services.headscale.port}";
-        proxyWebsockets = true;
-        extraConfig = ''
-          proxy_buffering off;
-          proxy_read_timeout 3600s;
-          proxy_send_timeout 3600s;
-        '';
-      };
+    sops.templates."headscale.env" = {
+      mode = "0400";
+      restartUnits = ["headscale.service"];
+      content = ''
+        HEADSCALE_SERVER_URL=https://${config.sops.placeholder.dyn_dns_domain}
+        HEADSCALE_TLS_LETSENCRYPT_HOSTNAME=${config.sops.placeholder.dyn_dns_domain}
+      '';
+    };
+    systemd.services.headscale.serviceConfig = {
+      EnvironmentFile = config.sops.templates."headscale.env".path;
+      ExecStartPre = pkgs.writeShellScript "headscale-check-hostname" ''
+        case "$HEADSCALE_TLS_LETSENCRYPT_HOSTNAME" in
+          ""|*[!a-zA-Z0-9.-]*|.*|*.)
+            echo "dyn_dns_domain must be a bare DNS hostname, without a URL scheme, port, or path" >&2
+            exit 1
+            ;;
+        esac
+        if [ "$HEADSCALE_SERVER_URL" != "https://$HEADSCALE_TLS_LETSENCRYPT_HOSTNAME" ]; then
+          echo "Headscale URL and certificate hostname must match" >&2
+          exit 1
+        fi
+      '';
     };
 
     services.tailscale = {
