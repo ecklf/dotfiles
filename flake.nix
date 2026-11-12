@@ -32,6 +32,7 @@
       url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs-nixos";
     };
+    rex.url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
   };
 
   outputs = inputs @ {
@@ -46,6 +47,7 @@
     home-manager,
     disko,
     hermes-agent,
+    rex,
   }: let
     mkDarwin = import ./lib/mkdarwin.nix;
     mkNixOS = import ./lib/mknixos.nix;
@@ -170,6 +172,7 @@
         username = "nixos";
         extraModules = [
           hermes-agent.nixosModules.default
+          rex.nixosModules.default
         ];
         extraHomeModules = [];
         homeStateVersion = "25.11";

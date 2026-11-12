@@ -10,6 +10,7 @@
   imports = [
     ./hardware-configuration.nix
     ./graphics.nix
+    ./rex.nix
     ../../modules/system/nixos/services
   ];
 
