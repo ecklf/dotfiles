@@ -136,6 +136,7 @@
           "Passepartout, VPN Client" = 1433648537;
           "Pure Paste" = 1611378436;
           "rcmd • App Switcher" = 1596283165;
+          "Tailscale" = 1475387142;
           "Theine" = 955848755;
           "Velja" = 1607635845;
         }
