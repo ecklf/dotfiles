@@ -16,6 +16,7 @@
   homelab = {
     enable = true;
     baseDomain = "ecklf.duckdns.org";
+    headscale.enable = true;
     acme = {
       email = "ecklf@icloud.com";
       dnsProvider = "duckdns";
