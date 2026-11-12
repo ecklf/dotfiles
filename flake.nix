@@ -32,7 +32,11 @@
       url = "github:NousResearch/hermes-agent";
       inputs.nixpkgs.follows = "nixpkgs-nixos";
     };
-    rex.url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
+    rex = {
+      url = "https://pkgs.superlogical.com/rex/nix/snapshot.tar.gz";
+      # Rex dlopens the host's PAM modules: use the same glibc/PAM ABI as yun.
+      inputs.nixpkgs.follows = "nixpkgs-nixos";
+    };
   };
 
   outputs = inputs @ {
