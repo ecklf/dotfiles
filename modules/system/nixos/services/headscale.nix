@@ -21,7 +21,7 @@ in {
     services.headscale = {
       enable = true;
       address = "127.0.0.1";
-      port = 8080;
+      port = 18080;
       settings = {
         server_url = "https://${domain}";
         metrics_listen_addr = "127.0.0.1:9090";
@@ -67,7 +67,7 @@ in {
         }
       ];
       locations."/" = {
-        proxyPass = "http://127.0.0.1:8080";
+        proxyPass = "http://127.0.0.1:${toString config.services.headscale.port}";
         proxyWebsockets = true;
         extraConfig = ''
           proxy_buffering off;
