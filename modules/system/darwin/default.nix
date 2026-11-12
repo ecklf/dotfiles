@@ -147,6 +147,23 @@
           NSDocumentSaveNewDocumentsToCloud = false;
         };
         CustomUserPreferences = {
+          "com.superlogical.rex" = {
+            # Rex's native UI preferences live outside init.lua.
+            "Workspace.paneDensity" = "compact";
+            "Workspace.tabStyle" = "vertical";
+            "Workspace.sidebarPosition" = "left";
+            "Workspace.sidebarCollapsed" = false;
+            "Workspace.showsPaneHeaders" = false;
+            "Workspace.fadesInactivePanes" = false;
+            # Match Ghostty's typography, steady block cursor, and left Alt key.
+            "Workspace.terminalFontName" = "JetBrainsMono Nerd Font Mono";
+            "Workspace.terminalFontPointSize" = 14;
+            "Workspace.terminalCursorStyle" = "block";
+            "Workspace.terminalCursorBlinkIntervalMilliseconds" = 0;
+            "Workspace.terminalCursorBlinkUsesCustomInterval" = false;
+            "Workspace.terminalOptionKeyBehavior" = "leftActsAsAlt";
+            "Workspace.showsKeySequenceHints" = true;
+          };
           NSGlobalDomain = {
             # Sequoia+: Double click window title bar to fill screen
             AppleActionOnDoubleClick = "Fill";

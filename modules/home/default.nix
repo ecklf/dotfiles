@@ -154,6 +154,7 @@ in {
       file =
         {
           ".config/herdr/config.toml".source = ./config/herdr/config.toml;
+          ".config/rex/init.lua".source = ./config/rex/init.lua;
         }
         // lib.optionalAttrs
         isDarwin
