@@ -38,8 +38,28 @@
       ln -s "$out/bin/herdr-auto-title" "$out/herdr-auto-title"
     '';
   };
-  # v3 removed the Herdr backend and manifest; keep the final v2 release.
   smartSplits = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs rec {
+    version = "3.0.0";
+    name = "vimplugin-smart-splits.nvim-${version}";
+    src = pkgs.fetchFromGitHub {
+      owner = "smart-splits-nvim";
+      repo = "smart-splits.nvim";
+      rev = "v${version}";
+      hash = "sha256-IWkFxNGmxwHx9KFg9z9EnWhy3yp+kNMXKDmB0Qhxuic=";
+    };
+  };
+  smartSplitsRex = pkgs.vimUtils.buildVimPlugin {
+    pname = "smart-splits-backend-rex";
+    version = "0-unstable-2026-11-06";
+    src = pkgs.fetchFromGitHub {
+      owner = "rawnly";
+      repo = "smart-splits-backend-rex";
+      rev = "68f54325975ad47b03a968a3f201081bfadc0ff5";
+      hash = "sha256-91iWKOJL+qFPaHEMMNt08SV7xoipMOKqIgZRuZpDs+w=";
+    };
+  };
+  # v3 removed the built-in mux backends and Herdr manifest. Keep v2 outside Rex.
+  smartSplitsLegacy = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs rec {
     version = "2.1.1-final";
     name = "vimplugin-smart-splits.nvim-${version}";
     src = pkgs.fetchFromGitHub {
@@ -134,7 +154,7 @@ in {
   };
 
   config = {
-    _module.args = {inherit smartSplits;};
+    _module.args = {inherit smartSplits smartSplitsRex smartSplitsLegacy;};
 
     home = {
       stateVersion = homeStateVersion;
@@ -155,6 +175,7 @@ in {
         {
           ".config/herdr/config.toml".source = ./config/herdr/config.toml;
           ".config/rex/init.lua".source = ./config/rex/init.lua;
+          ".config/rex/smart-splits-rex.lua".source = "${smartSplitsRex}/rex/lua/smart-splits-rex/init.lua";
         }
         // lib.optionalAttrs
         isDarwin
@@ -180,7 +201,7 @@ in {
       activation = lib.optionalAttrs config.home.modules.ai (
         {
           linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${smartSplits}
+            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${smartSplitsLegacy}
           '';
           linkHerdrAutoTitle = lib.hm.dag.entryAfter ["writeBoundary"] ''
             $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrAutoTitle}

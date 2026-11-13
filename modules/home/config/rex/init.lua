@@ -28,7 +28,14 @@ rex.bind("f6", "client.tab.next")
 -- The prefix consumes Ctrl+B; press it twice to send it to the terminal.
 rex.bind("ctrl+b>ctrl+b", "pane.send_key", { key = "ctrl+b" })
 
--- Do not bind plain Ctrl+H/J/K/L: leave Neovim/readline navigation intact.
+-- Home Manager installs the pinned backend's Rex module beside this file.
+-- Forward Ctrl+H/J/K/L to Neovim; smart-splits hands back to Rex at window edges.
+-- In other panes these keys navigate Rex directly, overriding shell bindings.
+require("smart-splits-rex").setup({})
+for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+  rex.bind("ctrl+" .. key, "smart_splits_focus", { direction = direction, key = "ctrl+" .. key })
+end
+
 -- Native appearance, font, and modifier preferences are set in nix-darwin.
 
 -- One-time theme imports through Rex's supported client action, rather than

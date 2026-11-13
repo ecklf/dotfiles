@@ -1,6 +1,8 @@
 {
   pkgs,
   smartSplits,
+  smartSplitsRex,
+  smartSplitsLegacy,
   ...
 }: let
   # Bundle tree-sitter grammars for native Neovim treesitter
@@ -282,14 +284,28 @@ in {
       }
       # Detect tabstop and shiftwidth automatically
       vim-sleuth
+      smartSplitsRex
       {
-        # Seamless navigation between Neovim splits and tmux/Herdr panes.
+        # Rex uses the v3 backend; keep the existing v2 integrations elsewhere.
         plugin = smartSplits;
         type = "lua";
         config = ''
+          local in_rex = (vim.env.REX_SESSION or "") ~= "" and (vim.env.REX_BLOCK or "") ~= ""
+          if not in_rex then
+            vim.opt.runtimepath:prepend("${smartSplitsLegacy}")
+          end
           local smart_splits = require("smart-splits")
 
-          smart_splits.setup({ at_edge = "stop" })
+          if in_rex then
+            smart_splits.setup({
+              move = { at_edge = "stop" },
+              mux = { backend = "smart-splits-backend-rex" },
+            })
+          else
+            smart_splits.setup({ at_edge = "stop" })
+            -- Neovim will load v2's plugin script from runtimepath; skip v3's.
+            vim.g.loaded_smart_splits = true
+          end
 
           vim.keymap.set("n", "<C-h>", smart_splits.move_cursor_left, { desc = "Move to the left split" })
           vim.keymap.set("n", "<C-j>", smart_splits.move_cursor_down, { desc = "Move to the split below" })
