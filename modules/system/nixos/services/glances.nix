@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: {
   options.homelab.glances = {
@@ -16,6 +17,7 @@
   config = lib.mkIf config.homelab.glances.enable {
     services.glances = {
       enable = true;
+      package = pkgs.master.glances;
       openFirewall = false;
       port = config.homelab.glances.port;
       extraArgs = [

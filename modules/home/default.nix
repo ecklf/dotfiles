@@ -317,7 +317,7 @@ in {
           # Networking / Monitoring / Benchmarking
           pkgs.atac # Simple API client (postman like) in your terminal
           pkgs.frp # A fast reverse proxy to help you expose a local server behind a NAT or firewall to the internet
-          pkgs.glances # Cross-platform curses-based monitoring tool
+          pkgs.master.glances # Cross-platform curses-based monitoring tool
           (pkgs.master.httpstat.overrideAttrs (old: {
             postPatch =
               (old.postPatch or "")
