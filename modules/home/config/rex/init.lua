@@ -36,6 +36,42 @@ for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) d
   rex.bind("ctrl+" .. key, "smart_splits_focus", { direction = direction, key = "ctrl+" .. key })
 end
 
+-- Match Herdr's prefix+g lazygit popup, in the focused terminal's directory.
+rex.action({
+  name = "lazygit_popup",
+  title = "Open Lazygit",
+  category = "Git",
+  run = function(ctx)
+    local proc, process_err = rex.block.call("com.superlogical.terminal", "process", { block_id = ctx.block_id })
+    if not proc then
+      error(process_err, 0)
+    end
+    local cwd = (proc.foreground or {}).cwd or (proc.child or {}).cwd
+    if not cwd then
+      error("Cannot determine the focused terminal's working directory", 0)
+    end
+    local layer, layer_err = rex.session.new_layer({
+      window_id = ctx.window_id,
+      bounds = { 0.01, 0.01, 0.98, 0.98 },
+      focus = true,
+      layout = rex.layout.block({
+        flavor = "com.superlogical.terminal.shell",
+        label = "lazygit",
+        options = {
+          command = { "lazygit" },
+          cwd = cwd,
+          exit = { on_completion = true },
+        },
+      }),
+    })
+    if not layer then
+      error(layer_err, 0)
+    end
+    return layer
+  end,
+})
+rex.bind("ctrl+b>g", "lazygit_popup")
+
 -- Native appearance, font, and modifier preferences are set in nix-darwin.
 
 -- One-time theme imports through Rex's supported client action, rather than
