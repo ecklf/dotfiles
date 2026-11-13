@@ -20,6 +20,13 @@ rex.bind("ctrl+b>j", "pane.focus.down")
 rex.bind("ctrl+b>k", "pane.focus.up")
 rex.bind("ctrl+b>l", "pane.focus.right")
 
+-- Match Herdr's pane resizing, including when Neovim is focused.
+-- Rex's amount is a percentage of the split, not terminal cells.
+for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
+  rex.bind("ctrl+b>shift+" .. key, "pane.resize", { direction = direction, amount = 5 })
+  rex.bind("ctrl+shift+" .. key, "pane.resize", { direction = direction, amount = 5 })
+end
+
 rex.bind("alt+[", "client.tab.previous")
 rex.bind("alt+]", "client.tab.next")
 rex.bind("f5", "client.tab.previous")
