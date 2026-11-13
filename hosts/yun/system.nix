@@ -18,6 +18,7 @@
     enable = true;
     baseDomain = "ecklf.duckdns.org";
     headscale.enable = true;
+    headscale.exitNode = true;
     acme = {
       email = "ecklf@icloud.com";
       dnsProvider = "duckdns";

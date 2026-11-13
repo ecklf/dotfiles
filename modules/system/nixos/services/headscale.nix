@@ -8,6 +8,7 @@
 in {
   options.homelab.headscale = {
     enable = lib.mkEnableOption "Headscale and a Tailscale subnet router";
+    exitNode = lib.mkEnableOption "advertising this host as an exit node; approve its routes separately in Headscale";
     subnetRoutes = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [];
@@ -81,10 +82,14 @@ in {
       openFirewall = true;
       useRoutingFeatures = "server";
       # Authenticate manually before adding routes. Keep control-server DNS local.
-      extraSetFlags = lib.optionals (cfg.subnetRoutes != []) [
-        "--accept-dns=false"
-        "--advertise-routes=${lib.concatStringsSep "," cfg.subnetRoutes}"
-      ];
+      extraSetFlags =
+        lib.optionals (cfg.subnetRoutes != [] || cfg.exitNode) [
+          "--accept-dns=false"
+        ]
+        ++ lib.optionals (cfg.subnetRoutes != []) [
+          "--advertise-routes=${lib.concatStringsSep "," cfg.subnetRoutes}"
+        ]
+        ++ lib.optional cfg.exitNode "--advertise-exit-node";
     };
     networking.firewall = {
       allowedTCPPorts = [8443];
