@@ -72,7 +72,7 @@ in {
           sudo -u ${username} /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
         '';
         # Obtain identifier with e.g.
-        # osascript -e 'id of app "Visual Studio Code"'
+        # osascript -e 'id of app "Zed"'
         patchDefaultApps = ''
           echo "Patching macOS default apps"
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.colliderli.iina .mp4 all
@@ -86,31 +86,31 @@ in {
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.colliderli.iina .wav all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.TextEdit .txt all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.TextEdit public.plain-text all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .md all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .py all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .js all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .ts all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .c all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .cpp all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .h all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .hpp all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .java all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .sh all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .zsh all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .bash all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .json all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .xml all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .css all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .tsx all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .php all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .rb all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .swift all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .sql all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .yml all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .yaml all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .toml all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .ini all
-          sudo -u ${username} ${pkgs.duti}/bin/duti -s com.microsoft.VSCode .log all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .md all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .py all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .js all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .ts all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .c all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .cpp all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .h all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .hpp all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .java all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .sh all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .zsh all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .bash all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .json all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .xml all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .css all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .tsx all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .php all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .rb all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .swift all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .sql all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .yml all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .yaml all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .toml all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .ini all
+          sudo -u ${username} ${pkgs.duti}/bin/duti -s dev.zed.Zed .log all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.Numbers .csv all
           sudo -u ${username} ${pkgs.duti}/bin/duti -s com.apple.Numbers .tsv all
         '';
