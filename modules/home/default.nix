@@ -8,6 +8,14 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
   vercel-fx = pkgs.callPackage ./packages/vercel-fx.nix {};
+  # MCP servers must not pick up generic Linux Node binaries installed by fnm.
+  opencodeNpx = pkgs.writeShellApplication {
+    name = "opencode-npx";
+    runtimeInputs = [pkgs.nodejs_26];
+    text = ''
+      exec npx "$@"
+    '';
+  };
   # Temporary workaround for the incorrect OpenCode 2.2.5 dependency hash on Darwin.
   opencode = pkgs.master.opencode.overrideAttrs (old: {
     node_modules = old.node_modules.overrideAttrs (deps:
@@ -160,7 +168,12 @@ in {
         // lib.optionalAttrs config.home.modules.ai {
           ".config/opencode/AGENTS.md".source = ./config/ai/AGENTS.md;
           ".config/opencode/cli.json".source = ./config/opencode/cli.json;
-          ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
+          ".config/opencode/opencode.jsonc".text = let
+            content = builtins.readFile ./config/opencode/opencode.jsonc;
+          in
+            if isDarwin
+            then content
+            else builtins.replaceStrings [''"npx"''] [''"${lib.getExe opencodeNpx}"''] content;
           ".config/opencode/commands".source = ./config/ai/commands;
         }
         // lib.optionalAttrs
