@@ -177,15 +177,17 @@ in {
           ".config/rex/init.lua".source = ./config/rex/init.lua;
           ".config/rex/smart-splits-rex.lua".source = "${smartSplitsRex}/rex/lua/smart-splits-rex/init.lua";
         }
+        // lib.optionalAttrs config.home.modules.ai {
+          ".config/opencode/AGENTS.md".source = ./config/ai/AGENTS.md;
+          ".config/opencode/cli.json".source = ./config/opencode/cli.json;
+          ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
+          ".config/opencode/commands".source = ./config/ai/commands;
+        }
         // lib.optionalAttrs
         isDarwin
         {
           ".config/ghostty/config".source = ./config/ghostty/config;
           ".config/ghostty/themes".source = ./config/ghostty/themes;
-          ".config/opencode/AGENTS.md".source = ./config/ai/AGENTS.md;
-          ".config/opencode/cli.json".source = ./config/opencode/cli.json;
-          ".config/opencode/opencode.jsonc".source = ./config/opencode/opencode.jsonc;
-          ".config/opencode/commands".source = ./config/ai/commands;
           ".pi/agent/settings.json".source = ./config/pi/agent/settings.json;
           ".pi/agent/keybindings.json".source = ./config/pi/agent/keybindings.json;
           ".pi/agent/AGENTS.md".source = ./config/pi/agent/AGENTS.md;
