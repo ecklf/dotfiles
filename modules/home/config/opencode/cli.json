@@ -22,6 +22,5 @@
   "tabs": {
     "mode": "off"
   },
-  "animations": true,
-  "plugins": ["./herdr-opencode"]
+  "animations": true
 }

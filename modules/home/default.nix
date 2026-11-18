@@ -19,25 +19,6 @@
         outputHash = "sha256-dIveiaiPFGSItwLyeMuPDxTE9gpvvnlTCB/+nG24qCc=";
       });
   });
-  herdrAutoTitle = pkgs.buildGoModule rec {
-    pname = "herdr-auto-title";
-    version = "0.14.0";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "kryptamine";
-      repo = "herdr-auto-title";
-      rev = "v${version}";
-      hash = "sha256-6BK43+a15nI21FaCPGmVjpy+J5ikRdk9J85TS47GvYI=";
-    };
-
-    vendorHash = "sha256-QxFp1b7pf7bn3Hh0hyaj8ke5Z61N+WwjhHt3pFiapTs=";
-    subPackages = ["cmd/herdr-auto-title"];
-
-    postInstall = ''
-      cp herdr-plugin.toml "$out/herdr-plugin.toml"
-      ln -s "$out/bin/herdr-auto-title" "$out/herdr-auto-title"
-    '';
-  };
   smartSplits = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs rec {
     version = "3.0.0";
     name = "vimplugin-smart-splits.nvim-${version}";
@@ -58,7 +39,7 @@
       hash = "sha256-91iWKOJL+qFPaHEMMNt08SV7xoipMOKqIgZRuZpDs+w=";
     };
   };
-  # v3 removed the built-in mux backends and Herdr manifest. Keep v2 outside Rex.
+  # v3 removed the built-in mux backends. Keep v2 outside Rex.
   smartSplitsLegacy = pkgs.vimPlugins.smart-splits-nvim.overrideAttrs rec {
     version = "2.1.1-final";
     name = "vimplugin-smart-splits.nvim-${version}";
@@ -173,7 +154,6 @@ in {
         };
       file =
         {
-          ".config/herdr/config.toml".source = ./config/herdr/config.toml;
           ".config/rex/init.lua".source = ./config/rex/init.lua;
           ".config/rex/smart-splits-rex.lua".source = "${smartSplitsRex}/rex/lua/smart-splits-rex/init.lua";
         }
@@ -199,31 +179,6 @@ in {
           ".wezterm.lua".source = ./config/wezterm/config.lua;
           ".lmstudio/config-presets".source = ./config/lmstudio/config-presets;
         };
-
-      activation = lib.optionalAttrs config.home.modules.ai (
-        {
-          linkHerdrSmartSplits = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${smartSplitsLegacy}
-          '';
-          linkHerdrAutoTitle = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link ${herdrAutoTitle}
-          '';
-          installHerdrIntegrations = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install opencode
-            $DRY_RUN_CMD mkdir -p "$HOME/.codex"
-            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install codex
-            $DRY_RUN_CMD mkdir -p "$HOME/.grok"
-            $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} integration install grok
-          '';
-        }
-        // lib.optionalAttrs isDarwin {
-          linkHerdrGh = lib.hm.dag.entryAfter ["writeBoundary"] ''
-            if [ -f "$HOME/Developer/ecklf/herdr-plugin-gh/herdr-plugin.toml" ]; then
-              $DRY_RUN_CMD ${lib.getExe pkgs.master.herdr} plugin link "$HOME/Developer/ecklf/herdr-plugin-gh"
-            fi
-          '';
-        }
-      );
 
       packages = lib.flatten (
         config.home.modules.extraPackages
@@ -413,7 +368,6 @@ in {
           opencode # Open source AI coding assistant
           pkgs.master.pi-coding-agent # Minimal terminal coding harness.
           pkgs.worktrunk # AI coding assistant
-          pkgs.master.herdr # Terminal multiplexer for AI coding agents
         ]
         ++ lib.optional config.home.modules.embedded [
           pkgs.elf2uf2-rs # A tool to convert ELF files to UF2 format for flashing microcontrollers

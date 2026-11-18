@@ -5,7 +5,7 @@
 -- Apply:    rex config reload
 -- Inspect effective bindings and client-dependent diagnostics: rex keymap
 
--- Match Herdr/tmux's Ctrl+B prefix while keeping Rex's native Cmd shortcuts.
+-- Match tmux's Ctrl+B prefix while keeping Rex's native Cmd shortcuts.
 rex.bind("ctrl+b>c", "client.tab.new")
 rex.bind("ctrl+b>z", "pane.zoom")
 rex.bind("ctrl+b>r", "client.config.reload")
@@ -20,7 +20,7 @@ rex.bind("ctrl+b>j", "pane.focus.down")
 rex.bind("ctrl+b>k", "pane.focus.up")
 rex.bind("ctrl+b>l", "pane.focus.right")
 
--- Match Herdr's pane resizing, including when Neovim is focused.
+-- Match tmux's pane resizing, including when Neovim is focused.
 -- Rex's amount is a percentage of the split, not terminal cells.
 for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) do
   rex.bind("ctrl+b>shift+" .. key, "pane.resize", { direction = direction, amount = 5 })
@@ -43,7 +43,7 @@ for key, direction in pairs({ h = "left", j = "down", k = "up", l = "right" }) d
   rex.bind("ctrl+" .. key, "smart_splits_focus", { direction = direction, key = "ctrl+" .. key })
 end
 
--- Match Herdr's prefix+g lazygit popup, in the focused terminal's directory.
+-- Open a prefix+g lazygit popup in the focused terminal's directory.
 rex.action({
   name = "lazygit_popup",
   title = "Open Lazygit",
