@@ -142,6 +142,17 @@ in {
         '')
         # Config
         ''
+          # Report the current directory to the terminal at startup and after cd.
+          _osc7_cwd() {
+            emulate -L zsh
+            setopt extendedglob
+            local LC_ALL=C
+            printf '\e]7;file://%s%s\e\\' "$HOST" "''${PWD//(#m)([^@-Za-z&-;_~])/%''${(l:2::0:)$(([##16]#MATCH))}}"
+          }
+          autoload -Uz add-zsh-hook
+          add-zsh-hook -Uz chpwd _osc7_cwd
+          _osc7_cwd
+
           # Adding color support for ls etc.
           precmd () {print -Pn "\e]0;%~\a"}
 
