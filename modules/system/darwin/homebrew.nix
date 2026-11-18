@@ -224,7 +224,6 @@
           "rapidapi"
           "safari-technology-preview"
           "utm"
-          "visual-studio-code"
           "wezterm"
           "wireshark-app"
           "yaak"

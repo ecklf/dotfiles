@@ -189,11 +189,6 @@ in {
         type = "lua";
         config = builtins.readFile ./plugins/opencode.lua;
       }
-      {
-        plugin = copilot-vim;
-        type = "lua";
-        config = builtins.readFile ./plugins/copilot.lua;
-      }
       # Colorschemes
       iceberg-vim
       ayu-vim
