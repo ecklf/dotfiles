@@ -16,6 +16,12 @@
       exec npx "$@"
     '';
   };
+  rexUsage = pkgs.writeShellScriptBin "rex-usage" ''
+    exec ${pkgs.python3}/bin/python3 ${./config/rex/rex_usage.py} "$@"
+  '';
+  rexOpencodeTab = pkgs.writeShellScriptBin "rex-opencode-tab" ''
+    exec ${pkgs.python3}/bin/python3 ${./config/rex/rex_opencode_tab.py} "$@"
+  '';
   # Temporary workaround for the incorrect OpenCode 2.2.5 dependency hash on Darwin.
   opencode = pkgs.master.opencode.overrideAttrs (old: {
     node_modules = old.node_modules.overrideAttrs (deps:
@@ -162,7 +168,12 @@ in {
         };
       file =
         {
-          ".config/rex/init.lua".source = ./config/rex/init.lua;
+          ".config/rex/init.lua".text =
+            builtins.replaceStrings
+            ["@rexOpencodeTab@"]
+            ["${rexOpencodeTab}/bin/rex-opencode-tab"]
+            (builtins.readFile ./config/rex/init.lua);
+          ".config/rex/rex-usage.lua".source = ./config/rex/rex-usage.lua;
           ".config/rex/smart-splits-rex.lua".source = "${smartSplitsRex}/rex/lua/smart-splits-rex/init.lua";
         }
         // lib.optionalAttrs config.home.modules.ai {
@@ -194,7 +205,8 @@ in {
         };
 
       packages = lib.flatten (
-        config.home.modules.extraPackages
+        [rexUsage rexOpencodeTab]
+        ++ config.home.modules.extraPackages
         ++ lib.optional isDarwin [
           pkgs.mas # Mac App Store command line interface
           pkgs.gnused # GNU sed, a batch stream editor

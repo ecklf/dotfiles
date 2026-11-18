@@ -93,29 +93,124 @@ rex.action({
     if not cwd then
       error("Cannot determine the focused terminal's working directory", 0)
     end
-    local tab, tab_err = rex.session.new_window({
-      session_id = ctx.session_id,
-      window_label = "OpenCode",
-      focus = true,
-      layout = rex.layout.block({
-        flavor = "com.superlogical.terminal.shell",
-        label = "opencode",
-        options = {
-          command = { "opencode" },
-          interactive = true,
-          cwd = cwd,
-        },
-      }),
-    })
-    if not tab then
-      error(tab_err, 0)
+    local remote = ctx.server and ctx.server ~= ""
+    if not ctx.client_id or not ctx.session_id or not ctx.block_id then
+      error("OpenCode needs an originating Rex app, session, and terminal", 0)
     end
-    -- Server-side focus alone does not switch the client's selected tab.
-    rex.client.queue("session.select", {
-      session_id = ctx.session_id,
-      window_id = tab.window_id,
-    })
-    return tab
+    -- Only an in-app key/palette action can queue native creation without
+    -- external app-control permission. Reject CLI/API calls before reserving.
+    if ctx.origin ~= "key" and ctx.origin ~= "palette" then
+      error("Use Ctrl+B, O or Open OpenCode Tab in Rex's command palette", 0)
+    end
+    local client_id, expected_host = ctx.client_id, nil
+    if remote then
+      -- The app has a different connection ID on each host. Resolve the
+      -- remote source pane's owner, not the home-server ctx.client_id.
+      local view, view_err = rex.session.view({ session_id = ctx.session_id })
+      if not view then
+        error(view_err, 0)
+      end
+      local matches = 0
+      for _, window in ipairs(view.windows or {}) do
+        for _, layer in ipairs(window.layers or {}) do
+          for _, block in ipairs(layer.blocks or {}) do
+            if block.block_id == ctx.block_id then
+              client_id = block.owner
+              matches = matches + 1
+            end
+          end
+        end
+      end
+      if matches ~= 1 or not client_id or client_id == "" then
+        error("The remote source terminal needs a connected Rex app owner", 0)
+      end
+      local status, status_err = rex.call("server.status", {})
+      if not status then
+        error(status_err, 0)
+      end
+      expected_host = status.host_id
+      if type(expected_host) ~= "string" or expected_host == "" then
+        error("Cannot identify the remote Rex server", 0)
+      end
+    end
+    local caller, caller_err = rex.call("client.inspect", { client_id = client_id })
+    if not caller then
+      error(caller_err, 0)
+    end
+    local app = caller.client or {}
+    local attached = false
+    for _, session_id in ipairs(app.session_ids or {}) do
+      attached = attached or session_id == ctx.session_id
+    end
+    if
+      not app.client_id
+      or (app.info or {}).kind ~= "app"
+      or (app.connection_state or "connected") ~= "connected"
+      or not attached
+    then
+      error("The source terminal needs a connected Rex app in its session", 0)
+    end
+    -- Snapshot and reserve before the trusted keyboard action creates a tab.
+    -- The watcher uses only server APIs; it never sends client-control calls.
+    -- Home Manager pins the executable because GUI servers lack shell PATH setup.
+    local helper = "@rexOpencodeTab@"
+    local command = {
+      helper,
+      "--prepare",
+      "--client",
+      app.client_id,
+      "--session",
+      ctx.session_id,
+      "--block",
+      ctx.block_id,
+      "--cwd",
+      cwd,
+    }
+    if remote then
+      table.insert(command, "--server")
+      table.insert(command, ctx.server)
+      table.insert(command, "--expected-host")
+      table.insert(command, expected_host)
+    end
+    local prepared, prepare_err = rex.exec(command, { timeout = 8 })
+    if not prepared then
+      error(prepare_err, 0)
+    end
+    if not prepared.ok then
+      error("Cannot prepare OpenCode tab: " .. (prepared.stderr or "helper failed"), 0)
+    end
+    local decoded, ticket = pcall(rex.json.decode, prepared.stdout)
+    if
+      not decoded
+      or type(ticket) ~= "table"
+      or type(ticket.token) ~= "string"
+      or #ticket.token ~= 32
+      or not ticket.token:match("^[0-9a-f]+$")
+    then
+      error("OpenCode helper returned an invalid reservation", 0)
+    end
+    local function cancel()
+      rex.exec({ helper, "--cancel", ticket.token, "--client", app.client_id }, { timeout = 2 })
+    end
+    local job, job_err = rex.exec.start({
+      helper,
+      "--watch",
+      ticket.token,
+      "--client",
+      app.client_id,
+    }, { detach = true })
+    if not job then
+      cancel()
+      error(job_err, 0)
+    end
+    -- This is performed by Rex as part of the shortcut, not by an external
+    -- client.perform request, so Remote Control is not required.
+    local queued, queue_err = pcall(rex.client.queue, "client.tab.new")
+    if not queued then
+      cancel()
+      error(queue_err, 0)
+    end
+    return { opening = true }
   end,
 })
 rex.bind("ctrl+b>o", "opencode_tab")
