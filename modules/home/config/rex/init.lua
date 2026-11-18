@@ -79,6 +79,50 @@ rex.action({
 })
 rex.bind("ctrl+b>g", "lazygit_popup")
 
+-- Open a prefix+o OpenCode tab in the focused terminal's directory.
+rex.action({
+  name = "opencode_tab",
+  title = "Open OpenCode Tab",
+  category = "AI",
+  run = function(ctx)
+    local proc, process_err = rex.block.call("com.superlogical.terminal", "process", { block_id = ctx.block_id })
+    if not proc then
+      error(process_err, 0)
+    end
+    local cwd = (proc.foreground or {}).cwd or (proc.child or {}).cwd
+    if not cwd then
+      error("Cannot determine the focused terminal's working directory", 0)
+    end
+    local tab, tab_err = rex.session.new_window({
+      session_id = ctx.session_id,
+      window_label = "OpenCode",
+      focus = true,
+      layout = rex.layout.block({
+        flavor = "com.superlogical.terminal.shell",
+        label = "opencode",
+        options = {
+          command = { "opencode" },
+          interactive = true,
+          cwd = cwd,
+        },
+      }),
+    })
+    if not tab then
+      error(tab_err, 0)
+    end
+    -- Server-side focus alone does not switch the client's selected tab.
+    rex.client.queue("session.select", {
+      session_id = ctx.session_id,
+      window_id = tab.window_id,
+    })
+    return tab
+  end,
+})
+rex.bind("ctrl+b>o", "opencode_tab")
+
+-- Account-wide 5-hour and weekly plan limits; q closes and r refreshes.
+require("rex-usage").setup({})
+
 -- Native appearance, font, and modifier preferences are set in nix-darwin.
 
 -- One-time theme imports through Rex's supported client action, rather than
