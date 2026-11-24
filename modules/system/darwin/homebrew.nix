@@ -214,6 +214,7 @@
           "firefox@developer-edition"
           "google-chrome"
           "gpg-suite"
+          "ladybird"
           "nosql-workbench"
           "obs"
           "orbstack"
