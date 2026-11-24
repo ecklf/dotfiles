@@ -26,10 +26,6 @@
           type = lib.types.bool;
           description = "Install developer software";
         };
-        affinity = lib.mkOption {
-          type = lib.types.bool;
-          description = "Install affinity-suite software";
-        };
         messenger = lib.mkOption {
           type = lib.types.bool;
           description = "Install messenger software";
@@ -230,14 +226,8 @@
           "yubico-authenticator"
           "zed"
         ]
-        ++ lib.optional config.homebrewModules.affinity [
-          "affinity-designer"
-          "affinity-photo"
-          "affinity-publisher"
-        ]
         ++ lib.optional config.homebrewModules.messenger [
           "discord"
-          "legcord"
           "spotify"
           "signal"
           "telegram"

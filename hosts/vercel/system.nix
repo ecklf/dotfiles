@@ -2,7 +2,6 @@
   isWorkMachine = true;
 in {
   homebrewModules = {
-    affinity = true;
     developer = true;
     messenger = true;
     monitor = true;
