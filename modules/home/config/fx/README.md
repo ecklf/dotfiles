@@ -43,11 +43,5 @@ tool-specific allow rules, and full access is not enabled to imitate them.
 OpenCode plugins, keybindings, sharing, server settings, and Codex-specific TUI
 preferences have no direct equivalents here and are not copied as unknown keys.
 
-fx 0.0.16's metadata parser requires an explicit YAML block marker for multiline
-skill descriptions. If an installed third-party skill is skipped with
-`unsupported_multiline`, change its `description:` to `description: >-`, keeping
-the indented description text unchanged. Reinstalling that skill may restore
-the incompatible upstream header.
-
 Rebuild Home Manager, open a new login shell to load the environment overrides,
 and start `f`. Use `/provider` or `vercel-fx login` to authenticate if needed.
