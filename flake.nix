@@ -58,6 +58,7 @@
 
     # Shared overlays for both Darwin and NixOS
     overlays = [
+      nur.overlays.default
       (final: prev: {
         # Disable nushell tests - SHLVL tests fail in Nix sandbox
         nushell = prev.nushell.overrideAttrs (old: {

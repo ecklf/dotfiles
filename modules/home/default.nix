@@ -8,6 +8,57 @@
 }: let
   inherit (pkgs.stdenv.hostPlatform) isDarwin;
   vercel-fx = pkgs.callPackage ./packages/vercel-fx.nix {};
+  # NUR's source build omits the patched Electron runtime and native Pixel modules.
+  # Use the complete upstream macOS bundle and preserve its code signatures.
+  terminalBrowser = let
+    package = pkgs.nur.repos.mio.terminal-browser;
+    releases = {
+      aarch64-darwin = {
+        platform = "darwin-arm64";
+        sha256 = "506de896300a78a972be8d344fd321a22daf2dd6d04bc9caacacb41eb6b807d7";
+      };
+      x86_64-darwin = {
+        platform = "darwin-x64";
+        sha256 = "a3c61044a72cf4c9a7c70f717855c7da02df7242a18c1d096fa548f19a1c86ee";
+      };
+    };
+    release = releases.${system};
+  in
+    if isDarwin
+    then
+      package.overrideAttrs (old: rec {
+        version = "0.16.2";
+        src = pkgs.fetchurl {
+          url = "https://github.com/zenbu-labs/terminal-browser/releases/download/v${version}/terminal-browser-${release.platform}.tar.gz";
+          inherit (release) sha256;
+        };
+        sourceRoot = "terminal-browser";
+        # AppleDouble files are archive metadata, not signed bundle resources.
+        unpackPhase = ''
+          runHook preUnpack
+          tar --extract --gzip --file "$src" --exclude='._*' --warning=no-unknown-keyword
+          runHook postUnpack
+        '';
+        pnpmDeps = null;
+        nativeBuildInputs = [];
+        postPatch = "";
+        dontConfigure = true;
+        dontBuild = true;
+        dontFixup = true;
+        installPhase = ''
+          runHook preInstall
+          mkdir -p "$out/bin" "$out/share"
+          cp -R . "$out/share/terminal-browser"
+          root="$out/share/terminal-browser"
+          test -x "$root/electron/terminal-browser.app/Contents/MacOS/terminal-browser"
+          test -f "$root/browser/node_modules/@zenbu-labs/pixel-native-${release.platform}/pixel.node"
+          test -x "$root/bin/native-scroll-helper"
+          ln -s "$root/bin/terminal-browser" "$out/bin/terminal-browser"
+          runHook postInstall
+        '';
+        meta = old.meta // {sourceProvenance = [lib.sourceTypes.binaryNativeCode];};
+      })
+    else package;
   # MCP servers must not pick up generic Linux Node binaries installed by fnm.
   opencodeNpx = pkgs.writeShellApplication {
     name = "opencode-npx";
@@ -18,9 +69,6 @@
   };
   rexUsage = pkgs.writeShellScriptBin "rex-usage" ''
     exec ${pkgs.python3}/bin/python3 ${./config/rex/rex_usage.py} "$@"
-  '';
-  rexOpencodeTab = pkgs.writeShellScriptBin "rex-opencode-tab" ''
-    exec ${pkgs.python3}/bin/python3 ${./config/rex/rex_opencode_tab.py} "$@"
   '';
   # Temporary workaround for the incorrect OpenCode 2.2.5 dependency hash on Darwin.
   opencode = pkgs.master.opencode.overrideAttrs (old: {
@@ -168,11 +216,7 @@ in {
         };
       file =
         {
-          ".config/rex/init.lua".text =
-            builtins.replaceStrings
-            ["@rexOpencodeTab@"]
-            ["${rexOpencodeTab}/bin/rex-opencode-tab"]
-            (builtins.readFile ./config/rex/init.lua);
+          ".config/rex/init.lua".source = ./config/rex/init.lua;
           ".config/rex/rex-usage.lua".source = ./config/rex/rex-usage.lua;
           ".config/rex/smart-splits-rex.lua".source = "${smartSplitsRex}/rex/lua/smart-splits-rex/init.lua";
         }
@@ -205,7 +249,7 @@ in {
         };
 
       packages = lib.flatten (
-        [rexUsage rexOpencodeTab]
+        [rexUsage]
         ++ config.home.modules.extraPackages
         ++ lib.optional isDarwin [
           pkgs.mas # Mac App Store command line interface
@@ -253,6 +297,7 @@ in {
           # Agent / Code
           pkgs.gh-stack
           pkgs.agent-browser
+          terminalBrowser # Browser that runs inside the terminal
           vercel-fx # Vercel Labs coding agent (vercel-fx)
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
