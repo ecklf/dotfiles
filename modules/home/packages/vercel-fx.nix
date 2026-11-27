@@ -7,26 +7,26 @@
   releases = {
     aarch64-darwin = {
       platform = "macos-aarch64";
-      sha256 = "5cacb5b3624a79db8fd4e31dcbc59d6a933d7e5ed4c397776d95df6b618296a9";
+      sha256 = "f37eea7eaf248f7a75765fc3f71be77bcfbc43eaef5cbe76d721dadb97479cfe";
     };
     x86_64-darwin = {
       platform = "macos-x86_64";
-      sha256 = "984eef6632d7bd27ff7b75befb52b9db32c25287905009db5822f6a669861fec";
+      sha256 = "becc6f68d42ff20606cd783b72630287ab92bc6eef2d700ed39de17d52b7dd3e";
     };
     aarch64-linux = {
       platform = "linux-aarch64";
-      sha256 = "b4633b8987ec43f1b9454e4629f3b5a4f1e086aae36b84ae4fefeacd6a53761f";
+      sha256 = "432a343b7d0fb15dce454ab1e100401df1ee4f01fb1e689a64557e6b9a57ece5";
     };
     x86_64-linux = {
       platform = "linux-x86_64";
-      sha256 = "78c155d59fa59e42fd56d93037fd75041868c9c67865e8c7f0ca6dcdfac23e75";
+      sha256 = "e4912040c1fb2a1cda4162fd8f40fc66aa80a1a0a306af6332b5426bdcac99b6";
     };
   };
   release = releases.${stdenvNoCC.hostPlatform.system};
 in
   stdenvNoCC.mkDerivation rec {
     pname = "vercel-fx";
-    version = "0.0.17";
+    version = "0.0.18";
 
     src = fetchurl {
       url = "https://github.com/vercel-labs/fx/releases/download/v${version}/fx-${release.platform}.tar.gz";
