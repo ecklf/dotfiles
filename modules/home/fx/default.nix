@@ -1,10 +1,9 @@
 {
   config,
   lib,
-  pkgs,
   ...
 }: {
-  config = lib.mkIf (config.home.modules.ai && pkgs.stdenv.hostPlatform.isDarwin) {
+  config = lib.mkIf config.home.modules.ai {
     home.file = {
       ".fx/AGENTS.md".source = ../config/ai/AGENTS.md;
       ".fx/commands".source = ../config/ai/commands;

@@ -293,12 +293,14 @@ in {
           pkgs.zoxide # A fast cd command that learns your habits
           pkgs.zsh # The Z shell
         ]
+        ++ lib.optional (config.home.modules.ai || config.home.modules.developer) [
+          vercel-fx # Vercel Labs coding agent (vercel-fx)
+        ]
         ++ lib.optional config.home.modules.developer [
           # Agent / Code
           pkgs.gh-stack
           pkgs.agent-browser
           terminalBrowser # Browser that runs inside the terminal
-          vercel-fx # Vercel Labs coding agent (vercel-fx)
           # Utilities
           pkgs.ncdu # Disk usage analyzer with an ncurses interface
           pkgs.rmlint # Extremely fast tool to remove duplicates filesystem
